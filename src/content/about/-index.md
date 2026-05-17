@@ -1,19 +1,26 @@
 ---
-title: "Hey, I am John Doe!"
-meta_title: "About"
-description: "this is meta description"
-image: "/images/image-placeholder.png"
+title: "About"
+meta_title: "About Jiyu Yan"
+description: "Jiyu Yan is a UK-based software engineer and solution engineer working across enterprise software, integrations, automation, and full-stack tooling."
 draft: false
 ---
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at.
+I am Jiyu Yan, a UK-based software engineer with 6+ years of experience delivering enterprise software solutions. My work sits between engineering, implementation, and product delivery: backend development, API integrations, JavaScript business logic, reporting, SQL/database work, internal automation, and technical solution design.
 
-### This is a title
+At UL Solutions, I have delivered 10+ long-term enterprise implementation projects, often taking ownership from discovery and requirements through solution design, coding, configuration, and go-live. I have worked on Java/Spring systems, SAP and ERP integrations, REST APIs, SQL Server procedures, reporting workflows, and reusable JavaScript solution patterns.
 
-* Lorem ipsum, dolor sit amet
-* Enim voluptatem dicta expedita veritatis
-* Fugit voluptatibus perspiciatis assumenda
-* Enim voluptatem dicta expedita
-* Corporis illum nesciunt commodi vel
+I like turning ambiguous business requirements into clear, maintainable systems. Recent work has included multi-level BOM automation, machine-selection rules, workflow automation, safe bulk data operations, and Python tooling for report and XML investigation.
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at.
+### Skills
+
+- Languages: JavaScript, TypeScript, SQL, Python, Java
+- Frontend: React, React Router, Vite, Tailwind CSS, shadcn/ui
+- Backend: Node.js, PostgreSQL, Prisma, SQL Server, REST APIs, Spring Framework
+- Tooling: Playwright, Vitest, Git, Linux, Docker, pnpm, Zod, Better Auth, AI SDK
+- Practices: schema design, workflow design, vertical-slice architecture, integration design, business-rule implementation
+
+### Background
+
+I hold an MSc in Computer Science from the University of Warwick, where I graduated with distinction. Before that, I completed an MSc in Electronics and Communication Engineering and a BEng in Communication Engineering at the University of Electronic Science and Technology of China.
+
+I also contributed to Wikimedia Hackathon work on Quarry, using Python, Flask, and Docker.
