@@ -1,0 +1,39 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
+import { humanize } from "@/lib/utils/textConverter";
+import PageHeader from "@/partials/PageHeader.astro";
+
+const COLLECTION = "dev";
+
+const tags = await getTaxonomy(COLLECTION, "tags");
+const allTags = await getAllTaxonomy(COLLECTION, "tags");
+---
+
+<Base title={"Dev Tags"}>
+  <PageHeader title={"Dev Tags"} />
+  <section class="section">
+    <div class="container text-center">
+      <ul>
+        {
+          tags.map((tag: string) => {
+            const count = allTags.filter((c) => c === tag).length;
+            return (
+              <li class="m-3 inline-block">
+                <a
+                  href={`/${COLLECTION}/tags/${tag}`}
+                  class="block rounded bg-light px-4 py-2 text-xl text-text-dark dark:bg-darkmode-light dark:text-darkmode-text-dark"
+                >
+                  {humanize(tag)}{" "}
+                  <span class="ml-2 rounded bg-body px-2 dark:bg-darkmode-body">
+                    {count}
+                  </span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+</Base>

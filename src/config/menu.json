@@ -9,8 +9,12 @@
       "url": "/about"
     },
     {
-      "name": "Blog",
-      "url": "/blog"
+      "name": "Dev",
+      "url": "/dev"
+    },
+    {
+      "name": "Journal",
+      "url": "/journal"
     }
   ],
   "footer": [
