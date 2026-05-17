@@ -2,7 +2,7 @@
 title: "Python list/dict functions for leetcode"
 description: "Python list and dictionary methods useful for LeetCode practice."
 date: 2020-08-22
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["Python", "Array", "Hash Table", "Leetcode Summary"]
 draft: false

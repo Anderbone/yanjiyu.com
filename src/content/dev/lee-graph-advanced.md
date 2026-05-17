@@ -2,7 +2,7 @@
 title: "leetcode: mini spanning tree, single src shortest path, topological"
 description: "Advanced graph notes for LeetCode, including spanning trees, shortest paths, and topological sorting."
 date: 2021-12-29
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["Graph", "Leetcode Summary"]
 draft: false

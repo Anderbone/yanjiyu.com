@@ -2,7 +2,7 @@
 title: "The Chat with a Driver in Ras Al Khaimah"
 description: "A travel reflection from Ras Al Khaimah, built around conversations with a Pakistani driver in the UAE."
 date: 2023-07-27
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Travel"]
 tags: ["UAE", "Travel", "Work"]
 draft: false

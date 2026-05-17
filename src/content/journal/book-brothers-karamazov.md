@@ -2,7 +2,7 @@
 title: "The Karamazov Brothers is the best novel I have ever read"
 description: "Notes on why The Brothers Karamazov became the best novel I have read."
 date: 2021-10-24
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Books"]
 tags: ["Dostoevsky", "Literature", "Christianity"]
 draft: false

@@ -2,7 +2,7 @@
 title: "Oral history of two Christians in a Chinese labour camp in the 1960s"
 description: "Oral-history notes from Dead Souls about two Christians who survived a Chinese labour camp in the 1960s."
 date: 2020-08-11
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Faith"]
 tags: ["Christianity", "China", "Documentary", "History"]
 draft: false

@@ -9,6 +9,11 @@
       "name": "linkedin",
       "icon": "FaLinkedin",
       "link": "https://www.linkedin.com/in/jiyu-yan/"
+    },
+    {
+      "name": "email",
+      "icon": "FaEnvelope",
+      "link": "mailto:yn.jiyu@gmail.com"
     }
   ]
 }

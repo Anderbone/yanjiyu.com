@@ -1,7 +1,7 @@
 ---
 # Banner
 banner:
-  title: "Jiyu Yan"
+  title: "Jiyu"
   content: "UK-based software engineer working across enterprise software, integrations, automation, and full-stack tooling."
   button:
     enable: true

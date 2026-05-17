@@ -2,7 +2,7 @@
 title: "Personality types don't exist, life is not a matching game"
 description: "An essay on personality categories, psychology, vocation, and choosing what matters."
 date: 2022-09-20
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Essays"]
 tags: ["Psychology", "Philosophy", "Vocation"]
 draft: false

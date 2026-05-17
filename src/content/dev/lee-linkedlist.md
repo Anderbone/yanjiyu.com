@@ -2,7 +2,7 @@
 title: "Leetcode: LinkedList in Python"
 description: "Linked-list patterns and LeetCode examples in Python."
 date: 2020-08-31
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["Linked List", "Python", "Leetcode Summary"]
 draft: false

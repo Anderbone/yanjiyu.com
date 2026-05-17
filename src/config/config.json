@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Jiyu Yan",
+    "title": "Jiyu",
     "base_url": "https://yanjiyu.com",
     "base_path": "/",
     "trailing_slash": false,
@@ -9,7 +9,7 @@
     "logo_darkmode": "",
     "logo_width": "80",
     "logo_height": "30",
-    "logo_text": "Jiyu Yan"
+    "logo_text": "Jiyu"
   },
 
   "settings": {
@@ -30,7 +30,7 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "© 2026 Jiyu Yan"
+    "copyright": "© 2026 Jiyu"
   },
 
   "navigation_button": {
@@ -51,9 +51,9 @@
   },
 
   "metadata": {
-    "meta_author": "Jiyu Yan",
+    "meta_author": "Jiyu",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Personal website of Jiyu Yan, a UK-based software engineer."
+    "meta_description": "Personal website of Jiyu, a UK-based software engineer."
   },
 
   "llms": {

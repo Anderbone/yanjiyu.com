@@ -2,7 +2,7 @@
 title: "Use Pocket (read it later) on KOReader"
 description: "How to send Pocket articles to KOReader through news2reader and an OPDS catalog."
 date: 2024-01-12
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Tools"]
 tags: ["KOReader", "Pocket", "Self-hosting"]
 draft: false

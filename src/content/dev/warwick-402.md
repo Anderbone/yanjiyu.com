@@ -2,7 +2,7 @@
 title: "High-performance computing module outline"
 description: "Warwick module 402 high-performance computing outline notes."
 date: 2019-03-10
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["University"]
 tags: ["Warwick", "HPC"]
 draft: false

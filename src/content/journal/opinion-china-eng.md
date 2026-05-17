@@ -2,7 +2,7 @@
 title: "The world is far from God, close to China"
 description: "A long essay on China, empire, political order, and the history behind modern Chinese society."
 date: 2020-03-30
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Essays"]
 tags: ["China", "History", "Politics"]
 draft: false

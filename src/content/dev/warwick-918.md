@@ -2,7 +2,7 @@
 title: "Natural language processing module outline"
 description: "Warwick module 918 natural language processing outline notes."
 date: 2019-03-10
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["University"]
 tags: ["Warwick", "NLP"]
 draft: false

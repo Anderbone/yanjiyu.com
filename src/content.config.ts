@@ -18,7 +18,7 @@ const postSchema = z.object({
   description: z.string().optional(),
   date: z.coerce.date().optional(),
   image: z.string().optional(),
-  author: z.string().default("Jiyu Yan"),
+  author: z.string().default("Jiyu"),
   // Use factory functions for mutable array defaults (Zod 4 best practice)
   categories: z.array(z.string()).default(() => ["others"]),
   tags: z.array(z.string()).default(() => ["others"]),

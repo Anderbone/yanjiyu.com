@@ -2,7 +2,7 @@
 title: "Shadian, a war between Communists and Muslims in China 1975"
 description: "A short note on the 1975 Shadian incident, when Communist forces fought Muslim communities in Yunnan."
 date: 2021-08-21
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["History"]
 tags: ["China", "History", "Islam"]
 draft: false

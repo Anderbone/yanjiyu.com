@@ -2,7 +2,7 @@
 title: "leetcode questions: Backtracking"
 description: "Backtracking templates and LeetCode examples."
 date: 2021-10-11
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["Backtracking", "DFS", "Leetcode Summary"]
 draft: false

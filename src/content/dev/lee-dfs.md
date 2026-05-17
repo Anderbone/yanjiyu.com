@@ -2,7 +2,7 @@
 title: "leetcode questions: DFS"
 description: "Depth-first search templates and LeetCode examples."
 date: 2021-10-11
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["DFS", "Leetcode Summary"]
 draft: false

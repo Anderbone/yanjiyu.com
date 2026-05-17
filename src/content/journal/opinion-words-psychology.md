@@ -2,7 +2,7 @@
 title: "Dangerous words, why psychology is impossible"
 description: "An essay on language, psychology, Wittgenstein, and the danger of treating concepts as explanations."
 date: 2022-01-22
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Essays"]
 tags: ["Wittgenstein", "Psychology", "Philosophy"]
 draft: false

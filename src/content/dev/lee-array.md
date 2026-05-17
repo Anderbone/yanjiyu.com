@@ -2,7 +2,7 @@
 title: "Leetcode: Array questions with Python"
 description: "Array problem patterns and LeetCode examples in Python."
 date: 2017-08-09
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["Python", "Array", "Leetcode Summary"]
 draft: false

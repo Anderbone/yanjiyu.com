@@ -2,7 +2,7 @@
 title: "Input Chinese pinyin with tones on Linux with fcitx"
 description: "A short setup note for typing pinyin with tone marks on Linux using fcitx and Rime."
 date: 2024-08-15
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Tools"]
 tags: ["Linux", "Input Methods", "Rime"]
 draft: false

@@ -2,7 +2,7 @@
 title: "The word 'Word' in Bible "
 description: "A brief reflection on the power of words in the Bible and in ordinary life."
 date: 2022-01-22
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Faith"]
 tags: ["Christianity", "Bible"]
 draft: false

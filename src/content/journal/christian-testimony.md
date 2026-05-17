@@ -2,7 +2,7 @@
 title: "My story with God"
 description: "A personal testimony about dreams, doubt, church, baptism, and coming to Christian faith."
 date: 2021-09-30
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Faith"]
 tags: ["Christianity", "Testimony"]
 draft: false

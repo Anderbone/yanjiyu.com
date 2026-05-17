@@ -2,7 +2,7 @@
 title: "5-love-languages and Extrovert only exist in our language"
 description: "An essay arguing that extrovert, introvert, and love-language labels are language games, not inner mechanisms."
 date: 2021-05-10
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Essays"]
 tags: ["Psychology", "Wittgenstein", "Language"]
 draft: false

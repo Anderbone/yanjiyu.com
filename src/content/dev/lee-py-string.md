@@ -2,7 +2,7 @@
 title: "Python String functions for leetcode"
 description: "Python string methods useful for LeetCode practice."
 date: 2020-08-22
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["Python", "String", "Leetcode Summary"]
 draft: false

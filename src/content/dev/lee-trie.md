@@ -2,7 +2,7 @@
 title: "leetcode: Trie"
 description: "Trie concepts, Java implementations, and LeetCode examples."
 date: 2022-06-18
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["Trie", "Leetcode Summary"]
 draft: false

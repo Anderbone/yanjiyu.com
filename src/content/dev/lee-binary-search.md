@@ -2,7 +2,7 @@
 title: "leetcode questions: Binary Search"
 description: "Binary search templates and LeetCode examples."
 date: 2022-07-10
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["Binary Search", "Leetcode Summary"]
 draft: false

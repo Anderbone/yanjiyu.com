@@ -2,7 +2,7 @@
 title: "Mom, let me take the blame for Dad's mistakes"
 description: "Stories about blame, sacrifice, trust, and the Christian meaning of taking another person's burden."
 date: 2022-01-15
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Faith"]
 tags: ["Christianity", "Family", "Love"]
 draft: false

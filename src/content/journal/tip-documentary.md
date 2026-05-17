@@ -2,7 +2,7 @@
 title: "Documentaries about China"
 description: "A curated list of documentaries about China, including films on rural life, politics, famine, and recent history."
 date: 2020-04-01
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Film"]
 tags: ["Documentary", "China"]
 draft: false

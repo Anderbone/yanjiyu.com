@@ -2,7 +2,7 @@
 title: "Most common design patterns in Java"
 description: "Notes on common Java design patterns including strategy, factory method, and singleton."
 date: 2023-11-14
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Java"]
 tags: ["Java", "Design Patterns"]
 draft: false

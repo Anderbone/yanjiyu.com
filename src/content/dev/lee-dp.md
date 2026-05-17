@@ -2,7 +2,7 @@
 title: "leetcode questions: dynamic programming"
 description: "Dynamic programming notes, templates, and LeetCode examples."
 date: 2021-10-11
-author: "Jiyu Yan"
+author: "Jiyu"
 categories: ["Leetcode"]
 tags: ["DP", "Leetcode Summary"]
 draft: false
