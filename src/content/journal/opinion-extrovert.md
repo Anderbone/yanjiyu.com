@@ -1,0 +1,36 @@
+---
+title: "5-love-languages and Extrovert only exist in our language"
+description: "An essay arguing that extrovert, introvert, and love-language labels are language games, not inner mechanisms."
+date: 2021-05-10
+author: "Jiyu Yan"
+categories: ["Essays"]
+tags: ["Psychology", "Wittgenstein", "Language"]
+draft: false
+---
+
+The craving for generality is a philosophical sin.
+
+Everyone is born with some difference. Features like hair colour, and sports/music gifts, likes salt/sweet, exist and don't change much according to context, they are self-determined.
+
+Obviously, there are people who are generally more talkative, and friendly to strangers and people who probably don't talk much. Nobody denies that. By observing these things in real life, we created the concept of introvert and extrovert. Roughly, an extrovert is a package of talkative and friendly to strangers etc. (or whatever-related habits/behaviour, I will usually use talkative but you can replace it with any feature you believe an extrovert means). We can use these words and everyone roughly knows what you mean, you are an extrovert, he's basically an introvert or somewhere in between.
+By its own definition, extroverts gain energy with people, and lose energy alone, like a battery. Say you are an extrovert, but after a long time party, you may also want to just be alone for a while. By reading Bible or visiting the park alone, you may also feel refreshed. Let alone everyone wants to have a good friend.
+
+By putting someone on an island alone, you can see he is strong or intelligent, you can't say he's an introvert or extrovert. 
+By putting him in a party or meeting and observing how talkative he is with others, maybe many times, we can roughly label him, and still, that depends on what the actual meeting or party means to him. The label extrovert/introvert is not the reason why he's talkative that day at that party, that’s exactly talkative(or whatever behaviour we observed) itself. 
+We can't say he is talkative *because* he is talkative, but we say he is talkative *because* he is an extrovert. I think that's where the mistake was made and what I’m against. Extrovert doesn't explain anything, there's nothing inside. Extrovert doesn’t go one step further at all compared to words like talkative and friendly, it’s at most just a package of them. We still don’t know why a person behaves like that on that day. The extrovert is a concept we created and a self-determined word, we mark people with these labels after observation. If we use "because", it looks like the person herself is the source and this feature is the root, somehow she was born with an extrovert feature to some extent and may not change much no matter the environment.
+
+Then can we say everyone is somewhere in between those 2 concepts? Still, for sure we can make a spectrum and create a questionnaire, there's no problem with that. But everyone has different reasons for behaviour according to the situation and their understandings, you can't create a concept and mark it as the real reason or essence of a person. He's that talkative (or friendly etc.) based on my observation or questionnaire, 36% in the spectrum I made, so he’s more like an introvert, you can follow further reductionism, it's *because* he's born with 36% of some special DNA between introvert and extrovert. But all we have is just according to your questionnaire he’s 36% talkative at the moment. Let's just remind ourselves again, that introvert and extrovert are just two words we created ourselves recently. Before you try to prove someone is which or do your DNA study, you already make an assumption that they exist somehow out of our language, just like our biceps determine how much weight we can use doing barbell curl, our introvert/extrovert feature exist to determine our behaviour, which they don't exist out of our language!
+
+I'm talkative with some close friends, can we say it's because I'm an extrovert when I'm with someone? How strange is that! Actually, I marked myself as an introvert when I was young, I read books like "how to survive as an introvert" in high school. When I look back, I can see more reasons, the education and political system, the privilege to read some books most people around don't read, etc. But by believing myself as an introvert, when a moment I needed to say something with courage, I could remain silent with fear and comfort myself, it's just because I'm an introvert, I can't change that so nothing wrong. See the self-pity and self-fulfilling prophecy.
+
+If I make a concept pious/non-pious just similar to extract/introvert. Relationship with God and relationship with people. By observing people go to church every week, read Bible, and spend time in prayer. I say it's just because he's the pious type, that's all. I'm non-pious so I don't have time for Bible and I can do nothing about it, that's all. I'm just the non-pious type. Of course, it's me trying to flee from responsibility. People need to be understood by putting themselves back into the real world.
+
+Someone recommended the book 5 love languages and here let me show why I don't buy these kinds of ideas. I refuse to divide people or love into certain types, or everyone has a main primary love language or anything like that.
+
+Actually, she noticed the key issue herself. When saying gift, she immediately added the word "thoughtful", and that little word(context) means more than the dry word gift. Suppose your boyfriend carefully chose an expensive bag as a gift, we can’t say it’s not thoughtful, but what if he sent it to 5 other girls? I received some books as a gift in my life, and "reasons for my hope" is special, not only because the book itself is practical, the book is from someone once special. See how important the actual relationship is and how less important the gift itself is. The thoughtful feeling in a relationship behind the gift is key, and you can’t compress it to a simple word gift or a thoughtful gift.
+
+When saying hug or physical touch, she immediately added "that also depends on who". Actually, it’s the key point, which is exactly what I want to say, these concepts talking about relationship/love can't be self-centred and self-determined, it has to be talking in a relationship/context. I want to hug people I love, or when there’s such a need, and I just can’t compare the word gift with the word hug, I refuse to do so.
+
+I can only know that the iPad is larger than a mobile phone. Comparing the word “gift” with the word “hug” is pointless. A single word alone is meaningless, and a word gets its meaning in a context in our daily language. Gifts and hugs for me, are related to my real life, memories associated with people I love, in different cities, and I refuse to compress them into two dry words and compare them.
+
+Every moment, whether I speak or remain silent, want to hug or send a gift, it depends on the people there that day, depends on my relationship and understanding, and I have the freedom to make a decision and take full responsibility for that choice, though I did things wrongly endless times, there's nothing secretly within myself out of my understanding to determine things for me.
