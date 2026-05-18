@@ -13,11 +13,13 @@ const enabled =
   giscus.repoId &&
   giscus.category &&
   giscus.categoryId;
+const defaultTheme = config.settings.default_theme || "system";
 
 const giscusInitScript = `
 (() => {
   const giscusOrigin = "https://giscus.app";
   const maxAttempts = 20;
+  const defaultTheme = ${JSON.stringify(defaultTheme)};
   const currentScript = document.currentScript;
   const container = currentScript?.closest("[data-giscus-comments]");
 
@@ -42,7 +44,7 @@ const giscusInitScript = `
     "theme",
     "lang",
   ].forEach((key) => {
-    const value = container.dataset[key];
+    const value = key === "theme" ? getTheme() : container.dataset[key];
     if (!value) return;
 
     const attrName = key.replace(/[A-Z]/g, (letter) => "-" + letter.toLowerCase());
@@ -51,8 +53,24 @@ const giscusInitScript = `
 
   container.appendChild(script);
 
-  const getTheme = () =>
-    document.documentElement.classList.contains("dark") ? "dark" : "light";
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem("theme");
+    } catch {
+      return null;
+    }
+  }
+
+  function getTheme() {
+    const storedTheme = getStoredTheme();
+    if (storedTheme === "dark" || storedTheme === "light") return storedTheme;
+
+    if (defaultTheme === "dark" || defaultTheme === "light") return defaultTheme;
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
 
   const sendTheme = () => {
     const iframe = document.querySelector("iframe.giscus-frame");

@@ -63,6 +63,93 @@ const { title, description, author, categories, image, date, tags } = post.data;
         <div class="content mb-10">
           <Content />
         </div>
+        <script>
+          const copyIcon = `
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <rect x="9" y="9" width="11" height="11" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          `;
+          const checkIcon = `
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M20 6 9 17l-5-5"></path>
+            </svg>
+          `;
+          const errorIcon = `
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          `;
+
+          async function copyTextToClipboard(text: string) {
+            if (navigator.clipboard?.writeText) {
+              await navigator.clipboard.writeText(text);
+              return;
+            }
+
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.setAttribute("readonly", "");
+            textarea.style.position = "fixed";
+            textarea.style.top = "0";
+            textarea.style.left = "-9999px";
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+              document.execCommand("copy");
+            } finally {
+              textarea.remove();
+            }
+          }
+
+          function addCopyCodeButtons() {
+            document.querySelectorAll("pre").forEach((pre) => {
+              if (pre.querySelector(":scope > .copy-code-button")) {
+                return;
+              }
+
+              const code = pre.querySelector("code");
+              if (!code?.textContent?.trim()) {
+                return;
+              }
+
+              const button = document.createElement("button");
+              button.type = "button";
+              button.className = "copy-code-button";
+              button.innerHTML = copyIcon;
+              button.setAttribute("aria-label", "Copy code to clipboard");
+              button.title = "Copy code";
+
+              button.addEventListener("click", async () => {
+                try {
+                  await copyTextToClipboard(code.textContent || "");
+                  button.blur();
+                  button.innerHTML = checkIcon;
+                  button.setAttribute("aria-label", "Code copied");
+                  button.classList.add("is-copied");
+                } catch {
+                  button.innerHTML = errorIcon;
+                  button.setAttribute("aria-label", "Could not copy code");
+                  button.classList.add("is-error");
+                }
+
+                window.setTimeout(() => {
+                  button.innerHTML = copyIcon;
+                  button.setAttribute("aria-label", "Copy code to clipboard");
+                  button.classList.remove("is-copied", "is-error");
+                }, 1800);
+              });
+
+              pre.classList.add("code-block-with-copy");
+              pre.appendChild(button);
+            });
+          }
+
+          addCopyCodeButtons();
+          document.addEventListener("astro:page-load", addCopyCodeButtons);
+        </script>
         <div class="row items-start justify-between">
           <div class="mb-10 flex items-center lg:col-5 lg:mb-0">
             <h5 class="mr-3">Tags :</h5>
