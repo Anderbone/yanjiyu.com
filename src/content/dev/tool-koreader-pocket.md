@@ -8,12 +8,17 @@ tags: ["KOReader", "Pocket", "Self-hosting"]
 draft: false
 ---
 
-Recently I found a brilliant tool that can help people to use Pocket on Koreader.
+Pocket does not integrate with KOReader directly, but [news2reader](https://github.com/BHSPitMonkey/news2reader#news2reader) can expose Pocket articles as an OPDS catalog.
 
-[forum page link](https://www.mobileread.com/forums/showthread.php?t=355533)
+Useful links:
 
-[github link](https://github.com/BHSPitMonkey/news2reader#news2reader)
+- [MobileRead forum thread](https://www.mobileread.com/forums/showthread.php?t=355533)
+- [news2reader on GitHub](https://github.com/BHSPitMonkey/news2reader#news2reader)
 
-I run it on my Synology NAS.
+I run it on my Synology NAS. After the service is reachable, add its OPDS endpoint in KOReader:
 
-Then add link https://pingu:443/opds as the ODPS catalog URL on your koreader, change the link accordingly to follow your web portals, enjoy!
+```text
+https://pingu:443/opds
+```
+
+Change the hostname and port to match your own reverse proxy or local network setup.

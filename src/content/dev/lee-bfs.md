@@ -9,6 +9,7 @@ draft: false
 ---
 
 ### BFS Template
+
 ```java
 /**
  * Return the length of the shortest path between root and target node.
@@ -16,7 +17,7 @@ draft: false
 int BFS(Node root, Node target) {
     Queue<Node> queue;  // store all nodes which are waiting to be processed
     Set<Node> visited;  // store all the nodes that we've visited
-    int step = 0;       // number of steps neeeded from root to current node
+    int step = 0;       // number of steps needed from root to current node
     // initialize
     add root to queue;
     add root to visited;
@@ -42,10 +43,12 @@ int BFS(Node root, Node target) {
 ```
 
 ### [133. Clone graph](https://yanjiyu.com/leetcode/133/)
-> Given a reference of a node in a **[connected](https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_graph)** undirected graph.
-Return a [deep copy](https://en.wikipedia.org/wiki/Object_copying#Deep_copy) (clone) of the graph.
-Each node in the graph contains a value (int) and a list (List[Node]) of its neighbors.
-class Node { public int val; public List<Node> neighbors; }
+
+> Given a reference of a node in a **[connected](<https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_graph>)** undirected graph.
+> Return a [deep copy](https://en.wikipedia.org/wiki/Object_copying#Deep_copy) (clone) of the graph.
+> Each node in the graph contains a value (int) and a list (List[Node]) of its neighbors.
+> class Node { public int val; public List<Node> neighbors; }
+
 ```py
 class Solution:
     def cloneGraph(self, node): # BFS
@@ -63,7 +66,8 @@ class Solution:
         return m[node]
 ```
 
-- code bfs
+**Code: bfs**
+
 ```java
 /*
 // Definition for a Node.
@@ -118,16 +122,17 @@ class Solution {
 }
 ```
 
-
 ### [752. open the lock](https://yanjiyu.com/leetcode/752/)
+
 > You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'. The wheels can rotate freely and wrap around: for example we can turn '9' to be '0', or '0' to be '9'. Each move consists of turning one wheel one slot.
-The lock initially starts at '0000', a string representing the state of the 4 wheels.
-You are given a list of deadends dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.
-Given a target representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.
-**Example 1:**
-Input: deadends = ["0201","0101","0102","1212","2002"], target = "0202" Output: 6 Explanation: A sequence of valid moves would be "0000" -> "1000" -> "1100" -> "1200" -> "1201" -> "1202" -> "0202". Note that a sequence like "0000" -> "0001" -> "0002" -> "0102" -> "0202" would be invalid, because the wheels of the lock become stuck after the display becomes the dead end "0102".
-**Example 2:**
-Input: deadends = ["8888"], target = "0009" Output: 1 Explanation: We can turn the last wheel in reverse to move from "0000" -> "0009".
+> The lock initially starts at '0000', a string representing the state of the 4 wheels.
+> You are given a list of deadends dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.
+> Given a target representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.
+> **Example 1:**
+> Input: deadends = ["0201","0101","0102","1212","2002"], target = "0202" Output: 6 Explanation: A sequence of valid moves would be "0000" -> "1000" -> "1100" -> "1200" -> "1201" -> "1202" -> "0202". Note that a sequence like "0000" -> "0001" -> "0002" -> "0102" -> "0202" would be invalid, because the wheels of the lock become stuck after the display becomes the dead end "0102".
+> **Example 2:**
+> Input: deadends = ["8888"], target = "0009" Output: 1 Explanation: We can turn the last wheel in reverse to move from "0000" -> "0009".
+
 ```py
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
@@ -155,7 +160,9 @@ class Solution:
         return -1
 
 ```
+
 ---
+
 ```py
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
@@ -196,7 +203,9 @@ class Solution:
 
         return -1
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
     public int openLock(String[] deadends, String target) {
@@ -238,12 +247,14 @@ class Solution {
 ```
 
 ### [279. Perfect squares](https://yanjiyu.com/leetcode/279/)
-> Given an integer n, return __the least number of perfect square numbers that sum to__ n.
-A perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
-Example 1:
-Input: n = 12 Output: 3 Explanation: 12 = 4 + 4 + 4.
-Example 2:
-Input: n = 13 Output: 2 Explanation: 13 = 4 + 9.
+
+> Given an integer n, return **the least number of perfect square numbers that sum to** n.
+> A perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
+> Example 1:
+> Input: n = 12 Output: 3 Explanation: 12 = 4 + 4 + 4.
+> Example 2:
+> Input: n = 13 Output: 2 Explanation: 13 = 4 + 9.
+
 ```py
 class Solution(object):
     def numSquares(self, n):
@@ -264,7 +275,8 @@ class Solution(object):
                         return step
 ```
 
-- code bfs
+**Code: bfs**
+
 ```java
 class Solution {
   public int numSquares(int n) {
@@ -301,10 +313,12 @@ class Solution {
 ```
 
 ### [733. Flood fill](https://yanjiyu.com/leetcode/733/)
+
 > CompaniesAn image is represented by an m x n integer grid image where image[i][j] represents the pixel value of the image.
-You are also given three integers sr, sc, and newColor. You should perform a **flood fill** on the image starting from the pixel image[sr][sc].
-To perform a **flood fill**, consider the starting pixel, plus any pixels connected **4-directionally** to the starting pixel of the same color as the starting pixel, plus any pixels connected **4-directionally** to those pixels (also with the same color), and so on. Replace the color of all of the aforementioned pixels with newColor.
-Return __the modified image after performing the flood fill__.
+> You are also given three integers sr, sc, and newColor. You should perform a **flood fill** on the image starting from the pixel image[sr][sc].
+> To perform a **flood fill**, consider the starting pixel, plus any pixels connected **4-directionally** to the starting pixel of the same color as the starting pixel, plus any pixels connected **4-directionally** to those pixels (also with the same color), and so on. Replace the color of all of the aforementioned pixels with newColor.
+> Return **the modified image after performing the flood fill**.
+
 ```py
 class Solution:
     def floodFill(self, image, sr, sc, newColor):
@@ -320,15 +334,16 @@ class Solution:
         return image
 ```
 
-
 [322. Coin Change](https://yanjiyu.com/leetcode/322-coin-change/)
+
 > You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
-You may assume that you have an infinite number of each kind of coin.
-Example 1:
-Input: coins = [1, 2, 5], amount = 11
-Output: 3 Explanation: 11 = 5 + 5 + 1
-Example 2:
-Input: coins = [2], amount = 3Output: -1
+> You may assume that you have an infinite number of each kind of coin.
+> Example 1:
+> Input: coins = [1, 2, 5], amount = 11
+> Output: 3 Explanation: 11 = 5 + 5 + 1
+> Example 2:
+> Input: coins = [2], amount = 3Output: -1
+
 ```py
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
@@ -352,7 +367,9 @@ class Solution:
                 break
         return -1
 ```
+
 ---
+
 ```py
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
@@ -368,12 +385,15 @@ class Solution:
                     visited.add(node + coin)
         return -1
 ```
+
 ### [542. 01-matrix](https://yanjiyu.com/leetcode/542/)
-> Given an m x n binary matrix mat, return __the distance of the nearest __0__ for each cell__.
-The distance between two adjacent cells is 1.
-**Example 1:**
+
+> Given an m x n binary matrix mat, return **the distance of the nearest **0** for each cell**.
+> The distance between two adjacent cells is 1.
+> **Example 1:**
 
 Input: mat = [[0,0,0],[0,1,0],[0,0,0]] Output: [[0,0,0],[0,1,0],[0,0,0]]
+
 ```py
 class Solution:
     def updateMatrix(self, matrix):
@@ -397,13 +417,16 @@ class Solution:
 
         return matrix
 ```
+
 ### [127. Word ladder](https://yanjiyu.com/leetcode/127/)
+
 > A **transformation sequence** from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:
-Every adjacent pair of words differs by a single letter.
-Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in wordList.
-sk == endWordGiven two words, beginWord and endWord, and a dictionary wordList, return __the **number of words** in the **shortest transformation sequence** from__ beginWord __to__ endWord__, or __0__ if no such sequence exists.__
-**Example 1:**
-Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"] Output: 5 Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
+> Every adjacent pair of words differs by a single letter.
+> Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in wordList.
+> sk == endWordGiven two words, beginWord and endWord, and a dictionary wordList, return **the **number of words** in the **shortest transformation sequence** from** beginWord **to** endWord**, or **0** if no such sequence exists.**
+> **Example 1:**
+> Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"] Output: 5 Explanation: One shortest transformation sequence is "hit" -> "hot" -> "dot" -> "dog" -> cog", which is 5 words long.
+
 ```py
 class Solution(object):
     def ladderLength(self, beginWord, endWord, wordList):
@@ -436,7 +459,8 @@ class Solution(object):
         return bfs_words(beginWord, endWord, d)
 ```
 
-- code
+**Code:**
+
 ```java
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
@@ -497,25 +521,24 @@ class Solution {
 }
 ```
 
-
 ### [1091. Shortest Path in Binary Matrix ](https://yanjiyu.com/leetcode/1091/)
-> Given an n x n binary matrix grid, return __the length of the shortest clear path in the matrix__. If there is no clear path, return -1.
-A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0)) to the bottom-right cell (i.e., (n - 1, n - 1)) such that:
+
+> Given an n x n binary matrix grid, return **the length of the shortest clear path in the matrix**. If there is no clear path, return -1.
+> A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0)) to the bottom-right cell (i.e., (n - 1, n - 1)) such that:
 
 > All the visited cells of the path are 0.
-All the adjacent cells of the path are 8-directionally connected (i.e., they are different and they share an edge or a corner).The length of a clear path is the number of visited cells of this path.
+> All the adjacent cells of the path are 8-directionally connected (i.e., they are different and they share an edge or a corner).The length of a clear path is the number of visited cells of this path.
 
 Example 1:
-
 
 Input: grid = [[0,1],[1,0]] Output: 2
 
 Example 2:
 
-
 Input: grid = [[0,0,0],[1,1,0],[1,1,0]] Output: 4
 
-- code #astar
+**Code: #astar**
+
 ```py
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
@@ -571,7 +594,9 @@ class Solution:
         # There was no path.
         return -1
 ```
-- code bfs
+
+**Code: bfs**
+
 ```py
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
@@ -600,6 +625,7 @@ class Solution:
                         visited.add(nei)
         return -1
 ```
+
 ```java
 class Solution {
 

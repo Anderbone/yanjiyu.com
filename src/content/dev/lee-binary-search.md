@@ -8,98 +8,101 @@ tags: ["Binary Search", "Leetcode Summary"]
 draft: false
 ---
 
-- `bisect.bisect_left(a, x)`  https://dynalist.io/d/RWIGNj7DLlzkBed-3ZqhuBg_#z=cbr2Mkrig9KhE6Lxfwhm31IS    O(logn)
+- `bisect.bisect_left(a, x)` https://dynalist.io/d/RWIGNj7DLlzkBed-3ZqhuBg_#z=cbr2Mkrig9KhE6Lxfwhm31IS O(log n)
   greater than or equal to the targeted value. If all elements are less than x, return `len(a)`
-    - l<=r or l < r
-        - ans1
-            - if you discard mid for the next iteration (i.e. l = mid+1 or r = mid-1) then use while (l <= r).
-            - if you keep mid for the next iteration (i.e. l = mid or r = mid) then use while (l < r)
-        - ans2
-            - if you are returning from inside the loop, use left <= right
-            - if you are reducing the search space, use left < right and finally return a[left]
+  - l<=r or l < r
+    - ans1
+      - if you discard mid for the next iteration (i.e. l = mid+1 or r = mid-1) then use while (l <= r).
+      - if you keep mid for the next iteration (i.e. l = mid or r = mid) then use while (l < r)
+    - ans2
+      - if you are returning from inside the loop, use left <= right
+      - if you are reducing the search space, use left < right and finally return a[left]
 - template 1
-  can be determined by __accessing a single index__ in the array.
-    - code, don't use `(low+high)//2` to avoid overflow.
-      ```py
-      def bsearch(t, mylist):
-      	low, high = 0, len(mylist) - 1
-      	while low <= high:
-      		mid = low + (high - low)//2
-      		if mylist[mid] < t:
-      			low = mid + 1
-      		elif mylist[mid] > t:
-      			high = mid - 1
-      		else:
-      			return mid
-      	return -1
-      ```
-	  remember mid + 1, -1, not mid itself
+  can be determined by **accessing a single index** in the array.
+  - code, don't use `(low+high)//2` to avoid overflow.
+    ```py
+    def bsearch(t, mylist):
+        low, high = 0, len(mylist) - 1
+        while low <= high:
+            mid = low + (high - low)//2
+            if mylist[mid] < t:
+                low = mid + 1
+            elif mylist[mid] > t:
+                high = mid - 1
+            else:
+                return mid
+        return -1
+    ```
+    remember mid + 1, -1, not mid itself
 - template 2
-  __accessing the current index and its immediate right neighbor's index__ in the array.
-    - must be this way, r = mid - 1 and left = mid is wrong. If left, right, the mid is always left and left doesn't change. Just remember to change left!
-        - https://dynalist.io/d/MpU_i9aOQTQsEWc_dDKqqBz2#z=_q2Gk3xT_Q7djdFrhzoxFCUX
-    - - code  [Explore - LeetCode](https://leetcode.com/explore/learn/card/binary-search/126/template-ii/937/)
-      ```py
-      def binarySearch(nums, target):
-          """
-          :type nums: List[int]
-          :type target: int
-          :rtype: int
-          """
-          if len(nums) == 0:
-              return -1
+  **accessing the current index and its immediate right neighbor's index** in the array.
+  - must be this way, r = mid - 1 and left = mid is wrong. If left, right, the mid is always left and left doesn't change. Just remember to change left!
+    - https://dynalist.io/d/MpU_i9aOQTQsEWc_dDKqqBz2#z=_q2Gk3xT_Q7djdFrhzoxFCUX
+  - Code[Explore - LeetCode](https://leetcode.com/explore/learn/card/binary-search/126/template-ii/937/):
 
-          left, right = 0, len(nums)
-          while left < right:
-              mid = (left + right) // 2
-              if nums[mid] == target:
-                  return mid
-              elif nums[mid] < target:
-                  left = mid + 1
-              else:
-                  right = mid
+    ```py
+    def binarySearch(nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return -1
 
-          # Post-processing:
-          # End Condition: left == right
-          if left != len(nums) and nums[left] == target:
-              return left
-          return -1
-      ```
-- tempate 3
-   __accessing the current index and its immediate left and right neighbor's index__ in the array.
-    - - code
-      ```py
-      def binarySearch(nums, target):
-          """
-          :type nums: List[int]
-          :type target: int
-          :rtype: int
-          """
-          if len(nums) == 0:
-              return -1
+        left, right = 0, len(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid
 
-          left, right = 0, len(nums) - 1
-          while left + 1 < right:
-              mid = (left + right) // 2
-              if nums[mid] == target:
-                  return mid
-              elif nums[mid] < target:
-                  left = mid
-              else:
-                  right = mid
+        # Post-processing:
+        # End Condition: left == right
+        if left != len(nums) and nums[left] == target:
+            return left
+        return -1
+    ```
 
-          # Post-processing:
-          # End Condition: left + 1 == right
-          if nums[left] == target: return left
-          if nums[right] == target: return right
-          return -1
-      ```
+- template 3
+  **accessing the current index and its immediate left and right neighbor's index** in the array.
+  - Code:
+  - ```py
+    def binarySearch(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: int
+    """
+    if len(nums) == 0:
+    return -1
+
+        left, right = 0, len(nums) - 1
+        while left + 1 < right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid
+            else:
+                right = mid
+
+        # Post-processing:
+        # End Condition: left + 1 == right
+        if nums[left] == target: return left
+        if nums[right] == target: return right
+        return -1
+    ```
 
 ### [300 Longest Increasing Subsequence](https://yanjiyu.com/leetcode/300/)
 
 > Given an unsorted array of integers, find the length of longest increasing subsequence. A **subsequence** is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].
-Example:
-Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+> Example:
+> Input: [10,9,2,5,3,7,101,18] Output: 4 Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+
 ```py
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
@@ -114,10 +117,12 @@ class Solution:
                 left = bisect.bisect_left(L, nums[i])
 
                 L[left] = nums[i]
-      # actuaclly 2,3,7,18
+      # actually 2,3,7,18
         return len(L)
 ```
-- code binary search
+
+**Code: binary search**
+
 ```java
 class Solution {
     public int lengthOfLIS(int[] nums) {
@@ -159,8 +164,8 @@ class Solution {
 }
 ```
 
-
 ### 410. Split Array Largest Sum
+
 [Split Array Largest Sum - LeetCode](https://leetcode.com/problems/split-array-largest-sum/)
 
 Given an array nums which consists of non-negative integers and an integer m, you can split the array into m non-empty continuous subarrays.
@@ -172,7 +177,9 @@ Example 2:
 Input: nums = [1,2,3,4,5], m = 2 Output: 9
 
 ---
-- code
+
+**Code:**
+
 ```java
 class Solution {
     private int minimumSubarraysRequired(int[] nums, int maxSumAllowed) {
@@ -218,7 +225,9 @@ class Solution {
     }
 }
 ```
-- code #binarySearchAdvanced
+
+**Code: #binarySearchAdvanced**
+
 ```py
 class Solution:
     def splitArray(self, nums: List[int], m: int) -> int:
@@ -245,7 +254,9 @@ class Solution:
 
         return res
 ```
-- code
+
+**Code:**
+
 ```py
 class Solution:
     def splitArray(self, nums: List[int], m: int) -> int:
@@ -273,10 +284,11 @@ class Solution:
 
 ### [1102. Path With Maximum Minimum Value](https://yanjiyu.com/leetcode/1102/)
 
-Given an m x n integer matrix grid, return __the maximum score of a path starting at __(0, 0)__ and ending at __(m - 1, n - 1) moving in the 4 cardinal directions.
+Given an m x n integer matrix grid, return **the maximum score of a path starting at **(0, 0)** and ending at **(m - 1, n - 1) moving in the 4 cardinal directions.
 The score of a path is the minimum value in that path.
 
-	For example, the score of the path 8 → 4 → 5 → 9 is 4.
+    For example, the score of the path 8 → 4 → 5 → 9 is 4.
+
 Example 1:
 Input: grid = [[5,4,5],[1,2,6],[7,4,6]] Output: 4 Explanation: The path with the maximum score is highlighted in yellow.
 Example 2:
@@ -286,12 +298,13 @@ Input: grid = [[3,4,6,3,4],[0,2,1,1,7],[8,8,3,2,7],[3,2,4,9,8],[4,1,2,0,0],[4,6,
 
 Constraints:
 
-	m == grid.length
-	n == grid[i].length
-	1 <= m, n <= 100
-	0 <= grid[i][j] <= 109
+    m == grid.length
+    n == grid[i].length
+    1 <= m, n <= 100
+    0 <= grid[i][j] <= 109
 
-- code #binarySearchAdvanced
+**Code: #binarySearchAdvanced**
+
 ```py
 class Solution:
     def maximumMinimumPath(self, grid: List[List[int]]) -> int:
@@ -324,7 +337,8 @@ class Solution:
 
 ```
 
-- code #unionfind  #unionFindTrickToFlat flat two dimensions to one list `curPosition = curRow * len(grid[0]) + curCol `
+**Code: #unionfind #unionFindTrickToFlat flat two dimensions to one list `curPosition = curRow * len(grid[0]) + curCol `**
+
 ```py
 class Solution:
     def maximumMinimumPath(self, grid: List[List[int]]) -> int:
@@ -389,7 +403,9 @@ class Solution:
                 return grid[cur_row][cur_col]
         return -1
 ```
-- code  #priorityQueue
+
+**Code: #priorityQueue**
+
 ```py
 class Solution:
     def maximumMinimumPath(self, grid: List[List[int]]) -> int:
@@ -436,7 +452,9 @@ class Solution:
         # Return the minimum value we have seen, which is the value of this path.
         return ans
 ```
-- code #binarySearchAdvanced
+
+**Code: #binarySearchAdvanced**
+
 ```py
 class Solution:
     def maximumMinimumPath(self, grid: List[List[int]]) -> int:
@@ -468,7 +486,9 @@ class Solution:
         return end - 1 # or start - 1
 
 ```
-- code TLE with backtracking trying to check all paths
+
+**Code: TLE with backtracking trying to check all paths**
+
 ```py
 class Solution:
     def maximumMinimumPath(self, grid: List[List[int]]) -> int:
@@ -499,7 +519,9 @@ class Solution:
 
         return self.res
 ```
-- code java bs
+
+**Code: java bs**
+
 ```java
 class Solution {
     private int R, C;
@@ -556,9 +578,10 @@ class Solution {
 ```
 
 ### [1631. Path With Minimum Effort](https://yanjiyu.com/leetcode/1631/)
+
 You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of size rows x columns, where heights[row][col] represents the height of cell (row, col). You are situated in the top-left cell, (0, 0), and you hope to travel to the bottom-right cell, (rows-1, columns-1) (i.e., 0-indexed). You can move up, down, left, or right, and you wish to find a route that requires the minimum effort.
 A route's effort is the maximum absolute difference in heights between two consecutive cells of the route.
-Return __the minimum effort required to travel from the top-left cell to the bottom-right cell.__
+Return **the minimum effort required to travel from the top-left cell to the bottom-right cell.**
 
 Example 1:
 
@@ -571,13 +594,13 @@ Input: heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]] O
 
 Constraints:
 
-	rows == heights.length
-	columns == heights[i].length
-	1 <= rows, columns <= 100
-	1 <= heights[i][j] <= 106
+    rows == heights.length
+    columns == heights[i].length
+    1 <= rows, columns <= 100
+    1 <= heights[i][j] <= 106
 
+**Code: BFS + #binarySearchAdvanced**
 
-- code BFS + #binarySearchAdvanced
 ```py
 class Solution:
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
@@ -606,7 +629,9 @@ class Solution:
         return right
 
 ```
-- code java
+
+**Code: java**
+
 ```java
 class Solution {
     public int minimumEffortPath(int[][] heights) {
@@ -671,7 +696,8 @@ class Cell {
 }
 ```
 
-- code DFS + binary search
+**Code: DFS + binary search**
+
 ```py
 class Solution:
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
@@ -704,10 +730,11 @@ class Solution:
                 left = mid + 1
         return left
 ```
-The real reason why the binary search approach works with BFS or DFS is that by defining a diff limit, the search space dramatically decreased, because we don't need BFS/DFS to exhaust all the paths to the target anymore, we just need to find ONE path that satisfy the diff limit. Thus, if we find ourself at a Cell that satisfies a diff limit, we don't care about other paths that get to this Cell anymore, that's why we can use "visited" to eliminate paths exploration. Without a diff limit, we can no longer use this naive "visited" way of tracking and the search space becomes 3^(M*N) as we'd have to exhaust all the paths to find the one with min diff. -billmaxwell on leetcode https://leetcode.com/problems/path-with-minimum-effort/solution/977158
 
+The real reason why the binary search approach works with BFS or DFS is that by defining a diff limit, the search space dramatically decreased, because we don't need BFS/DFS to exhaust all the paths to the target anymore, we just need to find ONE path that satisfy the diff limit. Thus, if we find ourself at a Cell that satisfies a diff limit, we don't care about other paths that get to this Cell anymore, that's why we can use "visited" to eliminate paths exploration. Without a diff limit, we can no longer use this naive "visited" way of tracking and the search space becomes 3^(M\*N) as we'd have to exhaust all the paths to find the one with min diff. -billmaxwell on leetcode https://leetcode.com/problems/path-with-minimum-effort/solution/977158
 
-- code
+**Code:**
+
 ```java
 class Solution {
     public int minimumEffortPath(int[][] heights) {

@@ -1,13 +1,19 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
 import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
+import { getTocItems, shouldShowToc } from "@/lib/utils/tableOfContents";
 import { markdownify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
 
 const aboutIndex = await getListPage("about", "-index");
-const { Content } = await render(aboutIndex);
-const { title, description, meta_title, image } = aboutIndex.data;
+const { Content, headings } = await render(aboutIndex);
+const { title, description, meta_title, image, toc } = aboutIndex.data;
+const tocItems = getTocItems(headings);
+const showToc = shouldShowToc(tocItems, aboutIndex.body ?? "", {
+  explicitToc: toc,
+});
 
 if (aboutIndex.data.draft) {
   return Astro.redirect("/404");
@@ -41,6 +47,13 @@ if (aboutIndex.data.draft) {
             <Content />
           </div>
         </div>
+        {
+          showToc && (
+            <aside class="hidden xl:col-3 xl:block">
+              <TableOfContents items={tocItems} />
+            </aside>
+          )
+        }
       </div>
     </div>
   </section>

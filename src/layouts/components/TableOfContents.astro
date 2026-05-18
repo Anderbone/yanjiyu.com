@@ -1,0 +1,79 @@
+---
+import type { TocItem } from "@/lib/utils/tableOfContents";
+
+const { items } = Astro.props as { items: TocItem[] };
+---
+
+{
+  items.length > 0 && (
+    <nav class="toc-sidebar" aria-labelledby="toc-heading">
+      <h2 id="toc-heading" class="toc-title">
+        On This Page
+      </h2>
+      <ol class="toc-list">
+        {items.map((item) => (
+          <li class={`toc-item toc-level-${item.level}`}>
+            <a class="toc-link" href={`#${item.slug}`}>
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<script>
+  function initTableOfContents() {
+    const links = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>(".toc-link"),
+    );
+
+    if (!links.length) {
+      return;
+    }
+
+    const targets = links
+      .map((link) => {
+        const id = decodeURIComponent(link.hash.slice(1));
+        return id ? document.getElementById(id) : null;
+      })
+      .filter((target): target is HTMLElement => Boolean(target));
+
+    if (!targets.length) {
+      return;
+    }
+
+    const setActiveLink = (id: string) => {
+      links.forEach((link) => {
+        link.classList.toggle(
+          "is-active",
+          decodeURIComponent(link.hash.slice(1)) === id,
+        );
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          )[0];
+
+        if (visible?.target.id) {
+          setActiveLink(visible.target.id);
+        }
+      },
+      {
+        rootMargin: "-20% 0px -65% 0px",
+        threshold: 0,
+      },
+    );
+
+    targets.forEach((target) => observer.observe(target));
+  }
+
+  initTableOfContents();
+  document.addEventListener("astro:page-load", initTableOfContents);
+</script>

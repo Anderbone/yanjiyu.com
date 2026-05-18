@@ -9,6 +9,7 @@ draft: false
 ---
 
 ### Template
+
 ```py
 def backtrack(candidate):
     if find_solution(candidate):
@@ -25,11 +26,14 @@ def backtrack(candidate):
             # backtrack
             remove(next_candidate)
 ```
- ### [17. Letter Combinations of a Phone Number ](https://yanjiyu.com/leetcode/17-letter-combinations-of-a-phone/)
- > Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in **any order**.
-A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
-Input: "23"
-Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+
+### [17. Letter Combinations of a Phone Number ](https://yanjiyu.com/leetcode/17-letter-combinations-of-a-phone/)
+
+> Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in **any order**.
+> A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+> Input: "23"
+> Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+
 ```py
 class Solution(object):
     def letterCombinations(self, digits):
@@ -51,7 +55,8 @@ class Solution(object):
         return res
 ```
 
-- code
+**Code:**
+
 ```java
 class Solution {
     private List<String> combinations = new ArrayList<>();
@@ -93,11 +98,12 @@ class Solution {
 }
 ```
 
-
 ### [22. Generate Parentheses](https://yanjiyu.com/leetcode/22/)
+
 > Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
-For example, given n = 3, a solution set is:
-[ "((()))", "(()())", "(())()", "()(())", "()()()" ]
+> For example, given n = 3, a solution set is:
+> [ "((()))", "(()())", "(())()", "()(())", "()()()" ]
+
 ```py
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
@@ -115,7 +121,9 @@ class Solution:
         backtracking('', 0, 0)
         return ans
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
     private List<String> ans = new ArrayList();
@@ -146,32 +154,35 @@ class Solution {
 
 ```
 
-
 ### [46 Permutations](https://yanjiyu.com/leetcode/46/)
-> Given an array nums of distinct integers, return __all the possible permutations__. You can return the answer in **any order**.
-Input: [1,2,3]
-Output:
-[
-  [1,2,3],
-  [1,3,2],
-  [2,1,3],
-  [2,3,1],
-  [3,1,2],
-  [3,2,1]
-]
- ```py
-   def permute(self, nums: List[int]) -> List[List[int]]:
-        def dfs(nums, permutation, result):
-            if nums == []:
-                result.append(permutation)
-            for i,x in enumerate(nums):
-                dfs(nums[:i] + nums[i+1:], permutation + [x], result)
 
-        result = []
-        dfs(nums, [], result)
-        return result
+> Given an array nums of distinct integers, return **all the possible permutations**. You can return the answer in **any order**.
+> Input: [1,2,3]
+> Output:
+> [
+> [1,2,3],
+> [1,3,2],
+> [2,1,3],
+> [2,3,1],
+> [3,1,2],
+> [3,2,1]
+> ]
+
+```py
+  def permute(self, nums: List[int]) -> List[List[int]]:
+       def dfs(nums, permutation, result):
+           if nums == []:
+               result.append(permutation)
+           for i,x in enumerate(nums):
+               dfs(nums[:i] + nums[i+1:], permutation + [x], result)
+
+       result = []
+       dfs(nums, [], result)
+       return result
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
   public void backtrack(int n,
@@ -207,10 +218,12 @@ class Solution {
 ```
 
 ### [78. subsets](https://yanjiyu.com/leetcode/78-subset/)
+
 > Given a set of distinct integers, nums, return all possible subsets (the power set).
-Note: The solution set must not contain duplicate subsets.
-Example:
-Input: nums = [1,2,3] Output: [ [3],   [1],   [2],   [1,2,3],   [1,3],   [2,3],   [1,2],   [] ]
+> Note: The solution set must not contain duplicate subsets.
+> Example:
+> Input: nums = [1,2,3] Output: [ [3], [1], [2], [1,2,3], [1,3], [2,3], [1,2], [] ]
+
 ```py
 class Solution:
     def subsets(self, nums):
@@ -223,7 +236,9 @@ class Solution:
         dfs(nums, [], res)
         return res
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
   List<List<Integer>> output = new ArrayList();
@@ -250,13 +265,15 @@ class Solution {
 }
 ```
 
-
 ### [79. Word Search](https://yanjiyu.com/leetcode/79/)
+
 > Given a 2D board and a word, find if the word exists in the grid.
-The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
-Example:
-board = [ ['A','B','C','E'], ['S','F','C','S'], ['A','D','E','E'] ] Given word = "ABCCED", return true. Given word = "SEE", return true. Given word = "ABCB", return false
-- code backtracking will return True or False
+> The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
+> Example:
+> board = [ ['A','B','C','E'], ['S','F','C','S'], ['A','D','E','E'] ] Given word = "ABCCED", return true. Given word = "SEE", return true. Given word = "ABCB", return false
+
+**Code: backtracking will return True or False**
+
 ```py
 class Solution:
 
@@ -287,7 +304,9 @@ class Solution:
         return any(backtracking(x, y, 0) for x in range(m) for y in range(n))
 
 ```
-- code use self.res to return, backtracking has no return value
+
+**Code: use self.res to return, backtracking has no return value**
+
 ```py
 class Solution:
 
@@ -323,7 +342,9 @@ class Solution:
 
         return self.res
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
     public boolean exist(char[][] board, String word) {
@@ -349,13 +370,14 @@ class Solution {
 }
 ```
 
-
 ### [47. Permutations-II](https://yanjiyu.com/leetcode/47/)
-> Given a collection of numbers, nums, that might contain duplicates, return __all possible unique permutations **in any order**.__
-**Example 1:**
-Input: nums = [1,1,2] Output: [[1,1,2], [1,2,1], [2,1,1]]
-**Example 2:**
-Input: nums = [1,2,3] Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
+> Given a collection of numbers, nums, that might contain duplicates, return **all possible unique permutations **in any order**.**
+> **Example 1:**
+> Input: nums = [1,1,2] Output: [[1,1,2], [1,2,1], [2,1,1]]
+> **Example 2:**
+> Input: nums = [1,2,3] Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
 ```py
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
@@ -377,7 +399,8 @@ class Solution:
 
 ```
 
-- code
+**Code:**
+
 ```java
 class Solution {
 

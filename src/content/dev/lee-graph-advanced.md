@@ -9,20 +9,18 @@ draft: false
 ---
 
 ## Minimum spanning tree
-A minimum spanning tree is a spanning tree with the minimum possible total edge weight in a “weighted undirected graph”.
 
+A minimum spanning tree is a spanning tree with the minimum possible total edge weight in a “weighted undirected graph”.
 
 [Min Cost to Connect All Points - LeetCode](https://leetcode.com/problems/min-cost-to-connect-all-points/)
 
 You are given an array points representing integer coordinates of some points on a 2D-plane, where points[i] = [xi, yi].
 The cost of connecting two points [xi, yi] and [xj, yj] is the manhattan distance between them: |xi - xj| + |yi - yj|, where |val| denotes the absolute value of val.
-Return __the minimum cost to make all points connected.__ All points are connected if there is exactly one simple path between any two points.
+Return **the minimum cost to make all points connected.** All points are connected if there is exactly one simple path between any two points.
 
 Example 1:
 
-
 Input: points = [[0,0],[2,2],[3,10],[5,2],[7,0]] Output: 20 Explanation:
-
 
 We can connect the points as shown above to get the minimum cost of 20. Notice that there is a unique path between every pair of points.
 
@@ -36,10 +34,11 @@ Constraints:
 All pairs (xi, yi) are distinct.
 
 ### Kruskal
+
 We try adding each edge, one at a time, from the lowest weight edge up to the highest weight edge. If either of the edges' vertices is not already part of the MST, then the edge is added to the MST.
 
+**Code: #Kruskal #unionfind**
 
-- code  #Kruskal  #unionfind
 ```py
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
@@ -87,10 +86,11 @@ class Solution:
 ```
 
 ### Prim
- Starting from an arbitrary vertex, Prim's algorithm grows the minimum spanning tree by adding one vertex at a time to the tree. The choice of a vertex is based on the greedy strategy, i.e., the addition of the new vertex incurs the minimum cost.
 
+Starting from an arbitrary vertex, Prim's algorithm grows the minimum spanning tree by adding one vertex at a time to the tree. The choice of a vertex is based on the greedy strategy, i.e., the addition of the new vertex incurs the minimum cost.
 
- - code #Prim shorter, optimized
+**Code: #Prim shorter, optimized**
+
 ```py
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
@@ -117,9 +117,11 @@ class Solution:
 ```
 
 ## Single source shortest path
+
 We often need to find the “shortest path” in a “weighted graph”.
 
 ### Dijkstra
+
 We take the starting point u as the center and gradually expand outward while updating the “shortest path” to reach other vertices.
 
 “Dijkstra's Algorithm” uses a “greedy approach”. Each step selects the “minimum weight” from the currently reached vertices to find the “shortest path” to other vertices.
@@ -130,7 +132,6 @@ You are given a network of n nodes, labeled from 1 to n. You are also given time
 We will send a signal from a given node k. Return the time it takes for all the n nodes to receive the signal. If it is impossible for all the n nodes to receive the signal, return -1.
 
 Example 1:
-
 
 Input: times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2 Output: 2
 
@@ -150,7 +151,9 @@ ui != vi
 All the pairs (ui, vi) are unique. (i.e., no multiple edges.)
 
 ---
-- code wrong
+
+**Code: wrong**
+
 ```py
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
@@ -175,7 +178,9 @@ class Solution:
 ```
 
 After starting point A, for neighbour B,C,D, can only choose B or C in the next round as they are the shortest, can't choose D.
-- code  #dijkstra
+
+**Code: #dijkstra**
+
 ```py
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
@@ -199,7 +204,9 @@ class Solution:
         return ans if ans != inf else -1
 
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
     public int networkDelayTime(int[][] times, int n, int k) {
@@ -246,7 +253,7 @@ class Solution {
 
 You are a hiker preparing for an upcoming hike. You are given heights, a 2D array of size rows x columns, where heights[row][col] represents the height of cell (row, col). You are situated in the top-left cell, (0, 0), and you hope to travel to the bottom-right cell, (rows-1, columns-1) (i.e., 0-indexed). You can move up, down, left, or right, and you wish to find a route that requires the minimum effort.
 A route's effort is the maximum absolute difference in heights between two consecutive cells of the route.
-Return __the minimum effort required to travel from the top-left cell to the bottom-right cell.__
+Return **the minimum effort required to travel from the top-left cell to the bottom-right cell.**
 
 Example 1:
 
@@ -259,12 +266,13 @@ Input: heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]] O
 
 Constraints:
 
-	rows == heights.length
-	columns == heights[i].length
-	1 <= rows, columns <= 100
-	1 <= heights[i][j] <= 106
+    rows == heights.length
+    columns == heights[i].length
+    1 <= rows, columns <= 100
+    1 <= heights[i][j] <= 106
 
-- code  #Dijkstra  as long as a new edge won't decrease the path, i.e. diff won't decrease, we can potentially use Dijkstra(no negative edges)
+**Code: #Dijkstra as long as a new edge won't decrease the path, i.e. diff won't decrease, we can potentially use Dijkstra(no negative edges)**
+
 ```py
 class Solution:
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
@@ -289,33 +297,33 @@ class Solution:
 
         return diff[-1][-1]
 ```
+
 #### [Cheapest Flights Within K Stops - LeetCode](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
 
 There are n cities connected by some number of flights. You are given an array flights where flights[i] = [fromi, toi, pricei] indicates that there is a flight from city fromi to city toi with cost pricei.
-You are also given three integers src, dst, and k, return __the cheapest price from __src__ to __dst__ with at most __k__ stops. __If there is no such route, return__ __-1.
+You are also given three integers src, dst, and k, return **the cheapest price from **src** to **dst** with at most **k** stops. **If there is no such route, return\_\_ \_\_-1.
 
 Example 1:
 
-
 Input: n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1 Output: 200 Explanation: The graph is shown. The cheapest price from city 0 to city 2 with at most 1 stop costs 200, as marked red in the picture.
 Example 2:
-
 
 Input: n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 0 Output: 500 Explanation: The graph is shown. The cheapest price from city 0 to city 2 with at most 0 stop costs 500, as marked blue in the picture.
 
 Constraints:
 
-	1 <= n <= 100
-	0 <= flights.length <= (n * (n - 1) / 2)
-	flights[i].length == 3
-	0 <= fromi, toi < n
-	fromi != toi
-	1 <= pricei <= 104
-	There will not be any multiple flights between two cities.
-	0 <= src, dst, k < n
-	src != dst
+    1 <= n <= 100
+    0 <= flights.length <= (n * (n - 1) / 2)
+    flights[i].length == 3
+    0 <= fromi, toi < n
+    fromi != toi
+    1 <= pricei <= 104
+    There will not be any multiple flights between two cities.
+    0 <= src, dst, k < n
+    src != dst
 
-- code
+**Code:**
+
 ```py
 import heapq
 
@@ -365,7 +373,9 @@ class Solution:
 
         return -1 if distances[dst] == float("inf") else distances[dst]
 ```
+
 ### Bellman-Ford (SPFA)
+
 “Bellman-Ford algorithm” is only applicable to “graphs” with no “negative weight cycles”.
 
 Instead of choosing among any untraversed edges, as one does by using the “Bellman-Ford” algorithm, the “SPFA” Algorithm uses a “queue” to maintain the next starting vertex of the edge to be traversed. Only when the shortest distance of a vertex is relaxed(updated) and that the vertex is not in the “queue”, we add the vertex to the queue. We iterate the process until the queue is empty. At this point, we have calculated the minimum distance from the given vertex to any vertices.
@@ -375,28 +385,29 @@ Notice a node can be added to the queue many times, just like in Bellman-Ford al
 [Cheapest Flights Within K Stops - LeetCode](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
 
 There are n cities connected by some number of flights. You are given an array flights where flights[i] = [fromi, toi, pricei] indicates that there is a flight from city fromi to city toi with cost pricei.
-You are also given three integers src, dst, and k, return __the cheapest price from __src__ to __dst__ with at most __k__ stops. __If there is no such route, return__ __-1.
+You are also given three integers src, dst, and k, return **the cheapest price from **src** to **dst** with at most **k** stops. **If there is no such route, return\_\_ \_\_-1.
 
 Example 1:
-
 
 Input: n = 3, flights = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1 Output: 200 Explanation: The graph is shown. The cheapest price from city 0 to city 2 with at most 1 stop costs 200, as marked red in the picture.
 Example 2:
 
 Constraints:
 
-	1 <= n <= 100
-	0 <= flights.length <= (n * (n - 1) / 2)
-	flights[i].length == 3
-	0 <= fromi, toi < n
-	fromi != toi
-	1 <= pricei <= 104
-	There will not be any multiple flights between two cities.
-	0 <= src, dst, k < n
-	src != dst
+    1 <= n <= 100
+    0 <= flights.length <= (n * (n - 1) / 2)
+    flights[i].length == 3
+    0 <= fromi, toi < n
+    fromi != toi
+    1 <= pricei <= 104
+    There will not be any multiple flights between two cities.
+    0 <= src, dst, k < n
+    src != dst
 
 ---
-- code  #bellmanford
+
+**Code: #bellmanford**
+
 ```py
 class Solution:
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
@@ -411,24 +422,22 @@ class Solution:
         return cur[dst] if cur[dst] != inf else -1
 ```
 
-
 ## Topological sorting (Kahn)
 
 [Topological sorting - Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting)
 
-How can we arrange the order of the courses adequately while considering  prerequisite relationships between them?
-
+How can we arrange the order of the courses adequately while considering prerequisite relationships between them?
 
 “Topological sorting” provides a linear sorting based on the required ordering between vertices in directed acyclic graphs.
 
 “Topological sorting” only works with graphs that are directed and acyclic.
 There must be at least one vertex in the “graph” with an “in-degree” of 0.
 
-####  [Course Schedule II - LeetCode](https://leetcode.com/problems/course-schedule-ii/)
+#### [Course Schedule II - LeetCode](https://leetcode.com/problems/course-schedule-ii/)
 
 There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
 
-For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.Return __the ordering of courses you should take to finish all courses__. If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
+For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.Return **the ordering of courses you should take to finish all courses**. If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
 
 Example 1:
 Input: numCourses = 2, prerequisites = [[1,0]] Output: [0,1] Explanation: There are a total of 2 courses to take. To take course 1 you should have finished course 0. So the correct course order is [0,1].
@@ -438,7 +447,9 @@ Example 3:
 Input: numCourses = 1, prerequisites = [] Output: [0]
 
 ---
-- code
+
+**Code:**
+
 ```java
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
@@ -481,7 +492,9 @@ class Solution {
     }
 }
 ```
-- code
+
+**Code:**
+
 ```py
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
@@ -510,7 +523,7 @@ class Solution:
 
 There is a new alien language that uses the English alphabet. However, the order among the letters is unknown to you.
 You are given a list of strings words from the alien language's dictionary, where the strings in words are sorted lexicographically by the rules of this new language.
-Return __a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. If there is no solution, return __""__. If there are multiple solutions, return any of them__.
+Return **a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. If there is no solution, return **""**. If there are multiple solutions, return any of them**.
 A string s is lexicographically smaller than a string t if at the first letter where they differ, the letter in s comes before the letter in t in the alien language. If the first min(s.length, t.length) letters are the same, then s is smaller if and only if s.length < t.length.
 
 Example 1:
@@ -522,12 +535,14 @@ Input: words = ["z","x","z"] Output: "" Explanation: The order is invalid, so re
 
 Constraints:
 
-	1 <= words.length <= 100
-	1 <= words[i].length <= 100
-	words[i] consists of only lowercase English letters.
+    1 <= words.length <= 100
+    1 <= words[i].length <= 100
+    words[i] consists of only lowercase English letters.
 
 ---
-- code post order dfs, java
+
+**Code: post order dfs, java**
+
 ```java
 class Solution {
 
@@ -585,7 +600,9 @@ class Solution {
     }
 }
 ```
-- code  post order dfs pythonM
+
+**Code: post order dfs pythonM**
+
 ```py
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
@@ -623,7 +640,9 @@ class Solution:
 
         return "".join(output)
 ```
--code  with indegree, topological sorting
+
+**Code: with indegree, topological sorting**
+
 ```py
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
@@ -653,11 +672,12 @@ class Solution:
         return "".join(res) if len(res) == len(indegree) else ""
 
 ```
+
 #### [Parallel Courses - LeetCode](https://leetcode.com/problems/parallel-courses/)
 
 You are given an integer n, which indicates that there are n courses labeled from 1 to n. You are also given an array relations where relations[i] = [prevCoursei, nextCoursei], representing a prerequisite relationship between course prevCoursei and course nextCoursei: course prevCoursei has to be taken before course nextCoursei.
 In one semester, you can take any number of courses as long as you have taken all the prerequisites in the previous semester for the courses you are taking.
-Return __the minimum number of semesters needed to take all courses__. If there is no way to take all the courses, return -1.
+Return **the minimum number of semesters needed to take all courses**. If there is no way to take all the courses, return -1.
 
 Example 1:
 Input: n = 3, relations = [[1,3],[2,3]] Output: 2 Explanation: The figure above represents the given graph. In the first semester, you can take courses 1 and 2. In the second semester, you can take course 3.
@@ -666,15 +686,17 @@ Input: n = 3, relations = [[1,2],[2,3],[3,1]] Output: -1 Explanation: No course 
 
 Constraints:
 
-	1 <= n <= 5000
-	1 <= relations.length <= 5000
-	relations[i].length == 2
-	1 <= prevCoursei, nextCoursei <= n
-	prevCoursei != nextCoursei
-	All the pairs [prevCoursei, nextCoursei] are unique.
+    1 <= n <= 5000
+    1 <= relations.length <= 5000
+    relations[i].length == 2
+    1 <= prevCoursei, nextCoursei <= n
+    prevCoursei != nextCoursei
+    All the pairs [prevCoursei, nextCoursei] are unique.
 
 ---
-- code
+
+**Code:**
+
 ```py
 class Solution:
     def minimumSemesters(self, n: int, relations: List[List[int]]) -> int:
@@ -698,19 +720,18 @@ class Solution:
                         q.append(nex)
         return step if left == 0 else -1
 ```
+
 #### [Minimum Height Trees - LeetCode](https://leetcode.com/problems/minimum-height-trees/)
 
-A tree is an undirected graph in which any two vertices are connected by __exactly__ one path. In other words, any connected graph without simple cycles is a tree.
-Given a tree of n nodes labelled from 0 to n - 1, and an array of n - 1 edges where edges[i] = [ai, bi] indicates that there is an undirected edge between the two nodes ai and bi in the tree, you can choose any node of the tree as the root. When you select a node x as the root, the result tree has height h. Among all possible rooted trees, those with minimum height (i.e. min(h))  are called minimum height trees (MHTs).
-Return __a list of all MHTs' root labels__. You can return the answer in any order.
+A tree is an undirected graph in which any two vertices are connected by **exactly** one path. In other words, any connected graph without simple cycles is a tree.
+Given a tree of n nodes labelled from 0 to n - 1, and an array of n - 1 edges where edges[i] = [ai, bi] indicates that there is an undirected edge between the two nodes ai and bi in the tree, you can choose any node of the tree as the root. When you select a node x as the root, the result tree has height h. Among all possible rooted trees, those with minimum height (i.e. min(h)) are called minimum height trees (MHTs).
+Return **a list of all MHTs' root labels**. You can return the answer in any order.
 The height of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
 
 Example 1:
 
-
 Input: n = 4, edges = [[1,0],[1,2],[1,3]] Output: [1] Explanation: As shown, the height of the tree is 1 when the root is the node with label 1 which is the only MHT.
 Example 2:
-
 
 Input: n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]] Output: [3,4]
 Example 3:
@@ -720,14 +741,16 @@ Input: n = 2, edges = [[0,1]] Output: [0,1]
 
 Constraints:
 
-1 <= n <= 2 * 104
+1 <= n <= 2 \* 104
 edges.length == n - 1
 0 <= ai, bi < n
 ai != bi
 All the pairs (ai, bi) are distinct.
 The given input is guaranteed to be a tree and there will be no repeated edges.
 C
-- code
+
+**Code:**
+
 ```java
 class Solution {
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
@@ -783,7 +806,9 @@ class Solution {
     }
 }
 ```
-- code
+
+**Code:**
+
 ```py
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:

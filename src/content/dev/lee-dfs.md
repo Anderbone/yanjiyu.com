@@ -9,7 +9,9 @@ draft: false
 ---
 
 ### DFS Templates
+
 Template 1:
+
 ```java
 /*
  * Return true if there is a path from cur to target.
@@ -27,6 +29,7 @@ boolean DFS(Node cur, Node target, Set<Node> visited) {
 ```
 
 Template 2 using an explicit stack to avoid stack overflow:
+
 ```java
 /*
  * Return true if there is a path from cur to target.
@@ -51,13 +54,15 @@ boolean DFS(int root, int target) {
 ```
 
 ### [200. Number of islands](https://yanjiyu.com/leetcode/200/)
+
 > Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
-Example 1:
-11110
-11010
-11000
-00000
-Output: 1
+> Example 1:
+> 11110
+> 11010
+> 11000
+> 00000
+> Output: 1
+
 ```py
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
@@ -86,7 +91,8 @@ class Solution:
             self.removeConnected(row+1, col)
 ```
 
-- code
+**Code:**
+
 ```java
 class Solution {
   void dfs(char[][] grid, int r, int c) {
@@ -126,12 +132,13 @@ class Solution {
 }
 ```
 
-
 ### [133. Clone graph](https://yanjiyu.com/leetcode/133/)
-> Given a reference of a node in a **[connected](https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_graph)** undirected graph.
-Return a [deep copy](https://en.wikipedia.org/wiki/Object_copying#Deep_copy) (clone) of the graph.
-Each node in the graph contains a value (int) and a list (List[Node]) of its neighbors.
-class Node { public int val; public List<Node> neighbors; }
+
+> Given a reference of a node in a **[connected](<https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_graph>)** undirected graph.
+> Return a [deep copy](https://en.wikipedia.org/wiki/Object_copying#Deep_copy) (clone) of the graph.
+> Each node in the graph contains a value (int) and a list (List[Node]) of its neighbors.
+> class Node { public int val; public List<Node> neighbors; }
+
 ```py
 class Solution:
     def cloneGraph(self, node): #DFS iteratively
@@ -148,7 +155,9 @@ class Solution:
                 m[n].neighbors.append(m[neigh])
         return m[node]
 ```
+
 ---
+
 ```py
 class Solution:
     def cloneGraph(self, node): # DFS recursively
@@ -166,7 +175,8 @@ class Solution:
             m[node].neighbors.append(m[neigh])
 ```
 
-- code
+**Code:**
+
 ```java
 /*
 // Definition for a Node.
@@ -212,10 +222,12 @@ class Solution {
 ```
 
 ### [733. Flood fill](https://yanjiyu.com/leetcode/733/)
+
 > CompaniesAn image is represented by an m x n integer grid image where image[i][j] represents the pixel value of the image.
-You are also given three integers sr, sc, and newColor. You should perform a **flood fill** on the image starting from the pixel image[sr][sc].
-To perform a **flood fill**, consider the starting pixel, plus any pixels connected **4-directionally** to the starting pixel of the same color as the starting pixel, plus any pixels connected **4-directionally** to those pixels (also with the same color), and so on. Replace the color of all of the aforementioned pixels with newColor.
-Return __the modified image after performing the flood fill__.
+> You are also given three integers sr, sc, and newColor. You should perform a **flood fill** on the image starting from the pixel image[sr][sc].
+> To perform a **flood fill**, consider the starting pixel, plus any pixels connected **4-directionally** to the starting pixel of the same color as the starting pixel, plus any pixels connected **4-directionally** to those pixels (also with the same color), and so on. Replace the color of all of the aforementioned pixels with newColor.
+> Return **the modified image after performing the flood fill**.
+
 ```py
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
@@ -241,7 +253,9 @@ class Solution:
         return image
 
 ```
+
 Only dfs when it's an old color
+
 ```py
 class Solution:
     def floodFill(self, image, sr, sc, newColor):
@@ -256,7 +270,8 @@ class Solution:
         return image
 ```
 
-- code
+**Code:**
+
 ```java
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {

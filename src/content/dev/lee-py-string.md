@@ -11,25 +11,25 @@ draft: false
 - `print(f'best RF score: {grid.best_score_:.3f}')`
 - `str.index(sub[,start[,end]])`
 - `str.strip()` remove spaces at the beginning and the end
-    - `strip(str-not-want)`
+  - `strip(str-not-want)`
 - `lower()`
-    - print(str.upper())
-    - print(str.lower())
-    - print(str.capitalize())     # Only first letter big
-    - print(str.title())          # This Is A Title
+  - `print(str.upper())`
+  - `print(str.lower())`
+  - `print(str.capitalize()) # Only first letter big`
+  - `print(str.title()) # This Is A Title`
 - `s.find(c),  s.rfind(c)`
-    - "hello".find("l") -> 2
-    - "hello".rfind("l") -> 3
+  - `"hello".find("l") -> 2`
+  - `"hello".rfind("l") -> 3`
 - `s.split('')`
-    - `a = ''.join(a.split())`
-        - remove blank
+  - `a = ''.join(a.split())`
+    - remove blank
 - `replace(old, new[, max])`
 - `''.join(str(e) for e in list)`
-    - list to str
+  - list to str
 - `s.isdigit()`, `s.isalpha`
-    - `s.isalnum()`  # is num or alpha
-    - if i.lstrip('-').isdigit():  check number<0
+  - `s.isalnum()` # is num or alpha
+  - if i.lstrip('-').isdigit(): check number<0
 - ord , chr
-    - `ord('A')`  get 65
-    - `chr(65)`  get A
-    - `a = (chr(ord('0') + x % 10))`  x:123 get: str type '3'
+  - `ord('A')` get 65
+  - `chr(65)` get A
+  - `a = (chr(ord('0') + x % 10))` x:123 get: str type '3'

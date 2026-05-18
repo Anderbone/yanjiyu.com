@@ -1,5 +1,5 @@
 ---
-title: "Most common design patterns in Java"
+title: "Common design patterns in Java"
 description: "Notes on common Java design patterns including strategy, factory method, and singleton."
 date: 2023-11-14
 author: "Jiyu"
@@ -8,54 +8,47 @@ tags: ["Java", "Design Patterns"]
 draft: false
 ---
 
-## [Stragety](https://refactoring.guru/design-patterns/strategy/java/example)
+## [Strategy](https://refactoring.guru/design-patterns/strategy/java/example)
 
 The Strategy Pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 
- **Strategy** is a behavioral design pattern that turns a set of behaviors into objects and makes them interchangeable inside original context object.
+**Strategy** is a behavioral design pattern that turns a set of behaviors into objects and makes them interchangeable inside the original context object.
 
 Has-A can be better than Is-A.
 
-
 Java 8 brought the support of lambda functions, which can serve as simpler alternatives to the Strategy pattern.
 
-Here some examples of Strategy in core Java libraries:
+Examples in core Java libraries:
 
-    java.util.Comparator#compare() called from Collections#sort().
-
-    javax.servlet.http.HttpServlet: service() method, plus all of the doXXX() methods that accept HttpServletRequest and HttpServletResponse objects as arguments.
-
-    javax.servlet.Filter#doFilter()
+- `java.util.Comparator#compare()`, called from `Collections#sort()`
+- `javax.servlet.http.HttpServlet#service()` and the `doXXX()` methods that accept `HttpServletRequest` and `HttpServletResponse`
+- `javax.servlet.Filter#doFilter()`
 
 Identification: Strategy pattern can be recognized by a method that lets a nested object do the actual work, as well as a setter that allows replacing that object with a different one.
 
 Examples:
 
-
 ## [Factory method](https://refactoring.guru/design-patterns/factory-method/java/example)
 
 Factory Method is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
 
-
 The pattern is present in core Java libraries:
 
-    java.util.Calendar#getInstance()
-    java.util.ResourceBundle#getBundle()
-    java.text.NumberFormat#getInstance()
-    java.nio.charset.Charset#forName()
-    java.net.URLStreamHandlerFactory#createURLStreamHandler(String) (Returns different singleton objects, depending on a protocol)
-    java.util.EnumSet#of()
-    javax.xml.bind.JAXBContext#createMarshaller() and other similar methods.
+- `java.util.Calendar#getInstance()`
+- `java.util.ResourceBundle#getBundle()`
+- `java.text.NumberFormat#getInstance()`
+- `java.nio.charset.Charset#forName()`
+- `java.net.URLStreamHandlerFactory#createURLStreamHandler(String)`
+- `java.util.EnumSet#of()`
+- `javax.xml.bind.JAXBContext#createMarshaller()` and similar methods
 
 Identification: Factory methods can be recognized by creation methods that construct objects from concrete classes. While concrete classes are used during the object creation, the return type of the factory methods is usually declared as either an abstract class or an interface.
 
 Examples:
 
-
-Note: render() in Dialog could better be named as renderDialog() or renderWindow(), as it has nothing to do with the render() in Button class.
+Note: `render()` in `Dialog` could be named `renderDialog()` or `renderWindow()` because it is unrelated to `render()` in the `Button` class.
 
 [A very helpful youtube video](https://www.youtube.com/watch?v=EcFVTgRHJLM)
-
 
 ## [Singleton](https://refactoring.guru/design-patterns/singleton/java/example#lang-features)
 
@@ -63,9 +56,7 @@ Singleton is a creational design pattern, which ensures that only one object of 
 
 The most common reason for this is to control access to some shared resource—for example, a database or a file.
 
-
 ```java
-
 package refactoring_guru.singleton.example.thread_safe;
 
 public final class Singleton {
@@ -104,5 +95,4 @@ public final class Singleton {
         }
     }
 }
-
 ```

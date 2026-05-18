@@ -9,7 +9,9 @@ draft: false
 ---
 
 ### create a dummy node
+
 > Merge two linked lists.
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:
@@ -32,8 +34,11 @@ class Solution:
                 pre = pre.next
         return ans.next
 ```
+
 ### delete a node
+
 > delete a node
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:

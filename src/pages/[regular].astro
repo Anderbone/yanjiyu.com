@@ -1,6 +1,8 @@
 ---
 import Base from "@/layouts/Base.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
+import { getTocItems, shouldShowToc } from "@/lib/utils/tableOfContents";
 import PageHeader from "@/partials/PageHeader.astro";
 import { render } from "astro:content";
 
@@ -20,8 +22,12 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props;
-const { title, meta_title, description, image } = page.data;
-const { Content } = await render(page);
+const { title, meta_title, description, image, toc } = page.data;
+const { Content, headings } = await render(page);
+const tocItems = getTocItems(headings);
+const showToc = shouldShowToc(tocItems, page.body ?? "", {
+  explicitToc: toc,
+});
 ---
 
 <Base
@@ -34,11 +40,18 @@ const { Content } = await render(page);
   <section class="section-sm">
     <div class="container">
       <div class="row justify-center">
-        <div class="lg:col-10">
+        <div class={showToc ? "lg:col-10 xl:col-8" : "lg:col-10"}>
           <div class="content">
             <Content />
           </div>
         </div>
+        {
+          showToc && (
+            <aside class="hidden xl:col-3 xl:block">
+              <TableOfContents items={tocItems} />
+            </aside>
+          )
+        }
       </div>
     </div>
   </section>

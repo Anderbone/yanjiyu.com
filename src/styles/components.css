@@ -170,6 +170,63 @@
   @apply prose-td:relative prose-td:z-10 prose-td:px-3 prose-td:py-[18px] dark:prose-td:text-darkmode-text;
 }
 
+.content :is(h2, h3, h4) {
+  scroll-margin-top: 6rem;
+}
+
+.content :not(pre) > code {
+  @apply rounded border border-border bg-light px-1.5 py-0.5 text-[0.9em] font-medium text-text-dark dark:border-darkmode-border dark:bg-darkmode-light dark:text-darkmode-text-dark;
+}
+
+.content :not(pre) > code::before,
+.content :not(pre) > code::after {
+  content: none;
+}
+
+.content ul:has(> li > code:only-child) {
+  @apply grid list-none gap-x-3 gap-y-2 pl-0 sm:grid-cols-2;
+}
+
+.content ul:has(> li > code:only-child) > li {
+  @apply m-0 p-0;
+}
+
+.content ul:has(> li > code:only-child) > li > code:only-child {
+  @apply block w-full rounded-md border border-border bg-light px-3 py-2 text-[0.875rem] leading-snug text-text-dark dark:border-darkmode-border dark:bg-darkmode-light dark:text-darkmode-text-dark;
+}
+
+.toc-sidebar {
+  @apply sticky top-24 rounded bg-light p-5 text-sm dark:bg-darkmode-light;
+}
+
+.toc-title {
+  @apply mb-4 text-base font-semibold text-text-dark dark:text-darkmode-text-dark;
+}
+
+.toc-list {
+  @apply max-h-[calc(100vh-9rem)] space-y-2 overflow-y-auto pr-1;
+}
+
+.toc-item {
+  @apply leading-snug;
+}
+
+.toc-level-1 {
+  @apply pl-4;
+}
+
+.toc-level-2 {
+  @apply pl-8;
+}
+
+.toc-link {
+  @apply block border-l border-border py-1 pl-3 text-text hover:border-primary hover:text-primary dark:border-darkmode-border dark:text-darkmode-text dark:hover:border-darkmode-primary dark:hover:text-darkmode-primary;
+}
+
+.toc-link.is-active {
+  @apply border-primary text-primary dark:border-darkmode-primary dark:text-darkmode-primary;
+}
+
 .content pre.code-block-with-copy {
   position: relative;
   padding-top: 2.75rem;

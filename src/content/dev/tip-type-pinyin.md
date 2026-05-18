@@ -8,38 +8,48 @@ tags: ["Linux", "Input Methods", "Rime"]
 draft: false
 ---
 
-The aim is to type pinyin with tones directly like typing Chinese:
+The goal is to type pinyin with tone marks directly from the Linux input method:
 
-nǐ hǎo!
+```text
+nǐ hǎo
+```
 
-[rime-lumen-pinyin](https://github.com/williampan/rime-lumen-pinyin/tree/master)
+The schema I used is [rime-lumen-pinyin](https://github.com/williampan/rime-lumen-pinyin/tree/master). I also keep a double-pinyin Flypy schema enabled for normal Chinese input.
 
-I also installed a double pinyin flypy to type Chinese.
+This note assumes `fcitx` is already installed. `ibus` or `fcitx5` should be similar, but the paths and frontend name may differ.
 
-Assume you alrady have fcitx on your system. Ibus or fcitx-5 should be similar.
+Install [Rime](https://rime.im/), the input method engine:
 
-Install [Rime](https://rime.im/). This is the input method.
-
-`yain fcitx-rime`
+```bash
+yay -S fcitx-rime
+```
 
 Install [Plum](https://github.com/rime/plum) to configure Rime.
 
-```
+```bash
 git clone https://github.com/rime/plum.git plum.git
 cd plum.git
 make
 ```
 
-As we use fcitx here, we need to run:
+Because this setup uses `fcitx`, run Plum with the `fcitx-rime` frontend:
 
-`rime_frontend=fcitx-rime bash rime-install`
+```bash
+rime_frontend=fcitx-rime bash rime-install
+bash rime-install double-pinyin
+```
 
-`bash rime-install double-pinyin`
+Copy the pinyin schema from the GitHub repository into:
 
-For the pinyin [github](https://github.com/williampan/rime-lumen-pinyin/tree/master) I copeid the file to
-`My home/.config/fcitx/rime/`.
+```text
+~/.config/fcitx/rime/
+```
 
-`My home/.config/fcitx/rime/default.custom.yaml`
+Then edit:
+
+```text
+~/.config/fcitx/rime/default.custom.yaml
+```
 
 ```yaml
 patch:
@@ -48,6 +58,10 @@ patch:
     - schema: lumen_pinyi
 ```
 
-Restart the input system. Switch to Rime, right click to deploy.
+Restart the input system. Switch to Rime, then right-click the input method menu and deploy the configuration.
 
-Ctrl + ` to configure the Rime input method, e.g. to use simplified Chinese instead of traditional one.
+Use the Rime configuration shortcut to adjust options such as simplified Chinese output:
+
+```text
+Ctrl + `
+```

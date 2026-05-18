@@ -9,10 +9,10 @@ draft: false
 ---
 
 ### Basic
+
 A Trie is a special form of a Nary tree. Typically, a trie is used to store strings. Each Trie node represents a string (a prefix). Each node might have several children nodes while the paths to different children nodes represent different characters. And the strings the child nodes represent will be the origin string represented by the node itself plus the character on the path.
 
 Here is an example of a trie:
-
 
 In the example, the value we mark in each node is the string the node represents. For instance, we start from the root node and choose the second path 'b', then choose the first child 'a', and choose child 'd', finally we arrived at the node "bad". The value of the node is exactly formed by the letters in the path from the root to the node sequentially.
 
@@ -25,6 +25,7 @@ Let's look at the example again. For example, the strings represented by nodes i
 Trie is widely used in various applications, such as autocomplete, spell checker, etc.
 
 ### Representation
+
 ```java
 class TrieNode {
     public Map<Character, TrieNode> children = new HashMap<>();
@@ -37,14 +38,14 @@ class TrieNode {
  *  Return a specific child node with char c: root.children.get(c)
  */
 ```
-```
-1. Initialize: cur = root
-2. for each char c in target string S:
-3.      if cur does not have a child c:
-4.          cur.children[c] = new Trie node
-5.      cur = cur.children[c]
-6. cur is the node which represents the string S
-```
+
+1.  Initialize: cur = root
+2.  for each char c in target string S:
+3.        if cur does not have a child c:
+4.            cur.children[c] = new Trie node
+5.        cur = cur.children[c]
+6.  cur is the node which represents the string S
+
 ```py
         d = self.dic
         for c in word:
@@ -53,7 +54,9 @@ class TrieNode {
             d = d[c]
         d['$'] = True
 ```
+
 Search
+
 ```
 1. Initialize: cur = root
 2. for each char c in target string S:
@@ -63,9 +66,10 @@ Search
 6. search successes
 ```
 
-
 ### [208. Implement Trie (Prefix Tree)](https://yanjiyu.com/leetcode/208/)
-- code
+
+**Code:**
+
 ```java
 class Trie {
     class TrieNode {
@@ -121,7 +125,9 @@ class Trie {
     }
 }
 ```
-- code
+
+**Code:**
+
 ```py
 class Trie:
 
@@ -153,9 +159,10 @@ class Trie:
         node = self.searchPrefix(prefix)
         return False if node is False else True
 ```
+
 If the longest length of the word is N, the height of Trie will be N + 1. Therefore, the time complexity of all insert, search and startsWith methods will be O(N).
 
-If we have M words to insert in total and the length of words is at most N, there will be at most M * N nodes in the worst case (any two words don't have a common prefix).Let's assume that there are maximum K different characters (K is equal to 26 in this problem, but might differs in different cases). So each node will maintain a map whose size is at most K.Therefore, the space complexity will be O(M\*N\*K).
+If we have M words to insert in total and the length of words is at most N, there will be at most M \* N nodes in the worst case (any two words don't have a common prefix).Let's assume that there are maximum K different characters (K is equal to 26 in this problem, but might differs in different cases). So each node will maintain a map whose size is at most K.Therefore, the space complexity will be O(M\*N\*K).
 
 It seems that Trie is really space consuming, however, the real space complexity of Trie is much smaller than our estimation, especially when the distribution of words is dense.
 
@@ -165,8 +172,9 @@ You are asked to design a file system that allows you to create new paths and as
 The format of a path is one or more concatenated strings of the form: / followed by one or more lowercase English letters. For example, "/leetcode" and "/leetcode/problems" are valid paths while an empty string "" and "/" are not.
 Implement the FileSystem class:
 
-	bool createPath(string path, int value) Creates a new path and associates a value to it if possible and returns true. Returns false if the path already exists or its parent path doesn't exist.
-	int get(string path) Returns the value associated with path or returns -1 if the path doesn't exist.
+    bool createPath(string path, int value) Creates a new path and associates a value to it if possible and returns true. Returns false if the path already exists or its parent path doesn't exist.
+    int get(string path) Returns the value associated with path or returns -1 if the path doesn't exist.
+
 Example 1:
 Input: ["FileSystem","createPath","get"] [[],["/a",1],["/a"]] Output: [null,true,1] Explanation: FileSystem fileSystem = new FileSystem(); fileSystem.createPath("/a", 1); // return true fileSystem.get("/a"); // return 1
 Example 2:
@@ -174,12 +182,14 @@ Input: ["FileSystem","createPath","createPath","get","createPath","get"] [[],["/
 
 Constraints:
 
-	The number of calls to the two functions is less than or equal to 104 in total.
-	2 <= path.length <= 100
-	1 <= value <= 109
+    The number of calls to the two functions is less than or equal to 104 in total.
+    2 <= path.length <= 100
+    1 <= value <= 109
 
 ---
-- code
+
+**Code:**
+
 ```py
 class TrieNode:
     def __init__(self):
@@ -215,13 +225,12 @@ class FileSystem:
 
 ### [211. Design Add and Search Words Data Structure](https://yanjiyu.com/leetcode/211/)
 
-
 Design a data structure that supports adding new words and finding if a string matches any previously added string.
 Implement the WordDictionary class:
 
 WordDictionary() Initializes the object.
-	void addWord(word) Adds word to the data structure, it can be matched later.
-	bool search(word) Returns true if there is any string in the data structure that matches word or false
+void addWord(word) Adds word to the data structure, it can be matched later.
+bool search(word) Returns true if there is any string in the data structure that matches word or false
 
 otherwise. word may contain dots '.' where dots can be matched with any letter.
 
@@ -230,13 +239,15 @@ Input ["WordDictionary","addWord","addWord","addWord","search","search","search"
 
 Constraints:
 
-	1 <= word.length <= 500
-	word in addWord consists lower-case English letters.
-	word in search consist of  '.' or lower-case English letters.
-	At most 50000 calls will be made to addWord and search.
+    1 <= word.length <= 500
+    word in addWord consists lower-case English letters.
+    word in search consist of  '.' or lower-case English letters.
+    At most 50000 calls will be made to addWord and search.
 
 ---
-- code #trie
+
+**Code: #trie**
+
 ```py
 class WordDictionary:
 
@@ -268,7 +279,7 @@ class WordDictionary:
 
 ### [421. Maximum XOR of Two Numbers in an Array](https://yanjiyu.com/leetcode/421/)
 
-Given an integer array nums, return __the maximum result of __nums[i] XOR nums[j], where 0 <= i <= j < n.
+Given an integer array nums, return **the maximum result of **nums[i] XOR nums[j], where 0 <= i <= j < n.
 
 Example 1:
 Input: nums = [3,10,5,25,2,8] Output: 28 Explanation: The maximum result is 5 XOR 25 = 28.
@@ -278,11 +289,13 @@ Input: nums = [14,70,53,83,49,91,36,80,92,51,66,70] Output: 127
 
 Constraints:
 
- 1 <= nums.length <= 2 * 105
- 0 <= nums[i] <= 231 - 1
+1 <= nums.length <= 2 \* 105
+0 <= nums[i] <= 231 - 1
 
 ---
-- code #trie
+
+**Code: #trie**
+
 ```py
 class Solution:
     def findMaximumXOR(self, nums: List[int]) -> int:
@@ -317,7 +330,9 @@ class Solution:
 
         return max_xor
 ```
-- code #trie
+
+**Code: #trie**
+
 ```java
 class TrieNode {
   TrieNode[] children;
@@ -382,21 +397,24 @@ class Solution {
 Design a special dictionary with some words that searchs the words in it by a prefix and a suffix.
 Implement the WordFilter class:
 
-	WordFilter(string[] words) Initializes the object with the words in the dictionary.
-	f(string prefix, string suffix) Returns __the index of the word in the dictionary,__ which has the prefix prefix and the suffix suffix. If there is more than one valid index, return **the largest** of them. If there is no such word in the dictionary, return -1.
+    WordFilter(string[] words) Initializes the object with the words in the dictionary.
+    f(string prefix, string suffix) Returns __the index of the word in the dictionary,__ which has the prefix prefix and the suffix suffix. If there is more than one valid index, return **the largest** of them. If there is no such word in the dictionary, return -1.
+
 **Example 1:**
 **Input** ["WordFilter", "f"] [[["apple"]], ["a", "e"]] **Output** [null, 0] **Explanation** WordFilter wordFilter = new WordFilter(["apple"]); wordFilter.f("a", "e"); // return 0, because the word at index 0 has prefix = "a" and suffix = 'e".
 
 **Constraints:**
 
-	1 <= words.length <= 15000
-	1 <= words[i].length <= 10
-	1 <= prefix.length, suffix.length <= 10
-	words[i], prefix and suffix consist of lower-case English letters only.
-	At most 15000 calls will be made to the function f.
+    1 <= words.length <= 15000
+    1 <= words[i].length <= 10
+    1 <= prefix.length, suffix.length <= 10
+    words[i], prefix and suffix consist of lower-case English letters only.
+    At most 15000 calls will be made to the function f.
 
 ---
-- code
+
+**Code:**
+
 ```py
 class WordFilter:
 

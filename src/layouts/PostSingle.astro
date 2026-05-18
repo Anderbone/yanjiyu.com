@@ -5,23 +5,28 @@ import Giscus from "@/helpers/Giscus.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
+import { getTocItems, shouldShowToc } from "@/lib/utils/tableOfContents";
 import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
 import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
+import TableOfContents from "./components/TableOfContents.astro";
 
 const { post, collection = "blog" } = Astro.props;
 
 const posts = await getSinglePage(collection);
 const similarPosts = similarItems(post, posts);
-const { Content } = await render(post);
-const { title, description, author, categories, image, date, tags } = post.data;
+const { Content, headings } = await render(post);
+const { title, description, author, categories, image, date, tags, toc } =
+  post.data;
+const tocItems = getTocItems(headings);
+const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
 ---
 
 <section class="section pt-7">
   <div class="container">
     <div class="row justify-center">
-      <article class="lg:col-10">
+      <article class={showToc ? "lg:col-10 xl:col-8" : "lg:col-10"}>
         {
           image && (
             <div class="mb-10">
@@ -180,6 +185,13 @@ const { title, description, author, categories, image, date, tags } = post.data;
         </div>
         <Giscus class="mt-20" />
       </article>
+      {
+        showToc && (
+          <aside class="hidden xl:col-3 xl:block">
+            <TableOfContents items={tocItems} />
+          </aside>
+        )
+      }
     </div>
 
     <!-- Related posts -->

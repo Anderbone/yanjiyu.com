@@ -9,6 +9,7 @@ const commonFields = {
   // z.coerce.date() handles both Date objects and ISO string dates from frontmatter (Zod 4)
   date: z.coerce.date().optional(),
   image: z.string().optional(),
+  toc: z.boolean().optional(),
   draft: z.boolean(),
 };
 
@@ -23,6 +24,7 @@ const postSchema = z.object({
   categories: z.array(z.string()).default(() => ["others"]),
   tags: z.array(z.string()).default(() => ["others"]),
   pinned: z.boolean().default(false),
+  toc: z.boolean().optional(),
   draft: z.boolean().optional(),
 });
 

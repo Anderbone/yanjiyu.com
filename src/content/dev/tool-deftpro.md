@@ -1,5 +1,5 @@
 ---
-title: "How to configure deft pro track ball on Linux"
+title: "How to configure the DEFT Pro trackball on Linux"
 description: "Linux Xorg configuration notes for the Elecom DEFT Pro trackball."
 date: 2022-05-10
 author: "Jiyu"
@@ -8,13 +8,15 @@ tags: ["Linux", "Trackball", "Xorg"]
 draft: false
 ---
 
-I use manjaro here.
+This is my Xorg configuration for the Elecom DEFT Pro trackball on Manjaro.
 
- Create a conf file, put it in
- `/usr/share/X11/xorg.conf.d/99-trackball.conf`
+Create this configuration file:
 
-Notice the button mapping, instead of number 10, it's 1, which means I use Fn1 button as Left button;
-then 2, means at 11 Fn2 button will be used as Middle button.
+```text
+/usr/share/X11/xorg.conf.d/99-trackball.conf
+```
+
+The important part is `ButtonMapping`. In the first mapping, button `10` is remapped to `1`, so `Fn1` acts as the left button. Button `11` is remapped to `2`, so `Fn2` acts as the middle button.
 
 ```text
 Section "InputClass"
@@ -33,15 +35,16 @@ Section "InputClass"
         #   12: Fn3 (button on the above of the slide switch)
         Identifier      "Elecom DEFT Pro Trackball"
         MatchProduct    "DEFT Pro TrackBall"
-	Driver          "libinput"
+    Driver          "libinput"
         Option          "ScrollMethod" "button"
         Option          "ScrollButton" "9"
-        Option		"MiddleEmulation" "on"
-        Option "ButtonMapping" "1 2 3 4 5 6 7 8 9 1 2 12"
+        Option        "MiddleEmulation" "on"
+        Option          "ButtonMapping" "1 2 3 4 5 6 7 8 9 1 2 12"
 EndSection
 ```
 
-I also found a way to use button lock, so forward button gonna trigger whether we use the ball as a scroll button.
+I also use a second version with scroll-button lock. This makes the forward button toggle scroll mode while the ball handles scrolling.
+
 ```text
 Section "InputClass"
 # DEFT PRO Buttons:

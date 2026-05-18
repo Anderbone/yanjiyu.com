@@ -16,8 +16,8 @@ DP is a style of coding where you store the results of your algorithm in a data 
 
 [dynamic programming - What is the difference between bottom-up and top-down? - Stack Overflow](https://stackoverflow.com/questions/6164629/what-is-the-difference-between-bottom-up-and-top-down)
 
+**Code:**
 
-- code
 ```py
 function dp(dp_state, memo_dict) {
     // check if we have seen this dp_state
@@ -37,41 +37,44 @@ function answerToProblem(input) {
 }
 ```
 
-
 The same subproblem may reoccur compared to divide-and-conquer, a key to solve is to break the problem into **subproblems** such that
-1. the original problem can be solved relatively easily once solutions to the subproblems are available
-2. these subproblem solutions are **cached**,  caching the results of intermediate computations
 
+1. the original problem can be solved relatively easily once solutions to the subproblems are available
+2. these subproblem solutions are **cached**, caching the results of intermediate computations
 
 e.g. fibonacci
 Naive solution complexity analysis:
 
-
-code0  O(n) time and O(n) space
+code0 O(n) time and O(n) space
 
 ```py
 def fibonacci(n, cache={}):
-	if n <= 1:
-		return n
-	elif n not in cache:
-		cache[n] = fibonacci(n-1) + fibonacci(n-2)
-	return cache[n]
+    if n <= 1:
+        return n
+    elif n not in cache:
+        cache[n] = fibonacci(n-1) + fibonacci(n-2)
+    return cache[n]
 ```
-code1  O(n) time and O(1) space
+
+code1 O(n) time and O(1) space
+
 ```py
 def fibonacci(n):
-	if n <= 1:
-		return n
-	fmin2, fmin1 = 0, 1
-	for _ in range(1, n):
-		f = fmin2 + fmin1
-		fmin2, fmin1 = fmin1, f
-	return fmin1
+    if n <= 1:
+        return n
+    fmin2, fmin1 = 0, 1
+    for _ in range(1, n):
+        f = fmin2 + fmin1
+        fmin2, fmin1 = fmin1, f
+    return fmin1
 ```
+
 ### [53 Maximum subarray](https://yanjiyu.com/leetcode/53/)
+
 > Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
-Example:
-Input: [-2,1,-3,4,-1,2,1,-5,4], Output: 6 Explanation: [4,-1,2,1] has the largest sum = 6
+> Example:
+> Input: [-2,1,-3,4,-1,2,1,-5,4], Output: 6 Explanation: [4,-1,2,1] has the largest sum = 6
+
 ```py
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
@@ -82,7 +85,9 @@ class Solution:
         return res
 
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {
@@ -104,10 +109,12 @@ class Solution {
 ```
 
 ### [70 climbing stairs](https://yanjiyu.com/leetcode/733/)
+
 > You are climbing a staircase. It takes n steps to reach the top.
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-Input: 2
-Output: 2  Explanation: There are two ways to climb to the top.
+> Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+> Input: 2
+> Output: 2 Explanation: There are two ways to climb to the top.
+>
 > 1. 1 step + 1 step
 > 2. 2 steps
 >
@@ -115,9 +122,11 @@ Output: 2  Explanation: There are two ways to climb to the top.
 > Input: 3
 > Output: 3
 > Explanation: There are three ways to climb to the top.
+>
 > 1. 1 step + 1 step + 1 step
 > 2. 1 step + 2 steps
 > 3. 2 steps + 1 step
+
 ```py
 class Solution:
     def climbStairs(self, n: int) -> int:
@@ -130,7 +139,9 @@ class Solution:
         return dp[-1]
 
 ```
+
 ---
+
 ```py
 class Solution:
 
@@ -145,7 +156,9 @@ class Solution:
             pre = temp
         return cur
 ```
-- code
+
+**Code:**
+
 ```java
 public class Solution {
     public int climbStairs(int n) {
@@ -164,11 +177,13 @@ public class Solution {
 ```
 
 ### [121 Best Time to Buy and Sell Stock](https://yanjiyu.com/leetcode/121-best-time-to-buy-and-sell-stock/)
+
 > You are given an array prices where prices[i] is the price of a given stock on the ith day.
-You want to maximize your profit by choosing a **single day** to buy one stock and choosing a **different day in the future** to sell that stock.
-Return __the maximum profit you can achieve from this transaction__. If you cannot achieve any profit, return 0.
-Example 1:
-Input: [7,1,5,3,6,4] Output: 5 Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+> You want to maximize your profit by choosing a **single day** to buy one stock and choosing a **different day in the future** to sell that stock.
+> Return **the maximum profit you can achieve from this transaction**. If you cannot achieve any profit, return 0.
+> Example 1:
+> Input: [7,1,5,3,6,4] Output: 5 Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+
 ```py
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
@@ -182,7 +197,9 @@ class Solution:
 
         return maxProfit
 ```
+
 ---
+
 ```py
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
@@ -196,7 +213,9 @@ class Solution:
 
         return maxprofit
 ```
-- code
+
+**Code:**
+
 ```java
 public class Solution {
     public int maxProfit(int prices[]) {
@@ -214,12 +233,15 @@ public class Solution {
 ```
 
 ### [198 House Robber](https://yanjiyu.com/leetcode/198/)
+
 > You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
-Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
-Example 1:
-Input: [1,2,3,1] Output: 4
-Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).   Total amount you can rob = 1 + 3 = 4.
-- code
+> Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
+> Example 1:
+> Input: [1,2,3,1] Output: 4
+> Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3). Total amount you can rob = 1 + 3 = 4.
+
+**Code:**
+
 ```py
 class Solution:
     def rob(self, nums: List[int]) -> int:
@@ -233,7 +255,9 @@ class Solution:
         return dp[-1]
 
 ```
-- code with dictionary
+
+**Code: with dictionary**
+
 ```py
 class Solution:
     def rob(self, nums: List[int]) -> int:
@@ -247,7 +271,9 @@ class Solution:
         return profit[len(nums)-1]
 
 ```
-- code  [Python DP solution, 4 line, O(n) time, O(1) space, easy to understand with detailed explanation - LeetCode Discuss](https://leetcode.com/problems/house-robber/discuss/55977)
+
+**Code[Python DP solution, 4 line, O(n) time, O(1) space, easy to understand with detailed explanation - LeetCode Discuss](https://leetcode.com/problems/house-robber/discuss/55977):**
+
 ```py
 class Solution:
     # @param num, a list of integer
@@ -260,7 +286,9 @@ class Solution:
         return max(max_2_house_before, adjacent)
 
 ```
+
 ---
+
 ```py
 class Solution:
     def rob(self, nums: List[int]) -> int:
@@ -279,7 +307,9 @@ class Solution:
             pre = temp
         return cur
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
 
@@ -308,14 +338,17 @@ class Solution {
 ```
 
 ### [55. Jump Game](https://yanjiyu.com/leetcode/55/)
+
 > Given an array of non-negative integers, you are initially positioned at the first index of the array.
-Each element in the array represents your maximum jump length at that position.
-Determine if you are able to reach the last index.
-Example 1:
-Input: [2,3,1,1,4] Output: true Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
-Example 2:
-Input: [3,2,1,0,4] Output: false Explanation: You will always arrive at index 3 no matter what. Its maximum   jump length is 0, which makes it impossible to reach the last index.
-- code
+> Each element in the array represents your maximum jump length at that position.
+> Determine if you are able to reach the last index.
+> Example 1:
+> Input: [2,3,1,1,4] Output: true Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+> Example 2:
+> Input: [3,2,1,0,4] Output: false Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+
+**Code:**
+
 ```py
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
@@ -329,7 +362,9 @@ class Solution:
         return need_step ==  1
 
 ```
-- code
+
+**Code:**
+
 ```py
 class Solution:
    def canJump(self, nums: List[int]) -> bool:
@@ -339,7 +374,9 @@ class Solution:
         return need == 1
 
 ```
-- code
+
+**Code:**
+
 ```java
 public class Solution {
     public boolean canJump(int[] nums) {
@@ -355,13 +392,15 @@ public class Solution {
 ```
 
 ### [62 Unique Paths](https://yanjiyu.com/leetcode/62/)
+
 > A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
-The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
-How many possible unique paths are there?
-Input: m = 3, n = 2
-Output: 3
-Explanation:
-From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+> The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+> How many possible unique paths are there?
+> Input: m = 3, n = 2
+> Output: 3
+> Explanation:
+> From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+>
 > 1. Right -> Right -> Down
 > 2. Right -> Down -> Right
 > 3. Down -> Right -> Right
@@ -375,7 +414,8 @@ class Solution:
         return self.uniquePaths(m-1, n) + self.uniquePaths(m, n-1)
 ```
 
-- code
+**Code:**
+
 ```py
 class Solution:
     def uniquePaths(self, m, n):
@@ -386,7 +426,9 @@ class Solution:
         return cur[-1]
 
 ```
-- code
+
+**Code:**
+
 ```py
 class Solution:
     def uniquePaths(self, m, n):
@@ -400,7 +442,9 @@ class Solution:
         return dp[(m-1, n-1)]
 
 ```
-- code
+
+**Code:**
+
 ```py
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
@@ -412,7 +456,9 @@ class Solution:
         return grid[-1][-1]
 
 ```
-- code
+
+**Code:**
+
 ```java
 class Solution {
   public int uniquePaths(int m, int n) {
@@ -432,15 +478,17 @@ class Solution {
 ```
 
 ### [322. Coin Change](https://yanjiyu.com/leetcode/322/)
+
 > You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
-You may assume that you have an infinite number of each kind of coin.
-Example 1:
-Input: coins = [1, 2, 5], amount = 11
-Output: 3 Explanation: 11 = 5 + 5 + 1
-Example 2:
-Input: coins = [2], amount = 3 Output: -1
+> You may assume that you have an infinite number of each kind of coin.
+> Example 1:
+> Input: coins = [1, 2, 5], amount = 11
+> Output: 3 Explanation: 11 = 5 + 5 + 1
+> Example 2:
+> Input: coins = [2], amount = 3 Output: -1
 
 F(S)=F(S−C)+1, S is the amount, C is the denomination(value of each coin)
+
 ```py
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
@@ -451,7 +499,9 @@ class Solution:
         return dp[amount] if dp[amount] <= amount else -1
 
 ```
-- code
+
+**Code:**
+
 ```java
 public class Solution {
   public int coinChange(int[] coins, int amount) {
@@ -472,12 +522,14 @@ public class Solution {
 ```
 
 ### [279. Perfect squares](https://yanjiyu.com/leetcode/279/)
-> Given an integer n, return __the least number of perfect square numbers that sum to__ n.
-A perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
-Example 1:
-Input: n = 12 Output: 3 Explanation: 12 = 4 + 4 + 4.
-Example 2:
-Input: n = 13 Output: 2 Explanation: 13 = 4 + 9.
+
+> Given an integer n, return **the least number of perfect square numbers that sum to** n.
+> A perfect square is an integer that is the square of an integer; in other words, it is the product of some integer with itself. For example, 1, 4, 9, and 16 are perfect squares while 3 and 11 are not.
+> Example 1:
+> Input: n = 12 Output: 3 Explanation: 12 = 4 + 4 + 4.
+> Example 2:
+> Input: n = 13 Output: 2 Explanation: 13 = 4 + 9.
+
 ```py
 class Solution(object):
     def numSquares(self, n):
@@ -488,7 +540,8 @@ class Solution(object):
 
 ```
 
-- code dp
+**Code: dp**
+
 ```java
 class Solution {
 

@@ -9,58 +9,59 @@ draft: false
 ---
 
 ### List
+
 - `len(array)` : length of array
-    - `list.indexof(obj)`
+  - `list.index(obj)`
 - `enumerate(array)` : adds counter at the beginning.
-    - `for count, item in enumberate(['x','y','z'])` # 0x 1y 2z
+  - `for count, item in enumerate(['x','y','z'])` # 0x 1y 2z
 - `range(0,len(mylist)1,2)`
-    - range(0,3), is 0,1,2
-    - `for i in reversed(range(len(A)))`
+  - `range(0,3), is 0,1,2`
+  - `for i in reversed(range(len(A)))`
 - `nums.append(val), nums.remove(val), nums.reverse()`
-    - `nums.extend(nums2)`
-    - `list.insert(index, obj)`
-    - `list.pop()` default pop index is -1, remove the last one
+  - `nums.extend(nums2)`
+  - `list.insert(index, obj)`
+  - `list.pop()` default pop index is -1, remove the last one
 - `nums[:]`
-    - copy the value within function: b[:]=a
-        - .copy is equals to b[:]
-        - temp = self.original[:]
-        - copy.deepcopy could copy nested list
-        - import copy , copy.deepcopy(a)
+  - copy the value within function: b[:]=a
+    - .copy is equals to b[:]
+    - `temp = self.original[:]`
+    - copy.deepcopy could copy nested list
+    - `import copy , copy.deepcopy(a)`
 - `min(a,b)`
 - `nums.sort()`
-    - list.sort() change in place
-    - sorted() return a  new sorted list, leving original unaffected
-        - a.sort(key=lambda: x: str(x), reverse = False)
-- `zip(alist,blist)` : return a zip object which is an iterator of tuples, paird together. Lengths depends on the shorter input list.
-    - usually use tuple(), list(), set() on result.
-    - `list(zip(['x','y','z'], [3,4,5])) = [('x', 3), ('y', 4), ('z', 5)];`
-    - `letter, number =  zip(*result_list)`  # unzip
+  - `list.sort() change in place`
+  - `sorted() return a new sorted list, leaving original unaffected`
+    - `a.sort(key=lambda: x: str(x), reverse = False)`
+- `zip(alist,blist)` : return a zip object which is an iterator of tuples, paired together. Lengths depends on the shorter input list.
+  - `usually use tuple(), list(), set() on result.`
+  - `list(zip(['x','y','z'], [3,4,5])) = [('x', 3), ('y', 4), ('z', 5)];`
+  - `letter, number =  zip(*result_list)` # unzip
 - matrix
-    - test = [[0 for i in range(m)] for j in range(n)]
-        - watch out , 3*2, m*n,  then the corner is test[n-1][m-1]
-        - lee62
-    - make one: dp = [[0] * n for _ in range(n)]
-    - transpose a two dimension list
-        - `Trans = [[row[i] for row in board] for i in range(len(board[0]))]`
+  - `test = [[0 for i in range(m)] for j in range(n)]`
+    - watch out , 3*2, m*n, then the corner is test[n-1][m-1]
+    - lee62
+  - `make one: dp = [[0] \* n for \_ in range(n)]`
+  - transpose a two dimension list
+    - `Trans = [[row[i] for row in board] for i in range(len(board[0]))]`
 
 ### dict
-- for k, v in dic.items()
-    - dict = {'a': 1, 'b': 2, 'b': '3'}
-    - dic1 == dic2
-    - dic.values()
-- `d = dict(collections.Counter(s))` :   s 3 times, a 1 time
-    - c.most_common(3),  according to frequency, first 3 value,count 's list
-    - c.items() , a list with  value,count
-    - c.elements:  ['a', 'a', 'a', 'a', 'b', 'b']
-- `collections.defaultdict(int)` # default 0
-    - `senti_dic = collections.defaultdict(lambda: 0)`
-    - `defaultdict(lambda: 'Vanilla')`
-    - `dict(collections.Counter(nums1))`: key is item in num1, value is the count.
 
+- `for k, v in dic.items()`
+  - `dict = {'a': 1, 'b': 2, 'b': '3'}`
+  - `dic1 == dic2`
+  - `dic.values()`
+- `d = dict(collections.Counter(s))` : s 3 times, a 1 time
+  - `c.most_common(3), according to frequency, first 3 value,count 's list`
+  - `c.items() , a list with value,count`
+  - `c.elements: ['a', 'a', 'a', 'a', 'b', 'b']`
+- `collections.defaultdict(int)` # default 0
+  - `senti_dic = collections.defaultdict(lambda: 0)`
+  - `defaultdict(lambda: 'Vanilla')`
+  - `dict(collections.Counter(nums1))`: key is item in num1, value is the count.
 
 ### e.g.1 with zip, enumerate
 
-134 !(2019-05-28) Gas station  2  #array #2lee
+134 !(2019-05-28) Gas station 2 #array #2lee
 
 > There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
 > You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.
@@ -87,32 +88,31 @@ Travel to station 2. Your tank = 6 - 4 + 3 = 5
 Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
 Therefore, return 3 as the starting index.
 
-code
+**Code:**
+
 ```python
  def canCompleteCircuit2(self, gas: List[int], cost: List[int]) -> int:
- 	tmp = [x - y for x, y in zip(gas, cost)]
- 	print(tmp+tmp)
- 	cur = 0
- 	ans = 0
- 	for i, val in enumerate(tmp + tmp):
- 		cur += val
- 		if cur < 0:
- 			ans = i + 1
-			 if ans >= len(gas):
- 				return -1
-			 cur = 0
- 	return ans
+     tmp = [x - y for x, y in zip(gas, cost)]
+     print(tmp+tmp)
+     cur = 0
+     ans = 0
+     for i, val in enumerate(tmp + tmp):
+         cur += val
+         if cur < 0:
+             ans = i + 1
+             if ans >= len(gas):
+                 return -1
+             cur = 0
+     return ans
 ```
-
 
 ### e.g.2 with dict(collection.Counter(array))
 
-
 > Given a non-empty array of integers, every element appears twice except for one. Find that single one.
-Note:
-Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
-Example 1:
-Input: [2,2,1] Output: 1
+> Note:
+> Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+> Example 1:
+> Input: [2,2,1] Output: 1
 
 ```python
 class Solution:
