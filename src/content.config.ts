@@ -22,6 +22,7 @@ const postSchema = z.object({
   // Use factory functions for mutable array defaults (Zod 4 best practice)
   categories: z.array(z.string()).default(() => ["others"]),
   tags: z.array(z.string()).default(() => ["others"]),
+  pinned: z.boolean().default(false),
   draft: z.boolean().optional(),
 });
 

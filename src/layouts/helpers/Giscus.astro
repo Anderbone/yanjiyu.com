@@ -13,80 +13,110 @@ const enabled =
   giscus.repoId &&
   giscus.category &&
   giscus.categoryId;
+
+const giscusInitScript = `
+(() => {
+  const giscusOrigin = "https://giscus.app";
+  const maxAttempts = 20;
+  const currentScript = document.currentScript;
+  const container = currentScript?.closest("[data-giscus-comments]");
+
+  if (!container || container.dataset.loaded === "true") return;
+  container.dataset.loaded = "true";
+
+  const script = document.createElement("script");
+  script.src = "https://giscus.app/client.js";
+  script.async = true;
+  script.crossOrigin = "anonymous";
+
+  [
+    "repo",
+    "repoId",
+    "category",
+    "categoryId",
+    "mapping",
+    "strict",
+    "reactionsEnabled",
+    "emitMetadata",
+    "inputPosition",
+    "theme",
+    "lang",
+  ].forEach((key) => {
+    const value = container.dataset[key];
+    if (!value) return;
+
+    const attrName = key.replace(/[A-Z]/g, (letter) => "-" + letter.toLowerCase());
+    script.setAttribute("data-" + attrName, value);
+  });
+
+  container.appendChild(script);
+
+  const getTheme = () =>
+    document.documentElement.classList.contains("dark") ? "dark" : "light";
+
+  const sendTheme = () => {
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (!iframe?.contentWindow) return false;
+
+    iframe.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: getTheme(),
+          },
+        },
+      },
+      giscusOrigin,
+    );
+    return true;
+  };
+
+  const syncTheme = () => {
+    if (sendTheme()) return;
+
+    let attempts = 0;
+    const interval = window.setInterval(() => {
+      attempts += 1;
+      if (sendTheme() || attempts >= maxAttempts) {
+        window.clearInterval(interval);
+      }
+    }, 250);
+  };
+
+  syncTheme();
+
+  const observer = new MutationObserver(syncTheme);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  document.addEventListener("astro:before-swap", () => {
+    observer.disconnect();
+  });
+})();
+`;
 ---
 
 {
   enabled && (
-    <section class={className} aria-label="Comments">
-      <script
-        is:inline
-        src="https://giscus.app/client.js"
-        data-repo={giscus.repo}
-        data-repo-id={giscus.repoId}
-        data-category={giscus.category}
-        data-category-id={giscus.categoryId}
-        data-mapping={giscus.mapping || "pathname"}
-        data-strict={giscus.strict ? "1" : "0"}
-        data-reactions-enabled={giscus.reactionsEnabled ? "1" : "0"}
-        data-emit-metadata="0"
-        data-input-position={giscus.inputPosition || "bottom"}
-        data-theme={giscus.theme || "preferred_color_scheme"}
-        data-lang={giscus.lang || "en"}
-        crossorigin="anonymous"
-        async
-      />
-      <script is:inline>
-        (() => {
-          const giscusOrigin = "https://giscus.app";
-          const maxAttempts = 20;
-
-          const getTheme = () =>
-            document.documentElement.classList.contains("dark")
-              ? "dark"
-              : "light";
-
-          const sendTheme = () => {
-            const iframe = document.querySelector("iframe.giscus-frame");
-            if (!iframe?.contentWindow) return false;
-
-            iframe.contentWindow.postMessage(
-              {
-                giscus: {
-                  setConfig: {
-                    theme: getTheme(),
-                  },
-                },
-              },
-              giscusOrigin,
-            );
-            return true;
-          };
-
-          const syncTheme = () => {
-            if (sendTheme()) return;
-
-            let attempts = 0;
-            const interval = window.setInterval(() => {
-              attempts += 1;
-              if (sendTheme() || attempts >= maxAttempts) {
-                window.clearInterval(interval);
-              }
-            }, 250);
-          };
-
-          syncTheme();
-
-          const observer = new MutationObserver(syncTheme);
-          observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ["class"],
-          });
-
-          document.addEventListener("astro:before-swap", () => {
-            observer.disconnect();
-          });
-        })();
-      </script>
+    <section
+      class={className}
+      aria-label="Comments"
+      data-giscus-comments
+      data-repo={giscus.repo}
+      data-repo-id={giscus.repoId}
+      data-category={giscus.category}
+      data-category-id={giscus.categoryId}
+      data-mapping={giscus.mapping || "pathname"}
+      data-strict={giscus.strict ? "1" : "0"}
+      data-reactions-enabled={giscus.reactionsEnabled ? "1" : "0"}
+      data-emit-metadata="0"
+      data-input-position={giscus.inputPosition || "bottom"}
+      data-theme={giscus.theme || "preferred_color_scheme"}
+      data-lang={giscus.lang || "en"}
+    >
+      <script is:inline data-astro-rerun set:html={giscusInitScript} />
     </section>
   )
 }

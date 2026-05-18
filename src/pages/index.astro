@@ -1,9 +1,21 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getListPage } from "@/lib/contentParser.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import dateFormat from "@/lib/utils/dateFormat";
+import { sortByDate } from "@/lib/utils/sortFunctions";
 import { markdownify } from "@/lib/utils/textConverter";
 
 const homepage = await getListPage("homepage", "-index");
+const devPosts = await getSinglePage("dev");
+const journalPosts = await getSinglePage("journal");
+const posts = sortByDate([
+  ...devPosts.map((post) => ({ ...post, collection: "dev" })),
+  ...journalPosts.map((post) => ({ ...post, collection: "journal" })),
+]);
+const pinnedPosts = posts.filter((post) => post.data.pinned);
+const latestPosts = posts.filter((post) => !post.data.pinned);
+const featuredPosts = [...pinnedPosts, ...latestPosts].slice(0, 3);
+const hasPinnedPosts = pinnedPosts.length > 0;
 
 const { banner } = homepage.data;
 ---
@@ -47,34 +59,43 @@ const { banner } = homepage.data;
       </div>
       <div class="row justify-center pt-12">
         <div class="md:col-10 lg:col-8">
-          <div class="grid gap-4 md:grid-cols-3">
-            <a
-              class="rounded border border-border p-5 transition hover:border-primary dark:border-darkmode-border"
-              href="/about"
-            >
-              <h2 class="h5 mb-2">About</h2>
-              <p class="text-sm text-text-light dark:text-darkmode-text-light">
-                Profile, skills, and background.
+          <div class="mb-6 flex items-end justify-between gap-4">
+            <div>
+              <p class="mb-2 text-sm font-medium uppercase text-primary">
+                Writing
               </p>
-            </a>
-            <a
-              class="rounded border border-border p-5 transition hover:border-primary dark:border-darkmode-border"
-              href="/dev"
-            >
-              <h2 class="h5 mb-2">Dev</h2>
-              <p class="text-sm text-text-light dark:text-darkmode-text-light">
-                Technical notes and implementation writeups.
-              </p>
-            </a>
-            <a
-              class="rounded border border-border p-5 transition hover:border-primary dark:border-darkmode-border"
-              href="/journal"
-            >
-              <h2 class="h5 mb-2">Journal</h2>
-              <p class="text-sm text-text-light dark:text-darkmode-text-light">
-                Selected essays and reflective writing.
-              </p>
-            </a>
+              <h2 class="h3">
+                {hasPinnedPosts ? "Pinned and latest" : "Latest posts"}
+              </h2>
+            </div>
+          </div>
+          <div class="divide-y divide-border dark:divide-darkmode-border">
+            {
+              featuredPosts.map((post) => (
+                <a
+                  class="group block py-5 first:pt-0 last:pb-0"
+                  href={`/${post.collection}/${post.id}`}
+                >
+                  <div class="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-light dark:text-darkmode-text-light">
+                    <span class="font-medium text-primary">
+                      {post.collection === "dev" ? "Dev" : "Journal"}
+                    </span>
+                    {post.data.pinned && <span>Pinned</span>}
+                    {post.data.date && (
+                      <time>{dateFormat(post.data.date)}</time>
+                    )}
+                  </div>
+                  <h3 class="h5 mb-2 transition group-hover:text-primary">
+                    {post.data.title}
+                  </h3>
+                  {post.data.description && (
+                    <p class="text-sm text-text-light dark:text-darkmode-text-light">
+                      {post.data.description}
+                    </p>
+                  )}
+                </a>
+              ))
+            }
           </div>
         </div>
       </div>
