@@ -35,6 +35,58 @@ const enabled =
         crossorigin="anonymous"
         async
       />
+      <script is:inline>
+        (() => {
+          const giscusOrigin = "https://giscus.app";
+          const maxAttempts = 20;
+
+          const getTheme = () =>
+            document.documentElement.classList.contains("dark")
+              ? "dark"
+              : "light";
+
+          const sendTheme = () => {
+            const iframe = document.querySelector("iframe.giscus-frame");
+            if (!iframe?.contentWindow) return false;
+
+            iframe.contentWindow.postMessage(
+              {
+                giscus: {
+                  setConfig: {
+                    theme: getTheme(),
+                  },
+                },
+              },
+              giscusOrigin,
+            );
+            return true;
+          };
+
+          const syncTheme = () => {
+            if (sendTheme()) return;
+
+            let attempts = 0;
+            const interval = window.setInterval(() => {
+              attempts += 1;
+              if (sendTheme() || attempts >= maxAttempts) {
+                window.clearInterval(interval);
+              }
+            }, 250);
+          };
+
+          syncTheme();
+
+          const observer = new MutationObserver(syncTheme);
+          observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class"],
+          });
+
+          document.addEventListener("astro:before-swap", () => {
+            observer.disconnect();
+          });
+        })();
+      </script>
     </section>
   )
 }
