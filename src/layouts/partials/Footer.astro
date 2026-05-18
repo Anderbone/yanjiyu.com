@@ -1,5 +1,4 @@
 ---
-import Logo from "@/components/Logo.astro";
 import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
@@ -10,32 +9,21 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
 ---
 
 <footer class="bg-light dark:bg-darkmode-light">
-  <div class="container">
-    <div class="row items-center py-10">
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
-        <Logo />
-      </div>
-      <div class="mb-8 text-center lg:col-6 lg:mb-0">
-        <ul>
-          {
-            footer.map((menu) => (
-              <li class="m-3 inline-block">
-                <a href={menu.url}>{menu.name}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
-        <Social source={social.main} className="social-icons" />
-      </div>
-    </div>
-  </div>
-  <div class="border-t border-border py-7 dark:border-darkmode-border">
+  <div class="container py-5">
     <div
-      class="container text-center text-text-light dark:text-darkmode-text-light"
+      class="flex flex-col items-center justify-center gap-4 text-center text-text-light dark:text-darkmode-text-light md:flex-row md:justify-between"
     >
       <p set:html={markdownify(config.params.copyright)} />
+      <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        {
+          footer.map((menu) => (
+            <li>
+              <a href={menu.url}>{menu.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <Social source={social.main} className="social-icons" />
     </div>
   </div>
 </footer>

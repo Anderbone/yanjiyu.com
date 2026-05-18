@@ -44,10 +44,18 @@
     "gtm_id": "GTM-XXXXXX"
   },
 
-  "disqus": {
+  "giscus": {
     "enable": true,
-    "shortname": "themefisher-template",
-    "settings": {}
+    "repo": "Anderbone/yanjiyu.com",
+    "repoId": "R_kgDOSgS6Dg",
+    "category": "General",
+    "categoryId": "DIC_kwDOSgS6Ds4C9TUw",
+    "mapping": "pathname",
+    "strict": false,
+    "reactionsEnabled": true,
+    "inputPosition": "bottom",
+    "theme": "preferred_color_scheme",
+    "lang": "en"
   },
 
   "metadata": {

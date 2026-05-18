@@ -1,0 +1,40 @@
+---
+import config from "@/config/config.json";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const giscus = config.giscus;
+const enabled =
+  giscus?.enable &&
+  giscus.repo &&
+  giscus.repoId &&
+  giscus.category &&
+  giscus.categoryId;
+---
+
+{
+  enabled && (
+    <section class={className} aria-label="Comments">
+      <script
+        is:inline
+        src="https://giscus.app/client.js"
+        data-repo={giscus.repo}
+        data-repo-id={giscus.repoId}
+        data-category={giscus.category}
+        data-category-id={giscus.categoryId}
+        data-mapping={giscus.mapping || "pathname"}
+        data-strict={giscus.strict ? "1" : "0"}
+        data-reactions-enabled={giscus.reactionsEnabled ? "1" : "0"}
+        data-emit-metadata="0"
+        data-input-position={giscus.inputPosition || "bottom"}
+        data-theme={giscus.theme || "preferred_color_scheme"}
+        data-lang={giscus.lang || "en"}
+        crossorigin="anonymous"
+        async
+      />
+    </section>
+  )
+}
