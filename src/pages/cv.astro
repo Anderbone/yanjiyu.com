@@ -47,7 +47,7 @@ const highlights = [
   {
     value: "60% faster onboarding",
     label:
-      "Customer tutorials and documentation reduced initial implementation time",
+      "Best-practice solutions, tutorials, and documentation reduced initial implementation time",
   },
 ];
 
@@ -79,6 +79,7 @@ const deliveryFlow = [
   "Go-live",
   "Iterate",
 ];
+const deliveryFlowText = deliveryFlow.join(" · ");
 
 const experience = [
   {
@@ -96,7 +97,7 @@ const experience = [
           "Built and maintained SAP/ERP integrations using Java interface logic, REST API workflows, data validation, SQL/database logic, and customer-specific business rules.",
           "Designed a multi-level BOM automation workflow in JavaScript that reduced setup time from around 1 hour to 2 minutes, was adopted in implementation practice, used in sales demos, and shaped feature direction and product roadmap decisions.",
           "Defined reusable solution patterns in JavaScript, reporting, data setup, and workflow design, improving delivery consistency and expanding what the implementation team could deliver.",
-          "Created customer-facing video tutorials and documentation that cut initial implementation time by 60% and improved onboarding consistency.",
+          "Standardized best-practice solutions, tutorials, and documentation to reduce customer implementation time.",
         ],
       },
       {
@@ -131,7 +132,7 @@ const selectedWork = [
     period: "Enterprise integrations",
     title: "SAP / ERP, reporting, and backend delivery",
     detail:
-      "Built customer-specific enterprise workflows across Java/Spring changes, REST API flows, SQL procedures, data validation, SAP/ERP integrations, and PDF/RTF/Excel reporting.",
+      "Built customer-specific enterprise workflows across Java/Spring backend logic, REST API flows, SQL procedures, data validation, SAP/ERP integrations, and PDF/RTF/Excel reporting.",
     chips: [
       "Java/Spring",
       "SQL Server",
@@ -222,7 +223,7 @@ const additional = [
     period: "Personal",
     title: "Full-stack AI product",
     detail:
-      "React, TypeScript, PostgreSQL/Prisma, Vercel AI SDK, authentication, automated tests, Codex-assisted development workflows, and deployment tooling.",
+      "React, TypeScript, PostgreSQL/Prisma, Vercel AI SDK, Better Auth, Zod validation, Playwright, Vitest, Codex-assisted development workflows, and deployment tooling.",
   },
   {
     period: "2022",
@@ -259,8 +260,8 @@ const additional = [
         <aside class="cv-topbar" aria-label="CV navigation and contact">
           <div class="cv-meta" aria-label="Location and work status">
             <span>{profile.location}</span>
-            <span>{profile.workStatus}</span>
             <span>{profile.remote}</span>
+            <span>{profile.workStatus}</span>
           </div>
 
           <div class="cv-contact" aria-label="Contact and profile links">
@@ -325,16 +326,7 @@ const additional = [
             From discovery to go-live, with engineering reality in the room.
           </h2>
         </div>
-        <ol>
-          {
-            deliveryFlow.map((step, index) => (
-              <li>
-                <span>{index + 1}</span>
-                {step}
-              </li>
-            ))
-          }
-        </ol>
+        <p class="cv-flow__steps">{deliveryFlowText}</p>
       </section>
 
       <nav class="cv-jumpbar" aria-label="CV navigation">
@@ -755,30 +747,15 @@ const additional = [
     line-height: 1.08;
   }
 
-  .cv-flow ol {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
+  .cv-flow__steps {
     margin: 0;
-    padding: 0;
-    background: var(--cv-line);
-    list-style: none;
-  }
-
-  .cv-flow li {
-    display: grid;
-    gap: 0.65rem;
-    min-height: 6.1rem;
+    border: 1px solid var(--cv-line);
     background: var(--cv-paper);
-    padding: 0.85rem;
+    padding: clamp(1rem, 2.5vw, 1.4rem);
     color: var(--cv-ink);
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .cv-flow li span {
-    color: var(--cv-accent);
-    font-size: 0.82rem;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 800;
+    line-height: 1.55;
   }
 
   .cv-content {
@@ -1038,10 +1015,6 @@ const additional = [
       grid-template-columns: 1fr;
     }
 
-    .cv-flow ol {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .cv-proof div {
       padding-right: 0;
       padding-left: 0;
@@ -1056,14 +1029,6 @@ const additional = [
 
     .cv-identity h1 {
       font-size: clamp(2.85rem, 16vw, 4rem);
-    }
-
-    .cv-flow ol {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .cv-flow li {
-      min-height: 5.25rem;
     }
 
     .cv-jumpbar {
