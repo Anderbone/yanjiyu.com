@@ -79,7 +79,6 @@ const deliveryFlow = [
   "Go-live",
   "Iterate",
 ];
-const deliveryFlowText = deliveryFlow.join(" · ");
 
 const experience = [
   {
@@ -326,7 +325,16 @@ const additional = [
             From discovery to go-live, with engineering reality in the room.
           </h2>
         </div>
-        <p class="cv-flow__steps">{deliveryFlowText}</p>
+        <ol class="cv-flow__steps">
+          {
+            deliveryFlow.map((step, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{step}</strong>
+              </li>
+            ))
+          }
+        </ol>
       </section>
 
       <nav class="cv-jumpbar" aria-label="CV navigation">
@@ -674,7 +682,7 @@ const additional = [
     display: grid;
     gap: 0.35rem;
     background: var(--cv-paper);
-    padding: clamp(1.1rem, 2.5vw, 1.75rem) 0;
+    padding: clamp(1.15rem, 2.5vw, 1.75rem) clamp(1rem, 2vw, 1.35rem);
   }
 
   .cv-proof strong {
@@ -748,14 +756,47 @@ const additional = [
   }
 
   .cv-flow__steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    overflow: hidden;
     margin: 0;
     border: 1px solid var(--cv-line);
     background: var(--cv-paper);
-    padding: clamp(1rem, 2.5vw, 1.4rem);
+    padding: 0;
     color: var(--cv-ink);
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    list-style: none;
+  }
+
+  .cv-flow__steps li {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.65rem;
+    background: var(--cv-paper);
+    padding: 0.9rem clamp(0.85rem, 2vw, 1.1rem);
+    box-shadow: 1px 0 0 var(--cv-line), 0 1px 0 var(--cv-line);
+  }
+
+  .cv-flow__steps span {
+    display: inline-grid;
+    width: 1.9rem;
+    height: 1.9rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--cv-accent), transparent 35%);
+    border-radius: 999px;
+    color: var(--cv-accent);
+    font-size: 0.7rem;
     font-weight: 800;
-    line-height: 1.55;
+    line-height: 1;
+  }
+
+  .cv-flow__steps strong {
+    min-width: 0;
+    color: var(--cv-ink);
+    font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+    line-height: 1.2;
   }
 
   .cv-content {
@@ -1014,11 +1055,6 @@ const additional = [
     .cv-flow {
       grid-template-columns: 1fr;
     }
-
-    .cv-proof div {
-      padding-right: 0;
-      padding-left: 0;
-    }
   }
 
   @media (max-width: 640px) {
@@ -1063,6 +1099,10 @@ const additional = [
     }
 
     .cv-stack--selected {
+      grid-template-columns: 1fr;
+    }
+
+    .cv-flow__steps {
       grid-template-columns: 1fr;
     }
   }
