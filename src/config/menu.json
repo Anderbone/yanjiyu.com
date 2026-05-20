@@ -9,6 +9,10 @@
       "url": "/about"
     },
     {
+      "name": "CV",
+      "url": "/cv"
+    },
+    {
       "name": "Dev",
       "url": "/dev"
     },

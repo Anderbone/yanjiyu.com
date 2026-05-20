@@ -1,0 +1,1152 @@
+---
+import Base from "@/layouts/Base.astro";
+import {
+  IoBusinessOutline,
+  IoCallOutline,
+  IoCodeSlashOutline,
+  IoGitBranchOutline,
+  IoLogoGithub,
+  IoLogoLinkedin,
+  IoMailOutline,
+  IoPrintOutline,
+} from "react-icons/io5";
+
+const profile = {
+  name: "Jiyu Yan",
+  title: "Solutions Engineer / Full-stack Software Engineer",
+  headline: "Customer-facing delivery with hands-on product engineering.",
+  location: "Wrexham, UK",
+  workStatus: "UK ILR | no visa sponsorship required",
+  remote: "Open to remote / hybrid",
+  email: "yn.jiyu@gmail.com",
+  phone: "+44 747 337 2563",
+  github: "github.com/Anderbone",
+  githubUrl: "https://github.com/Anderbone",
+  linkedin: "linkedin.com/in/jiyu-yan",
+  linkedinUrl: "https://www.linkedin.com/in/jiyu-yan/",
+  website: "yanjiyu.com",
+  websiteUrl: "https://yanjiyu.com",
+  summary:
+    "Solutions Engineer with 6+ years delivering enterprise software, integrations, automation, reporting, and data-heavy workflows for global clients. I combine requirements discovery, demos, solution architecture, JavaScript/TypeScript, Java/Spring, SQL, REST APIs, PostgreSQL/SQL Server, and AI-assisted full-stack development to turn ambiguous customer workflows into production-ready systems.",
+};
+
+const highlights = [
+  {
+    value: "6+ yrs",
+    label: "enterprise implementation, support, and product engineering",
+  },
+  {
+    value: "10+",
+    label: "global customer projects delivered from discovery to go-live",
+  },
+  {
+    value: "1h to 2m",
+    label: "BOM setup workflow automated and adopted in implementation practice",
+  },
+  {
+    value: "96%",
+    label: "more support tickets handled than the team average",
+  },
+];
+
+const strengths = [
+  {
+    icon: IoCodeSlashOutline,
+    title: "Full-stack implementation",
+    text: "Builds JavaScript/TypeScript product logic, Java/Spring fixes, SQL procedures, reports, API integrations, and automated setup workflows.",
+  },
+  {
+    icon: IoBusinessOutline,
+    title: "Customer-facing delivery",
+    text: "Leads discovery, demos, scoping, specifications, training, stakeholder alignment, go-live planning, and post-launch adoption support.",
+  },
+  {
+    icon: IoGitBranchOutline,
+    title: "Integration and data workflows",
+    text: "Turns messy workflow, reporting, ERP/SAP, database, and operational constraints into technical designs that teams can ship and customers can trust.",
+  },
+];
+
+const deliveryFlow = [
+  "Discover",
+  "Demo",
+  "Scope",
+  "Design",
+  "Build",
+  "Integrate",
+  "Go-live",
+  "Iterate",
+];
+
+const experience = [
+  {
+    company: "UL Solutions",
+    period: "2019 - Present",
+    note: "formerly Cimteq",
+    roles: [
+      {
+        title: "Software Implementation Engineer",
+        period: "2021 - Present",
+        bullets: [
+          "Delivered 10+ complex enterprise implementations for global clients, owning requirements discovery, solution architecture, specification writing, configuration, custom development, testing, and go-live delivery.",
+          "Led customer-facing technical discussions from pre-sales demos through implementation and go-live, translating ambiguous business requirements into customisation strategy, integration design, and roadmap feedback.",
+          "Delivered production Java/Spring and SQL changes across warehouse, machine, stop-code, configuration, reporting, and integration workflows, covering backend logic, validation, debugging, testing, and release support.",
+          "Built and maintained SAP/ERP integrations using Java interface logic, REST API workflows, data validation, SQL/database logic, and customer-specific business rules.",
+          "Designed a multi-level BOM automation workflow using JavaScript that reduced a setup task from around 1 hour to 2 minutes, was adopted in implementation practice, used in sales demos, and influenced roadmap changes.",
+          "Defined reusable solution patterns in JavaScript, reporting, data setup, and workflow design, improving delivery consistency and expanding what the implementation team could deliver.",
+          "Created customer-facing video tutorials and documentation that cut initial implementation time by 60% and improved onboarding consistency.",
+        ],
+      },
+      {
+        title: "Technical Support Analyst",
+        period: "2019 - 2021",
+        bullets: [
+          "Resolved high-complexity production issues across application logic, configuration, databases, reporting, and integrations, handling 96% more tickets than the team average.",
+          "Built internal Python tooling to automate report and XML investigation workflows, reducing repetitive debugging effort for consultants and developers.",
+          "Authored the team's highest volume of technical Confluence knowledge-base pages, supporting recurring application, reporting, and integration issues.",
+          "Improved internationalisation and reporting workflows using Regex, Java reporting tools, and repeatable debugging patterns.",
+        ],
+      },
+    ],
+  },
+];
+
+const selectedWork = [
+  {
+    period: "Product workflow",
+    title: "Multi-level BOM automation",
+    detail:
+      "Converted repeated customer setup pain into JavaScript-driven automation that reduced a manual workflow from around 1 hour to 2 minutes, then reused it in implementation practice, demos, and roadmap feedback.",
+  },
+  {
+    period: "Enterprise integrations",
+    title: "SAP / ERP, reporting, and backend delivery",
+    detail:
+      "Built interface logic, REST API workflows, SQL procedures, data validation, and PDF/RTF/Excel reporting across customer-specific enterprise workflows.",
+  },
+  {
+    period: "Personal product",
+    title: "Full-stack AI product development",
+    detail:
+      "Current personal product work with React, TypeScript, Node.js, PostgreSQL, Prisma, Vercel AI SDK, Better Auth, Zod, Playwright, Vitest, and deployment tooling.",
+  },
+  {
+    period: "Internal tooling",
+    title: "Support automation and knowledge systems",
+    detail:
+      "Created Python tools, repeatable investigation patterns, and Confluence documentation that improved report/XML debugging and cross-team support consistency.",
+  },
+];
+
+const skills = [
+  ["Programming", "JavaScript, TypeScript, SQL, Python, Java"],
+  ["Frontend / product", "React, React Router, Vite, Tailwind CSS, shadcn/ui"],
+  [
+    "Backend / API",
+    "Java/Spring, Node.js, REST APIs, PostgreSQL, SQL Server, Prisma, SAP/ERP integrations, AWS",
+  ],
+  [
+    "Testing / tooling",
+    "Git, GitHub Actions, Linux, Docker, Playwright, Vitest, pnpm, OpenAPI/Swagger, Zod, Vercel AI SDK, Codex",
+  ],
+  [
+    "Delivery practices",
+    "Customer discovery, pre-sales demos, solution architecture, workflow design, stakeholder management, roadmap feedback, go-live delivery",
+  ],
+  [
+    "Engineering practices",
+    "Vertical-slice architecture, system design, schema design, integration design, business-rule implementation, technical documentation",
+  ],
+];
+
+const education = [
+  {
+    period: "2018 - 2019",
+    title: "MSc Computer Science, University of Warwick",
+    detail:
+      "Distinction. Modules included high-performance computing, data mining, data analysis, sensor networks, and natural language processing. Built a Python auction bot scoring 7.2/7.5, top among 60+ submissions.",
+  },
+  {
+    period: "2011 - 2018",
+    title: "University of Electronic Science and Technology of China",
+    detail:
+      "MSc Electronics and Communication Engineering; BEng Communication Engineering. GPA 3.7 / 4.0.",
+  },
+];
+
+const additional = [
+  {
+    period: "Languages",
+    title: "English, Mandarin",
+  },
+  {
+    period: "Personal",
+    title: "Full-stack AI product",
+    detail:
+      "React, TypeScript, PostgreSQL/Prisma, Vercel AI SDK, authentication, automated tests, and deployment tooling.",
+  },
+  {
+    period: "2022",
+    title: "Wikimedia Hackathon contributor",
+    detail:
+      "Contributed UI and backend improvements to Quarry using Python, Flask, and Docker.",
+    href: "https://github.com/toolforge/quarry",
+  },
+  {
+    period: "2018",
+    title: "Second place, Warwick National Novices Fencing Tournament",
+  },
+  {
+    period: "2016 - 2017",
+    title: "Teaching assistant, undergraduate TCP/IP course",
+  },
+];
+---
+
+<Base
+  title={`${profile.name} CV`}
+  description="Professional CV for Jiyu Yan, a UK-based software engineer and implementation specialist."
+>
+  <section class="cv-page">
+    <div class="cv-shell">
+      <header class="cv-hero" aria-labelledby="cv-title">
+        <div class="cv-identity">
+          <h1 id="cv-title">{profile.name}</h1>
+          <p class="cv-role">{profile.title}</p>
+          <p class="cv-headline">{profile.headline}</p>
+          <p class="cv-summary">{profile.summary}</p>
+        </div>
+
+        <aside class="cv-topbar" aria-label="CV navigation and contact">
+          <div class="cv-meta" aria-label="Location and work status">
+            <span>{profile.location}</span>
+            <span>{profile.workStatus}</span>
+            <span>{profile.remote}</span>
+          </div>
+
+          <div class="cv-contact" aria-label="Contact and profile links">
+            <a href={`mailto:${profile.email}`}>
+              <IoMailOutline aria-hidden="true" />
+              <span>{profile.email}</span>
+            </a>
+            <a href={profile.githubUrl} target="_blank" rel="noopener">
+              <IoLogoGithub aria-hidden="true" />
+              <span>{profile.github}</span>
+            </a>
+            <a href={profile.linkedinUrl} target="_blank" rel="noopener">
+              <IoLogoLinkedin aria-hidden="true" />
+              <span>{profile.linkedin}</span>
+            </a>
+            <a href={profile.websiteUrl} target="_blank" rel="noopener">
+              <IoBusinessOutline aria-hidden="true" />
+              <span>{profile.website}</span>
+            </a>
+            <a href={`tel:${profile.phone.replaceAll(" ", "")}`}>
+              <IoCallOutline aria-hidden="true" />
+              <span>{profile.phone}</span>
+            </a>
+            <button type="button" data-print-cv>
+              <IoPrintOutline aria-hidden="true" />
+              <span>Print CV</span>
+            </button>
+          </div>
+        </aside>
+      </header>
+
+      <section class="cv-proof" aria-label="Career proof points">
+        {
+          highlights.map((highlight) => (
+            <div>
+              <strong>{highlight.value}</strong>
+              <span>{highlight.label}</span>
+            </div>
+          ))
+        }
+      </section>
+
+      <section class="cv-strengths" aria-label="Strengths">
+        {
+          strengths.map((strength) => {
+            const Icon = strength.icon;
+            return (
+              <article class="cv-strength">
+                <Icon aria-hidden="true" />
+                <h2>{strength.title}</h2>
+                <p>{strength.text}</p>
+              </article>
+            );
+          })
+        }
+      </section>
+
+      <section class="cv-flow" aria-labelledby="flow-title">
+        <div>
+          <p class="cv-flow__eyebrow">Full-cycle delivery</p>
+          <h2 id="flow-title">
+            Discovery to go-live, with engineering reality in the room.
+          </h2>
+        </div>
+        <ol>
+          {
+            deliveryFlow.map((step, index) => (
+              <li>
+                <span>{index + 1}</span>
+                {step}
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <nav class="cv-jumpbar" aria-label="CV navigation">
+        <p>Jump to</p>
+        <a href="#selected">Selected</a>
+        <a href="#work">Work</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#additional">Additional</a>
+      </nav>
+
+      <div class="cv-content">
+        <main class="cv-main" aria-label="Main CV content">
+          <section
+            id="selected"
+            class="cv-section"
+            aria-labelledby="selected-title"
+          >
+            <div class="cv-section__head">
+              <p>Selected</p>
+              <h2 id="selected-title">
+                Evidence across implementation, engineering, and product
+              </h2>
+            </div>
+            <div class="cv-stack cv-stack--selected">
+              {
+                selectedWork.map((item) => (
+                  <article class="cv-mini">
+                    <span>{item.period}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.detail}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+
+          <section
+            id="work"
+            class="cv-section"
+            aria-labelledby="experience-title"
+          >
+            <div class="cv-section__head">
+              <p>Experience</p>
+              <h2 id="experience-title">
+                Enterprise delivery with hands-on engineering
+              </h2>
+            </div>
+            {
+              experience.map((item) => (
+                <article class="cv-company">
+                  <div class="cv-company__head">
+                    <div>
+                      <h3>{item.company}</h3>
+                      <p>{item.note}</p>
+                    </div>
+                    <span>{item.period}</span>
+                  </div>
+                  <div class="cv-roles">
+                    {item.roles.map((role) => (
+                      <section class="cv-role-block">
+                        <div class="cv-role-block__head">
+                          <h4>{role.title}</h4>
+                          <span>{role.period}</span>
+                        </div>
+                        <ul>
+                          {role.bullets.map((bullet) => (
+                            <li>{bullet}</li>
+                          ))}
+                        </ul>
+                      </section>
+                    ))}
+                  </div>
+                </article>
+              ))
+            }
+          </section>
+
+          <section
+            id="education"
+            class="cv-section"
+            aria-labelledby="education-title"
+          >
+            <div class="cv-section__head">
+              <p>Education</p>
+              <h2 id="education-title">Academic background</h2>
+            </div>
+            <div class="cv-stack cv-stack--education">
+              {
+                education.map((item) => (
+                  <article class="cv-mini">
+                    <span>{item.period}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.detail}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+
+          <section
+            id="skills"
+            class="cv-section"
+            aria-labelledby="skills-title"
+          >
+            <div class="cv-section__head">
+              <p>Skills</p>
+              <h2 id="skills-title">Technical range</h2>
+            </div>
+            <div class="cv-skill-list">
+              {
+                skills.map(([group, items]) => (
+                  <div class="cv-skill">
+                    <h3>{group}</h3>
+                    <p>{items}</p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <section
+            id="additional"
+            class="cv-section"
+            aria-labelledby="additional-title"
+          >
+            <div class="cv-section__head">
+              <p>Additional</p>
+              <h2 id="additional-title">Selected signals</h2>
+            </div>
+            <div class="cv-stack">
+              {
+                additional.map((item) => (
+                  <article class="cv-mini">
+                    <span>{item.period}</span>
+                    <h3>
+                      {item.href ? (
+                        <a href={item.href} target="_blank" rel="noopener">
+                          {item.title}
+                        </a>
+                      ) : (
+                        item.title
+                      )}
+                    </h3>
+                    {item.detail && <p>{item.detail}</p>}
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelector("[data-print-cv]")?.addEventListener("click", () => {
+      window.print();
+    });
+  </script>
+</Base>
+
+<style>
+  .cv-page {
+    --cv-ink: #111827;
+    --cv-muted: #586271;
+    --cv-soft: #f7f8f8;
+    --cv-paper: #ffffff;
+    --cv-line: #dfe5e8;
+    --cv-accent: #0f766e;
+    --cv-warm: #b45309;
+    background: var(--cv-paper);
+    color: var(--cv-ink);
+  }
+
+  :global(.dark) .cv-page {
+    --cv-ink: #f8fafc;
+    --cv-muted: #bac4d1;
+    --cv-soft: #181c20;
+    --cv-paper: #111316;
+    --cv-line: #334155;
+    --cv-accent: #5eead4;
+    --cv-warm: #fbbf24;
+  }
+
+  .cv-shell {
+    width: min(980px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: clamp(2.25rem, 5vw, 4.5rem) 0 clamp(5.5rem, 8vw, 7rem);
+  }
+
+  .cv-hero {
+    display: grid;
+    gap: clamp(1.6rem, 4vw, 2.4rem);
+    padding: 0 0 clamp(2rem, 4vw, 3.5rem);
+    border-bottom: 1px solid var(--cv-line);
+  }
+
+  .cv-identity,
+  .cv-topbar {
+    animation: cv-rise 560ms ease both;
+  }
+
+  .cv-topbar {
+    animation-delay: 80ms;
+  }
+
+  .cv-identity h1 {
+    margin: 0;
+    color: var(--cv-ink);
+    font-size: clamp(3rem, 7vw, 5.6rem);
+    line-height: 0.96;
+    letter-spacing: 0;
+  }
+
+  .cv-role {
+    max-width: 46rem;
+    margin: 1rem 0 0;
+    color: var(--cv-ink);
+    font-size: clamp(1.25rem, 2.4vw, 2rem);
+    font-weight: 700;
+    line-height: 1.12;
+  }
+
+  .cv-headline {
+    max-width: 44rem;
+    margin: 1rem 0 0;
+    color: var(--cv-accent);
+    font-size: clamp(1.15rem, 2.1vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.18;
+  }
+
+  .cv-summary {
+    max-width: 55rem;
+    margin: 1.15rem 0 0;
+    color: var(--cv-muted);
+    font-size: clamp(1rem, 1.25vw, 1.1rem);
+    line-height: 1.7;
+  }
+
+  .cv-topbar {
+    display: grid;
+    gap: 1.1rem;
+    border-top: 1px solid var(--cv-line);
+    padding-top: 1.25rem;
+  }
+
+  .cv-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1.25rem;
+    padding: 0 0 1rem;
+    border-bottom: 1px solid var(--cv-line);
+  }
+
+  .cv-meta span {
+    display: block;
+    color: var(--cv-ink);
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .cv-meta span:first-child {
+    color: var(--cv-accent);
+  }
+
+  .cv-contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 0.55rem;
+  }
+
+  .cv-contact a,
+  .cv-contact button,
+  .cv-jumpbar a {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--cv-ink);
+    font: inherit;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+      border-color 160ms ease,
+      background 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .cv-contact a,
+  .cv-contact button {
+    width: 100%;
+    min-height: 2.6rem;
+    border: 1px solid var(--cv-line);
+    border-radius: 0.45rem;
+    background: var(--cv-paper);
+    padding: 0.68rem 0.8rem;
+    cursor: pointer;
+  }
+
+  .cv-contact span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cv-contact svg {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    color: var(--cv-accent);
+  }
+
+  .cv-contact a:hover,
+  .cv-contact button:hover,
+  .cv-jumpbar a:hover {
+    border-color: var(--cv-accent);
+    background: var(--cv-soft);
+    color: var(--cv-accent);
+    transform: translateY(-1px);
+  }
+
+  .cv-proof {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    border-bottom: 1px solid var(--cv-line);
+    background: var(--cv-line);
+  }
+
+  .cv-proof div {
+    display: grid;
+    gap: 0.35rem;
+    background: var(--cv-paper);
+    padding: clamp(1.1rem, 2.5vw, 1.75rem) 0;
+  }
+
+  .cv-proof strong {
+    color: var(--cv-ink);
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    line-height: 1;
+  }
+
+  .cv-proof span {
+    max-width: 13rem;
+    color: var(--cv-muted);
+    line-height: 1.35;
+  }
+
+  .cv-strengths {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    border-bottom: 1px solid var(--cv-line);
+    background: var(--cv-line);
+  }
+
+  .cv-strength {
+    background: var(--cv-soft);
+    padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  }
+
+  .cv-strength svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    color: var(--cv-accent);
+  }
+
+  .cv-strength h2 {
+    margin: 1.4rem 0 0.5rem;
+    color: var(--cv-ink);
+    font-size: clamp(1.08rem, 1.7vw, 1.35rem);
+    line-height: 1.12;
+  }
+
+  .cv-strength p {
+    margin: 0;
+    color: var(--cv-muted);
+    line-height: 1.58;
+  }
+
+  .cv-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    padding: clamp(2rem, 4vw, 3rem) 0;
+    border-bottom: 1px solid var(--cv-line);
+  }
+
+  .cv-flow__eyebrow {
+    margin: 0 0 0.6rem;
+    color: var(--cv-accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .cv-flow h2 {
+    max-width: 30rem;
+    margin: 0;
+    color: var(--cv-ink);
+    font-size: clamp(1.45rem, 2.6vw, 2.25rem);
+    line-height: 1.08;
+  }
+
+  .cv-flow ol {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    background: var(--cv-line);
+    list-style: none;
+  }
+
+  .cv-flow li {
+    display: grid;
+    gap: 0.65rem;
+    min-height: 6.1rem;
+    background: var(--cv-paper);
+    padding: 0.85rem;
+    color: var(--cv-ink);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .cv-flow li span {
+    color: var(--cv-accent);
+    font-size: 0.82rem;
+  }
+
+  .cv-content {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .cv-jumpbar {
+    position: fixed;
+    z-index: 40;
+    bottom: 0.85rem;
+    left: 50%;
+    display: flex;
+    width: min(calc(100% - 1rem), 40rem);
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    border: 1px solid color-mix(in srgb, var(--cv-line), transparent 15%);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--cv-paper), transparent 5%);
+    padding: 0.45rem;
+    box-shadow: 0 1rem 2.5rem rgb(15 23 42 / 12%);
+    transform: translateX(-50%);
+    backdrop-filter: blur(18px);
+  }
+
+  .cv-jumpbar p {
+    margin: 0 0.35rem 0 0.2rem;
+    color: var(--cv-muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .cv-jumpbar a {
+    justify-content: center;
+    min-height: 2.15rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.86rem;
+  }
+
+  .cv-section {
+    scroll-margin-top: 6.25rem;
+    padding: clamp(2.3rem, 5vw, 3.8rem) 0;
+    border-bottom: 1px solid var(--cv-line);
+  }
+
+  .cv-section__head {
+    display: grid;
+    grid-template-columns: 7.25rem minmax(0, 1fr);
+    gap: 1rem;
+    margin-bottom: clamp(1.35rem, 3vw, 2.2rem);
+  }
+
+  .cv-section__head p {
+    margin: 0.18rem 0 0;
+    color: var(--cv-accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .cv-section__head h2 {
+    margin: 0;
+    color: var(--cv-ink);
+    font-size: clamp(1.75rem, 3vw, 2.7rem);
+    line-height: 1.02;
+  }
+
+  .cv-company__head,
+  .cv-role-block__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .cv-company__head {
+    margin-bottom: 1.8rem;
+  }
+
+  .cv-company__head h3 {
+    margin: 0;
+    color: var(--cv-ink);
+    font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+  }
+
+  .cv-company__head p,
+  .cv-company__head span,
+  .cv-role-block__head span {
+    margin: 0;
+    color: var(--cv-muted);
+  }
+
+  .cv-roles,
+  .cv-skill-list,
+  .cv-stack {
+    display: grid;
+    gap: 1.45rem;
+  }
+
+  .cv-role-block {
+    padding-left: 1rem;
+    border-left: 3px solid var(--cv-accent);
+  }
+
+  .cv-role-block__head h4 {
+    margin: 0;
+    color: var(--cv-ink);
+    font-size: 1.05rem;
+  }
+
+  .cv-role-block ul {
+    display: grid;
+    gap: 0.72rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cv-role-block li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--cv-muted);
+    line-height: 1.62;
+  }
+
+  .cv-role-block li::before {
+    position: absolute;
+    top: 0.72em;
+    left: 0;
+    width: 0.36rem;
+    height: 0.36rem;
+    border-radius: 50%;
+    background: var(--cv-warm);
+    content: "";
+  }
+
+  .cv-stack--education {
+    grid-template-columns: 1fr;
+    gap: 1.3rem;
+  }
+
+  .cv-stack--selected {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cv-skill,
+  .cv-mini {
+    padding-top: 1rem;
+    border-top: 1px solid var(--cv-line);
+  }
+
+  .cv-skill h3,
+  .cv-mini h3 {
+    margin: 0;
+    color: var(--cv-ink);
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .cv-skill p,
+  .cv-mini p {
+    margin: 0.42rem 0 0;
+    color: var(--cv-muted);
+    line-height: 1.58;
+  }
+
+  .cv-mini span {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--cv-accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .cv-mini a {
+    color: inherit;
+    text-decoration-color: var(--cv-accent);
+    text-underline-offset: 0.22em;
+  }
+
+  @keyframes cv-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (min-width: 1320px) {
+    .cv-jumpbar {
+      top: 50%;
+      right: max(1rem, calc((100vw - 980px) / 2 - 9.5rem));
+      bottom: auto;
+      left: auto;
+      width: 8.4rem;
+      flex-direction: column;
+      align-items: stretch;
+      border-radius: 0.65rem;
+      transform: translateY(-50%);
+    }
+
+    .cv-jumpbar p {
+      margin: 0.15rem 0.25rem 0.25rem;
+    }
+
+    .cv-jumpbar a {
+      justify-content: flex-start;
+      border-radius: 0.45rem;
+      padding-right: 0.65rem;
+      padding-left: 0.65rem;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .cv-proof,
+    .cv-strengths {
+      grid-template-columns: 1fr;
+    }
+
+    .cv-flow {
+      grid-template-columns: 1fr;
+    }
+
+    .cv-flow ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cv-proof div {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cv-shell {
+      width: min(100% - 1.25rem, 1120px);
+      padding-top: 5.7rem;
+    }
+
+    .cv-identity h1 {
+      font-size: clamp(2.85rem, 16vw, 4rem);
+    }
+
+    .cv-flow ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cv-flow li {
+      min-height: 5.25rem;
+    }
+
+    .cv-jumpbar {
+      top: 3.65rem;
+      bottom: auto;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      width: min(calc(100% - 0.75rem), 31rem);
+      border-radius: 0.75rem;
+    }
+
+    .cv-jumpbar p {
+      display: none;
+    }
+
+    .cv-jumpbar a {
+      min-height: 2rem;
+      padding: 0.42rem 0.35rem;
+      font-size: 0.78rem;
+    }
+
+    .cv-section__head,
+    .cv-company__head,
+    .cv-role-block__head {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+
+    .cv-stack--education {
+      grid-template-columns: 1fr;
+    }
+
+    .cv-stack--selected {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cv-identity,
+    .cv-topbar {
+      animation: none;
+    }
+
+    .cv-contact a,
+    .cv-contact button,
+    .cv-jumpbar a {
+      transition: none;
+    }
+  }
+
+  @media print {
+    :global(.header),
+    :global(.footer),
+    :global([data-search-trigger]),
+    .cv-jumpbar,
+    .cv-flow,
+    :global([data-print-cv]) {
+      display: none !important;
+    }
+
+    .cv-page {
+      --cv-ink: #111827;
+      --cv-muted: #333b46;
+      --cv-soft: #ffffff;
+      --cv-paper: #ffffff;
+      --cv-line: #cfd6de;
+      --cv-accent: #0f766e;
+      --cv-warm: #92400e;
+    }
+
+    .cv-shell {
+      width: 100%;
+      padding: 0;
+    }
+
+    .cv-hero {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+      padding-bottom: 0.8rem;
+    }
+
+    .cv-identity,
+    .cv-topbar {
+      animation: none;
+    }
+
+    .cv-identity h1 {
+      font-size: 3rem;
+    }
+
+    .cv-role {
+      font-size: 1.3rem;
+    }
+
+    .cv-contact {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.3rem 0.8rem;
+    }
+
+    .cv-contact a {
+      min-height: 0;
+      border: 0;
+      padding: 0;
+    }
+
+    .cv-proof,
+    .cv-strengths {
+      display: none;
+    }
+
+    .cv-content {
+      max-width: none;
+    }
+
+    .cv-section {
+      padding: 0.85rem 0;
+    }
+
+    .cv-section__head {
+      grid-template-columns: 5.5rem 1fr;
+      margin-bottom: 0.65rem;
+    }
+
+    .cv-section__head h2 {
+      font-size: 1.25rem;
+    }
+
+    .cv-company__head {
+      margin-bottom: 0.65rem;
+    }
+
+    .cv-roles,
+    .cv-skill-list,
+    .cv-stack {
+      gap: 0.6rem;
+    }
+
+    .cv-role-block,
+    .cv-mini,
+    .cv-skill {
+      break-inside: avoid;
+    }
+
+    .cv-role-block {
+      padding-left: 0.65rem;
+    }
+
+    .cv-role-block ul {
+      gap: 0.3rem;
+      margin-top: 0.45rem;
+    }
+
+    .cv-summary,
+    .cv-role-block li,
+    .cv-skill p,
+    .cv-mini p {
+      line-height: 1.42;
+    }
+  }
+</style>
