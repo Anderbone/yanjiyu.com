@@ -143,11 +143,12 @@ const selectedWork = [
     ],
   },
   {
-    period: "Personal product",
-    title: "Full-stack AI product development",
+    period: "Ralph Loop · Personal product",
+    title: "Ralph Loop full-stack AI product development",
     detail:
-      "Building a personal full-stack AI product with React, TypeScript, Node.js, PostgreSQL, Prisma, Vercel AI SDK, Better Auth, Zod, Playwright, Vitest, Codex-assisted development workflows, and deployment tooling.",
+      "Personal full-stack AI product: built with React/TypeScript, Node.js, PostgreSQL, Prisma, Vercel AI SDK, Better Auth, Zod, Playwright, Vitest, Codex-assisted workflows, and deployment tooling.",
     chips: [
+      "Ralph Loop",
       "React",
       "TypeScript",
       "PostgreSQL",
@@ -183,11 +184,11 @@ const skills = [
   ],
   [
     "Testing / tooling",
-    "Git · GitHub Actions · Linux · Docker · Playwright · Vitest · pnpm · OpenAPI/Swagger · Zod",
+    "Git · GitHub Actions · Linux · Docker · Playwright · Vitest · pnpm · OpenAPI/Swagger · Zod · Better Auth",
   ],
   [
     "AI-assisted product development",
-    "Vercel AI SDK · Codex · Better Auth · AI-assisted workflows · full-stack product development",
+    "Ralph Loop · Vercel AI SDK · Codex",
   ],
   [
     "Delivery practices",
@@ -221,9 +222,9 @@ const additional = [
   },
   {
     period: "Personal",
-    title: "Full-stack AI product",
+    title: "Ralph Loop full-stack AI product",
     detail:
-      "React, TypeScript, PostgreSQL/Prisma, Vercel AI SDK, Better Auth, Zod validation, Playwright, Vitest, Codex-assisted development workflows, and deployment tooling.",
+      "Personal full-stack AI product: built with React/TypeScript, Node.js, PostgreSQL, Prisma, Vercel AI SDK, Better Auth, Zod, Playwright, Vitest, Codex-assisted workflows, and deployment tooling.",
   },
   {
     period: "2022",
@@ -259,13 +260,16 @@ const additional = [
 
         <aside class="cv-topbar" aria-label="CV navigation and contact">
           <p class="cv-meta" aria-label="Location and work status">
-            <span>{profile.location}</span>
-            <span class="cv-meta__separator" aria-hidden="true">·</span>
-            <span>{profile.remote}</span>
-            <span class="cv-meta__separator" aria-hidden="true">·</span>
-            <span>{profile.workStatus}</span>
-            <span class="cv-meta__separator" aria-hidden="true">·</span>
-            <span>{profile.sponsorship}</span>
+            <span class="cv-meta__row">
+              <span class="cv-meta__place">{profile.location}</span>
+              <span class="cv-meta__separator" aria-hidden="true">·</span>
+              <span>{profile.remote}</span>
+            </span>
+            <span class="cv-meta__row">
+              <span>{profile.workStatus}</span>
+              <span class="cv-meta__separator" aria-hidden="true">·</span>
+              <span>{profile.sponsorship}</span>
+            </span>
           </p>
 
           <div class="cv-contact" aria-label="Contact and profile links">
@@ -597,6 +601,8 @@ const additional = [
   }
 
   .cv-meta {
+    display: grid;
+    gap: 0.18rem;
     margin: 0;
     padding: 0 0 1rem;
     border-bottom: 1px solid var(--cv-line);
@@ -606,11 +612,13 @@ const additional = [
     line-height: 1.65;
   }
 
-  .cv-meta span {
-    display: inline;
+  .cv-meta__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
-  .cv-meta span:first-child {
+  .cv-meta__place {
     color: var(--cv-accent);
   }
 

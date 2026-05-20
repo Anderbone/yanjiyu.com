@@ -23,4 +23,4 @@ I like turning ambiguous business requirements into clear, maintainable systems.
 
 I hold an MSc in Computer Science from the University of Warwick, where I graduated with distinction. Before that, I completed an MSc in Electronics and Communication Engineering and a BEng in Communication Engineering at the University of Electronic Science and Technology of China.
 
-I also contributed to Wikimedia Hackathon work on Quarry.
+I also contributed to Wikimedia Hackathon work on [Quarry](https://github.com/toolforge/quarry).
