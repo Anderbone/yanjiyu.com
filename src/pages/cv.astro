@@ -16,8 +16,9 @@ const profile = {
   title: "Solutions Engineer / Full-stack Software Engineer",
   headline: "Customer-facing delivery with hands-on product engineering.",
   location: "Wrexham, UK",
-  workStatus: "UK ILR | No visa sponsorship required",
-  remote: "Open to remote / hybrid",
+  remote: "Open to UK remote / hybrid",
+  workStatus: "UK Indefinite Leave to Remain",
+  sponsorship: "No sponsorship required",
   email: "yn.jiyu@gmail.com",
   phone: "+44 747 337 2563",
   github: "github.com/Anderbone",
@@ -94,9 +95,9 @@ const experience = [
           "Led customer-facing technical discussions from pre-sales demos through implementation and go-live, translating ambiguous business requirements into customisation strategy, integration design, and product-minded feature definition and delivery.",
           "Delivered production Java/Spring and SQL changes across warehouse, machine, stop-code, configuration, reporting, and integration workflows, covering backend logic, validation, issue diagnosis, testing, and release support.",
           "Built and maintained SAP/ERP integrations using Java interface logic, REST API workflows, data validation, SQL/database logic, and customer-specific business rules.",
-          "Designed a multi-level BOM automation workflow in JavaScript that reduced setup time from around 1 hour to 2 minutes, was adopted in implementation practice, used in sales demos, and shaped feature direction and product roadmap decisions.",
+          "Designed a multi-level BOM automation workflow in JavaScript that reduced setup time from ~1 hour to ~2 minutes, was adopted as a standard implementation pattern, used in sales demos, and shaped feature direction and product roadmap decisions.",
           "Defined reusable solution patterns in JavaScript, reporting, data setup, and workflow design, improving delivery consistency and expanding what the implementation team could deliver.",
-          "Standardized best-practice solutions, tutorials, and documentation to reduce customer implementation time.",
+          "Standardised best-practice solutions, tutorials, and documentation, reducing initial customer onboarding time by 60%.",
         ],
       },
       {
@@ -105,7 +106,7 @@ const experience = [
         bullets: [
           "Resolved high-complexity production issues across application logic, configuration, databases, reporting, and integrations, handling 96% more tickets than the team average.",
           "Built internal Python tooling to automate report and XML investigation workflows, reducing repetitive investigation effort for consultants and developers.",
-          "Authored the team's highest volume of technical Confluence knowledge-base pages, supporting recurring application, reporting, and integration issues.",
+          "Authored more technical Confluence knowledge-base pages than any other team member, improving repeatability for recurring application, reporting, and integration issues.",
           "Improved internationalisation and reporting workflows using Regex, Java reporting tools, and repeatable investigation patterns.",
         ],
       },
@@ -257,11 +258,15 @@ const additional = [
         </div>
 
         <aside class="cv-topbar" aria-label="CV navigation and contact">
-          <div class="cv-meta" aria-label="Location and work status">
+          <p class="cv-meta" aria-label="Location and work status">
             <span>{profile.location}</span>
+            <span class="cv-meta__separator" aria-hidden="true">·</span>
             <span>{profile.remote}</span>
+            <span class="cv-meta__separator" aria-hidden="true">·</span>
             <span>{profile.workStatus}</span>
-          </div>
+            <span class="cv-meta__separator" aria-hidden="true">·</span>
+            <span>{profile.sponsorship}</span>
+          </p>
 
           <div class="cv-contact" aria-label="Contact and profile links">
             <a href={`mailto:${profile.email}`}>
@@ -592,23 +597,26 @@ const additional = [
   }
 
   .cv-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem 1.25rem;
+    margin: 0;
     padding: 0 0 1rem;
     border-bottom: 1px solid var(--cv-line);
-  }
-
-  .cv-meta span {
-    display: block;
     color: var(--cv-ink);
     font-size: 0.92rem;
     font-weight: 700;
-    line-height: 1.35;
+    line-height: 1.65;
+  }
+
+  .cv-meta span {
+    display: inline;
   }
 
   .cv-meta span:first-child {
     color: var(--cv-accent);
+  }
+
+  .cv-meta__separator {
+    margin: 0 0.45rem;
+    color: var(--cv-muted);
   }
 
   .cv-contact {
