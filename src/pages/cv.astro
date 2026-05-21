@@ -4,11 +4,13 @@ import {
   IoBusinessOutline,
   IoCallOutline,
   IoCodeSlashOutline,
+  IoDownloadOutline,
   IoGitBranchOutline,
+  IoIdCardOutline,
+  IoLocationOutline,
   IoLogoGithub,
   IoLogoLinkedin,
   IoMailOutline,
-  IoPrintOutline,
 } from "react-icons/io5";
 
 const profile = {
@@ -31,10 +33,12 @@ const profile = {
     "Solutions Engineer and Full-stack Software Engineer with 6+ years delivering enterprise software, integrations, automation, reporting, and data-heavy workflows for global clients. I combine requirements discovery, demos, solution architecture, JavaScript/TypeScript, Java/Spring, SQL, REST APIs, PostgreSQL/SQL Server, vertical-slice architecture, and AI-assisted full-stack development to turn ambiguous customer workflows into production-ready systems.",
 };
 
+const cvPdfPath = "/files/Jiyu_Yan_CV.pdf";
+
 const highlights = [
   {
     value: "6+ years",
-    label: "Enterprise implementation, support, and product engineering",
+    label: "Enterprise implementation and hands-on product engineering",
   },
   {
     value: "10+ projects",
@@ -203,9 +207,9 @@ const skills = [
 const education = [
   {
     period: "2018 - 2019",
-    title: "MSc Computer Science, University of Warwick",
+    title: "MSc Computer Science, University of Warwick - Distinction",
     detail:
-      "Distinction. Modules included high-performance computing, data mining, data analysis, sensor networks, and natural language processing. Built a Python auction bot scoring 7.2/7.5, top among 60+ submissions.",
+      "Modules included high-performance computing, data mining, data analysis, sensor networks, and natural language processing.\n\nBuilt a Python auction bot scoring 7.2/7.5, top among 60+ submissions.",
   },
   {
     period: "2011 - 2018",
@@ -250,26 +254,34 @@ const additional = [
 >
   <section class="cv-page">
     <div class="cv-shell">
-      <header class="cv-hero" aria-labelledby="cv-title">
+      <header id="top" class="cv-hero" aria-labelledby="cv-title">
         <div class="cv-identity">
-          <h1 id="cv-title">{profile.name}</h1>
-          <p class="cv-role">{profile.title}</p>
+          <div class="cv-title-row">
+            <h1 id="cv-title">{profile.name}</h1>
+            <p class="cv-role">{profile.title}</p>
+          </div>
           <p class="cv-headline">{profile.headline}</p>
           <p class="cv-summary">{profile.summary}</p>
         </div>
 
         <aside class="cv-topbar" aria-label="CV navigation and contact">
           <p class="cv-meta" aria-label="Location and work status">
-            <span class="cv-meta__row">
-              <span class="cv-meta__place">{profile.location}</span>
-              <span class="cv-meta__separator" aria-hidden="true">·</span>
-              <span>{profile.remote}</span>
+            <span class="cv-meta__item cv-meta__place">
+              <IoLocationOutline aria-hidden="true" />
+              <span>{profile.location}</span>
             </span>
-            <span class="cv-meta__row">
+            <span class="cv-meta__separator" aria-hidden="true">·</span>
+            <span>{profile.remote}</span>
+            <span
+              class="cv-meta__separator cv-meta__separator--wide"
+              aria-hidden="true">·</span
+            >
+            <span class="cv-meta__item">
+              <IoIdCardOutline aria-hidden="true" />
               <span>{profile.workStatus}</span>
-              <span class="cv-meta__separator" aria-hidden="true">·</span>
-              <span>{profile.sponsorship}</span>
             </span>
+            <span class="cv-meta__separator" aria-hidden="true">·</span>
+            <span>{profile.sponsorship}</span>
           </p>
 
           <div class="cv-contact" aria-label="Contact and profile links">
@@ -293,10 +305,10 @@ const additional = [
               <IoCallOutline aria-hidden="true" />
               <span>{profile.phone}</span>
             </a>
-            <button type="button" data-print-cv>
-              <IoPrintOutline aria-hidden="true" />
-              <span>Print CV</span>
-            </button>
+            <a href={cvPdfPath} download data-download-cv>
+              <IoDownloadOutline aria-hidden="true" />
+              <span>Download CV</span>
+            </a>
           </div>
         </aside>
       </header>
@@ -348,11 +360,12 @@ const additional = [
 
       <nav class="cv-jumpbar" aria-label="CV navigation">
         <p>Jump to</p>
-        <a href="#selected">Selected</a>
-        <a href="#work">Work</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#additional">Additional</a>
+        <a href="#top" data-cv-jump-link>Top</a>
+        <a href="#selected" data-cv-jump-link>Selected</a>
+        <a href="#work" data-cv-jump-link>Work</a>
+        <a href="#education" data-cv-jump-link>Education</a>
+        <a href="#skills" data-cv-jump-link>Skills</a>
+        <a href="#additional" data-cv-jump-link>Additional</a>
       </nav>
 
       <div class="cv-content">
@@ -363,13 +376,7 @@ const additional = [
             aria-labelledby="selected-title"
           >
             <div class="cv-section__head">
-              <p>Selected</p>
-              <div>
-                <h2 id="selected-title">Selected</h2>
-                <p class="cv-section__subtitle">
-                  Evidence across implementation, engineering, and product
-                </p>
-              </div>
+              <h2 id="selected-title">Selected Work</h2>
             </div>
             <div class="cv-stack cv-stack--selected">
               {
@@ -395,9 +402,8 @@ const additional = [
             aria-labelledby="experience-title"
           >
             <div class="cv-section__head">
-              <p>Experience</p>
               <h2 id="experience-title">
-                Enterprise delivery with hands-on engineering
+                Experience
               </h2>
             </div>
             {
@@ -436,8 +442,7 @@ const additional = [
             aria-labelledby="education-title"
           >
             <div class="cv-section__head">
-              <p>Education</p>
-              <h2 id="education-title">Academic background</h2>
+              <h2 id="education-title">Education</h2>
             </div>
             <div class="cv-stack cv-stack--education">
               {
@@ -458,8 +463,7 @@ const additional = [
             aria-labelledby="skills-title"
           >
             <div class="cv-section__head">
-              <p>Skills</p>
-              <h2 id="skills-title">Technical range</h2>
+              <h2 id="skills-title">Skills</h2>
             </div>
             <div class="cv-skill-list">
               {
@@ -479,7 +483,6 @@ const additional = [
             aria-labelledby="additional-title"
           >
             <div class="cv-section__head">
-              <p>Additional</p>
               <h2 id="additional-title">Additional</h2>
             </div>
             <div class="cv-stack">
@@ -507,12 +510,73 @@ const additional = [
     </div>
   </section>
 
-  <script>
-    document.querySelector("[data-print-cv]")?.addEventListener("click", () => {
-      window.print();
-    });
-  </script>
 </Base>
+
+<script is:inline data-astro-rerun>
+  (() => {
+    const previousObserver = window.__cvJumpbarObserver;
+    if (previousObserver) {
+      previousObserver.disconnect();
+    }
+
+    const jumpLinks = Array.from(
+      document.querySelectorAll("[data-cv-jump-link]"),
+    );
+    const jumpTargets = jumpLinks
+      .map((link) => {
+        const id = link.hash.slice(1);
+        const target = document.getElementById(id);
+        return target ? { id, target } : null;
+      })
+      .filter(Boolean);
+
+    const setActiveJumpLink = (id) => {
+      jumpLinks.forEach((link) => {
+        const isActive = link.hash === `#${id}`;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    if (jumpTargets.length === 0) {
+      return;
+    }
+
+    setActiveJumpLink("top");
+    jumpLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        setActiveJumpLink(link.hash.slice(1));
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              Math.abs(a.boundingClientRect.top) -
+              Math.abs(b.boundingClientRect.top),
+          )[0];
+
+        if (visible?.target.id) {
+          setActiveJumpLink(visible.target.id);
+        }
+      },
+      {
+        rootMargin: "-20% 0px -65% 0px",
+        threshold: 0,
+      },
+    );
+
+    jumpTargets.forEach(({ target }) => observer.observe(target));
+    window.__cvJumpbarObserver = observer;
+  })();
+</script>
 
 <style>
   .cv-page {
@@ -555,6 +619,13 @@ const additional = [
     animation: cv-rise 560ms ease both;
   }
 
+  .cv-title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.55rem 1rem;
+  }
+
   .cv-topbar {
     animation-delay: 80ms;
   }
@@ -562,25 +633,25 @@ const additional = [
   .cv-identity h1 {
     margin: 0;
     color: var(--cv-ink);
-    font-size: clamp(3rem, 7vw, 5.6rem);
+    font-size: clamp(1.9rem, 3.3vw, 2.65rem);
     line-height: 0.96;
     letter-spacing: 0;
   }
 
   .cv-role {
     max-width: 46rem;
-    margin: 1rem 0 0;
+    margin: 0;
     color: var(--cv-ink);
-    font-size: clamp(1.25rem, 2.4vw, 2rem);
+    font-size: clamp(0.95rem, 1.25vw, 1.12rem);
     font-weight: 700;
-    line-height: 1.12;
+    line-height: 1.18;
   }
 
   .cv-headline {
-    max-width: 44rem;
-    margin: 1rem 0 0;
+    max-width: 58rem;
+    margin: 0.85rem 0 0;
     color: var(--cv-accent);
-    font-size: clamp(1.15rem, 2.1vw, 1.7rem);
+    font-size: clamp(1.05rem, 1.65vw, 1.35rem);
     font-weight: 700;
     line-height: 1.18;
   }
@@ -601,8 +672,10 @@ const additional = [
   }
 
   .cv-meta {
-    display: grid;
-    gap: 0.18rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.18rem 0;
+    align-items: center;
     margin: 0;
     padding: 0 0 1rem;
     border-bottom: 1px solid var(--cv-line);
@@ -612,19 +685,30 @@ const additional = [
     line-height: 1.65;
   }
 
-  .cv-meta__row {
-    display: flex;
-    flex-wrap: wrap;
+  .cv-meta__item {
+    display: inline-flex;
     align-items: center;
+    gap: 0.32rem;
   }
 
   .cv-meta__place {
     color: var(--cv-accent);
   }
 
+  .cv-meta svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    flex: 0 0 auto;
+  }
+
   .cv-meta__separator {
     margin: 0 0.45rem;
     color: var(--cv-muted);
+  }
+
+  .cv-meta__separator--wide {
+    margin-right: 0.85rem;
+    margin-left: 0.85rem;
   }
 
   .cv-contact {
@@ -678,11 +762,16 @@ const additional = [
 
   .cv-contact a:hover,
   .cv-contact button:hover,
-  .cv-jumpbar a:hover {
+  .cv-jumpbar a:hover,
+  .cv-jumpbar a.is-active {
     border-color: var(--cv-accent);
     background: var(--cv-soft);
     color: var(--cv-accent);
     transform: translateY(-1px);
+  }
+
+  .cv-jumpbar a.is-active {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cv-accent), transparent 60%);
   }
 
   .cv-proof {
@@ -864,18 +953,7 @@ const additional = [
   }
 
   .cv-section__head {
-    display: grid;
-    grid-template-columns: 7.25rem minmax(0, 1fr);
-    gap: 1rem;
     margin-bottom: clamp(1.35rem, 3vw, 2.2rem);
-  }
-
-  .cv-section__head p {
-    margin: 0.18rem 0 0;
-    color: var(--cv-accent);
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
   }
 
   .cv-section__head h2 {
@@ -883,16 +961,6 @@ const additional = [
     color: var(--cv-ink);
     font-size: clamp(1.75rem, 3vw, 2.7rem);
     line-height: 1.02;
-  }
-
-  .cv-section__subtitle {
-    max-width: 38rem;
-    margin: 0.5rem 0 0 !important;
-    color: var(--cv-muted) !important;
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    line-height: 1.5 !important;
-    text-transform: none !important;
   }
 
   .cv-company__head,
@@ -992,6 +1060,7 @@ const additional = [
     margin: 0.42rem 0 0;
     color: var(--cv-muted);
     line-height: 1.58;
+    white-space: pre-line;
   }
 
   .cv-mini > span {
@@ -1079,15 +1148,20 @@ const additional = [
       padding-top: 5.7rem;
     }
 
+    .cv-title-row {
+      display: grid;
+      gap: 0.45rem;
+    }
+
     .cv-identity h1 {
-      font-size: clamp(2.85rem, 16vw, 4rem);
+      font-size: clamp(1.85rem, 9vw, 2.35rem);
     }
 
     .cv-jumpbar {
       top: 3.65rem;
       bottom: auto;
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       width: min(calc(100% - 0.75rem), 31rem);
       border-radius: 0.75rem;
     }
@@ -1142,6 +1216,7 @@ const additional = [
     :global([data-search-trigger]),
     .cv-jumpbar,
     .cv-flow,
+    :global([data-download-cv]),
     :global([data-print-cv]) {
       display: none !important;
     }
@@ -1173,11 +1248,11 @@ const additional = [
     }
 
     .cv-identity h1 {
-      font-size: 3rem;
+      font-size: 1.75rem;
     }
 
     .cv-role {
-      font-size: 1.3rem;
+      font-size: 1.05rem;
     }
 
     .cv-contact {
