@@ -4,6 +4,7 @@ import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import { markdownify } from "@/lib/utils/textConverter";
+import { FiArrowUpRight, FiBookOpen, FiGithub } from "react-icons/fi";
 
 const homepage = await getListPage("homepage", "-index");
 const devPosts = await getSinglePage("dev");
@@ -59,6 +60,52 @@ const { banner } = homepage.data;
       </div>
       <div class="row justify-center pt-12">
         <div class="md:col-10 lg:col-8">
+          <section class="home-projects" aria-labelledby="home-projects-title">
+            <div>
+              <p class="mb-2 text-sm font-medium uppercase text-primary">
+                Projects
+              </p>
+              <h2 id="home-projects-title" class="h3 mb-3">
+                Selected AI product and tooling work
+              </h2>
+              <p>
+                Practical demos and developer tools with source, writeups, and
+                working interfaces.
+              </p>
+            </div>
+            <div class="home-project-list">
+              <a href="/projects" class="home-project-link">
+                <span>
+                  <strong>OpsDesk AI</strong>
+                  <small>Policy-gated service desk demo</small>
+                </span>
+                <FiArrowUpRight aria-hidden="true" />
+              </a>
+              <a
+                href="https://github.com/Anderbone/ralph-loop"
+                target="_blank"
+                rel="noopener"
+                class="home-project-link"
+              >
+                <span>
+                  <strong>Ralph Loop</strong>
+                  <small>Plan queue runner for Codex</small>
+                </span>
+                <FiGithub aria-hidden="true" />
+              </a>
+              <a href="/dev/ralph-loop-plan-queue" class="home-project-link">
+                <span>
+                  <strong>Ralph writeup</strong>
+                  <small>Why the queue shape matters</small>
+                </span>
+                <FiBookOpen aria-hidden="true" />
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="row justify-center pt-12">
+        <div class="md:col-10 lg:col-8">
           <div class="mb-6 flex items-end justify-between gap-4">
             <div>
               <p class="mb-2 text-sm font-medium uppercase text-primary">
@@ -102,3 +149,88 @@ const { banner } = homepage.data;
     </div>
   </section>
 </Base>
+
+<style>
+  .home-projects {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 2.5rem;
+    align-items: start;
+    padding: 2rem 0;
+    border-top: 1px solid rgb(226 232 240);
+    border-bottom: 1px solid rgb(226 232 240);
+  }
+
+  :global(.dark) .home-projects {
+    border-color: rgb(38 48 61);
+  }
+
+  .home-projects p {
+    max-width: 31rem;
+    color: rgb(92 98 105);
+    line-height: 1.7;
+  }
+
+  :global(.dark) .home-projects p {
+    color: rgb(186 194 201);
+  }
+
+  .home-project-list {
+    display: grid;
+    gap: 1px;
+    background: rgb(226 232 240);
+  }
+
+  :global(.dark) .home-project-list {
+    background: rgb(38 48 61);
+  }
+
+  .home-project-link {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0.9rem;
+    background: rgb(255 255 255);
+    color: inherit;
+    transition:
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  :global(.dark) .home-project-link {
+    background: rgb(0 0 0);
+  }
+
+  .home-project-link:hover {
+    color: rgb(20 184 166);
+    transform: translateX(4px);
+  }
+
+  .home-project-link strong,
+  .home-project-link small {
+    display: block;
+  }
+
+  .home-project-link small {
+    margin-top: 0.2rem;
+    color: rgb(92 98 105);
+    line-height: 1.4;
+  }
+
+  :global(.dark) .home-project-link small {
+    color: rgb(186 194 201);
+  }
+
+  .home-project-link svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  @media (max-width: 767px) {
+    .home-projects {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

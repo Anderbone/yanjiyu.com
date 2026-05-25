@@ -11,6 +11,7 @@ import {
   GoogleTagmanagerNoscript,
 } from "@digi4care/astro-google-tagmanager";
 import { Font } from "astro:assets";
+import { getCollection } from "astro:content";
 import { ClientRouter } from "astro:transitions";
 import Announcement from "./helpers/Announcement";
 import SearchModal from "./helpers/SearchModal";
@@ -33,6 +34,46 @@ export interface Props {
 // destructure frontmatter
 const { title, meta_title, description, image, noindex, canonical } =
   Astro.props;
+
+const searchCollections = ["dev", "journal"] as const;
+const searchPosts = (
+  await Promise.all(
+    searchCollections.map(async (collection) => {
+      const entries = await getCollection(
+        collection,
+        ({ data, id }) => !data.draft && !id.startsWith("-"),
+      );
+
+      return entries.map((entry) => ({
+        group: collection,
+        slug: `${collection}/${entry.id}`,
+        frontmatter: {
+          title: entry.data.title,
+          image: entry.data.image,
+          description: entry.data.description,
+          categories: entry.data.categories,
+          tags: entry.data.tags,
+        },
+        content: entry.body ?? "",
+      }));
+    }),
+  )
+).flat();
+
+const aboutPages = (
+  await getCollection("about", ({ data }) => !data.draft)
+).map((entry) => ({
+  group: "page",
+  slug: "about",
+  frontmatter: {
+    title: entry.data.title,
+    image: entry.data.image,
+    description: entry.data.description,
+  },
+  content: entry.body ?? "",
+}));
+
+const searchData = [...aboutPages, ...searchPosts];
 ---
 
 <!doctype html>
@@ -60,7 +101,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <link rel="shortcut icon" href={config.site.favicon} />
     <!-- theme meta -->
-    <meta name="theme-name" content="astroplate" />
+    <meta name="theme-name" content="yanjiyu.com" />
     <meta name="msapplication-TileColor" content="#000000" />
     <meta
       name="theme-color"
@@ -176,7 +217,7 @@ const { title, meta_title, description, image, noindex, canonical } =
     }
     <Announcement client:only="react" />
     <Header />
-    <SearchModal client:only="react" />
+    <SearchModal client:only="react" searchData={searchData} />
     <main class="grow" id="main-content">
       <slot />
     </main>

@@ -2,7 +2,7 @@
   // Cloudflare Workers — Static Assets deployment
   // Deploy:  pnpm run deploy:cf-workers
   // Preview: pnpm run preview:cf-workers
-  "name": "astroplate",
+  "name": "yanjiyu-com",
   "compatibility_date": "2026-03-02",
   "assets": {
     "directory": "./dist",

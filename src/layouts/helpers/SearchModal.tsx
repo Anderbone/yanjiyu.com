@@ -1,35 +1,35 @@
-import searchData from ".json/search.json";
 import React, { useEffect, useState } from "react";
 import SearchResult, { type ISearchItem } from "./SearchResult";
 
-const SearchModal = () => {
+const SearchModal = ({ searchData }: { searchData: ISearchItem[] }) => {
   const [searchString, setSearchString] = useState("");
 
   // handle input change
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchString(e.currentTarget.value.replace("\\", "").toLowerCase());
+    setSearchString(e.currentTarget.value.trimStart().toLowerCase());
   };
 
   // generate search result
   const doSearch = (searchData: ISearchItem[]) => {
-    const regex = new RegExp(`${searchString}`, "gi");
     if (searchString === "") {
       return [];
     } else {
       const searchResult = searchData.filter((item) => {
-        const title = item.frontmatter.title.toLowerCase().match(regex);
+        const title = item.frontmatter.title
+          .toLowerCase()
+          .includes(searchString);
         const description = item.frontmatter.description
           ?.toLowerCase()
-          .match(regex);
+          .includes(searchString);
         const categories = item.frontmatter.categories
           ?.join(" ")
           .toLowerCase()
-          .match(regex);
+          .includes(searchString);
         const tags = item.frontmatter.tags
           ?.join(" ")
           .toLowerCase()
-          .match(regex);
-        const content = item.content.toLowerCase().match(regex);
+          .includes(searchString);
+        const content = item.content.toLowerCase().includes(searchString);
 
         if (title || content || description || categories || tags) {
           return item;
@@ -50,29 +50,26 @@ const SearchModal = () => {
     const searchModal = document.getElementById("searchModal");
     const searchInput = document.getElementById("searchInput");
     const searchModalOverlay = document.getElementById("searchModalOverlay");
-    const searchResultItems = document.querySelectorAll("#searchItem");
     const searchModalTriggers = document.querySelectorAll(
       "[data-search-trigger]",
     );
-
-    // search modal open
-    searchModalTriggers.forEach((button) => {
-      button.addEventListener("click", function () {
-        const searchModal = document.getElementById("searchModal");
-        searchModal!.classList.add("show");
-        searchInput!.focus();
-      });
-    });
-
-    // search modal close
-    searchModalOverlay!.addEventListener("click", function () {
-      searchModal!.classList.remove("show");
-    });
-
-    // keyboard navigation
     let selectedIndex = -1;
 
+    const openSearch = () => {
+      searchModal?.classList.add("show");
+      searchInput?.focus();
+    };
+
+    const closeSearch = () => {
+      searchModal?.classList.remove("show");
+      selectedIndex = -1;
+    };
+
     const updateSelection = () => {
+      const searchResultItems = document.querySelectorAll(
+        ".search-result-item",
+      );
+
       searchResultItems.forEach((item, index) => {
         if (index === selectedIndex) {
           item.classList.add("search-result-item-active");
@@ -87,19 +84,35 @@ const SearchModal = () => {
       });
     };
 
-    document.addEventListener("keydown", function (event) {
+    // search modal open
+    searchModalTriggers.forEach((button) => {
+      button.addEventListener("click", openSearch);
+    });
+
+    // search modal close
+    searchModalOverlay?.addEventListener("click", closeSearch);
+
+    // keyboard navigation
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const searchResultItems = document.querySelectorAll(
+        ".search-result-item",
+      );
+
       if ((event.metaKey || event.ctrlKey) && event.key === "k") {
-        searchModal!.classList.add("show");
-        searchInput!.focus();
+        event.preventDefault();
+        openSearch();
         updateSelection();
       }
 
-      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+      if (
+        searchModal?.classList.contains("show") &&
+        (event.key === "ArrowUp" || event.key === "ArrowDown")
+      ) {
         event.preventDefault();
       }
 
       if (event.key === "Escape") {
-        searchModal!.classList.remove("show");
+        closeSearch();
       }
 
       if (event.key === "ArrowUp" && selectedIndex > 0) {
@@ -119,8 +132,18 @@ const SearchModal = () => {
       }
 
       updateSelection();
-    });
-  }, [searchString]);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      searchModalTriggers.forEach((button) => {
+        button.removeEventListener("click", openSearch);
+      });
+      searchModalOverlay?.removeEventListener("click", closeSearch);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <div id="searchModal" className="search-modal">

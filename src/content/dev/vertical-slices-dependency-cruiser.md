@@ -1,7 +1,7 @@
 ---
 title: "Vertical Slice Architecture with Dependency-Cruiser"
 description: "How vertical feature slices and dependency rules can keep product workflows easier to change."
-date: 2025-01-24
+date: 2026-05-23
 author: "Jiyu Yan"
 categories: ["Engineering"]
 tags: ["Architecture", "Dependency Cruiser", "Product Engineering"]

@@ -70,10 +70,12 @@ const SearchResult = ({
     return joinDataByGroup;
   };
   const finalResult = generateSearchGroup(searchResult);
+  const escapeRegExp = (text: string) =>
+    text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
   // match marker
   const matchMarker = (text: string, substring: string) => {
-    const parts = text.split(new RegExp(`(${substring})`, "gi"));
+    const parts = text.split(new RegExp(`(${escapeRegExp(substring)})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === substring.toLowerCase() ? (
         <mark key={index}>{part}</mark>
@@ -85,7 +87,7 @@ const SearchResult = ({
 
   // match underline
   const matchUnderline = (text: string, substring: string) => {
-    const parts = text?.split(new RegExp(`(${substring})`, "gi"));
+    const parts = text?.split(new RegExp(`(${escapeRegExp(substring)})`, "gi"));
     return parts?.map((part, index) =>
       part.toLowerCase() === substring.toLowerCase() ? (
         <span key={index} className="underline">
@@ -103,6 +105,10 @@ const SearchResult = ({
     const position = plainContent
       .toLowerCase()
       .indexOf(substring.toLowerCase());
+
+    if (position === -1) {
+      return plainContent.substring(0, 120);
+    }
 
     // Find the start of the word containing the substring
     let wordStart = position;
@@ -138,11 +144,7 @@ const SearchResult = ({
                 </p>
 
                 {result.groupItems.map((item) => (
-                  <div
-                    key={item.slug}
-                    id="searchItem"
-                    className="search-result-item"
-                  >
+                  <div key={item.slug} className="search-result-item">
                     {item.frontmatter.image && (
                       <div className="search-result-item-image">
                         <img

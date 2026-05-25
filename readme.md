@@ -1,184 +1,94 @@
-<h1 align=center>Astro + Tailwind CSS + TypeScript Starter and Boilerplate</h1>
+# yanjiyu.com
 
-<p align=center>Astroplate is a free starter template built with Astro, TailwindCSS & TypeScript, providing everything you need to jumpstart your Astro project and save valuable time.</p>
+Personal website for Jiyu Yan, built with Astro and deployed at [yanjiyu.com](https://yanjiyu.com).
 
-<p align=center>Made with ♥ by <a href="https://zeon.studio/">Zeon Studio</a></p>
+The site is intentionally English-first and job-search oriented: a concise profile, selected technical writing, and a smaller set of curated personal essays.
 
-<p align=center> If you find this project useful, please give it a ⭐ to show your support. </p>
+## Sections
 
-<h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">👀 Demo</a> | <a target="_blank" href="https://astroplate-multilang.netlify.app/" rel="nofollow">👀 Demo Multilang</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/yzx3foum3w?form_factor=desktop">Page Speed (100%)🚀</a> |   <a target="_blank" href="https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate?aff=astroplate">
-    <img src="https://sitepins.com/button.svg" alt="Edit with Sitepins">
-  </a>
-</h2>
+- `Home`: professional landing page
+- `About`: profile and CV link
+- `Dev`: technical posts, tooling notes, and implementation writeups
+- `Journal`: selected essays, translations, and reflective writing
 
-<p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%406.1.9">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=6.1.9&color=000&logo=astro"  alt="Astro Version 6.1.9"/>
-  </a>
+## Stack
 
-  <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/zeon-studio/astroplate" alt="license"></a>
+- Astro
+- React islands for interactive UI
+- Tailwind CSS
+- Astro content collections
+- pnpm
 
-  <img src="https://img.shields.io/github/languages/code-size/zeon-studio/astroplate" alt="code size">
+## Development
 
-  <a href="https://github.com/zeon-studio/astroplate/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/zeon-studio/astroplate" alt="contributors"></a>
-</p>
-
-## 📌 Key Features
-
-- 👥 Multi-Authors
-- 🌐 Multilingual
-- 🎯 Similar Posts Suggestion
-- 🔍 Search Functionality
-- 🌑 Dark Mode
-- 🏷️ Tags & Categories
-- 🔗 Netlify setting pre-configured
-- 📞 Support contact form
-- 📱 Fully responsive
-- 📝 Write and update content in Markdown / MDX
-- 🤖 LLM-ready docs generation (`llms.txt`, `llms-full.txt`, and per-page `.md`)
-- 📎 Google Tag Manager
-- 💬 Disqus Comment
-- 🔳 Syntax Highlighting
-
-### 📄 15+ Pre-designed Pages
-
-- 🏠 Homepage
-- 👤 About
-- 📞 Contact
-- 👥 Authors
-- 👤 Author Single
-- 📝 Blog
-- 📝 Blog Single
-- 🚫 Custom 404
-- 💡 Elements
-- 📄 Privacy Policy
-- 🏷️ Tags
-- 🏷️ Tag Single
-- 🗂️ Categories
-- 🗂️ Category Single
-- 🔍 Search
-
-## 🔗 Integrations
-
-- astro/react
-- astro/sitemap
-- astro/tailwind
-- Cloudflare Workers (optional deployment)
-
-## 🚀 Getting Started
-
-### 📦 Dependencies
-
-- astro v6.1.9
-- node v22.12.0+ (see `.nvmrc`)
-- pnpm v10+
-- tailwind v4+
-
-### 👉 Install Dependencies
+Install dependencies:
 
 ```bash
 pnpm install
 ```
 
-### 👉 Development Command
+Run the Astro dev server:
+
+```bash
+pnpm exec astro dev
+```
+
+Run the full development script when generated theme files need to be watched:
 
 ```bash
 pnpm run dev
 ```
 
-### 👉 Build Command
+Build the site:
 
 ```bash
 pnpm run build
 ```
 
-### 👉 Generate LLM Files
-
-After build, this project can generate LLM-friendly files from your `dist` HTML:
-
-- `llms.txt` (index of pages)
-- `llms-full.txt` (full combined content)
-- optional per-page Markdown files
-
-Use one of these ways:
+Preview the built output:
 
 ```bash
-# included in build
-pnpm run build
-
-# or run manually after build
-pnpm run generate-llms
+pnpm run preview
 ```
 
-Configuration is in `src/config/config.json` under `llms`:
+## Content
 
-- `generate_llms_txt`: create `llms.txt`
-- `generate_llms_full_txt`: create `llms-full.txt`
-- `generate_individual_md`: create individual `.md` files
-- `include`: include only selected routes/globs (empty = all files). Examples: `/about`, `/blog/**` (all files in blog folder)
-- `exclude`: exclude routes/globs on top of defaults. Example: `/blog/index.html`
+Main writing collections:
 
-### 👉 Preview on Cloudflare Workers
+- `src/content/dev`
+- `src/content/journal`
+
+Each section has scoped taxonomy pages, so Dev posts should link to `/dev/tags` and `/dev/categories`, while Journal posts should link to `/journal/tags` and `/journal/categories`.
+
+Recommended post frontmatter:
+
+```yaml
+---
+title: "Post title"
+description: "Short useful summary."
+date: 2026-05-24
+author: "Jiyu Yan"
+categories: ["Engineering"]
+tags: ["Astro", "Product Engineering"]
+draft: false
+---
+```
+
+## Deployment
+
+The repository includes GitHub Pages and Cloudflare Workers deployment configuration. The primary build command is:
+
+```bash
+pnpm run build
+```
+
+Cloudflare Workers helpers:
 
 ```bash
 pnpm run preview:cf-workers
-```
-
-### 👉 Deploy to Cloudflare Workers
-
-```bash
 pnpm run deploy:cf-workers
 ```
 
-### 👉 Build and Run With Docker
+## License
 
-```bash
-docker build -t astroplate .
-
-docker run -p 3000:80 astroplate
-# or
-# docker run --rm -p 3000:80 astroplate
-```
-
-To access the shell within the container:
-
-```bash
-docker run -it --rm astroplate ash
-```
-
-<!-- edit with sitepins -->
-
-## 📝 Edit Content with CMS
-
-This template comes pre-configured with [**Sitepins**](https://sitepins.com?aff=astroplate), a Git-based Headless CMS designed for seamless content management. You can update your website’s text, images, and configuration without touching a single line of code.
-
-**How to get started:**
-
-Click the Edit with Sitepins button below and follow the on-screen instructions to start editing your content visually.
-
-  <a target="_blank" href="https://app.sitepins.com/new/clone?name=Astroplate&repository=https://github.com/zeon-studio/astroplate?aff=astroplate">
-    <img src="https://sitepins.com/button.svg" alt="Edit with Sitepins">
-  </a>
-
-<!-- reporting issue -->
-
-## 🐞 Reporting Issues
-
-We use GitHub Issues as the official bug tracker for this Template. Please Search [existing issues](https://github.com/zeon-studio/astroplate/issues). It’s possible someone has already reported the same problem.
-If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/zeon-studio/astroplate/issues).
-
-<!-- licence -->
-
-## 📝 License
-
-Copyright (c) 2023 - Present, Designed & Developed by [Zeon Studio](https://zeon.studio/)
-
-**Code License:** Released under the [MIT](https://github.com/zeon-studio/astroplate/blob/main/LICENSE) license.
-
-**Image license:** The images are only for demonstration purposes. They have their license, we don't have permission to share those images.
-
-## 💻 Need Custom Development Services?
-
-If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://zeon.studio/).
+Code is released under the MIT license. Site content belongs to Jiyu Yan unless otherwise noted.
