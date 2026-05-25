@@ -76,13 +76,13 @@ draft: false
 
 ## Deployment
 
-The repository includes GitHub Pages and Cloudflare Workers deployment configuration. The primary build command is:
+The site is deployed on Netlify. The primary build command is:
 
 ```bash
 pnpm run build
 ```
 
-Cloudflare Workers helpers:
+Cloudflare Workers helpers are available for manual preview/deploy experiments:
 
 ```bash
 pnpm run preview:cf-workers
