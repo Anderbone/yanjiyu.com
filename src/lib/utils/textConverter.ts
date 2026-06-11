@@ -12,14 +12,43 @@ export const markdownify = (content: string, div?: boolean) => {
 };
 
 // humanize
+const displayNameOverrides: Record<string, string> = {
+  ai: "AI",
+  api: "API",
+  codex: "Codex",
+  koreader: "KOReader",
+  mcp: "MCP",
+  openapi: "OpenAPI",
+  postgresql: "PostgreSQL",
+  rime: "Rime",
+  sdk: "SDK",
+  shadcn: "shadcn",
+  ssh: "SSH",
+  tmux: "tmux",
+  typescript: "TypeScript",
+  uae: "UAE",
+  ui: "UI",
+  ux: "UX",
+  xorg: "Xorg",
+  zod: "Zod",
+};
+
 export const humanize = (content: string) => {
-  return content
+  const normalized = content
     .replace(/^[\s_]+|[\s_]+$/g, "")
     .replace(/[_\s]+/g, " ")
-    .replace(/[-\s]+/g, " ")
-    .replace(/^[a-z]/, function (m) {
-      return m.toUpperCase();
-    });
+    .replace(/[-\s]+/g, " ");
+
+  return normalized
+    .split(" ")
+    .map((word, index) => {
+      const override = displayNameOverrides[word.toLowerCase()];
+      if (override) {
+        return override;
+      }
+      return index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word;
+    })
+    .join(" ");
 };
 
 // titleify

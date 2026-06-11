@@ -2,10 +2,10 @@
 title: "Data mining module outline"
 description: "Warwick module 909 data mining outline notes."
 date: 2019-04-10
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["University"]
 tags: ["Warwick", "Data Mining"]
-draft: false
+draft: true
 ---
 
 For Warwick University module 909, data mining.

@@ -2,7 +2,7 @@
 title: "Codex anywhere with tmux, Termius, and Tailscale"
 description: "A practical mobile setup for using Codex from a phone by SSHing into a laptop and attaching to tmux."
 date: 2026-05-18
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Tools"]
 tags: ["Codex", "tmux", "SSH", "Tailscale", "Termius"]
 draft: false

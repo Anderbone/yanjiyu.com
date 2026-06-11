@@ -5,11 +5,8 @@ import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
 import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
-const {
-  summary_length,
-  blog_folder,
-}: { summary_length: number; blog_folder: string } = config.settings;
-const { data, collection = blog_folder } = Astro.props;
+const { summary_length }: { summary_length: number } = config.settings;
+const { data, collection = "dev" } = Astro.props;
 const { title, image, date, author, categories } = data.data;
 ---
 
@@ -33,10 +30,10 @@ const { title, image, date, author, categories } = data.data;
   </h4>
   <ul class="mb-4">
     <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`}>
+      <span>
         <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
         {humanize(author)}
-      </a>
+      </span>
     </li>
     <li class="mr-4 inline-block">
       <FaRegFolder className={"mr-2 -mt-1 inline-block"} />

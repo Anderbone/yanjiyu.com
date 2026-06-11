@@ -1,30 +1,94 @@
 ---
-title: "Privacy"
-meta_title: ""
-description: "this is meta description"
+title: "Privacy Policy"
+meta_title: "Privacy Policy | Jiyu Yan"
+description: "How yanjiyu.com handles visitor privacy, contact messages, comments, local preferences, and third-party services."
 draft: false
+toc: true
 ---
 
-#### Responsibility of Contributors
+Last updated: 9 June 2026
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
+This website is the personal website of Jiyu Yan. It is used to publish professional information, projects, technical writing, and selected essays.
 
-pretium, aliquam sit. Praesent elementum magna amet, tincidunt eros, nibh in leo. Malesuada purus, lacus, at aliquam suspendisse tempus. Quis tempus amet, velit nascetur sollicitudin. At sollicitudin eget amet in. Eu velit nascetur sollicitudin erhdfvssfvrgss eget viverra nec elementum. Lacus, facilisis tristique lectus in.
+I try to keep data collection minimal. This page explains what information may be processed when you visit `yanjiyu.com`, contact me, or use interactive features such as comments.
 
-#### Gathering of Personal Information
+## Information This Site May Process
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus. Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
+### Information You Provide
 
-#### Protection of Personal- Information
+If you contact me by email, through a contact form, or through a linked social or professional profile, I may receive the information you choose to send. This can include your name, email address, message content, and any professional details you include.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat quisque aliquam sagittis. Sem turpis sed viverra massa gravida pharetra. Non dui dolor potenti eu dignissim fusce. Ultrices amet, in curabitur a arcu a lectus morbi id. Iaculis erat sagittis in tortor cursus.
+I use that information only to read, respond to, and manage the conversation.
 
-Molestie urna eu tortor, erat scelerisque eget. Nunc hendrerit sed interdum lacus. Lorem quis viverra sed
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus, donec nunc eros, ullamcorper id feugiat
+### Technical Information
 
-#### Privacy Policy Changes
+When you visit the site, standard technical information may be processed by the hosting provider and related infrastructure. This can include your IP address, browser type, device information, pages requested, referring page, and request time.
 
-1. Sll the Themefisher items are designed to be with the latest , We check all
-2. comments that threaten or harm the reputation of any person or organization
-3. personal information including, but limited to, email addresses, telephone numbers
-4. Any Update come in The technology Customer will get automatic Notification.
+This information is used for normal website delivery, security, debugging, abuse prevention, and reliability.
+
+### Comments
+
+Some posts may include comments powered by Giscus, which uses GitHub Discussions. If you choose to comment, GitHub may process your GitHub account information, comment content, reactions, and related metadata under GitHub's own privacy terms.
+
+You do not need to comment to read the site.
+
+## Cookies And Local Storage
+
+This site may store a small local preference in your browser, such as your light or dark theme choice. This is stored locally on your device and is used only to keep the site looking the way you selected.
+
+The site does not currently use advertising cookies or targeted advertising trackers. Third-party services, such as GitHub/Giscus or embedded external links you choose to open, may use their own cookies or storage.
+
+## Analytics
+
+Google Tag Manager is not currently enabled on this site. If analytics are added later, this policy should be updated to describe what is collected and why.
+
+## How Information Is Used
+
+Information is used to:
+
+- deliver and maintain the website;
+- respond to messages and professional enquiries;
+- protect the site from abuse or technical problems;
+- understand whether content and pages are working properly;
+- support optional comment functionality.
+
+I do not sell personal information.
+
+## Sharing Information
+
+Information may be processed by services needed to run the site, such as hosting, email, GitHub/Giscus comments, domain, deployment, or security providers. These providers process information under their own terms and privacy policies.
+
+I may also disclose information if required by law, to protect rights or safety, or to investigate abuse of the website.
+
+## Retention
+
+Contact messages are kept only as long as they are useful for correspondence, professional context, or record keeping. Server logs and infrastructure records are retained according to the relevant provider's normal retention periods.
+
+Comments remain visible according to GitHub/Giscus settings unless deleted by the commenter, repository maintainers, or GitHub.
+
+## Your Choices
+
+You can:
+
+- avoid optional comment features;
+- delete or block local browser storage through your browser settings;
+- contact me to request access, correction, or deletion of personal information you have sent directly to me;
+- manage GitHub/Giscus comment data through your GitHub account and GitHub's privacy controls.
+
+Depending on where you live, you may have additional privacy rights under applicable law.
+
+## External Links
+
+This site links to third-party websites such as GitHub, LinkedIn, and other resources mentioned in posts. I am not responsible for the privacy practices or content of those external websites.
+
+## Children's Privacy
+
+This site is not directed at children and does not knowingly collect personal information from children.
+
+## Changes
+
+I may update this policy when the website, hosting, analytics, comments, or contact features change. The "Last updated" date at the top of this page shows when the policy was most recently revised.
+
+## Contact
+
+For privacy questions or requests, email [yn.jiyu@gmail.com](mailto:yn.jiyu@gmail.com).

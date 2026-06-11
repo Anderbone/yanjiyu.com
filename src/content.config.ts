@@ -34,32 +34,9 @@ const createPostCollection = (base: string) =>
     schema: postSchema,
   });
 
-// Post collection schema
-const blogCollection = createPostCollection("src/content/blog");
-
 const devCollection = createPostCollection("src/content/dev");
 
 const journalCollection = createPostCollection("src/content/journal");
-
-// Author collection schema
-const authorsCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/authors" }),
-  schema: z.object({
-    ...commonFields,
-    social: z
-      .array(
-        z
-          .object({
-            name: z.string().optional(),
-            icon: z.string().optional(),
-            link: z.string().optional(),
-          })
-          .optional(),
-      )
-      .optional(),
-    draft: z.boolean().optional(),
-  }),
-});
 
 // Pages collection schema
 const pagesCollection = defineCollection({
@@ -161,10 +138,8 @@ const testimonialSectionCollection = defineCollection({
 export const collections = {
   // Pages
   homepage: homepageCollection,
-  blog: blogCollection,
   dev: devCollection,
   journal: journalCollection,
-  authors: authorsCollection,
   pages: pagesCollection,
   about: aboutCollection,
   contact: contactCollection,

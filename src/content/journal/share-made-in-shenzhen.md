@@ -2,7 +2,7 @@
 title: "The story of a Shenzhen worker in 2000"
 description: "A translated personal story about factory work, migration, and Shenzhen in the early 2000s."
 date: 2022-11-18
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Life"]
 tags: ["China", "Shenzhen", "Translation"]
 draft: false

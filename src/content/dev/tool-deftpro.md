@@ -2,7 +2,7 @@
 title: "How to configure the DEFT Pro trackball on Linux"
 description: "Linux Xorg configuration notes for the Elecom DEFT Pro trackball."
 date: 2022-05-10
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Tools"]
 tags: ["Linux", "Trackball", "Xorg"]
 draft: false

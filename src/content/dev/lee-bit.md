@@ -2,10 +2,10 @@
 title: "leetcode questions: Bit"
 description: "Bit manipulation tricks and LeetCode examples."
 date: 2022-05-05
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Leetcode"]
 tags: ["Bit", "Leetcode Summary"]
-draft: false
+draft: true
 ---
 
 ## common tricks

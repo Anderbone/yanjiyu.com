@@ -1,7 +1,7 @@
 ---
 title: "Contact"
-description: "this is meta description"
-meta_title: ""
+description: "Contact Jiyu Yan for software engineering, implementation, integration, and product workflow opportunities."
+meta_title: "Contact | Jiyu Yan"
 image: ""
 draft: false
 ---

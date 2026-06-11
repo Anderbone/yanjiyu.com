@@ -2,10 +2,10 @@
 title: "Python String functions for leetcode"
 description: "Python string methods useful for LeetCode practice."
 date: 2020-08-22
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Leetcode"]
 tags: ["Python", "String", "Leetcode Summary"]
-draft: false
+draft: true
 ---
 
 - `print(f'best RF score: {grid.best_score_:.3f}')`

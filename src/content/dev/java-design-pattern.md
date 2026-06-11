@@ -2,10 +2,10 @@
 title: "Common design patterns in Java"
 description: "Notes on common Java design patterns including strategy, factory method, and singleton."
 date: 2023-11-14
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Java"]
 tags: ["Java", "Design Patterns"]
-draft: false
+draft: true
 ---
 
 ## [Strategy](https://refactoring.guru/design-patterns/strategy/java/example)

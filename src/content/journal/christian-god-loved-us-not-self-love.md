@@ -1,8 +1,8 @@
 ---
-title: "We love because He first loved us, not meaningless self love"
+title: "We love because He first loved us, not meaningless self-love"
 description: "A Christian and Wittgensteinian critique of self-love language and inward-focused psychology."
 date: 2021-06-21
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Faith"]
 tags: ["Christianity", "Psychology", "Wittgenstein"]
 draft: false

@@ -12,7 +12,7 @@ import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 import TableOfContents from "./components/TableOfContents.astro";
 
-const { post, collection = "blog" } = Astro.props;
+const { post, collection = "dev" } = Astro.props;
 
 const posts = await getSinglePage(collection);
 const similarPosts = similarItems(post, posts);
@@ -44,10 +44,10 @@ const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
         <h1 set:html={markdownify(title)} class="h2 mb-4" />
         <ul class="mb-4">
           <li class="mr-4 inline-block">
-            <a href={`/authors/${slugify(author)}`}>
+            <span>
               <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
               {humanize(author)}
-            </a>
+            </span>
           </li>
           <li class="mr-4 inline-block">
             <FaRegFolder className={"mr-2 -mt-1 inline-block"} />

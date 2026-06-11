@@ -1,14 +1,14 @@
 ---
-title: "The Karamazov Brothers is the best novel I have ever read"
+title: "The Brothers Karamazov is the best novel I have ever read"
 description: "Notes on why The Brothers Karamazov became the best novel I have read."
 date: 2021-10-24
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Books"]
 tags: ["Dostoevsky", "Literature", "Christianity"]
 draft: false
 ---
 
-It's simply the best novel I have ever read. I agree with almost every place in the book where you can feel Dostoevsky’s strong point of view and laugh with joy.
+It is simply the best novel I have ever read. I agree with almost every place in the book where you can feel Dostoevsky's strong point of view and laugh with joy.
 
 I convinced my father, a few Christian and non-Christian friends to read it, and I'm pleased few people already have it in their hands. I definitely will reread it.
 

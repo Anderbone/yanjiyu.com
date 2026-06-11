@@ -2,10 +2,10 @@
 title: "Sensor network module outline"
 description: "Warwick module 912 sensor network outline notes."
 date: 2018-12-19
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["University"]
 tags: ["Warwick", "Sensor Networks"]
-draft: false
+draft: true
 ---
 
 For Warwick University module 912, sensor network.

@@ -2,10 +2,10 @@
 title: "Java frequently used data structures and methods for leetcode"
 description: "Frequently used Java data structures and methods for LeetCode practice."
 date: 2022-07-09
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Leetcode"]
 tags: ["Java", "Leetcode Summary"]
-draft: false
+draft: true
 ---
 
 ### Array

@@ -2,10 +2,10 @@
 title: "leetcode questions: BFS"
 description: "Breadth-first search templates and LeetCode examples."
 date: 2021-10-11
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Leetcode"]
 tags: ["BFS", "Leetcode Summary"]
-draft: false
+draft: true
 ---
 
 ### BFS Template

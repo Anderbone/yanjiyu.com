@@ -2,7 +2,7 @@
 title: "Dangerous words, why psychology is impossible"
 description: "An essay on language, psychology, Wittgenstein, and the danger of treating concepts as explanations."
 date: 2022-01-22
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Essays"]
 tags: ["Wittgenstein", "Psychology", "Philosophy"]
 draft: false
@@ -44,4 +44,4 @@ A man is a man, and in normal circumstances and understanding, he becomes normal
 Ludwig used as the epigraph for this second book a line from the Austrian playwright Johann Nestroy:
 > “The trouble about progress is that it always looks much greater than it really is.”
 
-Related: [5-love-languages and Extrovert only exist in our language](/journal/opinion-extrovert/)
+Related: [The Five Love Languages and Extrovert Only Exist in Language](/journal/opinion-extrovert/)

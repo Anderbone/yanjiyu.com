@@ -2,10 +2,10 @@
 title: "Leetcode: Array questions with Python"
 description: "Array problem patterns and LeetCode examples in Python."
 date: 2017-08-09
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Leetcode"]
 tags: ["Python", "Array", "Leetcode Summary"]
-draft: false
+draft: true
 ---
 
 ### 134.Gas Station

@@ -2,7 +2,7 @@
 title: "My story with God"
 description: "A personal testimony about dreams, doubt, church, baptism, and coming to Christian faith."
 date: 2021-09-30
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Faith"]
 tags: ["Christianity", "Testimony"]
 draft: false
@@ -22,7 +22,7 @@ This time I took it more seriously, I started to find more books about Christian
 
 God, I surrendered.
 
-I visited a few churches in China, both the three-self church and the Catholic church on the street. I knew all legal churches are state-approved but I didn’t know how to find house churches. The first time I stepped into a church, I walked back and forth many times on the road, feeling I was a thief, for fear that someone knew me would see when I went in. The Catholic pastor liked me very much. He knew that I would come to the UK to study soon, and said it would be awesome if I believed in protestant Christianity in the UK.
+I visited a few churches in China, both the three-self church and the Catholic church on the street. I knew all legal churches are state-approved but I didn’t know how to find house churches. The first time I stepped into a church, I walked back and forth many times on the road, feeling I was a thief, for fear that someone knew me would see when I went in. The Catholic pastor liked me very much. He knew that I would come to the UK to study soon, and said it would be wonderful if I believed in Protestant Christianity in the UK.
 
 One year of graduate study in university was pretty tense. I put lots of effort into studying, most of the time facing a laptop alone, and still struggled a lot. I felt the need to get into Christianity, visited a few churches and fellowships but didn’t find anyone to guide me closely. It’s mainly my fault, I failed to find a church to visit weekly, didn’t have close Christian friends, and still didn’t get baptized. To be honest, the most worrying thing in my heart was that I couldn’t find a job in the UK. Based on my performance, I knew how difficult it would be, no companies would love to provide me sponsorship, but I just wanted to give it a try. I didn’t want to work for big Chinese IT companies at all, like most of my classmates.
 
@@ -42,7 +42,7 @@ Peter and Eunice were missionaries in South America when they were young, they i
 
 Shortly after I came to the UK and started working, Covid started in China. The company couldn’t send me back easily and decided to provide me with sponsorship to work in the UK. They still plan to send me back to China, but I already feel much more prepared to go back.
 
-God knows how stubborn I am, he knows it more than myself. It took longer than 6 months to finally get me baptized in a river. With Peter and Eunice and many other brothers and sisters, I shared my testimony: when I grew up, I never knew a Christian. But God uses his grace and patience, through dreams, books, and many people like Peter and Eunice, led me to know him. I was full of pride, doubt, guilt, and despair, but God comforted me, again and again. I believe Jesus is the son of God, who died for my sins, and rose again. Here, I repent of my sins and die to myself, and I will trust him, and live for him.
+God knows how stubborn I am, he knows it more than myself. It took longer than 6 months to finally get me baptized in a river. With Peter and Eunice and many other brothers and sisters, I shared my testimony: when I grew up, I never knew a Christian. But God uses his grace and patience, through dreams, books, and many people like Peter and Eunice, led me to know him. I was full of pride, doubt, guilt, and despair, but God comforted me, again and again. I believe Jesus is the Son of God, who died for my sins, and rose again. Here, I repent of my sins and die to myself, and I will trust him, and live for him.
 
 I still don’t know of my future and feel something may happen in my hometown, but it’s in God’s hands. When our faith becomes our life, our God is our fate.
 

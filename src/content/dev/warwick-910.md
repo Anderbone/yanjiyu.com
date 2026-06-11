@@ -2,10 +2,10 @@
 title: "Data analysis module outline"
 description: "Warwick module 910 data analysis outline notes."
 date: 2019-03-29
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["University"]
 tags: ["Warwick", "Data Analysis"]
-draft: false
+draft: true
 ---
 
 For Warwick University module 910, Data analysis.

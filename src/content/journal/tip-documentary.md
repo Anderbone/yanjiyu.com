@@ -1,15 +1,14 @@
 ---
-title: "Documentaries about China"
+title: "Documentaries About China"
 description: "A curated list of documentaries about China, including films on rural life, politics, famine, and recent history."
 date: 2020-04-01
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Film"]
 tags: ["Documentary", "China"]
 draft: false
 ---
 
-## Recommended, with English subtitle
---- 
+## Recommended, with English subtitles
 
 **棒！少年 Tough out**
 - [豆瓣](https://movie.douban.com/subject/34930862/)
@@ -29,7 +28,7 @@ Published in 2019, 10 years with illegal miners in China
 
 
 **算命 Fortune Teller**  9.0   
-Ture village life through a fortune teller
+Village life seen through a fortune teller.
 - [豆瓣](https://movie.douban.com/subject/4073872/)  
 - [IMDB](https://www.imdb.com/title/tt1847591/)
 - [Youtube](https://www.youtube.com/watch?v=xraMWLeWebs&t=1s)
@@ -41,18 +40,17 @@ The most important exam in China that can determine a lifetime
 - [Youtube](https://www.youtube.com/watch?v=qyvHC9ryn8M)
 
 **书记 The Transition Period** 8.7   
-The mordern Chinese politics
+Modern Chinese local politics.
 - [豆瓣](https://movie.douban.com/subject/3629230/)
 - [IMDB](https://www.imdb.com/title/tt1859619/?ref_=fn_al_tt_1)
 - [Youtube](https://www.youtube.com/watch?v=a_0blieSP80&t=1808s)
 
 **差馆 Cop Shop** 8.3  
-China's fringe, people's life in police office in China
+Life on China's margins, seen through a local police office.
 - [豆瓣](https://movie.douban.com/subject/5343752/)
 - [Youtube](https://www.youtube.com/watch?v=DjWLLG20uZ0)
 
 
---- 
 ## History 1949-1989
 
 **死灵魂** Dead Souls 9.0

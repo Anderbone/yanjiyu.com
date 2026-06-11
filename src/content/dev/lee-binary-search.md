@@ -2,10 +2,10 @@
 title: "leetcode questions: Binary Search"
 description: "Binary search templates and LeetCode examples."
 date: 2022-07-10
-author: "Jiyu"
+author: "Jiyu Yan"
 categories: ["Leetcode"]
 tags: ["Binary Search", "Leetcode Summary"]
-draft: false
+draft: true
 ---
 
 - `bisect.bisect_left(a, x)` https://dynalist.io/d/RWIGNj7DLlzkBed-3ZqhuBg_#z=cbr2Mkrig9KhE6Lxfwhm31IS O(log n)
