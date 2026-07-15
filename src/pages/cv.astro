@@ -30,7 +30,7 @@ const profile = {
   website: "yanjiyu.com",
   websiteUrl: "https://yanjiyu.com",
   summary:
-    "Solutions Engineer and Full-stack AI Product Engineer with 6+ years delivering enterprise software, integrations, automation, reporting, and data-heavy workflows for global clients. I combine requirements discovery, demos, solution architecture, JavaScript/TypeScript, Java/Spring, SQL, REST APIs, PostgreSQL/SQL Server, vertical-slice architecture, Codex-assisted development workflows, Vercel AI SDK, RAG knowledge systems, MCP/tool integrations, and AI-assisted full-stack development to turn ambiguous customer workflows into production-ready systems.",
+    "Solutions Engineer / Forward Deployed Engineer with 6+ years of experience delivering enterprise software, integrations, automation, and data-heavy workflows for global clients. Turns ambiguous customer requirements into production-ready systems by owning the solution end to end across discovery, solution architecture, development, implementation, technical demos, training, and go-live. Hands-on with AI-enabled and agentic product workflows through independent full-stack product work.",
 };
 
 const cvPdfPath = "/files/Jiyu_Yan_CV.pdf";
@@ -38,11 +38,13 @@ const cvPdfPath = "/files/Jiyu_Yan_CV.pdf";
 const highlights = [
   {
     value: "6+ years",
-    label: "Enterprise implementation and hands-on product engineering",
+    label:
+      "Customer-facing enterprise delivery with hands-on product development",
   },
   {
-    value: "10+ projects",
-    label: "Global customer implementations delivered from discovery to go-live",
+    value: "15+ projects",
+    label:
+      "Global customer implementations delivered from discovery to go-live",
   },
   {
     value: "AI product",
@@ -57,6 +59,21 @@ const highlights = [
     value: "60% faster onboarding",
     label:
       "Best-practice solutions, tutorials, and documentation reduced initial implementation time",
+  },
+  {
+    value: "96% above average",
+    label:
+      "Top problem resolver across complex customer application, data, reporting, and integration issues",
+  },
+  {
+    value: "Top knowledge contributor",
+    label:
+      "Authored the most technical Confluence knowledge-base pages on the team",
+  },
+  {
+    value: "MSc CS Distinction",
+    label:
+      "Warwick MSc Computer Science Distinction; UESTC GPA 3.7/4.0 after top 1.5% Gaokao",
   },
 ];
 
@@ -99,7 +116,7 @@ const experience = [
         title: "Software Implementation Engineer",
         period: "2021 - Present",
         bullets: [
-          "Delivered 10+ complex enterprise implementations for global clients, owning requirements discovery, solution architecture, specification writing, configuration, custom development, testing, and go-live delivery.",
+          "Delivered 15+ complex enterprise implementations for global clients, owning requirements discovery, solution architecture, specification writing, configuration, custom development, testing, and go-live delivery.",
           "Led customer-facing technical discussions from pre-sales demos through implementation and go-live, translating ambiguous business requirements into customisation strategy, integration design, and product-minded feature definition and delivery.",
           "Delivered production Java/Spring and SQL changes across warehouse, machine, stop-code, configuration, reporting, and integration workflows, covering backend logic, validation, issue diagnosis, testing, and release support.",
           "Built and maintained RESTful API integrations using Java interface logic, data validation, SQL/database logic, and customer-specific business rules.",
@@ -187,7 +204,10 @@ const selectedWork = [
 
 const skills = [
   ["Programming", "JavaScript · TypeScript · SQL · Python · Java"],
-  ["Frontend / product", "React · React Router · Vite · Tailwind CSS · shadcn/ui"],
+  [
+    "Frontend / product",
+    "React · React Router · Vite · Tailwind CSS · shadcn/ui",
+  ],
   [
     "Backend / API",
     "Java/Spring · Node.js · REST APIs · PostgreSQL · SQL Server · Prisma · integration workflows · AWS",
@@ -219,7 +239,7 @@ const education = [
     period: "2018 - 2019",
     title: "MSc Computer Science, University of Warwick - Distinction",
     detail:
-      "Modules included high-performance computing, data mining, data analysis, sensor networks, and natural language processing.\n\nBuilt a Python auction bot scoring 7.2/7.5, top among 60+ submissions.",
+      "Modules (Python-based): High Performance Computing, Agent Based Systems, Research Methods for MSc Computer Science and Applications, Data Mining, Foundations of Data Analytics, Sensor Networks and Mobile Data Communications, Foundations of Computing, Natural Language Processing.\n\nBuilt a Python auction bot scoring 7.2/7.5, top among 60+ submissions.",
   },
   {
     period: "2011 - 2018",
@@ -231,29 +251,29 @@ const education = [
 
 const additional = [
   {
-    period: "Languages",
-    title: "English, Mandarin",
-  },
-  {
     period: "Personal",
-    title: "Ralph Loop full-stack AI product",
-    detail:
-      "Personal full-stack AI product: built with React/TypeScript, Node.js, PostgreSQL, Prisma, Vercel AI SDK, Better Auth, Zod, Playwright, Vitest, Codex-assisted workflows, and deployment tooling.",
+    title:
+      "Independent full-stack AI product work with MCP, Vercel AI SDK, RAG, pgvector, and agentic workflows",
+    bullets: [
+      "Built deployable React/TypeScript and Node.js applications with structured product logic, user-facing interfaces, authentication, PostgreSQL/Prisma persistence, and deployment-oriented project structure.",
+      "Designed features using vertical slice architecture, organising each slice across UI, API/server logic, validation, database schema, AI orchestration, and tests.",
+      "Built RAG and vector-search workflows with PostgreSQL/pgvector, knowledge-base retrieval, and knowledge tooling that connect user queries to structured business context and generated responses.",
+      "Implemented automated testing with schema validation, unit/integration coverage, and Playwright E2E flows for production-style AI and full-stack product workflows.",
+    ],
   },
   {
     period: "2022",
     title: "Wikimedia Hackathon contributor",
-    detail:
-      "Contributed UI and backend improvements to Quarry using Python, Flask, and Docker.",
+    detail: "Contributed UI and backend improvements to an analytics tool.",
     href: "https://github.com/toolforge/quarry",
-  },
-  {
-    period: "2018",
-    title: "Second place, Warwick National Novices Fencing Tournament",
   },
   {
     period: "2016–2017",
     title: "Teaching assistant, undergraduate TCP/IP course",
+  },
+  {
+    period: "Languages",
+    title: "English, Mandarin",
   },
 ];
 ---
@@ -412,9 +432,7 @@ const additional = [
             aria-labelledby="experience-title"
           >
             <div class="cv-section__head">
-              <h2 id="experience-title">
-                Experience
-              </h2>
+              <h2 id="experience-title">Experience</h2>
             </div>
             {
               experience.map((item) => (
@@ -510,6 +528,13 @@ const additional = [
                       )}
                     </h3>
                     {item.detail && <p>{item.detail}</p>}
+                    {item.bullets && (
+                      <ul>
+                        {item.bullets.map((bullet) => (
+                          <li>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
                   </article>
                 ))
               }
@@ -519,7 +544,6 @@ const additional = [
       </div>
     </div>
   </section>
-
 </Base>
 
 <script is:inline data-astro-rerun>
@@ -781,7 +805,8 @@ const additional = [
   }
 
   .cv-jumpbar a.is-active {
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cv-accent), transparent 60%);
+    box-shadow: inset 0 0 0 1px
+      color-mix(in srgb, var(--cv-accent), transparent 60%);
   }
 
   .cv-proof {
@@ -890,7 +915,9 @@ const additional = [
     gap: 0.65rem;
     background: var(--cv-paper);
     padding: 0.9rem clamp(0.85rem, 2vw, 1.1rem);
-    box-shadow: 1px 0 0 var(--cv-line), 0 1px 0 var(--cv-line);
+    box-shadow:
+      1px 0 0 var(--cv-line),
+      0 1px 0 var(--cv-line);
   }
 
   .cv-flow__steps span {
@@ -1016,7 +1043,8 @@ const additional = [
     font-size: 1.05rem;
   }
 
-  .cv-role-block ul {
+  .cv-role-block ul,
+  .cv-mini ul {
     display: grid;
     gap: 0.72rem;
     margin: 1rem 0 0;
@@ -1024,14 +1052,16 @@ const additional = [
     list-style: none;
   }
 
-  .cv-role-block li {
+  .cv-role-block li,
+  .cv-mini li {
     position: relative;
     padding-left: 1rem;
     color: var(--cv-muted);
     line-height: 1.62;
   }
 
-  .cv-role-block li::before {
+  .cv-role-block li::before,
+  .cv-mini li::before {
     position: absolute;
     top: 0.72em;
     left: 0;
