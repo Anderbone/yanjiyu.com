@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="940" viewBox="0 0 1600 940" role="img" aria-labelledby="title desc">
+  <title id="title">Codex, MCP application, and Langfuse observability flow</title>
+  <desc id="desc">Codex sends MCP JSON-RPC requests to a main application. The application authenticates and runs tools against its database, returns results to Codex, and separately exports safe asynchronous observations to a self-hosted Langfuse instance. Langfuse does not access the application database.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#f4f1ff"/>
+    </linearGradient>
+    <linearGradient id="appHeader" x1="0" x2="1">
+      <stop offset="0" stop-color="#172554"/>
+      <stop offset="1" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="langfuseHeader" x1="0" x2="1">
+      <stop offset="0" stop-color="#5b21b6"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity=".10"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0l12 6-12 6z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0l12 6-12 6z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowSlate" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0l12 6-12 6z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="940" rx="32" fill="url(#background)"/>
+  <text x="70" y="70" fill="#0f172a" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="700">One MCP request, two separate paths</text>
+  <text x="70" y="110" fill="#475569" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="20">The result path does the work. The telemetry path only describes it.</text>
+
+  <!-- Codex -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="265" width="250" height="190" rx="24" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
+    <circle cx="195" cy="320" r="26" fill="#dbeafe"/>
+    <path d="M181 320h28M195 306v28" stroke="#2563eb" stroke-width="5" stroke-linecap="round"/>
+    <text x="195" y="380" text-anchor="middle" fill="#0f172a" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Codex</text>
+    <text x="195" y="414" text-anchor="middle" fill="#64748b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17">AI client and MCP caller</text>
+  </g>
+
+  <!-- Main app -->
+  <g filter="url(#shadow)">
+    <rect x="450" y="155" width="610" height="570" rx="28" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <path d="M478 155h554a28 28 0 0 1 28 28v70H450v-70a28 28 0 0 1 28-28z" fill="url(#appHeader)"/>
+    <text x="500" y="205" fill="#ffffff" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Main application</text>
+    <text x="500" y="233" fill="#c7d2fe" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17">Owns permissions, tools, and business data</text>
+
+    <rect x="505" y="290" width="500" height="86" rx="18" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+    <circle cx="550" cy="333" r="19" fill="#2563eb"/>
+    <text x="550" y="340" text-anchor="middle" fill="#ffffff" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700">1</text>
+    <text x="590" y="326" fill="#0f172a" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21" font-weight="700">MCP route</text>
+    <text x="590" y="351" fill="#475569" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16">Authenticate request and open mcp.request span</text>
+
+    <path d="M755 376v42" stroke="#475569" stroke-width="3" marker-end="url(#arrowSlate)"/>
+
+    <rect x="505" y="425" width="500" height="86" rx="18" fill="#eef2ff" stroke="#a5b4fc" stroke-width="2"/>
+    <circle cx="550" cy="468" r="19" fill="#4f46e5"/>
+    <text x="550" y="475" text-anchor="middle" fill="#ffffff" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700">2</text>
+    <text x="590" y="461" fill="#0f172a" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21" font-weight="700">JSON-RPC dispatcher</text>
+    <text x="590" y="486" fill="#475569" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16">Validate method and open mcp.json_rpc span</text>
+
+    <path d="M755 511v42" stroke="#475569" stroke-width="3" marker-end="url(#arrowSlate)"/>
+
+    <rect x="505" y="560" width="310" height="104" rx="18" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="2"/>
+    <circle cx="550" cy="612" r="19" fill="#7c3aed"/>
+    <text x="550" y="619" text-anchor="middle" fill="#ffffff" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700">3</text>
+    <text x="590" y="601" fill="#0f172a" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="21" font-weight="700">Tool runtime</text>
+    <text x="590" y="628" fill="#475569" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16">Permission check</text>
+    <text x="590" y="650" fill="#475569" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16">tool.execute span</text>
+
+    <rect x="850" y="560" width="155" height="104" rx="18" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+    <ellipse cx="927" cy="594" rx="38" ry="13" fill="#cbd5e1"/>
+    <path d="M889 594v30c0 8 17 14 38 14s38-6 38-14v-30" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+    <text x="927" y="655" text-anchor="middle" fill="#334155" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700">App database</text>
+    <path d="M815 612h29" stroke="#475569" stroke-width="3" marker-end="url(#arrowSlate)"/>
+  </g>
+
+  <!-- Langfuse -->
+  <g filter="url(#shadow)">
+    <rect x="1190" y="155" width="340" height="570" rx="28" fill="#ffffff" stroke="#ddd6fe" stroke-width="2"/>
+    <path d="M1218 155h284a28 28 0 0 1 28 28v70h-340v-70a28 28 0 0 1 28-28z" fill="url(#langfuseHeader)"/>
+    <text x="1240" y="205" fill="#ffffff" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Langfuse</text>
+    <text x="1240" y="233" fill="#ede9fe" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17">Separate self-hosted app</text>
+
+    <text x="1240" y="310" fill="#5b21b6" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" letter-spacing="1.5">TRACE</text>
+    <rect x="1235" y="335" width="250" height="260" rx="18" fill="#faf5ff" stroke="#d8b4fe" stroke-width="2"/>
+    <circle cx="1270" cy="378" r="9" fill="#7c3aed"/>
+    <text x="1294" y="385" fill="#1e1b4b" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">mcp.request</text>
+    <path d="M1270 389v54h19" fill="none" stroke="#a78bfa" stroke-width="3"/>
+    <circle cx="1290" cy="443" r="8" fill="#8b5cf6"/>
+    <text x="1314" y="450" fill="#312e81" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">mcp.json_rpc</text>
+    <path d="M1290 454v55h19" fill="none" stroke="#c4b5fd" stroke-width="3"/>
+    <circle cx="1310" cy="509" r="8" fill="#a78bfa"/>
+    <text x="1334" y="516" fill="#312e81" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">tool.execute</text>
+    <text x="1270" y="558" fill="#64748b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">status · duration · tool name</text>
+
+    <rect x="1235" y="625" width="250" height="58" rx="14" fill="#f3e8ff"/>
+    <text x="1360" y="650" text-anchor="middle" fill="#6b21a8" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700">UI · datasets · scores</text>
+    <text x="1360" y="671" text-anchor="middle" fill="#7e22ce" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14">No access to app database</text>
+  </g>
+
+  <!-- Request and response -->
+  <path d="M320 315c48 0 74 18 124 18" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrowBlue)"/>
+  <text x="382" y="285" text-anchor="middle" fill="#1d4ed8" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="700">MCP JSON-RPC</text>
+  <text x="382" y="306" text-anchor="middle" fill="#64748b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14">initialize · tools/list · tools/call</text>
+
+  <path d="M450 400c-55 0-79 18-124 18" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrowBlue)"/>
+  <text x="386" y="451" text-anchor="middle" fill="#1d4ed8" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="700">Tool result</text>
+
+  <!-- Telemetry -->
+  <path d="M1060 330c62 0 67 48 124 48" fill="none" stroke="#7c3aed" stroke-width="4" stroke-dasharray="10 9" marker-end="url(#arrowPurple)"/>
+  <path d="M1005 612c95 0 94-105 179-105" fill="none" stroke="#7c3aed" stroke-width="4" stroke-dasharray="10 9" marker-end="url(#arrowPurple)"/>
+  <rect x="1018" y="424" width="202" height="57" rx="14" fill="#ffffff" stroke="#d8b4fe" stroke-width="2"/>
+  <text x="1119" y="448" text-anchor="middle" fill="#6d28d9" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15" font-weight="700">Safe async telemetry</text>
+  <text x="1119" y="469" text-anchor="middle" fill="#7c3aed" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14">best effort · allowlisted</text>
+
+  <!-- Footer notes -->
+  <rect x="70" y="790" width="1460" height="95" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <circle cx="112" cy="837" r="22" fill="#dcfce7"/>
+  <path d="M102 837l7 7 14-17" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="150" y="826" fill="#166534" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="700">Recorded</text>
+  <text x="150" y="851" fill="#475569" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">method · tool name · status · duration · bounded counts</text>
+  <circle cx="845" cy="837" r="22" fill="#fee2e2"/>
+  <path d="M836 828l18 18m0-18l-18 18" stroke="#b91c1c" stroke-width="4" stroke-linecap="round"/>
+  <text x="883" y="826" fill="#991b1b" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="700">Not recorded</text>
+  <text x="883" y="851" fill="#475569" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="15">API keys · raw arguments · raw results · private records</text>
+</svg>
