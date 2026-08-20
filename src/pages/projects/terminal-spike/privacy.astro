@@ -1,0 +1,279 @@
+---
+import Base from "@/layouts/Base.astro";
+---
+
+<Base
+  title="Terminal Spike Privacy Policy"
+  meta_title="Terminal Spike Privacy Policy | Jiyu Yan"
+  description="How the Terminal Spike Android app handles connection details, credentials, terminal data, permissions, backups, and privacy."
+>
+  <header class="policy-header">
+    <div class="container">
+      <a href="/projects/">← Projects</a>
+      <p>Terminal Spike · Android</p>
+      <h1>Privacy Policy</h1>
+      <span>Local-first by design. No analytics, ads, or accounts.</span>
+    </div>
+  </header>
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <article class="content lg:col-10 xl:col-8">
+          <p><strong>Last updated: 20 August 2026</strong></p>
+
+          <p>
+            Terminal Spike is an Android SSH terminal app developed by Jiyu Yan.
+            It can also connect through Mosh when the optional, separately
+            installed Terminal Spike Mosh extension is available.
+          </p>
+
+          <p>
+            Terminal Spike is local-first. The developer does not collect,
+            receive, sell, or share personal data through the app. The app has
+            no user account, analytics, advertising, automatic crash reporting,
+            cloud-sync service, or developer-operated backend.
+          </p>
+
+          <h2>Data the App Handles</h2>
+
+          <p>
+            To provide its terminal features, Terminal Spike handles data that
+            you enter or create, including:
+          </p>
+
+          <ul>
+            <li>
+              connection profiles, such as a display name, hostname or IP
+              address, port, username, and connection preferences;
+            </li>
+            <li>
+              trusted host keys and fingerprints used to verify remote servers;
+            </li>
+            <li>
+              authentication data, such as an imported private key or a password
+              that you explicitly choose to save;
+            </li>
+            <li>
+              terminal input, output, local terminal history, snippets, themes,
+              keyboard layouts, settings, and imported fonts; and
+            </li>
+            <li>
+              backup files that you explicitly create or restore using Android's
+              document picker.
+            </li>
+          </ul>
+
+          <p>
+            This data is processed on your device to provide features you
+            request. It is not transmitted to Jiyu Yan or to a Terminal Spike
+            service.
+          </p>
+
+          <h2>Remote Connections</h2>
+
+          <p>
+            When you start a session, Terminal Spike connects directly from your
+            device to the SSH or Mosh server address you provide. The app sends
+            the connection and authentication data needed to establish that
+            session, along with terminal input you choose to send. It receives
+            terminal output from that server.
+          </p>
+
+          <p>
+            The operator of the remote server and the networks used to reach it
+            may process connection information and terminal activity under their
+            own policies. You are responsible for choosing and trusting the
+            servers to which you connect.
+          </p>
+
+          <p>
+            If you use Mosh, the main app exchanges only the session data needed
+            to run the connection with the separately installed, verified
+            Terminal Spike Mosh extension on your device. Mosh starts through
+            SSH and then uses its encrypted UDP transport.
+          </p>
+
+          <h2>Local Storage and Security</h2>
+
+          <p>
+            Profiles, trusted-host records, settings, snippets, and other app
+            data are stored in app-private storage. Imported private keys and
+            passwords you explicitly choose to save are encrypted using keys
+            protected by Android Keystore. Private-key passphrases are not
+            saved.
+          </p>
+
+          <p>
+            SSH sessions use encryption provided by the SSH protocol. Android
+            cloud backup and device-transfer backup are disabled for Terminal
+            Spike data.
+          </p>
+
+          <p>
+            You can choose to export a portable backup through Android's
+            document picker. A backup can contain connection details,
+            credentials, private keys, snippets, settings, themes, and imported
+            fonts. Exported backup files are not protected by a separate
+            Terminal Spike passphrase, so you should store and share them
+            carefully. The selected Android document provider handles the file
+            under its own privacy and security terms.
+          </p>
+
+          <h2>Clipboard and Notifications</h2>
+
+          <p>
+            Terminal Spike can place terminal text on the Android clipboard when
+            you request it. A remote OSC 52 clipboard request is disabled or
+            requires confirmation according to your setting. Clipboard content
+            is managed by Android and may be visible to other software as
+            allowed by the operating system.
+          </p>
+
+          <p>
+            The app can show a foreground-service notification while a
+            user-started terminal session remains active. Notification content
+            is privacy-reduced by default, and you can deny notification
+            permission or change the related setting.
+          </p>
+
+          <h2>Permissions</h2>
+
+          <p>Terminal Spike may use these Android permissions:</p>
+
+          <ul>
+            <li>
+              <strong>Internet and network state</strong> to connect to the remote
+              server you select and respond to network changes;
+            </li>
+            <li>
+              <strong>Foreground service, notifications, and wake lock</strong>
+              to keep a user-started remote session active and show its status; and
+            </li>
+            <li>
+              <strong>Biometric authentication</strong> to let Android verify your
+              identity for the optional app lock. Terminal Spike does not receive
+              or store biometric data.
+            </li>
+          </ul>
+
+          <h2>Data Sharing</h2>
+
+          <p>
+            The developer does not sell or share app data with advertisers,
+            analytics providers, data brokers, or other companies. Data is sent
+            only as necessary for actions you initiate—for example, to a remote
+            server you choose, an Android document provider you select for a
+            backup, or the optional on-device Mosh extension.
+          </p>
+
+          <h2>Retention and Deletion</h2>
+
+          <p>
+            Local data remains on your device until you delete individual items,
+            reset Terminal Spike's local data, clear the app's storage in
+            Android settings, or uninstall the app. Because the developer does
+            not receive app data, there is no developer-held account or cloud
+            record to delete.
+          </p>
+
+          <p>
+            Exported backup files are controlled by you and the storage provider
+            you selected. Deleting or uninstalling Terminal Spike does not
+            delete those external files; delete them through that provider when
+            they are no longer needed.
+          </p>
+
+          <h2>Children's Privacy</h2>
+
+          <p>
+            Terminal Spike is a general-purpose developer and systems tool. It
+            is not directed to children, and the developer does not knowingly
+            collect personal information from children.
+          </p>
+
+          <h2>Changes to This Policy</h2>
+
+          <p>
+            This policy may be updated when Terminal Spike's features or data
+            practices change. The date at the top identifies the latest version.
+          </p>
+
+          <h2>Contact</h2>
+
+          <p>
+            For privacy questions about Terminal Spike, contact Jiyu Yan at
+            <a href="mailto:yn.jiyu@gmail.com">yn.jiyu@gmail.com</a>.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .policy-header {
+    padding: 4.5rem 0 4rem;
+    border-bottom: 1px solid rgb(226 232 240);
+    background:
+      radial-gradient(
+        circle at 82% 20%,
+        rgb(20 184 166 / 0.1),
+        transparent 30%
+      ),
+      linear-gradient(180deg, rgb(248 250 252), rgb(255 255 255));
+  }
+
+  :global(.dark) .policy-header {
+    border-color: rgb(38 48 61);
+    background:
+      radial-gradient(
+        circle at 82% 20%,
+        rgb(20 184 166 / 0.12),
+        transparent 30%
+      ),
+      linear-gradient(180deg, rgb(10 15 23), rgb(4 8 14));
+  }
+
+  .policy-header a {
+    display: inline-block;
+    margin-bottom: 2.5rem;
+    color: rgb(13 148 136);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .policy-header p {
+    margin-bottom: 0.7rem;
+    color: rgb(20 184 166);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .policy-header h1 {
+    margin-bottom: 1rem;
+    color: inherit;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+  }
+
+  .policy-header span {
+    color: rgb(71 85 105);
+    font-size: 1.1rem;
+  }
+
+  :global(.dark) .policy-header span {
+    color: rgb(186 194 201);
+  }
+
+  @media (max-width: 640px) {
+    .policy-header {
+      padding: 3rem 0;
+    }
+
+    .policy-header a {
+      margin-bottom: 2rem;
+    }
+  }
+</style>

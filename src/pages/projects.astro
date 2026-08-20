@@ -9,13 +9,16 @@ import {
   FiExternalLink,
   FiGithub,
   FiGitBranch,
+  FiLock,
   FiShield,
+  FiSmartphone,
 } from "react-icons/fi";
 
 const opsdeskAppUrl = "https://opsdesk-ai.netlify.app/";
 const opsdeskSourceUrl = "https://github.com/Anderbone/opsdesk-ai";
 const ralphSourceUrl = "https://github.com/Anderbone/ralph-loop";
 const ralphWriteupUrl = "/dev/ralph-loop-plan-queue";
+const terminalSpikePrivacyUrl = "/projects/terminal-spike/privacy/";
 
 const highlights = [
   {
@@ -51,7 +54,7 @@ const ralphSteps = [
 
 <Base
   title="Projects"
-  description="Selected software projects by Jiyu Yan, including OpsDesk AI."
+  description="Selected software projects by Jiyu Yan, including OpsDesk AI, Ralph Loop, and Terminal Spike."
   image="/images/opsdesk-ai-preview.png"
 >
   <section
@@ -211,6 +214,50 @@ const ralphSteps = [
             ))
           }
         </ul>
+      </section>
+
+      <section
+        class="project-feature project-feature-terminal"
+        aria-labelledby="terminal-spike-title"
+      >
+        <div class="project-feature-copy">
+          <p class="project-kicker">Android app</p>
+          <h2 id="terminal-spike-title">Terminal Spike</h2>
+          <p>
+            A local-first terminal client for secure SSH connections and
+            optional Mosh sessions, built natively for Android with a focused
+            terminal workspace.
+          </p>
+          <div class="terminal-points" aria-label="Terminal Spike highlights">
+            <span><FiSmartphone aria-hidden="true" /> Native Android</span>
+            <span><FiLock aria-hidden="true" /> No analytics or accounts</span>
+          </div>
+          <div class="project-actions" aria-label="Terminal Spike links">
+            <a class="btn btn-primary" href={terminalSpikePrivacyUrl}>
+              <FiShield aria-hidden="true" />
+              Privacy policy
+            </a>
+          </div>
+        </div>
+
+        <div class="terminal-device" aria-label="Terminal Spike app preview">
+          <div class="terminal-device-bar">
+            <span>Terminal Spike</span>
+            <strong>SSH</strong>
+          </div>
+          <div class="terminal-screen">
+            <p><span>$</span> ssh dev@workstation</p>
+            <p class="terminal-muted">Host key verified · encrypted session</p>
+            <p>Welcome back.</p>
+            <p><span>dev@workstation</span>:~$ tmux attach</p>
+            <div class="terminal-cursor" aria-hidden="true"></div>
+          </div>
+          <div class="terminal-nav" aria-hidden="true">
+            <span>Connections</span>
+            <strong>Terminal</strong>
+            <span>Settings</span>
+          </div>
+        </div>
       </section>
     </div>
   </section>
@@ -543,6 +590,130 @@ const ralphSteps = [
     color: rgb(20 184 166);
   }
 
+  .project-feature-terminal {
+    margin-top: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .terminal-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.2rem;
+    margin-top: 1.5rem;
+    color: rgb(68 75 83);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  :global(.dark) .terminal-points {
+    color: rgb(207 213 219);
+  }
+
+  .terminal-points span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .terminal-points svg {
+    color: rgb(20 184 166);
+  }
+
+  .terminal-device {
+    overflow: hidden;
+    width: min(100%, 38rem);
+    min-height: 25rem;
+    justify-self: end;
+    border: 1px solid rgb(38 48 61);
+    border-radius: 24px;
+    background: rgb(4 8 14);
+    color: rgb(226 232 240);
+    box-shadow: 0 1.5rem 4rem rgb(15 23 42 / 0.24);
+    transform: rotate(1deg);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .terminal-device:hover {
+    transform: rotate(0deg) translateY(-4px);
+    box-shadow: 0 2rem 5rem rgb(15 23 42 / 0.3);
+  }
+
+  .terminal-device-bar,
+  .terminal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgb(10 15 23);
+    color: rgb(148 163 184);
+    font-size: 0.78rem;
+  }
+
+  .terminal-device-bar {
+    border-bottom: 1px solid rgb(38 48 61);
+    letter-spacing: 0.04em;
+  }
+
+  .terminal-device-bar span {
+    color: rgb(226 232 240);
+    font-weight: 800;
+  }
+
+  .terminal-device-bar strong {
+    color: rgb(94 234 212);
+    font-size: 0.72rem;
+  }
+
+  .terminal-screen {
+    min-height: 19rem;
+    padding: 2rem 1.5rem;
+    background:
+      linear-gradient(rgb(94 234 212 / 0.025) 1px, transparent 1px), rgb(4 8 14);
+    background-size: 100% 1.6rem;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  .terminal-screen p {
+    margin: 0 0 0.45rem;
+    color: rgb(226 232 240);
+  }
+
+  .terminal-screen p span,
+  .terminal-nav strong {
+    color: rgb(94 234 212);
+  }
+
+  .terminal-screen .terminal-muted {
+    margin-bottom: 1.6rem;
+    color: rgb(100 116 139);
+  }
+
+  .terminal-cursor {
+    width: 0.58rem;
+    height: 1.05rem;
+    margin-top: 0.15rem;
+    background: rgb(94 234 212);
+    animation: terminal-blink 1.1s steps(1) infinite;
+  }
+
+  .terminal-nav {
+    border-top: 1px solid rgb(38 48 61);
+  }
+
+  @keyframes terminal-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
   @keyframes project-rise {
     from {
       opacity: 0;
@@ -576,6 +747,12 @@ const ralphSteps = [
 
     .project-stage img {
       display: block;
+    }
+
+    .terminal-device {
+      width: 100%;
+      justify-self: stretch;
+      transform: none;
     }
 
     .project-copy h1 {
@@ -614,6 +791,12 @@ const ralphSteps = [
     .project-actions :global(a) {
       width: 100%;
       justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .terminal-cursor {
+      animation: none;
     }
   }
 </style>
