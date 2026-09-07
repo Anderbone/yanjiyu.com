@@ -1,0 +1,70 @@
+<figure class="terminal-demo">
+  <video
+    controls
+    playsinline
+    preload="none"
+    poster="/images/terminal-spike-demo.webp"
+    width="720"
+    height="1680"
+    aria-label="Terminal Spike app demo: remote coding, scrolling, and tmux sessions"
+  >
+    <source src="/videos/terminal-spike-demo.mp4" type="video/mp4" />
+    <a href="https://photos.app.goo.gl/ZamP17MYQWVUn2zA7"
+      >Watch the Terminal Spike demo</a
+    >
+  </video>
+  <figcaption>
+    <span>Terminal Spike in action · 45 seconds · No audio</span>
+    <a
+      href="https://photos.app.goo.gl/ZamP17MYQWVUn2zA7"
+      target="_blank"
+      rel="noopener">Watch on Google Photos ↗</a
+    >
+  </figcaption>
+</figure>
+
+<style>
+  .terminal-demo {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .terminal-demo video {
+    display: block;
+    width: min(100%, 17rem);
+    height: auto;
+    margin: 0;
+    border: 1px solid rgb(38 48 61);
+    border-radius: 14px;
+    background: rgb(4 8 14);
+    box-shadow: 0 1rem 3rem rgb(15 23 42 / 0.16);
+  }
+
+  .terminal-demo figcaption {
+    display: grid;
+    gap: 0.3rem;
+    margin: 0;
+    color: rgb(92 98 105);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  :global(.dark) .terminal-demo figcaption {
+    color: rgb(186 194 201);
+  }
+
+  .terminal-demo a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 180ms ease;
+  }
+
+  .terminal-demo a:hover {
+    color: rgb(13 148 136);
+  }
+</style>

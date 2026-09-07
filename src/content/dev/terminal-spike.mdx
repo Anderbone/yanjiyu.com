@@ -1,0 +1,45 @@
+---
+title: "Terminal Spike: a Native Android Terminal"
+description: "An Android SSH client for remote work, with tmux sessions, SFTP, configurable controls, and a short demo of remote coding from my phone."
+date: 2026-09-07
+author: "Jiyu Yan"
+categories: ["Projects"]
+tags: ["Android", "Kotlin", "SSH", "Developer Tools"]
+draft: false
+---
+
+import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
+
+Terminal Spike is my native Android terminal app for working on remote machines from a phone. It brings SSH connections, multiple terminal tabs, tmux sessions, and file transfers into a workspace that keeps its settings and connection details on the device.
+
+## A short demo
+
+This recording shows me using a remote coding session, entering prompts, scrolling through terminal output, and switching between tmux sessions. The extra-key bar keeps terminal controls close to the phone keyboard.
+
+<TerminalSpikeDemo />
+
+The coding tool runs on the connected machine. Terminal Spike provides the terminal and input controls; it does not bundle an AI model or require an AI subscription of its own.
+
+## Remote work from a phone
+
+The app supports password and private-key SSH authentication, saved connections, and several simultaneous terminal tabs. It verifies server host keys and warns when a known server's key changes.
+
+Alongside the terminal, there is an SFTP file manager for browsing, uploading, downloading, renaming, and deleting remote files. Saved command snippets and a configurable extra-key bar make frequently used commands and keys such as Ctrl, Esc, and the arrows easier to reach. Fonts, colours, text size, and cursor behaviour are configurable too.
+
+One useful part of the remote coding workflow is image input. Terminal Spike can transfer a clipboard image over an authenticated SSH connection to a private cache directory on the connected host, then paste its remote path into the terminal. That lets a remote tool work with an image from the phone.
+
+## Building the terminal
+
+The app uses Kotlin and Jetpack Compose for its application UI. The terminal itself is a custom Android View that draws rows directly with Canvas and Paint. That separates the terminal's rendering and screen state from the surrounding connection lists, settings, and session controls.
+
+The terminal engine handles primary and alternate screens, cursor movement, scroll regions, colours, bracketed paste, and common terminal queries. Scrollback is bounded. For app-selected tmux sessions, a separate local history model supports scrolling on the phone, while an explicit remote-mouse mode is available for interacting with terminal applications that use it.
+
+Mosh support is implemented through an optional, separately installed extension. SSH works without it. Keeping the transport extension separate also keeps its native dependencies and lifecycle outside the main app.
+
+## Keeping data on the device
+
+Terminal Spike has no app account, analytics, advertising, or cloud-sync service. Connections go directly to the hosts the user chooses. Imported private keys and passwords that the user explicitly chooses to save are encrypted using an app-specific Android Keystore key.
+
+The [privacy policy](/projects/terminal-spike/privacy/) explains credential storage, remote connections, permissions, and backups in more detail.
+
+See [Terminal Spike on the Projects page](/projects#terminal-spike) for the app overview and demo.

@@ -4,7 +4,7 @@ import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import { markdownify } from "@/lib/utils/textConverter";
-import { FiArrowUpRight, FiBookOpen, FiGithub } from "react-icons/fi";
+import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 
 const homepage = await getListPage("homepage", "-index");
 const devPosts = await getSinglePage("dev");
@@ -66,7 +66,7 @@ const { banner } = homepage.data;
                 Projects
               </p>
               <h2 id="home-projects-title" class="h3 mb-3">
-                Selected AI product and tooling work
+                Selected apps and developer tools
               </h2>
               <p>
                 Practical demos and developer tools with source, writeups, and
@@ -74,7 +74,14 @@ const { banner } = homepage.data;
               </p>
             </div>
             <div class="home-project-list">
-              <a href="/projects" class="home-project-link">
+              <a href="/projects#terminal-spike" class="home-project-link">
+                <span>
+                  <strong>Terminal Spike</strong>
+                  <small>Native Android terminal · Watch the demo</small>
+                </span>
+                <FiArrowUpRight aria-hidden="true" />
+              </a>
+              <a href="/projects#opsdesk-ai" class="home-project-link">
                 <span>
                   <strong>OpsDesk AI</strong>
                   <small>Policy-gated service desk demo</small>
@@ -92,13 +99,6 @@ const { banner } = homepage.data;
                   <small>Plan queue runner for Codex</small>
                 </span>
                 <FiGithub aria-hidden="true" />
-              </a>
-              <a href="/dev/ralph-loop-plan-queue" class="home-project-link">
-                <span>
-                  <strong>Ralph writeup</strong>
-                  <small>Why the queue shape matters</small>
-                </span>
-                <FiBookOpen aria-hidden="true" />
               </a>
             </div>
           </section>
