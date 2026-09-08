@@ -23,6 +23,10 @@
     {
       "name": "Journal",
       "url": "/journal"
+    },
+    {
+      "name": "Studio",
+      "url": "https://studio.yanjiyu.com"
     }
   ],
   "footer": [
