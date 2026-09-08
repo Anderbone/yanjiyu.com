@@ -1,18 +1,5 @@
 ---
 import Base from "@/layouts/Base.astro";
-import {
-  IoBusinessOutline,
-  IoCallOutline,
-  IoCodeSlashOutline,
-  IoDownloadOutline,
-  IoGitBranchOutline,
-  IoIdCardOutline,
-  IoLocationOutline,
-  IoLogoGithub,
-  IoLogoLinkedin,
-  IoMailOutline,
-} from "react-icons/io5";
-
 const profile = {
   name: "Jiyu Yan",
   title: "Solutions Engineer / Full-stack Software Engineer",
@@ -75,35 +62,6 @@ const highlights = [
     label:
       "University of Warwick MSc Computer Science with Distinction; UESTC GPA 3.7/4.0 after top 1.5% Gaokao",
   },
-];
-
-const strengths = [
-  {
-    icon: IoCodeSlashOutline,
-    title: "Full-stack AI product",
-    text: "Builds React/TypeScript product flows, Node.js and Java/Spring backend logic, PostgreSQL/SQL Server data layers, AI tool calls, RAG-backed knowledge features, and deployment-ready automation.",
-  },
-  {
-    icon: IoBusinessOutline,
-    title: "Customer-facing delivery",
-    text: "Leads discovery, demos, scoping, specifications, stakeholder alignment, training, go-live planning, and post-launch adoption.",
-  },
-  {
-    icon: IoGitBranchOutline,
-    title: "Agentic enterprise workflows",
-    text: "Turns messy reporting, database, configuration, RESTful API, MCP/tool integration, and operational constraints into technical designs that teams can ship and customers can trust.",
-  },
-];
-
-const deliveryFlow = [
-  "Discover",
-  "Demo",
-  "Scope",
-  "Design",
-  "Build",
-  "Integrate",
-  "Go-live",
-  "Iterate",
 ];
 
 const experience = [
@@ -279,1085 +237,156 @@ const additional = [
 ---
 
 <Base
-  title={`${profile.name} CV`}
-  description="Professional CV for Jiyu Yan, a UK-based software engineer and implementation specialist."
+  title="Jiyu Yan — CV"
+  description="Solutions Engineer and Full-stack Software Engineer in Wrexham, UK. Enterprise delivery, integrations, automation, and AI product development."
 >
-  <section class="cv-page">
-    <div class="cv-shell">
-      <header id="top" class="cv-hero" aria-labelledby="cv-title">
-        <div class="cv-identity">
-          <div class="cv-title-row">
-            <h1 id="cv-title">{profile.name}</h1>
-            <p class="cv-role">{profile.title}</p>
-          </div>
-          <p class="cv-headline">{profile.headline}</p>
-          <p class="cv-summary">{profile.summary}</p>
-        </div>
-
-        <aside class="cv-topbar" aria-label="CV navigation and contact">
-          <p class="cv-meta" aria-label="Location and work status">
-            <span class="cv-meta__item cv-meta__place">
-              <IoLocationOutline aria-hidden="true" />
-              <span>{profile.location}</span>
-            </span>
-            <span class="cv-meta__separator" aria-hidden="true">·</span>
-            <span>{profile.remote}</span>
-            <span
-              class="cv-meta__separator cv-meta__separator--wide"
-              aria-hidden="true">·</span
-            >
-            <span class="cv-meta__item">
-              <IoIdCardOutline aria-hidden="true" />
-              <span>{profile.workStatus}</span>
-            </span>
-            <span class="cv-meta__separator" aria-hidden="true">·</span>
-            <span>{profile.sponsorship}</span>
-          </p>
-
-          <div class="cv-contact" aria-label="Contact and profile links">
-            <a href={`mailto:${profile.email}`}>
-              <IoMailOutline aria-hidden="true" />
-              <span>{profile.email}</span>
-            </a>
-            <a href={profile.githubUrl} target="_blank" rel="noopener">
-              <IoLogoGithub aria-hidden="true" />
-              <span>{profile.github}</span>
-            </a>
-            <a href={profile.linkedinUrl} target="_blank" rel="noopener">
-              <IoLogoLinkedin aria-hidden="true" />
-              <span>{profile.linkedin}</span>
-            </a>
-            <a href={profile.websiteUrl} target="_blank" rel="noopener">
-              <IoBusinessOutline aria-hidden="true" />
-              <span>{profile.website}</span>
-            </a>
-            <a href={`tel:${profile.phone.replaceAll(" ", "")}`}>
-              <IoCallOutline aria-hidden="true" />
-              <span>{profile.phone}</span>
-            </a>
-            <a href={cvPdfPath} download data-download-cv>
-              <IoDownloadOutline aria-hidden="true" />
-              <span>Download CV</span>
-            </a>
-          </div>
-        </aside>
-      </header>
-
-      <section class="cv-proof" aria-label="Career proof points">
-        {
-          highlights.map((highlight) => (
-            <div>
-              <strong>{highlight.value}</strong>
-              <span>{highlight.label}</span>
-            </div>
-          ))
-        }
-      </section>
-
-      <section class="cv-strengths" aria-label="Strengths">
-        {
-          strengths.map((strength) => {
-            const Icon = strength.icon;
-            return (
-              <article class="cv-strength">
-                <Icon aria-hidden="true" />
-                <h2>{strength.title}</h2>
-                <p>{strength.text}</p>
-              </article>
-            );
-          })
-        }
-      </section>
-
-      <section class="cv-flow" aria-labelledby="flow-title">
-        <div>
-          <p class="cv-flow__eyebrow">Full-cycle delivery</p>
-          <h2 id="flow-title">
-            From discovery to go-live, with engineering reality in the room.
-          </h2>
-        </div>
-        <ol class="cv-flow__steps">
-          {
-            deliveryFlow.map((step, index) => (
-              <li>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{step}</strong>
-              </li>
-            ))
-          }
-        </ol>
-      </section>
-
-      <nav class="cv-jumpbar" aria-label="CV navigation">
-        <p>Jump to</p>
-        <a href="#top" data-cv-jump-link>Top</a>
-        <a href="#selected" data-cv-jump-link>Selected</a>
-        <a href="#work" data-cv-jump-link>Work</a>
-        <a href="#education" data-cv-jump-link>Education</a>
-        <a href="#skills" data-cv-jump-link>Skills</a>
-        <a href="#additional" data-cv-jump-link>Additional</a>
+  <div class="site-width resume">
+    <header class="resume-header">
+      <div>
+        <p class="eyebrow">Curriculum vitae / Experience & capabilities</p><h1>
+          {profile.name}<span>.</span>
+        </h1><p class="resume-role">{profile.title}</p><p
+          class="resume-headline"
+        >
+          {profile.headline}
+        </p>
+      </div><a class="button button-accent" href={cvPdfPath} download
+        >Download CV <span aria-hidden="true">↓</span></a>
+    </header>
+    <div class="resume-contact">
+      <span>{profile.location}</span><span>{profile.remote}</span><span
+        >{profile.workStatus} · {profile.sponsorship}</span
+      ><a href={`mailto:${profile.email}`}>{profile.email} ↗</a><a
+        href={profile.githubUrl}
+        target="_blank"
+        rel="noopener">GitHub ↗</a
+      ><a href={profile.linkedinUrl} target="_blank" rel="noopener"
+        >LinkedIn ↗</a
+      ><a href={`tel:${profile.phone.replaceAll(" ", "")}`}>{profile.phone}</a>
+    </div>
+    <div class="resume-layout">
+      <nav class="resume-nav" aria-label="CV sections">
+        <a href="#profile">01 / Profile</a><a href="#work">02 / Experience</a><a
+          href="#selected">03 / Selected work</a
+        ><a href="#education">04 / Education</a><a href="#skills">05 / Skills</a
+        ><a href="#additional">06 / More</a>
       </nav>
-
-      <div class="cv-content">
-        <main class="cv-main" aria-label="Main CV content">
-          <section
-            id="selected"
-            class="cv-section"
-            aria-labelledby="selected-title"
-          >
-            <div class="cv-section__head">
-              <h2 id="selected-title">Selected Work</h2>
-            </div>
-            <div class="cv-stack cv-stack--selected">
-              {
-                selectedWork.map((item) => (
-                  <article class="cv-mini">
-                    <span>{item.period}</span>
-                    <h3>{item.title}</h3>
-                    <p>{item.detail}</p>
-                    <div class="cv-chips" aria-label={`${item.title} methods`}>
-                      {item.chips.map((chip) => (
-                        <span>{chip}</span>
-                      ))}
-                    </div>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
-
-          <section
-            id="work"
-            class="cv-section"
-            aria-labelledby="experience-title"
-          >
-            <div class="cv-section__head">
-              <h2 id="experience-title">Experience</h2>
-            </div>
+      <div class="resume-content">
+        <section id="profile" class="resume-section">
+          <p class="eyebrow">01 / Profile</p><p class="resume-summary">
+            {profile.summary}
+          </p><div class="resume-highlights">
             {
-              experience.map((item) => (
-                <article class="cv-company">
-                  <div class="cv-company__head">
-                    <div>
-                      <h3>{item.company}</h3>
-                      <p>{item.note}</p>
-                    </div>
-                    <span>{item.period}</span>
-                  </div>
-                  <div class="cv-roles">
-                    {item.roles.map((role) => (
-                      <section class="cv-role-block">
-                        <div class="cv-role-block__head">
-                          <h4>{role.title}</h4>
-                          <span>{role.period}</span>
-                        </div>
-                        <ul>
-                          {role.bullets.map((bullet) => (
-                            <li>{bullet}</li>
-                          ))}
-                        </ul>
-                      </section>
-                    ))}
-                  </div>
-                </article>
+              highlights.slice(0, 4).map((item) => (
+                <div>
+                  <>
+                    <strong>{item.value}</strong>
+                    <p>{item.label}</p>
+                  </>
+                </div>
               ))
             }
-          </section>
-
-          <section
-            id="education"
-            class="cv-section"
-            aria-labelledby="education-title"
-          >
-            <div class="cv-section__head">
-              <h2 id="education-title">Education</h2>
-            </div>
-            <div class="cv-stack cv-stack--education">
-              {
-                education.map((item) => (
-                  <article class="cv-mini">
+          </div>
+        </section>
+        <section id="work" class="resume-section">
+          <p class="eyebrow">02 / Experience</p>{
+            experience.map((item) => (
+              <article>
+                <div class="resume-item-heading">
+                  <>
+                    <div>
+                      <>
+                        <h2>{item.company}</h2>
+                        <p>{item.note}</p>
+                      </>
+                    </div>
                     <span>{item.period}</span>
-                    <h3>{item.title}</h3>
-                    <p>{item.detail}</p>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
-
-          <section
-            id="skills"
-            class="cv-section"
-            aria-labelledby="skills-title"
-          >
-            <div class="cv-section__head">
-              <h2 id="skills-title">Skills</h2>
-            </div>
-            <div class="cv-skill-list">
-              {
-                skills.map(([group, items]) => (
-                  <div class="cv-skill">
-                    <h3>{group}</h3>
-                    <p>{items}</p>
+                  </>
+                </div>
+                {item.roles.map((role) => (
+                  <div class="resume-role-block">
+                    <div class="resume-item-heading">
+                      <h3>{role.title}</h3>
+                      <span>{role.period}</span>
+                    </div>
+                    <ul>
+                      {role.bullets.map((bullet) => (
+                        <li>{bullet}</li>
+                      ))}
+                    </ul>
                   </div>
-                ))
-              }
-            </div>
-          </section>
-
-          <section
-            id="additional"
-            class="cv-section"
-            aria-labelledby="additional-title"
-          >
-            <div class="cv-section__head">
-              <h2 id="additional-title">Additional</h2>
-            </div>
-            <div class="cv-stack">
-              {
-                additional.map((item) => (
-                  <article class="cv-mini">
-                    <span>{item.period}</span>
-                    <h3>
-                      {item.href ? (
-                        <a href={item.href} target="_blank" rel="noopener">
-                          {item.title}
-                        </a>
-                      ) : (
-                        item.title
-                      )}
-                    </h3>
-                    {item.detail && <p>{item.detail}</p>}
-                    {item.bullets && (
-                      <ul>
-                        {item.bullets.map((bullet) => (
-                          <li>{bullet}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </article>
-                ))
-              }
-            </div>
-          </section>
-        </main>
+                ))}
+              </article>
+            ))
+          }
+        </section>
+        <section id="selected" class="resume-section">
+          <p class="eyebrow">03 / Selected work</p>{
+            selectedWork.map((item) => (
+              <article class="resume-entry">
+                <>
+                  <span class="resume-label">{item.period}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                  <p class="resume-methods">{item.chips.join(" · ")}</p>
+                </>
+              </article>
+            ))
+          }
+        </section>
+        <section id="education" class="resume-section">
+          <p class="eyebrow">04 / Education</p>{
+            education.map((item) => (
+              <article class="resume-entry">
+                <>
+                  <span class="resume-label">{item.period}</span>
+                  <h3>{item.title}</h3>
+                  <p class="whitespace-pre-line">{item.detail}</p>
+                </>
+              </article>
+            ))
+          }
+        </section>
+        <section id="skills" class="resume-section">
+          <p class="eyebrow">05 / Skills</p><dl class="resume-skills">
+            {
+              skills.map(([group, items]) => (
+                <div>
+                  <>
+                    <dt>{group}</dt>
+                    <dd>{items}</dd>
+                  </>
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+        <section id="additional" class="resume-section">
+          <p class="eyebrow">06 / Beyond the day job</p>{
+            additional.map((item) => (
+              <article class="resume-entry">
+                <h3>
+                  {item.href ? (
+                    <a href={item.href} target="_blank" rel="noopener">
+                      {item.title} ↗
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
+                {item.detail && <p>{item.detail}</p>}
+                {item.bullets && (
+                  <ul>
+                    {item.bullets.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            ))
+          }
+        </section>
       </div>
     </div>
-  </section>
+  </div>
 </Base>
-
-<script is:inline data-astro-rerun>
-  (() => {
-    const previousObserver = window.__cvJumpbarObserver;
-    if (previousObserver) {
-      previousObserver.disconnect();
-    }
-
-    const jumpLinks = Array.from(
-      document.querySelectorAll("[data-cv-jump-link]"),
-    );
-    const jumpTargets = jumpLinks
-      .map((link) => {
-        const id = link.hash.slice(1);
-        const target = document.getElementById(id);
-        return target ? { id, target } : null;
-      })
-      .filter(Boolean);
-
-    const setActiveJumpLink = (id) => {
-      jumpLinks.forEach((link) => {
-        const isActive = link.hash === `#${id}`;
-        link.classList.toggle("is-active", isActive);
-        if (isActive) {
-          link.setAttribute("aria-current", "true");
-        } else {
-          link.removeAttribute("aria-current");
-        }
-      });
-    };
-
-    if (jumpTargets.length === 0) {
-      return;
-    }
-
-    setActiveJumpLink("top");
-    jumpLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        setActiveJumpLink(link.hash.slice(1));
-      });
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) =>
-              Math.abs(a.boundingClientRect.top) -
-              Math.abs(b.boundingClientRect.top),
-          )[0];
-
-        if (visible?.target.id) {
-          setActiveJumpLink(visible.target.id);
-        }
-      },
-      {
-        rootMargin: "-20% 0px -65% 0px",
-        threshold: 0,
-      },
-    );
-
-    jumpTargets.forEach(({ target }) => observer.observe(target));
-    window.__cvJumpbarObserver = observer;
-  })();
-</script>
-
-<style>
-  .cv-page {
-    --cv-ink: #111827;
-    --cv-muted: #586271;
-    --cv-soft: #f7f8f8;
-    --cv-paper: #ffffff;
-    --cv-line: #dfe5e8;
-    --cv-accent: #0f766e;
-    --cv-warm: #b45309;
-    background: var(--cv-paper);
-    color: var(--cv-ink);
-  }
-
-  :global(.dark) .cv-page {
-    --cv-ink: #f8fafc;
-    --cv-muted: #bac4d1;
-    --cv-soft: #181c20;
-    --cv-paper: #111316;
-    --cv-line: #334155;
-    --cv-accent: #5eead4;
-    --cv-warm: #fbbf24;
-  }
-
-  .cv-shell {
-    width: min(980px, calc(100% - 2rem));
-    margin: 0 auto;
-    padding: clamp(2.25rem, 5vw, 4.5rem) 0 clamp(5.5rem, 8vw, 7rem);
-  }
-
-  .cv-hero {
-    display: grid;
-    gap: clamp(1.6rem, 4vw, 2.4rem);
-    padding: 0 0 clamp(2rem, 4vw, 3.5rem);
-    border-bottom: 1px solid var(--cv-line);
-  }
-
-  .cv-identity,
-  .cv-topbar {
-    animation: cv-rise 560ms ease both;
-  }
-
-  .cv-title-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.55rem 1rem;
-  }
-
-  .cv-topbar {
-    animation-delay: 80ms;
-  }
-
-  .cv-identity h1 {
-    margin: 0;
-    color: var(--cv-ink);
-    font-size: clamp(1.9rem, 3.3vw, 2.65rem);
-    line-height: 0.96;
-    letter-spacing: 0;
-  }
-
-  .cv-role {
-    max-width: 46rem;
-    margin: 0;
-    color: var(--cv-ink);
-    font-size: clamp(0.95rem, 1.25vw, 1.12rem);
-    font-weight: 700;
-    line-height: 1.18;
-  }
-
-  .cv-headline {
-    max-width: 58rem;
-    margin: 0.85rem 0 0;
-    color: var(--cv-accent);
-    font-size: clamp(1.05rem, 1.65vw, 1.35rem);
-    font-weight: 700;
-    line-height: 1.18;
-  }
-
-  .cv-summary {
-    max-width: 55rem;
-    margin: 1.15rem 0 0;
-    color: var(--cv-muted);
-    font-size: clamp(1rem, 1.25vw, 1.1rem);
-    line-height: 1.7;
-  }
-
-  .cv-topbar {
-    display: grid;
-    gap: 1.1rem;
-    border-top: 1px solid var(--cv-line);
-    padding-top: 1.25rem;
-  }
-
-  .cv-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.18rem 0;
-    align-items: center;
-    margin: 0;
-    padding: 0 0 1rem;
-    border-bottom: 1px solid var(--cv-line);
-    color: var(--cv-ink);
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.65;
-  }
-
-  .cv-meta__item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.32rem;
-  }
-
-  .cv-meta__place {
-    color: var(--cv-accent);
-  }
-
-  .cv-meta svg {
-    width: 0.95rem;
-    height: 0.95rem;
-    flex: 0 0 auto;
-  }
-
-  .cv-meta__separator {
-    margin: 0 0.45rem;
-    color: var(--cv-muted);
-  }
-
-  .cv-meta__separator--wide {
-    margin-right: 0.85rem;
-    margin-left: 0.85rem;
-  }
-
-  .cv-contact {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-    gap: 0.55rem;
-  }
-
-  .cv-contact a,
-  .cv-contact button,
-  .cv-jumpbar a {
-    display: inline-flex;
-    min-width: 0;
-    align-items: center;
-    gap: 0.55rem;
-    color: var(--cv-ink);
-    font: inherit;
-    font-weight: 700;
-    line-height: 1.2;
-    text-decoration: none;
-    transition:
-      border-color 160ms ease,
-      background 160ms ease,
-      color 160ms ease,
-      transform 160ms ease;
-  }
-
-  .cv-contact a,
-  .cv-contact button {
-    width: 100%;
-    min-height: 2.6rem;
-    border: 1px solid var(--cv-line);
-    border-radius: 0.45rem;
-    background: var(--cv-paper);
-    padding: 0.68rem 0.8rem;
-    cursor: pointer;
-  }
-
-  .cv-contact span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .cv-contact svg {
-    width: 1rem;
-    height: 1rem;
-    flex: 0 0 auto;
-    color: var(--cv-accent);
-  }
-
-  .cv-contact a:hover,
-  .cv-contact button:hover,
-  .cv-jumpbar a:hover,
-  .cv-jumpbar a.is-active {
-    border-color: var(--cv-accent);
-    background: var(--cv-soft);
-    color: var(--cv-accent);
-    transform: translateY(-1px);
-  }
-
-  .cv-jumpbar a.is-active {
-    box-shadow: inset 0 0 0 1px
-      color-mix(in srgb, var(--cv-accent), transparent 60%);
-  }
-
-  .cv-proof {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
-    margin: 0;
-    border-bottom: 1px solid var(--cv-line);
-    background: var(--cv-line);
-  }
-
-  .cv-proof div {
-    display: grid;
-    gap: 0.35rem;
-    background: var(--cv-paper);
-    padding: clamp(1.15rem, 2.5vw, 1.75rem) clamp(1rem, 2vw, 1.35rem);
-  }
-
-  .cv-proof strong {
-    color: var(--cv-ink);
-    font-size: clamp(1.45rem, 2.8vw, 2.3rem);
-    line-height: 1;
-    overflow-wrap: anywhere;
-  }
-
-  .cv-proof span {
-    max-width: 13rem;
-    color: var(--cv-muted);
-    line-height: 1.35;
-  }
-
-  .cv-strengths {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1px;
-    border-bottom: 1px solid var(--cv-line);
-    background: var(--cv-line);
-  }
-
-  .cv-strength {
-    background: var(--cv-soft);
-    padding: clamp(1.1rem, 2.5vw, 1.6rem);
-  }
-
-  .cv-strength svg {
-    width: 1.35rem;
-    height: 1.35rem;
-    color: var(--cv-accent);
-  }
-
-  .cv-strength h2 {
-    margin: 1.4rem 0 0.5rem;
-    color: var(--cv-ink);
-    font-size: clamp(1.08rem, 1.7vw, 1.35rem);
-    line-height: 1.12;
-  }
-
-  .cv-strength p {
-    margin: 0;
-    color: var(--cv-muted);
-    line-height: 1.58;
-  }
-
-  .cv-flow {
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: start;
-    padding: clamp(2rem, 4vw, 3rem) 0;
-    border-bottom: 1px solid var(--cv-line);
-  }
-
-  .cv-flow__eyebrow {
-    margin: 0 0 0.6rem;
-    color: var(--cv-accent);
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  .cv-flow h2 {
-    max-width: 30rem;
-    margin: 0;
-    color: var(--cv-ink);
-    font-size: clamp(1.45rem, 2.6vw, 2.25rem);
-    line-height: 1.08;
-  }
-
-  .cv-flow__steps {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1px;
-    overflow: hidden;
-    margin: 0;
-    border: 1px solid var(--cv-line);
-    background: var(--cv-paper);
-    padding: 0;
-    color: var(--cv-ink);
-    list-style: none;
-  }
-
-  .cv-flow__steps li {
-    display: flex;
-    min-width: 0;
-    align-items: center;
-    gap: 0.65rem;
-    background: var(--cv-paper);
-    padding: 0.9rem clamp(0.85rem, 2vw, 1.1rem);
-    box-shadow:
-      1px 0 0 var(--cv-line),
-      0 1px 0 var(--cv-line);
-  }
-
-  .cv-flow__steps span {
-    display: inline-grid;
-    width: 1.9rem;
-    height: 1.9rem;
-    flex: 0 0 auto;
-    place-items: center;
-    border: 1px solid color-mix(in srgb, var(--cv-accent), transparent 35%);
-    border-radius: 999px;
-    color: var(--cv-accent);
-    font-size: 0.7rem;
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .cv-flow__steps strong {
-    min-width: 0;
-    color: var(--cv-ink);
-    font-size: clamp(0.95rem, 1.35vw, 1.08rem);
-    line-height: 1.2;
-  }
-
-  .cv-content {
-    max-width: 860px;
-    margin: 0 auto;
-  }
-
-  .cv-jumpbar {
-    position: fixed;
-    z-index: 40;
-    bottom: 0.85rem;
-    left: 50%;
-    display: flex;
-    width: min(calc(100% - 1rem), 40rem);
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    border: 1px solid color-mix(in srgb, var(--cv-line), transparent 15%);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--cv-paper), transparent 5%);
-    padding: 0.45rem;
-    box-shadow: 0 1rem 2.5rem rgb(15 23 42 / 12%);
-    transform: translateX(-50%);
-    backdrop-filter: blur(18px);
-  }
-
-  .cv-jumpbar p {
-    margin: 0 0.35rem 0 0.2rem;
-    color: var(--cv-muted);
-    font-size: 0.72rem;
-    font-weight: 700;
-    line-height: 1;
-    text-transform: uppercase;
-  }
-
-  .cv-jumpbar a {
-    justify-content: center;
-    min-height: 2.15rem;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    padding: 0.45rem 0.7rem;
-    font-size: 0.86rem;
-  }
-
-  .cv-section {
-    scroll-margin-top: 6.25rem;
-    padding: clamp(2.3rem, 5vw, 3.8rem) 0;
-    border-bottom: 1px solid var(--cv-line);
-  }
-
-  .cv-section__head {
-    margin-bottom: clamp(1.35rem, 3vw, 2.2rem);
-  }
-
-  .cv-section__head h2 {
-    margin: 0;
-    color: var(--cv-ink);
-    font-size: clamp(1.75rem, 3vw, 2.7rem);
-    line-height: 1.02;
-  }
-
-  .cv-company__head,
-  .cv-role-block__head {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  .cv-company__head {
-    margin-bottom: 1.8rem;
-  }
-
-  .cv-company__head h3 {
-    margin: 0;
-    color: var(--cv-ink);
-    font-size: clamp(1.3rem, 2.2vw, 1.9rem);
-  }
-
-  .cv-company__head p,
-  .cv-company__head span,
-  .cv-role-block__head span {
-    margin: 0;
-    color: var(--cv-muted);
-  }
-
-  .cv-roles,
-  .cv-skill-list,
-  .cv-stack {
-    display: grid;
-    gap: 1.45rem;
-  }
-
-  .cv-role-block {
-    padding-left: 1rem;
-    border-left: 3px solid var(--cv-accent);
-  }
-
-  .cv-role-block__head h4 {
-    margin: 0;
-    color: var(--cv-ink);
-    font-size: 1.05rem;
-  }
-
-  .cv-role-block ul,
-  .cv-mini ul {
-    display: grid;
-    gap: 0.72rem;
-    margin: 1rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .cv-role-block li,
-  .cv-mini li {
-    position: relative;
-    padding-left: 1rem;
-    color: var(--cv-muted);
-    line-height: 1.62;
-  }
-
-  .cv-role-block li::before,
-  .cv-mini li::before {
-    position: absolute;
-    top: 0.72em;
-    left: 0;
-    width: 0.36rem;
-    height: 0.36rem;
-    border-radius: 50%;
-    background: var(--cv-warm);
-    content: "";
-  }
-
-  .cv-stack--education {
-    grid-template-columns: 1fr;
-    gap: 1.3rem;
-  }
-
-  .cv-stack--selected {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .cv-skill,
-  .cv-mini {
-    padding-top: 1rem;
-    border-top: 1px solid var(--cv-line);
-  }
-
-  .cv-skill h3,
-  .cv-mini h3 {
-    margin: 0;
-    color: var(--cv-ink);
-    font-size: 1rem;
-    line-height: 1.35;
-  }
-
-  .cv-skill p,
-  .cv-mini p {
-    margin: 0.42rem 0 0;
-    color: var(--cv-muted);
-    line-height: 1.58;
-    white-space: pre-line;
-  }
-
-  .cv-mini > span {
-    display: block;
-    margin-bottom: 0.35rem;
-    color: var(--cv-accent);
-    font-size: 0.82rem;
-    font-weight: 700;
-  }
-
-  .cv-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.85rem;
-  }
-
-  .cv-chips span {
-    border: 1px solid var(--cv-line);
-    border-radius: 999px;
-    padding: 0.24rem 0.5rem;
-    color: var(--cv-muted);
-    font-size: 0.76rem;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .cv-mini a {
-    color: inherit;
-    text-decoration-color: var(--cv-accent);
-    text-underline-offset: 0.22em;
-  }
-
-  @keyframes cv-rise {
-    from {
-      opacity: 0;
-      transform: translateY(12px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (min-width: 1320px) {
-    .cv-jumpbar {
-      top: 50%;
-      right: max(1rem, calc((100vw - 980px) / 2 - 9.5rem));
-      bottom: auto;
-      left: auto;
-      width: 8.4rem;
-      flex-direction: column;
-      align-items: stretch;
-      border-radius: 0.65rem;
-      transform: translateY(-50%);
-    }
-
-    .cv-jumpbar p {
-      margin: 0.15rem 0.25rem 0.25rem;
-    }
-
-    .cv-jumpbar a {
-      justify-content: flex-start;
-      border-radius: 0.45rem;
-      padding-right: 0.65rem;
-      padding-left: 0.65rem;
-    }
-  }
-
-  @media (max-width: 980px) {
-    .cv-proof,
-    .cv-strengths {
-      grid-template-columns: 1fr;
-    }
-
-    .cv-flow {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .cv-shell {
-      width: min(100% - 1.25rem, 1120px);
-      padding-top: 5.7rem;
-    }
-
-    .cv-title-row {
-      display: grid;
-      gap: 0.45rem;
-    }
-
-    .cv-identity h1 {
-      font-size: clamp(1.85rem, 9vw, 2.35rem);
-    }
-
-    .cv-jumpbar {
-      top: 3.65rem;
-      bottom: auto;
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      width: min(calc(100% - 0.75rem), 31rem);
-      border-radius: 0.75rem;
-    }
-
-    .cv-jumpbar p {
-      display: none;
-    }
-
-    .cv-jumpbar a {
-      min-height: 2rem;
-      padding: 0.42rem 0.35rem;
-      font-size: 0.78rem;
-    }
-
-    .cv-section__head,
-    .cv-company__head,
-    .cv-role-block__head {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.35rem;
-    }
-
-    .cv-stack--education {
-      grid-template-columns: 1fr;
-    }
-
-    .cv-stack--selected {
-      grid-template-columns: 1fr;
-    }
-
-    .cv-flow__steps {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cv-identity,
-    .cv-topbar {
-      animation: none;
-    }
-
-    .cv-contact a,
-    .cv-contact button,
-    .cv-jumpbar a {
-      transition: none;
-    }
-  }
-
-  @media print {
-    :global(.header),
-    :global(.footer),
-    :global([data-search-trigger]),
-    .cv-jumpbar,
-    .cv-flow,
-    :global([data-download-cv]),
-    :global([data-print-cv]) {
-      display: none !important;
-    }
-
-    .cv-page {
-      --cv-ink: #111827;
-      --cv-muted: #333b46;
-      --cv-soft: #ffffff;
-      --cv-paper: #ffffff;
-      --cv-line: #cfd6de;
-      --cv-accent: #0f766e;
-      --cv-warm: #92400e;
-    }
-
-    .cv-shell {
-      width: 100%;
-      padding: 0;
-    }
-
-    .cv-hero {
-      grid-template-columns: 1fr;
-      gap: 0.8rem;
-      padding-bottom: 0.8rem;
-    }
-
-    .cv-identity,
-    .cv-topbar {
-      animation: none;
-    }
-
-    .cv-identity h1 {
-      font-size: 1.75rem;
-    }
-
-    .cv-role {
-      font-size: 1.05rem;
-    }
-
-    .cv-contact {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.3rem 0.8rem;
-    }
-
-    .cv-contact a {
-      min-height: 0;
-      border: 0;
-      padding: 0;
-    }
-
-    .cv-proof,
-    .cv-strengths {
-      display: none;
-    }
-
-    .cv-content {
-      max-width: none;
-    }
-
-    .cv-section {
-      padding: 0.85rem 0;
-    }
-
-    .cv-section__head {
-      grid-template-columns: 5.5rem 1fr;
-      margin-bottom: 0.65rem;
-    }
-
-    .cv-section__head h2 {
-      font-size: 1.25rem;
-    }
-
-    .cv-company__head {
-      margin-bottom: 0.65rem;
-    }
-
-    .cv-roles,
-    .cv-skill-list,
-    .cv-stack {
-      gap: 0.6rem;
-    }
-
-    .cv-role-block,
-    .cv-mini,
-    .cv-skill {
-      break-inside: avoid;
-    }
-
-    .cv-role-block {
-      padding-left: 0.65rem;
-    }
-
-    .cv-role-block ul {
-      gap: 0.3rem;
-      margin-top: 0.45rem;
-    }
-
-    .cv-summary,
-    .cv-role-block li,
-    .cv-skill p,
-    .cv-mini p {
-      line-height: 1.42;
-    }
-  }
-</style>

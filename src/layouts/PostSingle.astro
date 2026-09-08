@@ -6,9 +6,8 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
 import { getTocItems, shouldShowToc } from "@/lib/utils/tableOfContents";
-import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
+import { humanize, slugify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
-import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 import TableOfContents from "./components/TableOfContents.astro";
 
@@ -23,189 +22,169 @@ const tocItems = getTocItems(headings);
 const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
 ---
 
-<section class="section pt-7">
-  <div class="container">
-    <div class="row justify-center">
-      <article class={showToc ? "lg:col-10 xl:col-8" : "lg:col-10"}>
-        {
-          image && (
-            <div class="mb-10">
-              <ImageMod
-                src={image}
-                height={500}
-                width={1200}
-                alt={title}
-                class="w-full rounded"
-                format="webp"
-              />
-            </div>
-          )
-        }
-        <h1 set:html={markdownify(title)} class="h2 mb-4" />
-        <ul class="mb-4">
-          <li class="mr-4 inline-block">
-            <span>
-              <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-              {humanize(author)}
-            </span>
-          </li>
-          <li class="mr-4 inline-block">
-            <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-            {
-              categories.map((category: string, index: number) => (
-                <a href={`/${collection}/categories/${slugify(category)}`}>
-                  {humanize(category)}
-                  {index !== categories.length - 1 && ","}
-                </a>
-              ))
-            }
-          </li>
-          <li class="mr-4 inline-block">
-            <FaRegClock className={"mr-2 -mt-1 inline-block"} />
-            {dateFormat(date)}
-          </li>
-        </ul>
-        <div class="content mb-10">
-          <Content />
-        </div>
-        <script>
-          const copyIcon = `
+<div class="site-width">
+  <header class="post-header">
+    <div class="page-path">
+      <a href={`/${collection}`}>← {collection === "dev" ? "Dev" : "Journal"}</a
+      ><span>/</span><span>{categories[0] || "Writing"}</span>
+    </div><h1>{title}</h1>{
+      description && <p class="post-lede">{description}</p>
+    }<div class="post-meta">
+      <span>{author || "Jiyu Yan"}</span>{
+        date && <time datetime={date.toISOString()}>{dateFormat(date)}</time>
+      }<span
+        >{Math.max(1, Math.ceil((post.body || "").split(/\s+/).length / 220))} min
+        read</span
+      >{
+        categories.map((category: string) => (
+          <a href={`/${collection}/categories/${slugify(category)}`}>
+            {humanize(category)}
+          </a>
+        ))
+      }
+    </div>
+  </header>
+  <div class:list={["article-layout", { "no-toc": !showToc }]}>
+    <article>
+      {
+        image && (
+          <ImageMod
+            src={image}
+            height={500}
+            width={1200}
+            alt={title}
+            class="w-full rounded mb-10"
+            format="webp"
+          />
+        )
+      }
+      <div class="content"><Content /></div>
+      <script>
+        const copyIcon = `
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <rect x="9" y="9" width="11" height="11" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
           `;
-          const checkIcon = `
+        const checkIcon = `
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <path d="M20 6 9 17l-5-5"></path>
             </svg>
           `;
-          const errorIcon = `
+        const errorIcon = `
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <path d="M18 6 6 18"></path>
               <path d="m6 6 12 12"></path>
             </svg>
           `;
 
-          async function copyTextToClipboard(text: string) {
-            if (navigator.clipboard?.writeText) {
-              await navigator.clipboard.writeText(text);
+        async function copyTextToClipboard(text: string) {
+          if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(text);
+            return;
+          }
+
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.top = "0";
+          textarea.style.left = "-9999px";
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          try {
+            document.execCommand("copy");
+          } finally {
+            textarea.remove();
+          }
+        }
+
+        function addCopyCodeButtons() {
+          document.querySelectorAll("pre").forEach((pre) => {
+            if (pre.querySelector(":scope > .copy-code-button")) {
               return;
             }
 
-            const textarea = document.createElement("textarea");
-            textarea.value = text;
-            textarea.setAttribute("readonly", "");
-            textarea.style.position = "fixed";
-            textarea.style.top = "0";
-            textarea.style.left = "-9999px";
-            document.body.appendChild(textarea);
-            textarea.select();
-
-            try {
-              document.execCommand("copy");
-            } finally {
-              textarea.remove();
+            const code = pre.querySelector("code");
+            if (!code?.textContent?.trim()) {
+              return;
             }
-          }
 
-          function addCopyCodeButtons() {
-            document.querySelectorAll("pre").forEach((pre) => {
-              if (pre.querySelector(":scope > .copy-code-button")) {
-                return;
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "copy-code-button";
+            button.innerHTML = copyIcon;
+            button.setAttribute("aria-label", "Copy code to clipboard");
+            button.title = "Copy code";
+
+            button.addEventListener("click", async () => {
+              try {
+                await copyTextToClipboard(code.textContent || "");
+                button.blur();
+                button.innerHTML = checkIcon;
+                button.setAttribute("aria-label", "Code copied");
+                button.classList.add("is-copied");
+              } catch {
+                button.innerHTML = errorIcon;
+                button.setAttribute("aria-label", "Could not copy code");
+                button.classList.add("is-error");
               }
 
-              const code = pre.querySelector("code");
-              if (!code?.textContent?.trim()) {
-                return;
-              }
-
-              const button = document.createElement("button");
-              button.type = "button";
-              button.className = "copy-code-button";
-              button.innerHTML = copyIcon;
-              button.setAttribute("aria-label", "Copy code to clipboard");
-              button.title = "Copy code";
-
-              button.addEventListener("click", async () => {
-                try {
-                  await copyTextToClipboard(code.textContent || "");
-                  button.blur();
-                  button.innerHTML = checkIcon;
-                  button.setAttribute("aria-label", "Code copied");
-                  button.classList.add("is-copied");
-                } catch {
-                  button.innerHTML = errorIcon;
-                  button.setAttribute("aria-label", "Could not copy code");
-                  button.classList.add("is-error");
-                }
-
-                window.setTimeout(() => {
-                  button.innerHTML = copyIcon;
-                  button.setAttribute("aria-label", "Copy code to clipboard");
-                  button.classList.remove("is-copied", "is-error");
-                }, 1800);
-              });
-
-              pre.classList.add("code-block-with-copy");
-              pre.appendChild(button);
+              window.setTimeout(() => {
+                button.innerHTML = copyIcon;
+                button.setAttribute("aria-label", "Copy code to clipboard");
+                button.classList.remove("is-copied", "is-error");
+              }, 1800);
             });
-          }
 
-          addCopyCodeButtons();
-          document.addEventListener("astro:page-load", addCopyCodeButtons);
-        </script>
-        <div class="row items-start justify-between">
-          <div class="mb-10 flex items-center lg:col-5 lg:mb-0">
-            <h5 class="mr-3">Tags :</h5>
-            <ul>
-              {
-                tags.map((tag: string) => (
-                  <li class="inline-block">
-                    <a
-                      class="m-1 block rounded bg-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark"
-                      href={`/${collection}/tags/${slugify(tag)}`}
-                    >
-                      {humanize(tag)}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-          <div class="flex items-center lg:col-4">
-            <h5 class="mr-3">Share :</h5>
-            <Share
-              className="social-icons"
-              title={title}
-              description={description}
-              slug={`${collection}/${post.id}`}
-            />
-          </div>
-        </div>
-        <Giscus class="mt-20" />
-      </article>
-      {
-        showToc && (
-          <aside class="hidden xl:col-3 xl:block">
-            <TableOfContents items={tocItems} />
-          </aside>
-        )
-      }
-    </div>
-
-    <!-- Related posts -->
-    <div class="section pb-0">
-      <h2 class="h3 mb-12 text-center">Related Posts</h2>
-      <div class="row justify-center">
-        {
-          similarPosts.map((post) => (
-            <div class="lg:col-4 md:col-6 mb-14">
-              <BlogCard data={post} collection={collection} />
-            </div>
-          ))
+            pre.classList.add("code-block-with-copy");
+            pre.appendChild(button);
+          });
         }
+
+        addCopyCodeButtons();
+        document.addEventListener("astro:page-load", addCopyCodeButtons);
+      </script>
+      <div class="article-end">
+        <div class="taxonomy-tags" style="margin:0">
+          {
+            tags.map((tag: string) => (
+              <a href={`/${collection}/tags/${slugify(tag)}`}>
+                {humanize(tag)}
+              </a>
+            ))
+          }
+        </div><Share
+          className="social-icons"
+          title={title}
+          description={description}
+          slug={`${collection}/${post.id}`}
+        />
       </div>
-    </div>
+      <Giscus class="mt-16" />
+    </article>
+    {
+      showToc && (
+        <aside>
+          <TableOfContents items={tocItems} />
+        </aside>
+      )
+    }
   </div>
-</section>
+  {
+    similarPosts.length > 0 && (
+      <section class="related-posts">
+        <>
+          <p class="eyebrow">Keep exploring</p>
+          <h2>A little more to read.</h2>
+          <div class="related-grid">
+            {similarPosts.slice(0, 3).map((post) => (
+              <BlogCard data={post} collection={collection} />
+            ))}
+          </div>
+        </>
+      </section>
+    )
+  }
+</div>

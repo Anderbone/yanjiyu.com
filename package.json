@@ -7,7 +7,7 @@
   "packageManager": "pnpm@10.30.3",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"astro dev\"",
+    "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"astro dev --host\"",
     "build": "node scripts/themeGenerator.js && astro build && node scripts/llmsGenerator.js",
     "preview": "astro preview",
     "check": "astro check",

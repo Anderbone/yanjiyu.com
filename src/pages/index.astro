@@ -1,236 +1,124 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
-import dateFormat from "@/lib/utils/dateFormat";
+import { getSinglePage } from "@/lib/contentParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
-import { markdownify } from "@/lib/utils/textConverter";
-import { FiArrowUpRight, FiGithub } from "react-icons/fi";
-
-const homepage = await getListPage("homepage", "-index");
-const devPosts = await getSinglePage("dev");
-const journalPosts = await getSinglePage("journal");
-const posts = sortByDate([
-  ...devPosts.map((post) => ({ ...post, collection: "dev" })),
-  ...journalPosts.map((post) => ({ ...post, collection: "journal" })),
-]);
-const pinnedPosts = posts.filter((post) => post.data.pinned);
-const latestPosts = posts.filter((post) => !post.data.pinned);
-const featuredPosts = [...pinnedPosts, ...latestPosts].slice(0, 3);
-const hasPinnedPosts = pinnedPosts.length > 0;
-
-const { banner } = homepage.data;
+import dateFormat from "@/lib/utils/dateFormat";
+const posts = sortByDate(await getSinglePage("dev"));
+const featuredPosts = [
+  ...posts.filter((p) => p.data.pinned),
+  ...posts.filter((p) => !p.data.pinned),
+].slice(0, 3);
 ---
 
 <Base>
-  <section class="section">
-    <div class="container">
-      <div class="row items-center justify-center gap-y-10">
-        <div class="md:col-7 lg:col-6 text-center md:text-left">
-          <h1
-            set:html={markdownify(banner.title)}
-            class="mb-4 text-h3 lg:text-h1"
-          />
-          <p set:html={markdownify(banner.content)} class="mb-8" />
-          {
-            banner.button.enable && (
-              <a
-                class="btn btn-primary"
-                href={banner.button.link}
-                target={
-                  banner.button.link.startsWith("http") ? "_blank" : "_self"
-                }
-                rel="noopener"
-              >
-                {banner.button.label}
-              </a>
-            )
-          }
-        </div>
-        <div class="md:col-5 lg:col-4">
-          <img
-            src="/images/fencer.jpg"
-            alt="Fencer in motion"
-            width="640"
-            height="640"
-            class="mx-auto aspect-square w-full max-w-[280px] rounded border border-border object-cover shadow-sm dark:border-darkmode-border md:max-w-[340px]"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      </div>
-      <div class="row justify-center pt-12">
-        <div class="md:col-10 lg:col-8">
-          <section class="home-projects" aria-labelledby="home-projects-title">
-            <div>
-              <p class="mb-2 text-sm font-medium uppercase text-primary">
-                Projects
-              </p>
-              <h2 id="home-projects-title" class="h3 mb-3">
-                Selected apps and developer tools
-              </h2>
-              <p>
-                Practical demos and developer tools with source, writeups, and
-                working interfaces.
-              </p>
-            </div>
-            <div class="home-project-list">
-              <a href="/projects#terminal-spike" class="home-project-link">
-                <span>
-                  <strong>Terminal Spike</strong>
-                  <small>Native Android terminal · Watch the demo</small>
-                </span>
-                <FiArrowUpRight aria-hidden="true" />
-              </a>
-              <a href="/projects#opsdesk-ai" class="home-project-link">
-                <span>
-                  <strong>OpsDesk AI</strong>
-                  <small>Policy-gated service desk demo</small>
-                </span>
-                <FiArrowUpRight aria-hidden="true" />
-              </a>
-              <a
-                href="https://github.com/Anderbone/ralph-loop"
-                target="_blank"
-                rel="noopener"
-                class="home-project-link"
-              >
-                <span>
-                  <strong>Ralph Loop</strong>
-                  <small>Plan queue runner for Codex</small>
-                </span>
-                <FiGithub aria-hidden="true" />
-              </a>
-            </div>
-          </section>
-        </div>
-      </div>
-      <div class="row justify-center pt-12">
-        <div class="md:col-10 lg:col-8">
-          <div class="mb-6 flex items-end justify-between gap-4">
-            <div>
-              <p class="mb-2 text-sm font-medium uppercase text-primary">
-                Writing
-              </p>
-              <h2 class="h3">
-                {hasPinnedPosts ? "Pinned and latest" : "Latest posts"}
-              </h2>
-            </div>
-          </div>
-          <div class="divide-y divide-border dark:divide-darkmode-border">
-            {
-              featuredPosts.map((post) => (
-                <a
-                  class="group block py-5 first:pt-0 last:pb-0"
-                  href={`/${post.collection}/${post.id}`}
-                >
-                  <div class="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-light dark:text-darkmode-text-light">
-                    <span class="font-medium text-primary">
-                      {post.collection === "dev" ? "Dev" : "Journal"}
-                    </span>
-                    {post.data.pinned && <span>Pinned</span>}
-                    {post.data.date && (
-                      <time>{dateFormat(post.data.date)}</time>
-                    )}
-                  </div>
-                  <h3 class="h5 mb-2 transition group-hover:text-primary">
-                    {post.data.title}
-                  </h3>
-                  {post.data.description && (
-                    <p class="text-sm text-text-light dark:text-darkmode-text-light">
-                      {post.data.description}
-                    </p>
-                  )}
-                </a>
-              ))
-            }
-          </div>
-        </div>
+  <section class="home-opening" aria-labelledby="home-title">
+    <figure class="fencing-stage">
+      <img
+        src="/images/fencer.jpg"
+        alt="A fencer suspended mid-leap, foil extended."
+        width="640"
+        height="640"
+        fetchpriority="high"
+      />
+    </figure>
+    <div class="home-introduction">
+      <h1 id="home-title">Hi, I’m Jiyu.</h1>
+      <p>
+        A software engineer in Wrexham, UK.<br />I build useful products,
+        integrations, and developer tools.
+      </p>
+      <div class="home-introduction-links">
+        <a class="text-link" href="#selected-work"
+          >Explore my work <span aria-hidden="true">↓</span></a
+        ><a class="text-link" href="/about"
+          >About me <span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>
+  <section id="selected-work" class="site-width home-work section-space">
+    <div class="section-heading" data-reveal>
+      <div>
+        <p class="eyebrow">01 / Selected work</p><h2>
+          From idea to everyday use.
+        </h2>
+      </div><a class="text-link" href="/projects"
+        >All projects <span aria-hidden="true">↗</span></a
+      >
+    </div>
+    <div class="work-grid">
+      <a class="work-preview" href="/projects#terminal-spike" data-reveal
+        ><div class="work-image terminal-preview">
+          <span class="preview-label">Terminal Spike / Android</span><span
+            class="terminal-type"
+            aria-hidden="true">Your terminal.<br />Anywhere<span>_</span></span
+          ><img
+            src="/images/terminal-spike-demo.webp"
+            width="720"
+            height="1680"
+            alt="Terminal Spike running a remote coding session on Android"
+            loading="lazy"
+          /><span class="preview-arrow" aria-hidden="true">↗</span>
+        </div><div class="work-caption">
+          <h3>Terminal Spike</h3><span>Android · SSH · Developer tools</span>
+        </div><p>A remote workspace that fits in your pocket.</p></a
+      >
+      <a class="work-preview" href="/projects#opsdesk-ai" data-reveal
+        ><div class="work-image opsdesk-preview">
+          <span class="preview-label">OpsDesk AI / Product demo</span><img
+            src="/images/opsdesk-ai-preview.png"
+            width="1265"
+            height="1826"
+            alt="OpsDesk AI service desk with enquiry triage and human approval controls"
+            loading="lazy"
+          /><span class="preview-arrow" aria-hidden="true">↗</span>
+        </div><div class="work-caption">
+          <h3>OpsDesk AI</h3><span>AI · Operations · Full stack</span>
+        </div><p>AI-assisted operations with people in control.</p></a
+      >
+    </div>
+    <a class="project-strip" href="/projects#ralph-loop" data-reveal
+      ><span class="mono strip-icon" aria-hidden="true">&gt;_</span><div>
+        <h3>Ralph Loop</h3><p>
+          Reviewed plans. Focused agent runs. A calmer development loop.
+        </p>
+      </div><span class="mono strip-meta">TypeScript / CLI</span><span
+        class="strip-arrow"
+        aria-hidden="true">↗</span
+      ></a
+    >
+  </section>
+  <section class="site-width section-space">
+    <div class="section-heading" data-reveal>
+      <div>
+        <p class="eyebrow">02 / From the workbench</p><h2>
+          Things learned along the way.
+        </h2>
+      </div><a class="text-link" href="/dev"
+        >All Dev posts <span aria-hidden="true">↗</span></a
+      >
+    </div><div class="home-writing">
+      {
+        featuredPosts.map((post) => (
+          <a href={`/dev/${post.id}`} class="writing-row" data-reveal>
+            <>
+              <time datetime={post.data.date?.toISOString()}>
+                {dateFormat(post.data.date)}
+              </time>
+              <div>
+                <>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.description}</p>
+                </>
+              </div>
+              <span aria-hidden="true">↗</span>
+            </>
+          </a>
+        ))
+      }
+    </div><div class="journal-note">
+      <span class="mono">Beyond the code</span><p>
+        Books, faith, and a few observations on being human.
+      </p><a class="text-link" href="/journal">Visit the Journal ↗</a>
+    </div>
+  </section>
 </Base>
-
-<style>
-  .home-projects {
-    display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: 2.5rem;
-    align-items: start;
-    padding: 2rem 0;
-    border-top: 1px solid rgb(226 232 240);
-    border-bottom: 1px solid rgb(226 232 240);
-  }
-
-  :global(.dark) .home-projects {
-    border-color: rgb(38 48 61);
-  }
-
-  .home-projects p {
-    max-width: 31rem;
-    color: rgb(92 98 105);
-    line-height: 1.7;
-  }
-
-  :global(.dark) .home-projects p {
-    color: rgb(186 194 201);
-  }
-
-  .home-project-list {
-    display: grid;
-    gap: 1px;
-    background: rgb(226 232 240);
-  }
-
-  :global(.dark) .home-project-list {
-    background: rgb(38 48 61);
-  }
-
-  .home-project-link {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 1rem;
-    align-items: center;
-    padding: 1rem 0.9rem;
-    background: rgb(255 255 255);
-    color: inherit;
-    transition:
-      color 160ms ease,
-      transform 160ms ease;
-  }
-
-  :global(.dark) .home-project-link {
-    background: rgb(0 0 0);
-  }
-
-  .home-project-link:hover {
-    color: rgb(20 184 166);
-    transform: translateX(4px);
-  }
-
-  .home-project-link strong,
-  .home-project-link small {
-    display: block;
-  }
-
-  .home-project-link small {
-    margin-top: 0.2rem;
-    color: rgb(92 98 105);
-    line-height: 1.4;
-  }
-
-  :global(.dark) .home-project-link small {
-    color: rgb(186 194 201);
-  }
-
-  .home-project-link svg {
-    width: 1.1rem;
-    height: 1.1rem;
-  }
-
-  @media (max-width: 767px) {
-    .home-projects {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-  }
-</style>

@@ -1,17 +1,27 @@
 ---
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { humanize } from "@/lib/utils/textConverter";
-
-const { title = "" }: { title?: string } = Astro.props;
+const { title = "", description = "" } = Astro.props;
+const section = Astro.url.pathname.split("/").filter(Boolean)[0] || "home";
+const descriptions: Record<string, string> = {
+  Dev: "Practical notes from building software. Tools, systems, and the details that make them work.",
+  Journal:
+    "A quieter corner. Selected essays on books, faith, and life between cultures.",
+  Projects:
+    "Software made to be used. A selection of products, experiments, and developer tools.",
+  Contact: "Have a role, a project, or an interesting problem? Let’s talk.",
+};
+const subtitle = description || descriptions[title] || "";
 ---
 
-<section>
-  <div class="container text-center">
-    <div
-      class="rounded-2xl bg-gradient-to-b from-body to-light px-8 py-14 dark:from-darkmode-body dark:to-darkmode-light"
-    >
-      <h1 set:text={humanize(title)} />
-      <Breadcrumbs className="mt-6" />
-    </div>
+<header class="page-header">
+  <div class="site-width">
+    <div class="page-path">
+      <a href="/">~</a><span>/</span>{
+        section !== "home" && <a href={`/${section}`}>{section}</a>
+      }
+    </div><h1>{humanize(title)}</h1>{
+      subtitle && <p class="page-description">{subtitle}</p>
+    }<span class="page-header-index" aria-hidden="true"
+      >JY / {section.toUpperCase()}</span>
   </div>
-</section>
+</header>

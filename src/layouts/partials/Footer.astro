@@ -1,29 +1,29 @@
 ---
-import Social from "@/components/Social.astro";
-import config from "@/config/config.json";
-import menu from "@/config/menu.json";
-import social from "@/config/social.json";
-import { markdownify } from "@/lib/utils/textConverter";
-
-const { footer }: { footer: { name: string; url: string }[] } = menu;
+const year = new Date().getFullYear();
 ---
 
-<footer class="bg-light dark:bg-darkmode-light">
-  <div class="container py-5">
-    <div
-      class="flex flex-col items-center justify-center gap-4 text-center text-text-light dark:text-darkmode-text-light md:flex-row md:justify-between"
-    >
-      <p set:html={markdownify(config.params.copyright)} />
-      <ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-        {
-          footer.map((menu) => (
-            <li>
-              <a href={menu.url}>{menu.name}</a>
-            </li>
-          ))
-        }
-      </ul>
-      <Social source={social.main} className="social-icons" />
-    </div>
+<footer class="site-footer">
+  <div class="site-width footer-invitation">
+    <div>
+      <p class="eyebrow">Have something in mind?</p><h2>
+        Let’s make it work<span>.</span>
+      </h2>
+    </div><a
+      class="round-link"
+      href="mailto:yn.jiyu@gmail.com"
+      aria-label="Email Jiyu Yan">↗</a>
+  </div>
+  <div class="site-width footer-bottom">
+    <a class="footer-name" href="/">© {year} Jiyu Yan</a><span
+      class="footer-location"><span class="status-dot"></span> Wrexham, UK</span
+    ><nav aria-label="Footer navigation">
+      <a href="https://github.com/Anderbone" target="_blank" rel="noopener"
+        >GitHub ↗</a
+      ><a
+        href="https://www.linkedin.com/in/jiyu-yan/"
+        target="_blank"
+        rel="noopener">LinkedIn ↗</a
+      ><a href="/contact">Contact</a><a href="/privacy-policy">Privacy</a>
+    </nav><a href="#" aria-label="Back to top">↑ Top</a>
   </div>
 </footer>

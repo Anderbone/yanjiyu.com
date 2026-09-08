@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import PageHeader from "@/partials/PageHeader.astro";
 ---
 
 <Base
@@ -7,14 +8,10 @@ import Base from "@/layouts/Base.astro";
   meta_title="Terminal Spike Privacy Policy | Jiyu Yan"
   description="How the Terminal Spike Android app handles connection details, credentials, terminal data, permissions, backups, and privacy."
 >
-  <header class="policy-header">
-    <div class="container">
-      <a href="/projects/">← Projects</a>
-      <p>Terminal Spike · Android</p>
-      <h1>Privacy Policy</h1>
-      <span>Local-first by design. No analytics, ads, or accounts.</span>
-    </div>
-  </header>
+  <PageHeader
+    title="Privacy Policy"
+    description="Terminal Spike · Local-first by design. No analytics, ads, or accounts."
+  />
 
   <section class="section-sm">
     <div class="container">
@@ -210,70 +207,3 @@ import Base from "@/layouts/Base.astro";
     </div>
   </section>
 </Base>
-
-<style>
-  .policy-header {
-    padding: 4.5rem 0 4rem;
-    border-bottom: 1px solid rgb(226 232 240);
-    background:
-      radial-gradient(
-        circle at 82% 20%,
-        rgb(20 184 166 / 0.1),
-        transparent 30%
-      ),
-      linear-gradient(180deg, rgb(248 250 252), rgb(255 255 255));
-  }
-
-  :global(.dark) .policy-header {
-    border-color: rgb(38 48 61);
-    background:
-      radial-gradient(
-        circle at 82% 20%,
-        rgb(20 184 166 / 0.12),
-        transparent 30%
-      ),
-      linear-gradient(180deg, rgb(10 15 23), rgb(4 8 14));
-  }
-
-  .policy-header a {
-    display: inline-block;
-    margin-bottom: 2.5rem;
-    color: rgb(13 148 136);
-    font-size: 0.9rem;
-    font-weight: 700;
-  }
-
-  .policy-header p {
-    margin-bottom: 0.7rem;
-    color: rgb(20 184 166);
-    font-size: 0.78rem;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-
-  .policy-header h1 {
-    margin-bottom: 1rem;
-    color: inherit;
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    line-height: 0.95;
-  }
-
-  .policy-header span {
-    color: rgb(71 85 105);
-    font-size: 1.1rem;
-  }
-
-  :global(.dark) .policy-header span {
-    color: rgb(186 194 201);
-  }
-
-  @media (max-width: 640px) {
-    .policy-header {
-      padding: 3rem 0;
-    }
-
-    .policy-header a {
-      margin-bottom: 2rem;
-    }
-  }
-</style>

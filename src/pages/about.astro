@@ -1,60 +1,35 @@
 ---
-import ImageMod from "@/components/ImageMod.astro";
-import TableOfContents from "@/components/TableOfContents.astro";
 import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
-import { getTocItems, shouldShowToc } from "@/lib/utils/tableOfContents";
-import { markdownify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
-
-const aboutIndex = await getListPage("about", "-index");
-const { Content, headings } = await render(aboutIndex);
-const { title, description, meta_title, image, toc } = aboutIndex.data;
-const tocItems = getTocItems(headings);
-const showToc = shouldShowToc(tocItems, aboutIndex.body ?? "", {
-  explicitToc: toc,
-});
-
-if (aboutIndex.data.draft) {
-  return Astro.redirect("/404");
-}
+const about = await getListPage("about", "-index");
+const { Content } = await render(about);
+if (about.data.draft) return Astro.redirect("/404");
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  <section class="section-sm">
-    <div class="container">
-      <div class="row justify-center">
-        <div class="md:col-10 lg:col-8">
-          {
-            image && (
-              <ImageMod
-                class="mx-auto mb-6 rounded"
-                src={image}
-                width={1200}
-                height={600}
-                alt={title}
-                format="webp"
-              />
-            )
-          }
-          <h2 set:html={markdownify(title)} class="h3 mb-6" />
-          <div class="content">
-            <Content />
-          </div>
+<Base title="About Jiyu Yan" description={about.data.description}>
+  <div class="site-width about-page">
+    <aside class="about-details" aria-label="At a glance">
+      <p class="eyebrow">At a glance</p>
+      <dl>
+        <div><dt>Based in</dt><dd>Wrexham, UK</dd></div><div>
+          <dt>Working on</dt><dd>Product systems, integrations & AI tools</dd>
+        </div><div>
+          <dt>Experience</dt><dd>6+ years in enterprise software</dd>
+        </div><div>
+          <dt>Away from the keyboard</dt><dd>Fencing, books & writing</dd>
         </div>
-        {
-          showToc && (
-            <aside class="hidden xl:col-3 xl:block">
-              <TableOfContents items={tocItems} />
-            </aside>
-          )
-        }
-      </div>
-    </div>
-  </section>
+      </dl>
+      <a class="text-link" href="/cv"
+        >Experience & CV <span aria-hidden="true">↗</span></a
+      >
+    </aside>
+    <article class="about-story">
+      <header><p class="eyebrow">About</p><h1>A little about me.</h1></header>
+      <div class="content"><Content /></div>
+      <a class="text-link about-contact" href="mailto:yn.jiyu@gmail.com"
+        >Say hello <span aria-hidden="true">↗</span></a
+      >
+    </article>
+  </div>
 </Base>

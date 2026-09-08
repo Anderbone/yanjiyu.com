@@ -38,21 +38,15 @@ const showToc = shouldShowToc(tocItems, page.body ?? "", {
 >
   <PageHeader title={title} />
   <section class="section-sm">
-    <div class="container">
-      <div class="row justify-center">
-        <div class={showToc ? "lg:col-10 xl:col-8" : "lg:col-10"}>
-          <div class="content">
-            <Content />
-          </div>
-        </div>
-        {
-          showToc && (
-            <aside class="hidden xl:col-3 xl:block">
-              <TableOfContents items={tocItems} />
-            </aside>
-          )
-        }
-      </div>
+    <div class:list={["site-width", "article-layout", { "no-toc": !showToc }]}>
+      <article class="content"><Content /></article>
+      {
+        showToc && (
+          <aside>
+            <TableOfContents items={tocItems} />
+          </aside>
+        )
+      }
     </div>
   </section>
 </Base>

@@ -39,7 +39,7 @@ const fontsConfig = Object.entries(theme.fonts.font_family)
     return {
       name,
       cssVariable: `--font-${key}`,
-      provider: fontProviders.google(),
+      provider: fontProviders.fontshare(),
       weights,
       display: "swap",
       fallbacks: [fallback],

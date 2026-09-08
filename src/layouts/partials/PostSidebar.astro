@@ -1,55 +1,37 @@
 ---
 import { humanize } from "@/lib/utils/textConverter";
-
 const { tags, categories, allCategories, collection = "dev" } = Astro.props;
 ---
 
-<div class="lg:col-4">
-  <!-- categories -->
-  <div class="mb-8">
-    <h5 class="mb-6">Categories</h5>
-    <div class="rounded bg-light p-8 dark:bg-darkmode-light">
-      <ul class="space-y-4">
-        {
-          categories.map((category: any) => {
-            const count = allCategories.filter(
-              (c: any) => c === category,
-            ).length;
-            return (
-              <li>
-                <a
-                  class="flex justify-between hover:text-primary dark:hover:text-darkmode-primary"
-                  href={`/${collection}/categories/${category}`}
-                >
-                  {humanize(category)} <span>({count})</span>
-                </a>
-              </li>
-            );
-          })
-        }
-      </ul>
-    </div>
-  </div>
-  <!-- tags -->
-  <div class="mb-8">
-    <h5 class="mb-6">Tags</h5>
-    <div class="rounded bg-light p-6 dark:bg-darkmode-light">
-      <ul>
-        {
-          tags.map((tag: any) => {
-            return (
-              <li class="inline-block">
-                <a
-                  class="m-1 block rounded bg-white px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-body dark:hover:bg-darkmode-primary dark:hover:text-text-dark"
-                  href={`/${collection}/tags/${tag}`}
-                >
-                  {humanize(tag)}
-                </a>
-              </li>
-            );
-          })
-        }
-      </ul>
-    </div>
-  </div>
-</div>
+<aside class="taxonomy-sidebar" aria-label="Browse this section">
+  <section>
+    <h2>Categories</h2><ul>
+      {
+        categories.map((category: string) => (
+          <li>
+            <a href={`/${collection}/categories/${category}`}>
+              {humanize(category)}
+              <span>
+                {String(
+                  allCategories.filter((c: string) => c === category).length,
+                ).padStart(2, "0")}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul><a class="taxonomy-all" href={`/${collection}/categories`}
+      >All categories ↗</a>
+  </section>
+  <section>
+    <h2>Explore topics</h2><div class="taxonomy-tags">
+      {
+        tags
+          .slice(0, 18)
+          .map((tag: string) => (
+            <a href={`/${collection}/tags/${tag}`}>{humanize(tag)}</a>
+          ))
+      }
+    </div><a class="taxonomy-all" href={`/${collection}/tags`}>All tags ↗</a>
+  </section>
+</aside>

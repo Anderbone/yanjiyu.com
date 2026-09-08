@@ -1,5 +1,4 @@
 ---
-import TwSizeIndicator from "@/components/TwSizeIndicator.astro";
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
 import { plainify } from "@/lib/utils/textConverter";
@@ -13,8 +12,7 @@ import {
 import { Font } from "astro:assets";
 import { getCollection } from "astro:content";
 import { ClientRouter } from "astro:transitions";
-import Announcement from "./helpers/Announcement";
-import SearchModal from "./helpers/SearchModal";
+import CommandPalette from "./components/CommandPalette.astro";
 
 // font families - extract font names for Font component (filter out type keys)
 const fontEntries = Object.entries(theme.fonts.font_family).filter(
@@ -77,41 +75,37 @@ const searchData = [...aboutPages, ...searchPosts];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
+    <script is:inline>
+      (() => {
+        let theme = "dark";
+        try {
+          theme = localStorage.getItem("theme") || "dark";
+        } catch {}
+        document.documentElement.classList.toggle("dark", theme !== "light");
+      })();
+    </script>
     <!-- google tag manager -->
     {
       config.google_tag_manager.enable && (
         <GoogleTagmanager id={config.google_tag_manager.gtm_id} />
       )
     }
-    <!-- favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/images/favicon-16x16.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/images/favicon-32x32.png"
-    />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-    <link rel="shortcut icon" href={config.site.favicon} />
     <!-- theme meta -->
     <meta name="theme-name" content="yanjiyu.com" />
     <meta name="msapplication-TileColor" content="#000000" />
     <meta
       name="theme-color"
       media="(prefers-color-scheme: light)"
-      content="#fff"
+      content="#f2f0e8"
     />
     <meta
       name="theme-color"
       media="(prefers-color-scheme: dark)"
-      content="#000"
+      content="#11140f"
     />
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -215,13 +209,15 @@ const searchData = [...aboutPages, ...searchPosts];
         <GoogleTagmanagerNoscript id={config.google_tag_manager.gtm_id} />
       )
     }
-    <Announcement client:only="react" />
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <Header />
-    <SearchModal client:only="react" searchData={searchData} />
+    <CommandPalette searchData={searchData} />
     <main class="grow" id="main-content">
       <slot />
     </main>
     <Footer />
-    <TwSizeIndicator />
+    <script>
+      import "@/scripts/site";
+    </script>
   </body>
 </html>

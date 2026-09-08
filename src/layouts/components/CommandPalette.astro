@@ -1,0 +1,67 @@
+---
+const { searchData } = Astro.props;
+const pages = [
+  { title: "Home", href: "/", group: "Page" },
+  { title: "About", href: "/about", group: "Page" },
+  { title: "Projects", href: "/projects", group: "Page" },
+  { title: "CV", href: "/cv", group: "Page" },
+  { title: "Dev", href: "/dev", group: "Page" },
+  { title: "Journal", href: "/journal", group: "Page" },
+  { title: "Contact", href: "/contact", group: "Page" },
+];
+const entries = [
+  ...pages,
+  ...searchData
+    .filter((item: any) => item.group !== "page")
+    .map((item: any) => ({
+      title: item.frontmatter.title,
+      href: `/${item.slug}`,
+      group: item.group === "dev" ? "Dev" : "Journal",
+      keywords: [
+        item.frontmatter.description,
+        ...(item.frontmatter.tags || []),
+        ...(item.frontmatter.categories || []),
+      ].join(" "),
+    })),
+];
+---
+
+<dialog class="command-palette" aria-labelledby="command-title">
+  <div class="command-heading">
+    <h2 id="command-title">Go somewhere.</h2><button
+      data-command-close
+      aria-label="Close search"><kbd>Esc</kbd></button>
+  </div>
+  <label class="sr-only" for="command-input">Search pages and writing</label>
+  <input
+    id="command-input"
+    type="search"
+    placeholder="Search pages, projects, writing…"
+    autocomplete="off"
+  />
+  <p class="command-count" role="status" aria-live="polite"></p>
+  <div class="command-results">
+    {
+      entries.map((entry) => (
+        <a
+          href={entry.href}
+          data-command-result
+          data-search={`${entry.title} ${entry.group} ${"keywords" in entry ? entry.keywords : ""}`.toLowerCase()}
+        >
+          <>
+            <span>{entry.title}</span>
+            <small>{entry.group}</small>
+            <span aria-hidden="true">↗</span>
+          </>
+        </a>
+      ))
+    }
+  </div>
+  <p class="command-empty" hidden>
+    No matches. Try a topic like “Linux” or “AI”.
+  </p>
+  <div class="command-footer">
+    <span><kbd>↑</kbd> <kbd>↓</kbd> navigate <kbd>↵</kbd> open</span><span
+      >Explore with curiosity.</span>
+  </div>
+</dialog>

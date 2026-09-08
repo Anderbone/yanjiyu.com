@@ -1,128 +1,45 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getListPage } from "@/lib/contentParser.astro";
 import PageHeader from "@/partials/PageHeader.astro";
-import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-
-const contactIndex = await getListPage("contact", "-index");
-const { title, description, meta_title, image } = contactIndex.data;
+import { getListPage } from "@/lib/contentParser.astro";
+const contact = await getListPage("contact", "-index");
+if (contact.data.draft) return Astro.redirect("/404");
 const links = [
   {
     label: "Email",
     value: "yn.jiyu@gmail.com",
     href: "mailto:yn.jiyu@gmail.com",
-    icon: FiMail,
   },
-  {
-    label: "GitHub",
-    value: "github.com/Anderbone",
-    href: "https://github.com/Anderbone",
-    icon: FiGithub,
-  },
+  { label: "GitHub", value: "Anderbone", href: "https://github.com/Anderbone" },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/jiyu-yan",
+    value: "Jiyu Yan",
     href: "https://www.linkedin.com/in/jiyu-yan/",
-    icon: FiLinkedin,
   },
 ];
-
-if (contactIndex.data.draft) {
-  return Astro.redirect("/404");
-}
 ---
 
-<Base
-  title={title}
-  meta_title={meta_title}
-  description={description}
-  image={image}
->
-  <PageHeader title={title} />
-  <section class="section-sm">
-    <div class="container">
-      <div class="row justify-center">
-        <div class="lg:col-8">
-          <div class="content mb-10 text-center">
-            <p>
-              The most reliable way to reach me is email. I am open to software
-              engineering, implementation, integration, and product workflow
-              roles in the UK.
-            </p>
-          </div>
-          <div class="contact-links">
-            {
-              links.map(({ label, value, href, icon: Icon }) => (
-                <a
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener" : undefined}
-                >
-                  <Icon aria-hidden="true" />
-                  <span>
-                    <strong>{label}</strong>
-                    <small>{value}</small>
-                  </span>
-                </a>
-              ))
-            }
-          </div>
-        </div>
-      </div>
+<Base title="Contact Jiyu Yan" description={contact.data.description}
+  ><PageHeader title="Contact" /><section class="site-width section-space">
+    <p style="max-width:620px;margin-bottom:40px;line-height:1.9">
+      I’m open to software engineering, implementation, integration, and product
+      workflow roles in the UK. Email is the most reliable way to reach me.
+    </p><div class="contact-list">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noopener" : undefined}
+          >
+            <>
+              <span>{link.label}</span>
+              <strong>{link.value}</strong>
+              <b aria-hidden="true">↗</b>
+            </>
+          </a>
+        ))
+      }
     </div>
-  </section>
-</Base>
-
-<style>
-  .contact-links {
-    display: grid;
-    gap: 1px;
-    background: rgb(226 232 240);
-  }
-
-  :global(.dark) .contact-links {
-    background: rgb(38 48 61);
-  }
-
-  .contact-links a {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 1rem;
-    align-items: center;
-    padding: 1.1rem 1rem;
-    background: rgb(255 255 255);
-    color: inherit;
-    transition:
-      color 160ms ease,
-      transform 160ms ease;
-  }
-
-  :global(.dark) .contact-links a {
-    background: rgb(0 0 0);
-  }
-
-  .contact-links a:hover {
-    color: rgb(20 184 166);
-    transform: translateX(4px);
-  }
-
-  .contact-links svg {
-    width: 1.2rem;
-    height: 1.2rem;
-  }
-
-  .contact-links strong,
-  .contact-links small {
-    display: block;
-  }
-
-  .contact-links small {
-    margin-top: 0.1rem;
-    color: rgb(92 98 105);
-    overflow-wrap: anywhere;
-  }
-
-  :global(.dark) .contact-links small {
-    color: rgb(186 194 201);
-  }
-</style>
+  </section></Base
+>

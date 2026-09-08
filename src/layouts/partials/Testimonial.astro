@@ -7,7 +7,8 @@ import {
   SwiperSlide,
   SwiperWrapper,
 } from "astro-swiper";
-import type { SwiperOptions } from "swiper/types";
+import type { ComponentProps } from "astro/types";
+type SwiperOptions = NonNullable<ComponentProps<typeof Swiper>["options"]>;
 
 const { testimonial } = Astro.props;
 
@@ -98,7 +99,7 @@ const swiperOptions: SwiperOptions = {
                         </div>
                       </div>
                     </SwiperSlide>
-                  )
+                  ),
                 )}
               </SwiperWrapper>
               <SwiperPagination class="testimonial-slider-pagination flex items-center justify-center" />

@@ -1,55 +1,27 @@
 ---
-import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
 import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
-import { FaRegFolder, FaRegUserCircle } from "react-icons/fa";
-import ImageMod from "./ImageMod.astro";
-
-const { summary_length }: { summary_length: number } = config.settings;
 const { data, collection = "dev" } = Astro.props;
-const { title, image, date, author, categories } = data.data;
+const { title, description, date, categories = [] } = data.data;
 ---
 
-<div class="bg-body dark:bg-darkmode-body">
-  {
-    image && (
-      <ImageMod
-        class="mb-6 w-full rounded"
-        src={image}
-        alt={title}
-        width={445}
-        height={230}
-        format="webp"
-      />
-    )
-  }
-  <h4 class="mb-3">
-    <a href={`/${collection}/${data.id}`}>
-      {title}
-    </a>
-  </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <span>
-        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-        {humanize(author)}
-      </span>
-    </li>
-    <li class="mr-4 inline-block">
-      <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-      {
-        categories.map((category: string, index: number) => (
+<article class="post-card">
+  <div class="post-meta">
+    {date && <time datetime={date.toISOString()}>{dateFormat(date)}</time>}{
+      categories
+        .slice(0, 2)
+        .map((category: string) => (
           <a href={`/${collection}/categories/${slugify(category)}`}>
             {humanize(category)}
-            {index !== categories.length - 1 && ","}
           </a>
         ))
-      }
-    </li>
-    {date && <li class="inline-block">{dateFormat(date)}</li>}
-  </ul>
-  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
-  <a class="btn btn-outline-primary btn-sm" href={`/${collection}/${data.id}`}>
-    read more
-  </a>
-</div>
+    }
+  </div>
+  <h3><a href={`/${collection}/${data.id}`}>{title}</a></h3>
+  <p>{description || plainify(data.body?.slice(0, 200))}</p>
+  <a
+    class="post-read"
+    href={`/${collection}/${data.id}`}
+    aria-label={`Read ${title}`}>Read story <span aria-hidden="true">↗</span></a
+  >
+</article>

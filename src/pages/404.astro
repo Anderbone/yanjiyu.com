@@ -2,26 +2,14 @@
 import Base from "@/layouts/Base.astro";
 ---
 
-<Base title="Page Not Found">
-  <section class="section-sm text-center">
-    <div class="container">
-      <div class="row justify-center">
-        <div class="sm:col-10 md:col-8 lg:col-6">
-          <span
-            class="text-[8rem] block font-bold text-text-dark dark:text-darkmode-text-dark"
-          >
-            404
-          </span>
-          <h1 class="h2 mb-4">Page not found</h1>
-          <div class="content">
-            <p>
-              The page you are looking for might have been removed, had its name
-              changed, or is temporarily unavailable.
-            </p>
-          </div>
-          <a href="/" class="btn btn-primary mt-8">Back to home</a>
-        </div>
-      </div>
-    </div>
+<Base title="404 — Page not found" noindex>
+  <section class="site-width error-page">
+    <p class="eyebrow">An unexpected detour</p><span
+      class="error-code"
+      aria-hidden="true">404<span>_</span></span
+    ><h1>This path ends here.</h1><p>
+      The page may have moved, or the address might be mistyped.<br />There’s
+      plenty more to explore.
+    </p><a class="button button-accent" href="/">Back to home ↗</a>
   </section>
 </Base>
