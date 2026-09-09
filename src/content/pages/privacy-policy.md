@@ -91,4 +91,4 @@ I may update this policy when the website, hosting, analytics, comments, or cont
 
 ## Contact
 
-For privacy questions or requests, email [yn.jiyu@gmail.com](mailto:yn.jiyu@gmail.com).
+For privacy questions or requests, email [hi@yanjiyu.com](mailto:hi@yanjiyu.com).
