@@ -1,6 +1,6 @@
 ---
 title: "Terminal Spike: a Native Android Terminal"
-description: "An Android SSH client for remote work, with tmux sessions, SFTP, configurable controls, and a short demo of remote coding from my phone."
+description: "My Android workspace for Herdr and remote coding, with SSH, built-in Mosh, touch controls, and links into code and notes."
 date: 2026-09-07
 author: "Jiyu Yan"
 categories: ["Projects"]
@@ -10,7 +10,27 @@ draft: false
 
 import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
 
-Terminal Spike is my native Android terminal app for working on remote machines from a phone. It brings SSH connections, multiple terminal tabs, tmux sessions, and file transfers into a workspace that keeps its settings and connection details on the device.
+Terminal Spike is my open-source native Android terminal for working on remote machines from a phone. SSH, built-in Mosh, Herdr, tmux, and file transfers live in one workspace, with connection details stored on the device.
+
+[Get it on Google Play](https://play.google.com/store/apps/details?id=com.yanjiyu.terminalspike) · [View source](https://github.com/Anderbone/terminal-spike) · [Download releases](https://github.com/Anderbone/terminal-spike/releases)
+
+## Herdr is the centre of my workflow
+
+I use [Herdr](https://herdr.dev/docs/) on my computer to organise projects, terminal panes, and coding agents. Its background server keeps terminal sessions running when I detach, so I can return from my phone to the work already in progress. Agent status helps me see which pane is working and which needs attention.
+
+Terminal Spike understands Herdr sessions and pane layout metadata. Its connection picker lets me resume a running Herdr session, and touch handling makes navigating spaces, tabs, and agents practical on a small screen. Tap to navigate; double-tap to bring up the keyboard.
+
+Scrolling needs to respect the application inside each pane. Where Herdr exposes usable pane history, Terminal Spike offers a native scrollback reader. Interactive applications can use remote mouse input instead. That distinction matters when a coding agent owns its own transcript UI.
+
+![Terminal Spike connection picker offering a running Herdr session alongside tmux sessions](/images/terminal-spike-herdr.jpg)
+
+Herdr is a separate open-source project. My work here is the Android client and its integration with that remote workspace.
+
+## Follow the work into code and notes
+
+Terminal output often points to the next thing I need: a file, a browser editor, or a project note. Terminal Spike recognises web URLs and `obsidian://` links, including terminal hyperlinks, so those references can open in the appropriate app.
+
+In my setup, code-server gives me a browser editor, Obsidian holds project notes, and [Pi Edge](/dev/pi-edge) brings Pi into Obsidian. Tailscale connects my devices when I am away from home. I describe how these pieces fit together in [my current workflow](/dev/workflow-anywhere).
 
 ## A short demo
 
@@ -34,7 +54,7 @@ The app uses Kotlin and Jetpack Compose for its application UI. The terminal its
 
 The terminal engine handles primary and alternate screens, cursor movement, scroll regions, colours, bracketed paste, and common terminal queries. Scrollback is bounded. For app-selected tmux sessions, a separate local history model supports scrolling on the phone, while an explicit remote-mouse mode is available for interacting with terminal applications that use it.
 
-Mosh support is implemented through an optional, separately installed extension. SSH works without it. Keeping the transport extension separate also keeps its native dependencies and lifecycle outside the main app.
+Mosh is built into the app. It starts through SSH, then uses its encrypted UDP transport to make an interactive session more tolerant of network interruptions. The connected computer needs `mosh-server`; Herdr or tmux keeps the remote workspace available independently of the phone connection.
 
 ## Keeping data on the device
 

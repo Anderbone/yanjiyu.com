@@ -1,0 +1,71 @@
+---
+title: "My anywhere workflow: Herdr, code-server, Obsidian, and Pi Edge"
+description: "How I connect terminals, coding agents, a browser editor, and project notes through Terminal Spike and Tailscale."
+date: 2026-10-22
+author: "Jiyu Yan"
+categories: ["Workflow"]
+tags: ["Terminal Spike", "Herdr", "code-server", "Obsidian", "Pi", "Tailscale"]
+pinned: true
+draft: false
+---
+
+import WorkflowMap from "@/components/WorkflowMap.astro";
+
+My current setup is Terminal Spike, Herdr, code-server, Obsidian, and Pi Edge, connected through Tailscale. I can move from a terminal session to code, from code to a project note, and from that note into a Pi conversation, whether I am at my desk or on my phone.
+
+<WorkflowMap />
+
+The computer holds the repositories and runs the tools. The phone gives me several ways to work with them.
+
+## What each piece does
+
+| Tool                                              | Its place in my workflow                                                                |
+| ------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [Terminal Spike](/dev/terminal-spike)             | My Android entry point for remote terminals, with SSH and Mosh.                         |
+| [Herdr](https://herdr.dev/docs/)                  | Organises the computer's terminal spaces, panes, and coding agents.                     |
+| [code-server](https://coder.com/docs/code-server) | Gives me a VS Code editor in the browser for reading and editing the remote repository. |
+| [Obsidian](https://obsidian.md)                   | Holds the project notes, plans, and decisions I return to.                              |
+| [Pi Edge](/dev/pi-edge)                           | Lets me work with Pi on my computer from inside Obsidian.                               |
+| [Tailscale](https://tailscale.com/docs)           | Connects my devices over a private network when I am away from home.                    |
+
+## Start in Terminal Spike, return to Herdr
+
+Terminal Spike connects my phone to the computer. I resume Herdr and return to the projects and agents already running there. Spaces and tabs give the work structure; agent status tells me where my attention is needed.
+
+That makes Herdr the centre of the terminal side of this setup. I can start work at the desk, detach, and reattach from the phone while the computer and Herdr server remain running. Terminal Spike's Herdr handling makes that workspace usable through touch.
+
+SSH or Mosh carries the terminal connection. Herdr keeps the terminal workspace on the host. Tailscale provides the network path between devices. Each handles a different part of continuing the work.
+
+## Follow links into the editor and notes
+
+A terminal is useful for running agents and commands. For inspecting a source file or reviewing a change, I also use code-server against the repository on the computer.
+
+For the reasoning behind a change, I go to Obsidian. A project note can hold the plan, the decisions behind it, and links back to relevant tools or pages. Terminal Spike supports web URLs and `obsidian://` note links, so terminal output can lead directly to the editor or a note on the phone.
+
+The links are part of the workflow: a useful answer should help me reach the relevant file or note again. Obsidian note links require that the destination note exists in the vault on the device opening it; Tailscale does not synchronise the vault.
+
+## Continue from a note with Pi Edge
+
+When the next step starts with a plan or question in Obsidian, I open Pi Edge. I attach the current note or a selection and send it to Pi on the computer. Images can supply context too.
+
+The response stays beside my notes. Attached note links in messages and conversation history let me return to the source, while Terminal Spike and code-server remain available for checking commands and reviewing code.
+
+Pi Edge has its own saved conversations. Moving between these tools gives me access to the same project materials; it does not automatically merge Herdr agent conversations with Pi Edge sessions.
+
+## A typical loop
+
+1. Open the project note in Obsidian and clarify the next change.
+2. Use Pi Edge to discuss the note with Pi, attaching the relevant context.
+3. Switch to Terminal Spike and Herdr to work with terminal agents and commands.
+4. Open code-server to inspect the implementation and review changes.
+5. Update the project note with the outcome and links needed for the next session.
+
+I choose the entry point to suit the task. Sometimes I begin with an agent already running in Herdr; sometimes a note is the best place to start.
+
+## Take the same environment elsewhere
+
+With Tailscale connected on my devices, I can reach the computer's terminal, browser editor, and Pi bridge away from my home network. The services still need to be running and reachable under the network's access rules. The computer must stay awake.
+
+This extends [my earlier tmux and Termius setup](/dev/codex-anywhere-tmux-termius-tailscale). Terminal Spike is now my phone terminal, Herdr organises the agent workspace, and Obsidian with Pi Edge brings project context into the same loop.
+
+[Explore Terminal Spike](/dev/terminal-spike) · [Explore Pi Edge](/dev/pi-edge) · [See all projects](/projects)

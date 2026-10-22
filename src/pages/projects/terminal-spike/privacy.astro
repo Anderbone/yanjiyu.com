@@ -17,12 +17,11 @@ import PageHeader from "@/partials/PageHeader.astro";
     <div class="container">
       <div class="row justify-center">
         <article class="content lg:col-10 xl:col-8">
-          <p><strong>Last updated: 20 August 2026</strong></p>
+          <p><strong>Last updated: 22 October 2026</strong></p>
 
           <p>
             Terminal Spike is an Android SSH terminal app developed by Jiyu Yan.
-            It can also connect through Mosh when the optional, separately
-            installed Terminal Spike Mosh extension is available.
+            It also includes built-in Mosh transport.
           </p>
 
           <p>
@@ -85,10 +84,8 @@ import PageHeader from "@/partials/PageHeader.astro";
           </p>
 
           <p>
-            If you use Mosh, the main app exchanges only the session data needed
-            to run the connection with the separately installed, verified
-            Terminal Spike Mosh extension on your device. Mosh starts through
-            SSH and then uses its encrypted UDP transport.
+            If you use Mosh, the built-in transport starts through SSH and then
+            uses encrypted UDP to communicate directly with your chosen server.
           </p>
 
           <h2>Local Storage and Security</h2>
@@ -161,7 +158,7 @@ import PageHeader from "@/partials/PageHeader.astro";
             analytics providers, data brokers, or other companies. Data is sent
             only as necessary for actions you initiate—for example, to a remote
             server you choose, an Android document provider you select for a
-            backup, or the optional on-device Mosh extension.
+            backup, or the built-in Mosh transport.
           </p>
 
           <h2>Retention and Deletion</h2>

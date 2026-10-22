@@ -1,12 +1,13 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PageHeader from "@/partials/PageHeader.astro";
+import WorkflowMap from "@/components/WorkflowMap.astro";
 import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
 ---
 
 <Base
   title="Projects — Jiyu Yan"
-  description="Selected software by Jiyu Yan: Terminal Spike, OpsDesk AI, and Ralph Loop."
+  description="Selected software by Jiyu Yan: Terminal Spike, Pi Edge, OpsDesk AI, and Ralph Loop."
 >
   <PageHeader title="Projects" />
   <div class="site-width project-collection">
@@ -21,18 +22,27 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
         >
           Terminal Spike<span>.</span>
         </h2><p class="project-lede">Your remote workspace, on Android.</p><p>
-          A native terminal for SSH connections, tmux sessions, and SFTP file
-          transfers. Built for working on remote machines from your phone, with
-          configurable controls and a workspace that stays on your device.
+          My open-source Android terminal for SSH, built-in Mosh, and remote
+          coding. Resume Herdr spaces and agents, navigate with touch, and
+          follow links into code-server or Obsidian. Connection details stay on
+          your device.
         </p><dl class="project-spec">
           <div><dt>Platform</dt><dd>Native Android</dd></div><div>
-            <dt>Built for</dt><dd>SSH, tmux & SFTP</dd>
+            <dt>Built for</dt><dd>Herdr, tmux & remote agents</dd>
           </div><div><dt>Privacy</dt><dd>No analytics or accounts</dd></div>
         </dl><div class="project-actions">
-          <a class="button button-accent" href="/dev/terminal-spike"
-            >Read the writeup ↗</a
+          <a
+            class="button button-accent"
+            href="https://play.google.com/store/apps/details?id=com.yanjiyu.terminalspike"
+            >Get it on Google Play ↗</a
+          ><a class="text-link" href="/dev/terminal-spike"
+            >Herdr & app writeup →</a
+          ><a
+            class="text-link"
+            href="https://github.com/Anderbone/terminal-spike">View source ↗</a
           ><a class="text-link" href="/projects/terminal-spike/privacy"
-            >Privacy policy →</a>
+            >Privacy policy →</a
+          >
         </div>
       </div><div class="project-demo-stage" data-reveal>
         <span class="preview-label">A workspace that goes with you.</span
@@ -40,12 +50,87 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
       </div>
     </section>
     <section
+      id="pi-edge"
+      class="project-detail"
+      aria-labelledby="pi-edge-title"
+    >
+      <div class="project-detail-copy" data-reveal>
+        <p class="eyebrow">02 / Obsidian · Remote agents</p>
+        <h2 id="pi-edge-title">Pi Edge<span>.</span></h2>
+        <p class="project-lede">Your notes. Your computer. Pi beside them.</p>
+        <p>
+          An Obsidian plugin I built to chat with Pi on my computer from my
+          phone or desktop. Attach notes and images, switch models, and return
+          to earlier conversations without leaving the vault.
+        </p>
+        <dl class="project-spec">
+          <div><dt>Client</dt><dd>Obsidian on mobile & desktop</dd></div>
+          <div>
+            <dt>Connection</dt><dd>Paired bridge over LAN or Tailscale</dd>
+          </div>
+          <div><dt>Context</dt><dd>Notes, selections & images</dd></div>
+        </dl>
+        <div class="project-actions">
+          <a class="button button-accent" href="/dev/pi-edge"
+            >Explore Pi Edge ↗</a
+          >
+          <a
+            class="text-link"
+            href="https://community.obsidian.md/plugins/pi-edge"
+            >Install plugin ↗</a
+          >
+          <a
+            class="text-link"
+            href="https://github.com/Anderbone/pi-obsidian-edge"
+            >View source ↗</a
+          >
+        </div>
+      </div>
+      <a class="project-product-image" href="/dev/pi-edge" data-reveal>
+        <div class="project-window-bar">
+          <span>pi edge / obsidian on a Galaxy Fold</span><span
+            aria-hidden="true">↗</span
+          >
+        </div>
+        <img
+          src="/images/pi-edge-obsidian.webp"
+          width="2256"
+          height="2408"
+          alt="Pi Edge chat beside an Obsidian note, with a clickable note attachment"
+          loading="lazy"
+        />
+      </a>
+    </section>
+    <section
+      id="workflow"
+      class="project-detail"
+      aria-labelledby="workflow-title"
+    >
+      <div class="project-detail-copy" data-reveal>
+        <p class="eyebrow">Workflow / Connected tools</p>
+        <h2 id="workflow-title">One workspace<span>.</span></h2>
+        <p class="project-lede">Pick up the work wherever I am.</p>
+        <p>
+          Terminal Spike opens my Herdr workspace. code-server gives me a
+          browser editor. Obsidian holds the project context, with Pi Edge for
+          working with Pi beside my notes. Links connect the views; Tailscale
+          connects my devices.
+        </p>
+        <div class="project-actions">
+          <a class="button button-accent" href="/dev/workflow-anywhere"
+            >See my workflow ↗</a
+          >
+        </div>
+      </div>
+      <div data-reveal><WorkflowMap /></div>
+    </section>
+    <section
       id="opsdesk-ai"
       class="project-detail"
       aria-labelledby="opsdesk-title"
     >
       <div class="project-detail-copy" data-reveal>
-        <p class="eyebrow">02 / AI product · Full stack</p><h2
+        <p class="eyebrow">03 / AI product · Full stack</p><h2
           id="opsdesk-title"
         >
           OpsDesk AI<span>.</span>
@@ -69,7 +154,8 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
             class="text-link"
             href="https://github.com/Anderbone/opsdesk-ai"
             target="_blank"
-            rel="noopener">View source ↗</a>
+            rel="noopener">View source ↗</a
+          >
         </div>
       </div><a
         class="project-product-image"
@@ -86,7 +172,8 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
           height="1826"
           alt="OpsDesk AI service desk showing enquiries, approval status, and operational controls"
           loading="lazy"
-        /></a>
+        /></a
+      >
     </section>
     <section
       id="ralph-loop"
@@ -94,7 +181,7 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
       aria-labelledby="ralph-title"
     >
       <div class="project-detail-copy" data-reveal>
-        <p class="eyebrow">03 / TypeScript · Agent tooling</p><h2
+        <p class="eyebrow">04 / TypeScript · Agent tooling</p><h2
           id="ralph-title"
         >
           Ralph Loop<span>.</span>
@@ -109,7 +196,8 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
             class="text-link"
             href="https://github.com/Anderbone/ralph-loop"
             target="_blank"
-            rel="noopener">View source ↗</a>
+            rel="noopener">View source ↗</a
+          >
         </div>
       </div><div class="workflow-terminal" data-reveal>
         <div class="project-window-bar">
@@ -133,7 +221,8 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
           </ol><p class="workflow-result">
             Reviewed plans → verified changes<span
               class="terminal-cursor"
-              aria-hidden="true">_</span>
+              aria-hidden="true">_</span
+            >
           </p>
         </div>
       </div>

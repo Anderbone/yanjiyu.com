@@ -8,7 +8,9 @@ tags: ["Codex", "tmux", "Mosh", "SSH", "Tailscale", "Termius"]
 draft: false
 ---
 
-My current mobile [Codex](https://openai.com/codex) setup is deliberately simple: I use [Termius](https://termius.com/) on my phone to connect to my own laptop, then run Codex inside a [tmux](https://github.com/tmux/tmux) session. For a normal connection I use SSH; on a less reliable mobile network I use [Mosh](https://mosh.org/) instead.
+> **Update, October 2026:** I now use Terminal Spike with Herdr, code-server, Obsidian, and Pi Edge. Read [my current workflow](/dev/workflow-anywhere). The article below describes my earlier setup.
+
+My earlier mobile [Codex](https://openai.com/codex) setup is deliberately simple: I use [Termius](https://termius.com/) on my phone to connect to my own laptop, then run Codex inside a [tmux](https://github.com/tmux/tmux) session. For a normal connection I use SSH; on a less reliable mobile network I use [Mosh](https://mosh.org/) instead.
 
 When I am at home, this is just SSH over my home Wi-Fi. When I am outside, I turn on [Tailscale](https://tailscale.com/docs) and use the same Termius profile against the laptop's Tailscale address. The workflow stays the same:
 

@@ -1,0 +1,92 @@
+<figure class="workspace-map" aria-label="Workflow connections">
+  <p class="map-heading">My connected workspace</p>
+  <a href="/dev/terminal-spike"
+    >Terminal Spike <span>Android · SSH / Mosh</span></a
+  >
+  <div class="map-path" aria-hidden="true">↓</div>
+  <a class="map-host" href="https://herdr.dev/docs/"
+    >Herdr <span>Spaces · Terminals · Agents</span></a
+  >
+  <p class="map-links">Follow links into code and notes ↕</p>
+  <div class="map-views">
+    <a href="https://coder.com/docs/code-server"
+      >code-server <span>Browser editor</span></a
+    >
+    <a href="https://obsidian.md">Obsidian <span>Project notes</span></a>
+  </div>
+  <div class="map-path" aria-hidden="true">↕</div>
+  <a href="/dev/pi-edge"
+    >Pi Edge <span>Obsidian ↔ Bridge ↔ Pi on my computer</span></a
+  >
+  <figcaption>
+    Tailscale connects my devices. Links connect the work.
+  </figcaption>
+</figure>
+
+<style>
+  .workspace-map {
+    margin: 2rem 0;
+    padding: clamp(20px, 4vw, 36px);
+    border-block: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    text-align: center;
+  }
+  .map-heading {
+    margin: 0 0 24px;
+    font: 12px var(--label-font);
+    color: var(--muted);
+  }
+  .workspace-map a {
+    display: block;
+    padding: 12px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 21px;
+    line-height: 1.4;
+    transition:
+      color 0.2s,
+      background 0.2s;
+  }
+  .workspace-map a:hover,
+  .workspace-map a:focus-visible {
+    color: var(--accent);
+    background: var(--line);
+  }
+  .workspace-map span {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font: 12px/1.6 var(--label-font);
+  }
+  .map-host {
+    border-block: 1px solid var(--line);
+  }
+  .map-path {
+    color: var(--accent);
+    padding: 5px;
+  }
+  .map-links {
+    margin: 20px 0 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .map-views {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .map-views a + a {
+    border-left: 1px solid var(--line);
+  }
+  .workspace-map figcaption {
+    margin-top: 24px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .workspace-map a {
+      transition: none;
+    }
+  }
+</style>

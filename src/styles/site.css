@@ -2052,3 +2052,14 @@ nav[aria-label="Pagination"] svg {
   width: 20px;
   height: 20px;
 }
+
+.pi-edge-preview {
+  background: #171717;
+}
+.pi-edge-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  padding-top: 58px;
+}
