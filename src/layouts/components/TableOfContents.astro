@@ -1,4 +1,9 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import type { TocItem } from "@/lib/utils/tableOfContents";
 
 const { items } = Astro.props as { items: TocItem[] };
@@ -8,12 +13,12 @@ const { items } = Astro.props as { items: TocItem[] };
   items.length > 0 && (
     <nav class="toc-sidebar" aria-labelledby="toc-heading">
       <h2 id="toc-heading" class="toc-title">
-        On This Page
+        {t("On This Page")}
       </h2>
       <ol class="toc-list">
         {items.map((item) => (
           <li class={`toc-item toc-level-${item.level}`}>
-            <a class="toc-link" href={`#${item.slug}`}>
+            <a class="toc-link" href={localePath(`#${item.slug}`, locale)}>
               {item.text}
             </a>
           </li>

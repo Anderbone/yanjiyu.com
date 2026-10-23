@@ -6,6 +6,18 @@ import {
   type CollectionKey,
 } from "astro:content";
 
+import type { Locale } from "@/lib/i18n";
+type LocalizedCollection<C extends CollectionKey> =
+  | C
+  | Extract<CollectionKey, `zh${Capitalize<C>}`>;
+export const localizedCollection = <C extends CollectionKey>(
+  name: C,
+  locale: Locale,
+): LocalizedCollection<C> =>
+  (locale === "zh"
+    ? `zh${name[0].toUpperCase()}${name.slice(1)}`
+    : name) as LocalizedCollection<C>;
+
 type PageData = {
   title: string;
   meta_title?: string;
@@ -15,27 +27,30 @@ type PageData = {
 };
 
 export const getSinglePage = async <C extends CollectionKey>(
-  collectionName: C
+  collectionName: C,
+  locale: Locale = "en",
 ): Promise<CollectionEntry<C>[]> => {
   const allPages = await getCollection(
-    collectionName,
-    ({ data, id }) => !(data as PageData)?.draft && !id.startsWith("-")
+    localizedCollection(collectionName, locale) as CollectionKey,
+    (entry: { data: unknown; id: string }) =>
+      !(entry.data as PageData)?.draft && !entry.id.startsWith("-"),
   );
-  return allPages;
+  return allPages as unknown as CollectionEntry<C>[];
 };
 
 export const getListPage = async <C extends CollectionKey>(
   collectionName: C,
-  documentId: "-index" | string
+  documentId: "-index" | string,
+  locale: Locale = "en",
 ): Promise<CollectionEntry<C>> => {
   const data = (await getEntry(
-    collectionName,
-    documentId
+    localizedCollection(collectionName, locale),
+    documentId,
   )) as CollectionEntry<C> | null;
 
   if (!data) {
     throw new Error(
-      `No page found for the collection: ${collectionName} with filename: ${documentId}`
+      `No page found for the collection: ${collectionName} with filename: ${documentId}`,
     );
   }
 

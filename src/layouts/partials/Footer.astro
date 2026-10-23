@@ -1,32 +1,38 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="site-width footer-invitation">
     <div>
-      <p class="eyebrow">Have something in mind?</p><h2>
-        Let’s make it work<span>.</span>
+      <p class="eyebrow">{t("Have something in mind?")}</p><h2>
+        {t("Let’s make it work")}<span>.</span>
       </h2>
     </div><a
       class="round-link"
       href="mailto:hi@yanjiyu.com"
-      aria-label="Email Jiyu Yan">↗</a
+      aria-label={t("Email Jiyu Yan")}>↗</a
     >
   </div>
   <div class="site-width footer-bottom">
-    <a class="footer-name" href="/">© {year} Jiyu Yan</a><span
-      class="footer-location"><span class="status-dot"></span> Wrexham, UK</span
-    ><nav aria-label="Footer navigation">
+    <a class="footer-name" href={localePath("/", locale)}>© {year} Jiyu Yan</a
+    ><span class="footer-location"
+      ><span class="status-dot"></span> {t("Wrexham, UK")}</span
+    ><nav aria-label={t("Footer navigation")}>
       <a href="https://github.com/Anderbone" target="_blank" rel="noopener"
-        >GitHub ↗</a
+        >{t("GitHub ↗")}</a
       ><a
         href="https://www.linkedin.com/in/jiyu-yan/"
         target="_blank"
-        rel="noopener">LinkedIn ↗</a
-      ><a href="mailto:hi@yanjiyu.com">hi@yanjiyu.com</a><a href="/contact"
-        >Contact</a
-      ><a href="/privacy-policy">Privacy</a>
-    </nav><a href="#" aria-label="Back to top">↑ Top</a>
+        rel="noopener">{t("LinkedIn ↗")}</a
+      ><a href="mailto:hi@yanjiyu.com">{t("hi@yanjiyu.com")}</a><a
+        href={localePath("/contact", locale)}>{t("Contact")}</a
+      ><a href={localePath("/privacy-policy", locale)}>{t("Privacy")}</a>
+    </nav><a href="#" aria-label={t("Back to top")}>{t("↑ Top")}</a>
   </div>
 </footer>

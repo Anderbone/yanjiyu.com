@@ -10,6 +10,7 @@ draft: false
 ---
 
 import WorkflowMap from "@/components/WorkflowMap.astro";
+import WorkflowDemo from "@/components/WorkflowDemo.astro";
 
 My current setup is Terminal Spike, Herdr, code-server, Obsidian, and Pi Edge, connected through Tailscale. I can move from a terminal session to code, from code to a project note, and from that note into a Pi conversation, whether I am at my desk or on my phone.
 
@@ -44,6 +45,20 @@ For the reasoning behind a change, I go to Obsidian. A project note can hold the
 
 The links are part of the workflow: a useful answer should help me reach the relevant file or note again. Obsidian note links require that the destination note exists in the vault on the device opening it; Tailscale does not synchronise the vault.
 
+## One set of notes, linked into the repository
+
+On the computer, I use a symbolic link (symlink) to make the project's Obsidian folder available inside its repository. The vault holds the actual files; the repository's `obsidian` entry points to that folder. Opening a plan from the terminal, code-server, or Obsidian therefore reaches the same Markdown file.
+
+For example, with a project folder already created in the vault:
+
+```sh
+ln -s ~/notes/projects/my-app ~/code/my-app/obsidian
+```
+
+The paths are illustrative. `~/code/my-app/obsidian/plan/next-step.md` and `~/notes/projects/my-app/plan/next-step.md` now refer to the same file. I can keep source code in Git and plans, decisions, and working notes in Obsidian without copying notes back and forth. The machine-specific link can stay out of version control.
+
+The symlink is a local filesystem connection. It does not synchronise the vault or make a computer path available on the phone. My phone opens the synced vault's own copy of the note; Tailscale provides access to the terminal, editor, and Pi bridge on the computer. Keeping those jobs separate makes it clearer which file I am editing and how each device reaches it.
+
 ## Continue from a note with Pi Edge
 
 When the next step starts with a plan or question in Obsidian, I open Pi Edge. I attach the current note or a selection and send it to Pi on the computer. Images can supply context too.
@@ -61,6 +76,12 @@ Pi Edge has its own saved conversations. Moving between these tools gives me acc
 5. Update the project note with the outcome and links needed for the next session.
 
 I choose the entry point to suit the task. Sometimes I begin with an agent already running in Herdr; sometimes a note is the best place to start.
+
+## A short workflow demo
+
+This recording shows image input for remote Codex, opening terminal links in code-server and Obsidian, and customising the extra-key layout in Terminal Spike.
+
+<WorkflowDemo />
 
 ## Take the same environment elsewhere
 

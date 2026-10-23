@@ -1,15 +1,23 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import Base from "@/layouts/Base.astro";
 ---
 
-<Base title="404 — Page not found" noindex>
+<Base title={t("404 — Page not found")} noindex>
   <section class="site-width error-page">
-    <p class="eyebrow">An unexpected detour</p><span
+    <p class="eyebrow">{t("An unexpected detour")}</p><span
       class="error-code"
       aria-hidden="true">404<span>_</span></span
-    ><h1>This path ends here.</h1><p>
-      The page may have moved, or the address might be mistyped.<br />There’s
-      plenty more to explore.
-    </p><a class="button button-accent" href="/">Back to home ↗</a>
+    ><h1>{t("This path ends here.")}</h1><p>
+      {t("The page may have moved, or the address might be mistyped.")}<br />{
+        t("There’s plenty more to explore.")
+      }
+    </p><a class="button button-accent" href={localePath("/", locale)}
+      >{t("Back to home ↗")}</a
+    >
   </section>
 </Base>

@@ -1,25 +1,34 @@
-<figure class="workspace-map" aria-label="Workflow connections">
-  <p class="map-heading">My connected workspace</p>
-  <a href="/dev/terminal-spike"
-    >Terminal Spike <span>Android · SSH / Mosh</span></a
+---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+---
+
+<figure class="workspace-map" aria-label={t("Workflow connections")}>
+  <p class="map-heading">{t("My connected workspace")}</p>
+  <a href={localePath("/dev/terminal-spike", locale)}
+    >{t("Terminal Spike")} <span>{t("Android · SSH / Mosh")}</span></a
   >
   <div class="map-path" aria-hidden="true">↓</div>
   <a class="map-host" href="https://herdr.dev/docs/"
-    >Herdr <span>Spaces · Terminals · Agents</span></a
+    >{t("Herdr")} <span>{t("Spaces · Terminals · Agents")}</span></a
   >
-  <p class="map-links">Follow links into code and notes ↕</p>
+  <p class="map-links">{t("Follow links into code and notes ↕")}</p>
   <div class="map-views">
     <a href="https://coder.com/docs/code-server"
-      >code-server <span>Browser editor</span></a
+      >{t("code-server")} <span>{t("Browser editor")}</span></a
     >
-    <a href="https://obsidian.md">Obsidian <span>Project notes</span></a>
+    <a href="https://obsidian.md"
+      >{t("Obsidian")} <span>{t("Project notes")}</span></a
+    >
   </div>
   <div class="map-path" aria-hidden="true">↕</div>
-  <a href="/dev/pi-edge"
-    >Pi Edge <span>Obsidian ↔ Bridge ↔ Pi on my computer</span></a
+  <a href={localePath("/dev/pi-edge", locale)}
+    >{t("Pi Edge")} <span>{t("Obsidian ↔ Bridge ↔ Pi on my computer")}</span></a
   >
   <figcaption>
-    Tailscale connects my devices. Links connect the work.
+    {t("Tailscale connects my devices. Links connect the work.")}
   </figcaption>
 </figure>
 

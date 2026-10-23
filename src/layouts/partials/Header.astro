@@ -1,20 +1,27 @@
 ---
+import { translator, localeFrom, localePath, stripLocale } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import menu from "@/config/menu.json";
-const path = Astro.url.pathname;
+const path = stripLocale(Astro.url.pathname);
 ---
 
 <header class="site-header">
   <div class="site-bar">
-    <a href="/" class="wordmark" aria-label="Jiyu Yan home"
-      ><span class="brand-mark" aria-hidden="true">jy<span>_</span></span><span
-        >Jiyu Yan</span
-      ></a
+    <a
+      href={localePath("/", locale)}
+      class="wordmark"
+      aria-label={t("Jiyu Yan home")}
+      ><span class="brand-mark" aria-hidden="true">{t("jy")}<span>_</span></span
+      ><span>{t("Jiyu Yan")}</span></a
     >
-    <nav class="desktop-nav" aria-label="Main navigation">
+    <nav class="desktop-nav" aria-label={t("Main navigation")}>
       {
         menu.main.map((item, index) => (
           <a
-            href={item.url}
+            href={localePath(item.url, locale)}
             aria-current={
               (item.url === "/" ? path === "/" : path.startsWith(item.url))
                 ? "page"
@@ -24,16 +31,25 @@ const path = Astro.url.pathname;
             <span class="nav-index" aria-hidden="true">
               {String(index + 1).padStart(2, "0")}
             </span>
-            {item.name}
+            {t(item.name)}
           </a>
         ))
       }
     </nav>
     <div class="header-tools">
+      <a
+        class="language-toggle"
+        data-language-switch
+        href={localePath(Astro.url.pathname, locale === "zh" ? "en" : "zh")}
+        hreflang={locale === "zh" ? "en" : "zh-CN"}
+        lang={locale === "zh" ? "en" : "zh-CN"}
+        aria-label={locale === "zh" ? "Switch to English" : "切换到中文"}
+        >{locale === "zh" ? "EN" : "中文"}</a
+      >
       <button
         class="command-trigger"
         data-command-open
-        aria-label="Search pages and writing"
+        aria-label={t("Search pages and writing")}
         aria-keyshortcuts="Control+k Meta+k"
         ><svg
           viewBox="0 0 24 24"
@@ -43,13 +59,13 @@ const path = Astro.url.pathname;
           aria-hidden="true"
           ><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4 4"
           ></path></svg
-        ><kbd data-command-shortcut>Ctrl K</kbd></button
+        ><kbd data-command-shortcut>{t("Ctrl K")}</kbd></button
       >
       <button
         class="theme-toggle"
         data-theme-toggle
-        aria-label="Switch color theme"
-        title="Switch color theme"
+        aria-label={t("Switch color theme")}
+        title={t("Switch color theme")}
         ><svg
           viewBox="0 0 24 24"
           fill="none"
@@ -66,20 +82,20 @@ const path = Astro.url.pathname;
         data-menu-toggle
         aria-expanded="false"
         aria-controls="mobile-navigation"
-        >Menu <span aria-hidden="true">+</span></button
+        >{t("Menu")} <span aria-hidden="true">+</span></button
       >
     </div>
   </div>
   <nav
     id="mobile-navigation"
     class="mobile-nav"
-    aria-label="Mobile navigation"
+    aria-label={t("Mobile navigation")}
     hidden
   >
     {
       menu.main.map((item, index) => (
         <a
-          href={item.url}
+          href={localePath(item.url, locale)}
           aria-current={
             (item.url === "/" ? path === "/" : path.startsWith(item.url))
               ? "page"
@@ -87,7 +103,7 @@ const path = Astro.url.pathname;
           }
         >
           <span>0{index + 1}</span>
-          {item.name}
+          {t(item.name)}
           <span aria-hidden="true">↗</span>
         </a>
       ))

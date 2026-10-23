@@ -1,4 +1,9 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
 import Giscus from "@/helpers/Giscus.astro";
@@ -13,7 +18,7 @@ import TableOfContents from "./components/TableOfContents.astro";
 
 const { post, collection = "dev" } = Astro.props;
 
-const posts = await getSinglePage(collection);
+const posts = await getSinglePage(collection, locale);
 const similarPosts = similarItems(post, posts);
 const { Content, headings } = await render(post);
 const { title, description, author, categories, image, date, tags, toc } =
@@ -25,20 +30,39 @@ const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
 <div class="site-width">
   <header class="post-header">
     <div class="page-path">
-      <a href={`/${collection}`}>← {collection === "dev" ? "Dev" : "Journal"}</a
-      ><span>/</span><span>{categories[0] || "Writing"}</span>
+      <a href={localePath(`/${collection}`, locale)}
+        >← {t(collection === "dev" ? "Dev" : "Journal")}</a
+      ><span>/</span><span>{t(categories[0] || "Writing")}</span>
     </div><h1>{title}</h1>{
       description && <p class="post-lede">{description}</p>
     }<div class="post-meta">
       <span>{author || "Jiyu Yan"}</span>{
-        date && <time datetime={date.toISOString()}>{dateFormat(date)}</time>
+        date && (
+          <time datetime={date.toISOString()}>
+            {dateFormat(date, locale === "zh" ? "yyyy年M月d日" : undefined)}
+          </time>
+        )
       }<span
-        >{Math.max(1, Math.ceil((post.body || "").split(/\s+/).length / 220))} min
-        read</span
+        >{
+          Math.max(
+            1,
+            Math.ceil(
+              ((post.body || "").match(/[\p{Script=Han}]/gu)?.length || 0) /
+                400 +
+                ((post.body || "").match(/[A-Za-z0-9]+/g)?.length || 0) / 220,
+            ),
+          )
+        }
+        {t("min read")}</span
       >{
         categories.map((category: string) => (
-          <a href={`/${collection}/categories/${slugify(category)}`}>
-            {humanize(category)}
+          <a
+            href={localePath(
+              `/${collection}/categories/${slugify(category)}`,
+              locale,
+            )}
+          >
+            {t(humanize(category))}
           </a>
         ))
       }
@@ -101,6 +125,8 @@ const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
         }
 
         function addCopyCodeButtons() {
+          const zh = document.documentElement.lang === "zh-CN";
+          const label = (en: string, cn: string) => (zh ? cn : en);
           document.querySelectorAll("pre").forEach((pre) => {
             if (pre.querySelector(":scope > .copy-code-button")) {
               return;
@@ -115,25 +141,37 @@ const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
             button.type = "button";
             button.className = "copy-code-button";
             button.innerHTML = copyIcon;
-            button.setAttribute("aria-label", "Copy code to clipboard");
-            button.title = "Copy code";
+            button.setAttribute(
+              "aria-label",
+              label("Copy code to clipboard", "复制代码到剪贴板"),
+            );
+            button.title = label("Copy code", "复制代码");
 
             button.addEventListener("click", async () => {
               try {
                 await copyTextToClipboard(code.textContent || "");
                 button.blur();
                 button.innerHTML = checkIcon;
-                button.setAttribute("aria-label", "Code copied");
+                button.setAttribute(
+                  "aria-label",
+                  label("Code copied", "已复制代码"),
+                );
                 button.classList.add("is-copied");
               } catch {
                 button.innerHTML = errorIcon;
-                button.setAttribute("aria-label", "Could not copy code");
+                button.setAttribute(
+                  "aria-label",
+                  label("Could not copy code", "无法复制代码"),
+                );
                 button.classList.add("is-error");
               }
 
               window.setTimeout(() => {
                 button.innerHTML = copyIcon;
-                button.setAttribute("aria-label", "Copy code to clipboard");
+                button.setAttribute(
+                  "aria-label",
+                  label("Copy code to clipboard", "复制代码到剪贴板"),
+                );
                 button.classList.remove("is-copied", "is-error");
               }, 1800);
             });
@@ -150,8 +188,10 @@ const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
         <div class="taxonomy-tags" style="margin:0">
           {
             tags.map((tag: string) => (
-              <a href={`/${collection}/tags/${slugify(tag)}`}>
-                {humanize(tag)}
+              <a
+                href={localePath(`/${collection}/tags/${slugify(tag)}`, locale)}
+              >
+                {t(humanize(tag))}
               </a>
             ))
           }
@@ -159,7 +199,7 @@ const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
           className="social-icons"
           title={title}
           description={description}
-          slug={`${collection}/${post.id}`}
+          slug={`${locale === "zh" ? "zh/" : ""}${collection}/${post.id}`}
         />
       </div>
       <Giscus class="mt-16" />
@@ -176,8 +216,8 @@ const showToc = shouldShowToc(tocItems, post.body, { explicitToc: toc });
     similarPosts.length > 0 && (
       <section class="related-posts">
         <>
-          <p class="eyebrow">Keep exploring</p>
-          <h2>A little more to read.</h2>
+          <p class="eyebrow">{t("Keep exploring")}</p>
+          <h2>{t("A little more to read.")}</h2>
           <div class="related-grid">
             {similarPosts.slice(0, 3).map((post) => (
               <BlogCard data={post} collection={collection} />

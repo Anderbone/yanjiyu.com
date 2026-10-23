@@ -2063,3 +2063,41 @@ nav[aria-label="Pagination"] svg {
   object-position: top;
   padding-top: 58px;
 }
+
+/* Language is available in the header at every viewport size. */
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  min-width: 40px;
+  padding-inline: 7px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.language-toggle:hover,
+.language-toggle:focus-visible {
+  color: var(--accent);
+  border-color: currentColor;
+}
+:lang(zh-CN) {
+  line-break: strict;
+}
+html:lang(zh-CN) .content {
+  line-height: 1.95;
+}
+@media (max-width: 400px) {
+  .site-bar {
+    gap: 8px;
+    padding-inline: 12px;
+  }
+  .header-tools {
+    gap: 6px;
+  }
+  .wordmark {
+    gap: 8px;
+  }
+}

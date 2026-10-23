@@ -1,4 +1,8 @@
 ---
+import { translator } from "@/lib/i18n";
+
+const t = translator(Astro.url);
+
 import config from "@/config/config.json";
 import {
   IoLogoFacebook,
@@ -20,7 +24,7 @@ const {
 <ul class={`${className}`}>
   <li class="inline-block">
     <a
-      aria-label="facebook share button"
+      aria-label={t("facebook share button")}
       href={`https://facebook.com/sharer/sharer.php?u=${base_url}/${slug}`}
       target="_blank"
       rel="noreferrer noopener"
@@ -30,7 +34,7 @@ const {
   </li>
   <li class="inline-block">
     <a
-      aria-label="twitter share button"
+      aria-label={t("twitter share button")}
       href={`https://twitter.com/intent/tweet/?text=${title}&amp;url=${base_url}/${slug}`}
       target="_blank"
       rel="noreferrer noopener"
@@ -40,7 +44,7 @@ const {
   </li>
   <li class="inline-block">
     <a
-      aria-label="linkedin share button"
+      aria-label={t("linkedin share button")}
       href={`https://www.linkedin.com/shareArticle?mini=true&url=${base_url}/${slug}&title=${title}&summary=${description}&source=${base_url}`}
       target="_blank"
       rel="noreferrer noopener"
@@ -50,7 +54,7 @@ const {
   </li>
   <li class="inline-block">
     <a
-      aria-label="pinterest share button"
+      aria-label={t("pinterest share button")}
       href={`https://pinterest.com/pin/create/button/?url=${base_url}/${slug}&media=&description=${description}`}
       target="_blank"
       rel="noreferrer noopener"

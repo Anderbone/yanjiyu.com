@@ -1,4 +1,9 @@
 ---
+import { translator, localeFrom } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import config from "@/config/config.json";
 
 interface Props {
@@ -120,7 +125,7 @@ const giscusInitScript = `
   enabled && (
     <section
       class={className}
-      aria-label="Comments"
+      aria-label={t("Comments")}
       data-giscus-comments
       data-repo={giscus.repo}
       data-repo-id={giscus.repoId}
@@ -132,7 +137,7 @@ const giscusInitScript = `
       data-emit-metadata="0"
       data-input-position={giscus.inputPosition || "bottom"}
       data-theme={giscus.theme || "preferred_color_scheme"}
-      data-lang={giscus.lang || "en"}
+      data-lang={locale === "zh" ? "zh-CN" : "en"}
     >
       <script is:inline data-astro-rerun set:html={giscusInitScript} />
     </section>

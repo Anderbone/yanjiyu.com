@@ -1,5 +1,21 @@
+let initializedPage: Element | null = null;
+
 function initSite() {
+  const page = document.querySelector("#main-content");
+  if (!page || initializedPage === page) return;
+  initializedPage = page;
+
   const root = document.documentElement;
+  const zh = root.lang === "zh-CN";
+  const languageSwitch = document.querySelector<HTMLAnchorElement>(
+    "[data-language-switch]",
+  );
+  if (languageSwitch) {
+    const target = new URL(languageSwitch.href);
+    target.search = location.search;
+    target.hash = location.hash;
+    languageSwitch.href = target.href;
+  }
   const shortcut = document.querySelector("[data-command-shortcut]");
   if (shortcut)
     shortcut.textContent = /Mac|iPhone|iPad/.test(navigator.platform)
@@ -11,7 +27,9 @@ function initSite() {
   const updateThemeLabel = () =>
     themeButton?.setAttribute(
       "aria-label",
-      `Switch to ${root.classList.contains("dark") ? "light" : "dark"} theme`,
+      zh
+        ? `切换到${root.classList.contains("dark") ? "浅色" : "深色"}主题`
+        : `Switch to ${root.classList.contains("dark") ? "light" : "dark"} theme`,
     );
   updateThemeLabel();
   themeButton?.addEventListener("click", () => {
@@ -63,8 +81,12 @@ function initSite() {
     const status = document.querySelector(".command-count");
     if (status)
       status.textContent = query
-        ? `${count} result${count === 1 ? "" : "s"}`
-        : "Pages & writing";
+        ? zh
+          ? `${count} 条结果`
+          : `${count} result${count === 1 ? "" : "s"}`
+        : zh
+          ? "页面与文章"
+          : "Pages & writing";
     const empty = document.querySelector<HTMLElement>(".command-empty");
     if (empty) empty.hidden = count > 0;
   };
@@ -161,6 +183,13 @@ function initSite() {
     },
     { once: true },
   );
+}
+// First visits must work before window.load (which can wait on images), and
+// even when the router's initial page-load event has already fired.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initSite, { once: true });
+} else {
+  initSite();
 }
 document.addEventListener("astro:page-load", initSite);
 

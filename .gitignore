@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # ide
 .idea/
+
+# local Cloudflare preview state
+.wrangler/

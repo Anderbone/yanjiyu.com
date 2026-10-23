@@ -1,16 +1,23 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import { humanize } from "@/lib/utils/textConverter";
 const { tags, categories, allCategories, collection = "dev" } = Astro.props;
 ---
 
-<aside class="taxonomy-sidebar" aria-label="Browse this section">
+<aside class="taxonomy-sidebar" aria-label={t("Browse this section")}>
   <section>
-    <h2>Categories</h2><ul>
+    <h2>{t("Categories")}</h2><ul>
       {
         categories.map((category: string) => (
           <li>
-            <a href={`/${collection}/categories/${category}`}>
-              {humanize(category)}
+            <a
+              href={localePath(`/${collection}/categories/${category}`, locale)}
+            >
+              {t(humanize(category))}
               <span>
                 {String(
                   allCategories.filter((c: string) => c === category).length,
@@ -20,18 +27,26 @@ const { tags, categories, allCategories, collection = "dev" } = Astro.props;
           </li>
         ))
       }
-    </ul><a class="taxonomy-all" href={`/${collection}/categories`}
-      >All categories ↗</a>
+    </ul><a
+      class="taxonomy-all"
+      href={localePath(`/${collection}/categories`, locale)}
+      >{t("All categories ↗")}</a
+    >
   </section>
   <section>
-    <h2>Explore topics</h2><div class="taxonomy-tags">
+    <h2>{t("Explore topics")}</h2><div class="taxonomy-tags">
       {
         tags
           .slice(0, 18)
           .map((tag: string) => (
-            <a href={`/${collection}/tags/${tag}`}>{humanize(tag)}</a>
+            <a href={localePath(`/${collection}/tags/${tag}`, locale)}>
+              {t(humanize(tag))}
+            </a>
           ))
       }
-    </div><a class="taxonomy-all" href={`/${collection}/tags`}>All tags ↗</a>
+    </div><a
+      class="taxonomy-all"
+      href={localePath(`/${collection}/tags`, locale)}>{t("All tags ↗")}</a
+    >
   </section>
 </aside>

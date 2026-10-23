@@ -1,6 +1,12 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import config from "@/config/config.json";
 import theme from "@/config/theme.json";
+import { localizedCollection } from "@/lib/contentParser.astro";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
@@ -33,18 +39,23 @@ export interface Props {
 const { title, meta_title, description, image, noindex, canonical } =
   Astro.props;
 
+const pageTitle = plainify(t(meta_title || title || config.site.title));
+const pageDescription = plainify(
+  t(description || config.metadata.meta_description),
+);
+
 const searchCollections = ["dev", "journal"] as const;
 const searchPosts = (
   await Promise.all(
     searchCollections.map(async (collection) => {
       const entries = await getCollection(
-        collection,
+        localizedCollection(collection, locale),
         ({ data, id }) => !data.draft && !id.startsWith("-"),
       );
 
       return entries.map((entry) => ({
         group: collection,
-        slug: `${collection}/${entry.id}`,
+        slug: `${locale === "zh" ? "zh/" : ""}${collection}/${entry.id}`,
         frontmatter: {
           title: entry.data.title,
           image: entry.data.image,
@@ -59,7 +70,10 @@ const searchPosts = (
 ).flat();
 
 const aboutPages = (
-  await getCollection("about", ({ data }) => !data.draft)
+  await getCollection(
+    localizedCollection("about", locale),
+    ({ data }) => !data.draft,
+  )
 ).map((entry) => ({
   group: "page",
   slug: "about",
@@ -75,7 +89,7 @@ const searchData = [...aboutPages, ...searchPosts];
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang={locale === "zh" ? "zh-CN" : "en"} class="dark">
   <head>
     <script is:inline>
       (() => {
@@ -125,23 +139,35 @@ const searchData = [...aboutPages, ...searchPosts];
     />
 
     <!-- title -->
-    <title>
-      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
-    </title>
+    <title>{pageTitle}</title>
 
     <!-- canonical url -->
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    <link
+      rel="canonical"
+      href={canonical || new URL(Astro.url.pathname, Astro.site).href}
+    />
 
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL(localePath(Astro.url.pathname, "en"), Astro.site)}
+    />
+    <link
+      rel="alternate"
+      hreflang="zh-CN"
+      href={new URL(localePath(Astro.url.pathname, "zh"), Astro.site)}
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(localePath(Astro.url.pathname, "en"), Astro.site)}
+    />
+    <meta property="og:locale" content={locale === "zh" ? "zh_CN" : "en_GB"} />
     <!-- noindex robots -->
     {noindex && <meta name="robots" content="noindex,nofollow" />}
 
     <!-- meta-description -->
-    <meta
-      name="description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
-    />
+    <meta name="description" content={pageDescription} />
 
     <ClientRouter />
 
@@ -149,20 +175,10 @@ const searchData = [...aboutPages, ...searchPosts];
     <meta name="author" content={config.metadata.meta_author} />
 
     <!-- og-title -->
-    <meta
-      property="og:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
-      )}
-    />
+    <meta property="og:title" content={pageTitle} />
 
     <!-- og-description -->
-    <meta
-      property="og:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
-    />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
     <meta
       property="og:url"
@@ -170,20 +186,10 @@ const searchData = [...aboutPages, ...searchPosts];
     />
 
     <!-- twitter-title -->
-    <meta
-      name="twitter:title"
-      content={plainify(
-        meta_title ? meta_title : title ? title : config.site.title,
-      )}
-    />
+    <meta name="twitter:title" content={pageTitle} />
 
     <!-- twitter-description -->
-    <meta
-      name="twitter:description"
-      content={plainify(
-        description ? description : config.metadata.meta_description,
-      )}
-    />
+    <meta name="twitter:description" content={pageDescription} />
 
     <!-- og-image -->
     <meta
@@ -209,7 +215,7 @@ const searchData = [...aboutPages, ...searchPosts];
         <GoogleTagmanagerNoscript id={config.google_tag_manager.gtm_id} />
       )
     }
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content">{t("Skip to content")}</a>
     <Header />
     <CommandPalette searchData={searchData} />
     <main class="grow" id="main-content">

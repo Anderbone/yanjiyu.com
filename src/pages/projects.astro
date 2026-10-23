@@ -1,4 +1,9 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import Base from "@/layouts/Base.astro";
 import PageHeader from "@/partials/PageHeader.astro";
 import WorkflowMap from "@/components/WorkflowMap.astro";
@@ -6,10 +11,12 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
 ---
 
 <Base
-  title="Projects — Jiyu Yan"
-  description="Selected software by Jiyu Yan: Terminal Spike, Pi Edge, OpsDesk AI, and Ralph Loop."
+  title={t("Projects — Jiyu Yan")}
+  description={t(
+    "Selected software by Jiyu Yan: Terminal Spike, Pi Edge, OpsDesk AI, and Ralph Loop.",
+  )}
 >
-  <PageHeader title="Projects" />
+  <PageHeader title={t("Projects")} />
   <div class="site-width project-collection">
     <section
       id="terminal-spike"
@@ -17,35 +24,43 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
       aria-labelledby="terminal-title"
     >
       <div class="project-detail-copy" data-reveal>
-        <p class="eyebrow">01 / Native Android · Developer tools</p><h2
+        <p class="eyebrow">{t("01 / Native Android · Developer tools")}</p><h2
           id="terminal-title"
         >
-          Terminal Spike<span>.</span>
-        </h2><p class="project-lede">Your remote workspace, on Android.</p><p>
-          My open-source Android terminal for SSH, built-in Mosh, and remote
-          coding. Resume Herdr spaces and agents, navigate with touch, and
-          follow links into code-server or Obsidian. Connection details stay on
-          your device.
+          {t("Terminal Spike")}<span>.</span>
+        </h2><p class="project-lede">
+          {t("Your remote workspace, on Android.")}
+        </p><p>
+          {
+            t(
+              "My open-source Android terminal for SSH, built-in Mosh, and remote coding. Resume Herdr spaces and agents, navigate with touch, and follow links into code-server or Obsidian. Connection details stay on your device.",
+            )
+          }
         </p><dl class="project-spec">
-          <div><dt>Platform</dt><dd>Native Android</dd></div><div>
-            <dt>Built for</dt><dd>Herdr, tmux & remote agents</dd>
-          </div><div><dt>Privacy</dt><dd>No analytics or accounts</dd></div>
+          <div><dt>{t("Platform")}</dt><dd>{t("Native Android")}</dd></div><div>
+            <dt>{t("Built for")}</dt><dd>{t("Herdr, tmux & remote agents")}</dd>
+          </div><div>
+            <dt>{t("Privacy")}</dt><dd>{t("No analytics or accounts")}</dd>
+          </div>
         </dl><div class="project-actions">
           <a
             class="button button-accent"
             href="https://play.google.com/store/apps/details?id=com.yanjiyu.terminalspike"
-            >Get it on Google Play ↗</a
-          ><a class="text-link" href="/dev/terminal-spike"
-            >Herdr & app writeup →</a
+            >{t("Get it on Google Play ↗")}</a
+          ><a class="text-link" href={localePath("/dev/terminal-spike", locale)}
+            >{t("Herdr & app writeup →")}</a
           ><a
             class="text-link"
-            href="https://github.com/Anderbone/terminal-spike">View source ↗</a
-          ><a class="text-link" href="/projects/terminal-spike/privacy"
-            >Privacy policy →</a
+            href="https://github.com/Anderbone/terminal-spike"
+            >{t("View source ↗")}</a
+          ><a
+            class="text-link"
+            href={localePath("/projects/terminal-spike/privacy", locale)}
+            >{t("Privacy policy →")}</a
           >
         </div>
       </div><div class="project-demo-stage" data-reveal>
-        <span class="preview-label">A workspace that goes with you.</span
+        <span class="preview-label">{t("A workspace that goes with you.")}</span
         ><TerminalSpikeDemo />
       </div>
     </section>
@@ -55,40 +70,56 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
       aria-labelledby="pi-edge-title"
     >
       <div class="project-detail-copy" data-reveal>
-        <p class="eyebrow">02 / Obsidian · Remote agents</p>
-        <h2 id="pi-edge-title">Pi Edge<span>.</span></h2>
-        <p class="project-lede">Your notes. Your computer. Pi beside them.</p>
+        <p class="eyebrow">{t("02 / Obsidian · Remote agents")}</p>
+        <h2 id="pi-edge-title">{t("Pi Edge")}<span>.</span></h2>
+        <p class="project-lede">
+          {t("Your notes. Your computer. Pi beside them.")}
+        </p>
         <p>
-          An Obsidian plugin I built to chat with Pi on my computer from my
-          phone or desktop. Attach notes and images, switch models, and return
-          to earlier conversations without leaving the vault.
+          {
+            t(
+              "An Obsidian plugin I built to chat with Pi on my computer from my phone or desktop. Attach notes and images, switch models, and return to earlier conversations without leaving the vault.",
+            )
+          }
         </p>
         <dl class="project-spec">
-          <div><dt>Client</dt><dd>Obsidian on mobile & desktop</dd></div>
           <div>
-            <dt>Connection</dt><dd>Paired bridge over LAN or Tailscale</dd>
+            <dt>{t("Client")}</dt><dd>{t("Obsidian on mobile & desktop")}</dd>
           </div>
-          <div><dt>Context</dt><dd>Notes, selections & images</dd></div>
+          <div>
+            <dt>{t("Connection")}</dt><dd>
+              {t("Paired bridge over LAN or Tailscale")}
+            </dd>
+          </div>
+          <div>
+            <dt>{t("Context")}</dt><dd>{t("Notes, selections & images")}</dd>
+          </div>
         </dl>
         <div class="project-actions">
-          <a class="button button-accent" href="/dev/pi-edge"
-            >Explore Pi Edge ↗</a
+          <a
+            class="button button-accent"
+            href={localePath("/dev/pi-edge", locale)}
+            >{t("Explore Pi Edge ↗")}</a
           >
           <a
             class="text-link"
             href="https://community.obsidian.md/plugins/pi-edge"
-            >Install plugin ↗</a
+            >{t("Install plugin ↗")}</a
           >
           <a
             class="text-link"
             href="https://github.com/Anderbone/pi-obsidian-edge"
-            >View source ↗</a
+            >{t("View source ↗")}</a
           >
         </div>
       </div>
-      <a class="project-product-image" href="/dev/pi-edge" data-reveal>
+      <a
+        class="project-product-image"
+        href={localePath("/dev/pi-edge", locale)}
+        data-reveal
+      >
         <div class="project-window-bar">
-          <span>pi edge / obsidian on a Galaxy Fold</span><span
+          <span>{t("pi edge / obsidian on a Galaxy Fold")}</span><span
             aria-hidden="true">↗</span
           >
         </div>
@@ -96,7 +127,9 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
           src="/images/pi-edge-obsidian.webp"
           width="2256"
           height="2408"
-          alt="Pi Edge chat beside an Obsidian note, with a clickable note attachment"
+          alt={t(
+            "Pi Edge chat beside an Obsidian note, with a clickable note attachment",
+          )}
           loading="lazy"
         />
       </a>
@@ -107,18 +140,21 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
       aria-labelledby="workflow-title"
     >
       <div class="project-detail-copy" data-reveal>
-        <p class="eyebrow">Workflow / Connected tools</p>
-        <h2 id="workflow-title">One workspace<span>.</span></h2>
-        <p class="project-lede">Pick up the work wherever I am.</p>
+        <p class="eyebrow">{t("Workflow / Connected tools")}</p>
+        <h2 id="workflow-title">{t("One workspace")}<span>.</span></h2>
+        <p class="project-lede">{t("Pick up the work wherever I am.")}</p>
         <p>
-          Terminal Spike opens my Herdr workspace. code-server gives me a
-          browser editor. Obsidian holds the project context, with Pi Edge for
-          working with Pi beside my notes. Links connect the views; Tailscale
-          connects my devices.
+          {
+            t(
+              "Terminal Spike opens my Herdr workspace. code-server gives me a browser editor. Obsidian holds the project context, with Pi Edge for working with Pi beside my notes. Links connect the views; Tailscale connects my devices.",
+            )
+          }
         </p>
         <div class="project-actions">
-          <a class="button button-accent" href="/dev/workflow-anywhere"
-            >See my workflow ↗</a
+          <a
+            class="button button-accent"
+            href={localePath("/dev/workflow-anywhere", locale)}
+            >{t("See my workflow ↗")}</a
           >
         </div>
       </div>
@@ -130,31 +166,39 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
       aria-labelledby="opsdesk-title"
     >
       <div class="project-detail-copy" data-reveal>
-        <p class="eyebrow">03 / AI product · Full stack</p><h2
+        <p class="eyebrow">{t("03 / AI product · Full stack")}</p><h2
           id="opsdesk-title"
         >
-          OpsDesk AI<span>.</span>
-        </h2><p class="project-lede">AI-assisted work. Human judgement.</p><p>
-          A policy-gated service desk demo that turns customer enquiries into
-          reviewed operational work. Capture an enquiry, extract intent and
-          risk, route approved templates, and keep complex cases in human hands.
+          {t("OpsDesk AI")}<span>.</span>
+        </h2><p class="project-lede">
+          {t("AI-assisted work. Human judgement.")}
+        </p><p>
+          {
+            t(
+              "A policy-gated service desk demo that turns customer enquiries into reviewed operational work. Capture an enquiry, extract intent and risk, route approved templates, and keep complex cases in human hands.",
+            )
+          }
         </p><dl class="project-spec">
           <div>
-            <dt>Automation</dt><dd>Approved templates & risk checks</dd>
+            <dt>{t("Automation")}</dt><dd>
+              {t("Approved templates & risk checks")}
+            </dd>
           </div><div>
-            <dt>Visibility</dt><dd>Confidence, tokens & cost</dd>
-          </div><div><dt>Workflow</dt><dd>Triage, review & webhooks</dd></div>
+            <dt>{t("Visibility")}</dt><dd>{t("Confidence, tokens & cost")}</dd>
+          </div><div>
+            <dt>{t("Workflow")}</dt><dd>{t("Triage, review & webhooks")}</dd>
+          </div>
         </dl><div class="project-actions">
           <a
             class="button button-accent"
             href="https://opsdesk-ai.netlify.app/"
             target="_blank"
-            rel="noopener">Open live app ↗</a
+            rel="noopener">{t("Open live app ↗")}</a
           ><a
             class="text-link"
             href="https://github.com/Anderbone/opsdesk-ai"
             target="_blank"
-            rel="noopener">View source ↗</a
+            rel="noopener">{t("View source ↗")}</a
           >
         </div>
       </div><a
@@ -162,15 +206,19 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
         href="https://opsdesk-ai.netlify.app/"
         target="_blank"
         rel="noopener"
-        aria-label="Open OpsDesk AI live demo"
+        aria-label={t("Open OpsDesk AI live demo")}
         data-reveal
         ><div class="project-window-bar">
-          <span>opsdesk / live demo</span><span aria-hidden="true">↗</span>
+          <span>{t("opsdesk / live demo")}</span><span aria-hidden="true"
+            >↗</span
+          >
         </div><img
           src="/images/opsdesk-ai-preview.png"
           width="1265"
           height="1826"
-          alt="OpsDesk AI service desk showing enquiries, approval status, and operational controls"
+          alt={t(
+            "OpsDesk AI service desk showing enquiries, approval status, and operational controls",
+          )}
           loading="lazy"
         /></a
       >
@@ -181,29 +229,37 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
       aria-labelledby="ralph-title"
     >
       <div class="project-detail-copy" data-reveal>
-        <p class="eyebrow">04 / TypeScript · Agent tooling</p><h2
+        <p class="eyebrow">{t("04 / TypeScript · Agent tooling")}</p><h2
           id="ralph-title"
         >
-          Ralph Loop<span>.</span>
-        </h2><p class="project-lede">One plan. One focused run. Repeat.</p><p>
-          A small TypeScript CLI for draining a folder of reviewed Markdown
-          implementation plans through Codex. Plain files, fresh context, and
-          auditable runs keep each change focused and reviewable.
+          {t("Ralph Loop")}<span>.</span>
+        </h2><p class="project-lede">
+          {t("One plan. One focused run. Repeat.")}
+        </p><p>
+          {
+            t(
+              "A small TypeScript CLI for draining a folder of reviewed Markdown implementation plans through Codex. Plain files, fresh context, and auditable runs keep each change focused and reviewable.",
+            )
+          }
         </p><div class="project-actions">
-          <a class="button button-accent" href="/dev/ralph-loop-plan-queue"
-            >Read the writeup ↗</a
+          <a
+            class="button button-accent"
+            href={localePath("/dev/ralph-loop-plan-queue", locale)}
+            >{t("Read the writeup ↗")}</a
           ><a
             class="text-link"
             href="https://github.com/Anderbone/ralph-loop"
             target="_blank"
-            rel="noopener">View source ↗</a
+            rel="noopener">{t("View source ↗")}</a
           >
         </div>
       </div><div class="workflow-terminal" data-reveal>
         <div class="project-window-bar">
-          <span>ralph-loop / workflow</span><span aria-hidden="true">↗</span>
+          <span>{t("ralph-loop / workflow")}</span><span aria-hidden="true"
+            >↗</span
+          >
         </div><div class="workflow-body">
-          <p><span>$</span> ralph --plans ~/plans --once</p><ol>
+          <p><span>$</span> {t("ralph --plans ~/plans --once")}</p><ol>
             {
               [
                 "Pick the next runnable plan",
@@ -213,13 +269,13 @@ import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
               ].map((step, index) => (
                 <li>
                   <span>0{index + 1}</span>
-                  {step}
+                  {t(step)}
                   <b aria-hidden="true">↳</b>
                 </li>
               ))
             }
           </ol><p class="workflow-result">
-            Reviewed plans → verified changes<span
+            {t("Reviewed plans → verified changes")}<span
               class="terminal-cursor"
               aria-hidden="true">_</span
             >

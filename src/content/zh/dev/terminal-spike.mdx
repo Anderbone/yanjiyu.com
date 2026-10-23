@@ -1,0 +1,65 @@
+---
+title: "Terminal Spike：原生 Android 终端"
+description: "我的 Android 远程工作区，支持 Herdr、SSH、内置 Mosh、触控，以及通往代码和笔记的链接。"
+date: 2026-09-07
+author: "Jiyu Yan"
+categories: ["Projects"]
+tags: ["Android", "Kotlin", "SSH", "Developer Tools"]
+draft: false
+---
+
+import TerminalSpikeDemo from "@/components/TerminalSpikeDemo.astro";
+
+Terminal Spike 是我开发的开源原生 Android 终端，用手机操作远程电脑。SSH、内置 Mosh、Herdr、tmux 和文件传输整合在同一个工作区，连接信息存储在设备上。
+
+[Google Play 下载](https://play.google.com/store/apps/details?id=com.yanjiyu.terminalspike) · [源码](https://github.com/Anderbone/terminal-spike) · [发行版](https://github.com/Anderbone/terminal-spike/releases)
+
+## Herdr 是工作流的中心
+
+我在电脑上使用 [Herdr](https://herdr.dev/docs/) 组织项目、终端窗格和编程智能体。它的后台服务器在断开客户端后仍保持终端会话运行，让我从手机回到正在进行的工作。智能体状态能告诉我哪个窗格还在工作，哪个需要关注。
+
+Terminal Spike 理解 Herdr 会话和窗格布局元数据。连接选择器可以恢复正在运行的 Herdr 会话，触控操作让小屏幕上的工作区、标签页和智能体切换切实可用：点按导航，双击调出键盘。
+
+滚动需要尊重窗格中的应用。如果 Herdr 能提供可用历史，Terminal Spike 提供原生回滚阅读器；交互应用则可使用远程鼠标输入。编程智能体拥有自己的对话界面时，这种区别很重要。
+
+![Terminal Spike 连接选择器同时展示运行中的 Herdr 与 tmux 会话](/images/terminal-spike-herdr.jpg)
+
+Herdr 是独立开源项目，我在这里负责 Android 客户端及其远程工作区集成。
+
+## 顺着链接进入代码和笔记
+
+终端输出经常指向下一步需要的文件、浏览器编辑器或项目笔记。Terminal Spike 识别网页 URL 和 `obsidian://` 链接，也支持终端超链接，让这些引用在合适的应用中打开。
+
+我的组合中，code-server 提供浏览器编辑器，Obsidian 保存项目笔记，[Pi Edge](/zh/dev/pi-edge) 将 Pi 带入 Obsidian。出门时用 Tailscale 连接设备，具体见[目前的工作流](/zh/dev/workflow-anywhere)。
+
+## 一段演示
+
+录像展示了远程编程会话、输入提示词、滚动终端输出和切换 tmux 会话。额外按键栏把终端控制键放在手机键盘附近。
+
+<TerminalSpikeDemo />
+
+编程工具运行在连接的电脑上。Terminal Spike 提供终端与输入控件，不内置 AI 模型，也不要求购买它自己的 AI 订阅。
+
+## 用手机远程工作
+
+应用支持密码及私钥 SSH 认证、保存连接和多个同时运行的终端标签页，会验证服务器主机密钥，并在已知服务器密钥改变时警告。
+
+SFTP 文件管理器支持浏览、上传、下载、重命名和删除远程文件。命令片段与可配置的额外按键栏，让常用命令及 Ctrl、Esc、方向键更容易触及。字体、颜色、字号与光标行为也可调整。
+
+图片输入也很实用：应用可以通过已认证的 SSH 连接，把剪贴板图片传到远程主机的私有缓存目录，再将远程路径粘贴进终端，让远程工具处理手机中的图片。
+
+## 构建终端
+
+应用界面使用 Kotlin 和 Jetpack Compose。终端本身则是自定义 Android View，通过 Canvas 和 Paint 直接绘制每行，将终端渲染和屏幕状态与连接列表、设置和会话控件分开。
+
+终端引擎处理主屏幕与备用屏幕、光标移动、滚动区域、颜色、括号粘贴及常见终端查询，回滚历史有明确上限。对于从应用选择的 tmux 会话，独立本地历史模型支持手机滚动；需要与终端应用交互时，则可明确启用远程鼠标模式。
+
+Mosh 内置于应用中，先通过 SSH 启动，再通过加密 UDP 传输，提高对断网的容忍度。电脑需要安装 `mosh-server`；Herdr 或 tmux 独立于手机连接，保持远程工作区可用。
+
+## 数据保留在设备上
+
+Terminal Spike 没有应用账号、分析追踪、广告或云同步。连接直接到达用户选择的主机。导入的私钥和用户明确选择保存的密码，使用应用专属 Android Keystore 密钥加密。
+
+[隐私政策](/zh/projects/terminal-spike/privacy)详细说明凭据存储、远程连接、权限与备份。
+
+[项目页](/zh/projects#terminal-spike)提供应用概览和演示。

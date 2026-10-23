@@ -1,4 +1,9 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 const { searchData } = Astro.props;
 const pages = [
   { title: "Home", href: "/", group: "Page" },
@@ -8,6 +13,12 @@ const pages = [
   { title: "Dev", href: "/dev", group: "Page" },
   { title: "Journal", href: "/journal", group: "Page" },
   { title: "Contact", href: "/contact", group: "Page" },
+  { title: "Privacy Policy", href: "/privacy-policy", group: "Page" },
+  {
+    title: "Terminal Spike Privacy Policy",
+    href: "/projects/terminal-spike/privacy",
+    group: "Page",
+  },
 ];
 const entries = [
   ...pages,
@@ -21,22 +32,29 @@ const entries = [
         item.frontmatter.description,
         ...(item.frontmatter.tags || []),
         ...(item.frontmatter.categories || []),
-      ].join(" "),
+      ]
+        .flatMap((keyword: string | undefined) =>
+          keyword ? [keyword, t(keyword)] : [],
+        )
+        .join(" "),
     })),
 ];
 ---
 
 <dialog class="command-palette" aria-labelledby="command-title">
   <div class="command-heading">
-    <h2 id="command-title">Go somewhere.</h2><button
+    <h2 id="command-title">{t("Go somewhere.")}</h2><button
       data-command-close
-      aria-label="Close search"><kbd>Esc</kbd></button>
+      aria-label={t("Close search")}><kbd>{t("Esc")}</kbd></button
+    >
   </div>
-  <label class="sr-only" for="command-input">Search pages and writing</label>
+  <label class="sr-only" for="command-input"
+    >{t("Search pages and writing")}</label
+  >
   <input
     id="command-input"
     type="search"
-    placeholder="Search pages, projects, writing…"
+    placeholder={t("Search pages, projects, writing…")}
     autocomplete="off"
   />
   <p class="command-count" role="status" aria-live="polite"></p>
@@ -44,13 +62,13 @@ const entries = [
     {
       entries.map((entry) => (
         <a
-          href={entry.href}
+          href={localePath(entry.href, locale)}
           data-command-result
-          data-search={`${entry.title} ${entry.group} ${"keywords" in entry ? entry.keywords : ""}`.toLowerCase()}
+          data-search={`${t(entry.title)} ${t(entry.group)} ${"keywords" in entry ? entry.keywords : ""}`.toLowerCase()}
         >
           <>
-            <span>{entry.title}</span>
-            <small>{entry.group}</small>
+            <span>{t(entry.title)}</span>
+            <small>{t(entry.group)}</small>
             <span aria-hidden="true">↗</span>
           </>
         </a>
@@ -58,10 +76,11 @@ const entries = [
     }
   </div>
   <p class="command-empty" hidden>
-    No matches. Try a topic like “Linux” or “AI”.
+    {t("No matches. Try a topic like “Linux” or “AI”.")}
   </p>
   <div class="command-footer">
-    <span><kbd>↑</kbd> <kbd>↓</kbd> navigate <kbd>↵</kbd> open</span><span
-      >Explore with curiosity.</span>
+    <span
+      ><kbd>↑</kbd> <kbd>↓</kbd> {t("navigate")} <kbd>↵</kbd> {t("open")}</span
+    ><span>{t("Explore with curiosity.")}</span>
   </div>
 </dialog>

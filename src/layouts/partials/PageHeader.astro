@@ -1,7 +1,13 @@
 ---
+import { translator, localeFrom, localePath, stripLocale } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import { humanize } from "@/lib/utils/textConverter";
 const { title = "", description = "" } = Astro.props;
-const section = Astro.url.pathname.split("/").filter(Boolean)[0] || "home";
+const section =
+  stripLocale(Astro.url.pathname).split("/").filter(Boolean)[0] || "home";
 const descriptions: Record<string, string> = {
   Dev: "Practical notes from building software. Tools, systems, and the details that make them work.",
   Journal:
@@ -10,18 +16,25 @@ const descriptions: Record<string, string> = {
     "Software made to be used. A selection of products, experiments, and developer tools.",
   Contact: "Have a role, a project, or an interesting problem? Let’s talk.",
 };
-const subtitle = description || descriptions[title] || "";
+const subtitle =
+  description ||
+  descriptions[title] ||
+  Object.entries(descriptions).find(([key]) => t(key) === title)?.[1] ||
+  "";
 ---
 
 <header class="page-header">
   <div class="site-width">
     <div class="page-path">
-      <a href="/">~</a><span>/</span>{
-        section !== "home" && <a href={`/${section}`}>{section}</a>
+      <a href={localePath("/", locale)}>~</a><span>/</span>{
+        section !== "home" && (
+          <a href={localePath(`/${section}`, locale)}>{t(humanize(section))}</a>
+        )
       }
-    </div><h1>{humanize(title)}</h1>{
-      subtitle && <p class="page-description">{subtitle}</p>
+    </div><h1>{t(humanize(title))}</h1>{
+      subtitle && <p class="page-description">{t(subtitle)}</p>
     }<span class="page-header-index" aria-hidden="true"
-      >JY / {section.toUpperCase()}</span>
+      >JY / {t(humanize(section)).toUpperCase()}</span
+    >
   </div>
 </header>

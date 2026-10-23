@@ -1,4 +1,9 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 type Pagination = {
   section?: string;
   currentPage?: number;
@@ -6,9 +11,14 @@ type Pagination = {
 };
 const { section, currentPage = 1, totalPages = 1 }: Pagination = Astro.props;
 
-const indexPageLink = currentPage === 2;
+const sectionPath = section ? `/${section}` : "";
+const pageLink = (page: number) =>
+  localePath(
+    page === 1 ? sectionPath || "/" : `${sectionPath}/page/${page}`,
+    locale,
+  );
 const hasPrevPage = currentPage > 1;
-const hasNextPage = totalPages > currentPage!;
+const hasNextPage = totalPages > currentPage;
 
 let pageList: number[] = [];
 for (let i = 1; i <= totalPages; i++) {
@@ -20,19 +30,15 @@ for (let i = 1; i <= totalPages; i++) {
   totalPages > 1 && (
     <nav
       class="flex items-center justify-center space-x-3"
-      aria-label="Pagination"
+      aria-label={t("Pagination")}
     >
       {/* previous */}
       {hasPrevPage ? (
         <a
-          href={
-            indexPageLink
-              ? `${section ? "/" + section : "/"}`
-              : `${section ? "/" + section : ""}/page/${currentPage - 1}`
-          }
+          href={pageLink(currentPage - 1)}
           class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
         >
-          <span class="sr-only">Previous</span>
+          <span class="sr-only">{t("Previous")}</span>
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -49,7 +55,7 @@ for (let i = 1; i <= totalPages; i++) {
         </a>
       ) : (
         <span class="rounded px-2 py-1.5 text-text-light">
-          <span class="sr-only">Previous</span>
+          <span class="sr-only">{t("Previous")}</span>
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -67,7 +73,7 @@ for (let i = 1; i <= totalPages; i++) {
       )}
 
       {/* page index */}
-      {pageList.map((pagination, i) =>
+      {pageList.map((pagination) =>
         pagination === currentPage ? (
           <span
             aria-current="page"
@@ -77,11 +83,7 @@ for (let i = 1; i <= totalPages; i++) {
           </span>
         ) : (
           <a
-            href={
-              i === 0
-                ? `${section ? "/" + section : "/"}`
-                : `${section ? "/" + section : ""}/page/${pagination}`
-            }
+            href={pageLink(pagination)}
             class="rounded px-4 py-2 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
           >
             {pagination}
@@ -92,10 +94,10 @@ for (let i = 1; i <= totalPages; i++) {
       {/* next page */}
       {hasNextPage ? (
         <a
-          href={`${section ? "/" + section : ""}/page/${currentPage + 1}`}
+          href={pageLink(currentPage + 1)}
           class="rounded px-2 py-1.5 text-text-dark hover:bg-light dark:text-darkmode-text-dark dark:hover:bg-darkmode-light"
         >
-          <span class="sr-only">Next</span>
+          <span class="sr-only">{t("Next")}</span>
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -112,7 +114,7 @@ for (let i = 1; i <= totalPages; i++) {
         </a>
       ) : (
         <span class="rounded px-2 py-1.5 text-text-light">
-          <span class="sr-only">Next</span>
+          <span class="sr-only">{t("Next")}</span>
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"

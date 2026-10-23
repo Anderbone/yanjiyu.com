@@ -1,0 +1,92 @@
+---
+title: "我的随处工作流：Herdr、code-server、Obsidian 与 Pi Edge"
+description: "通过 Terminal Spike 和 Tailscale，串联终端、编程智能体、浏览器编辑器和项目笔记。"
+date: 2026-10-22
+author: "Jiyu Yan"
+categories: ["Workflow"]
+tags: ["Terminal Spike", "Herdr", "code-server", "Obsidian", "Pi", "Tailscale"]
+pinned: true
+draft: false
+---
+
+import WorkflowMap from "@/components/WorkflowMap.astro";
+import WorkflowDemo from "@/components/WorkflowDemo.astro";
+
+我现在使用 Terminal Spike、Herdr、code-server、Obsidian 和 Pi Edge，通过 Tailscale 连接。无论在桌前还是拿着手机，我都可以从终端进入代码，从代码进入项目笔记，再从笔记开始与 Pi 对话。
+
+<WorkflowMap />
+
+电脑保存仓库并运行工具，手机提供多种与它们工作的入口。
+
+## 各个工具做什么
+
+| 工具                                              | 在工作流中的职责                              |
+| ------------------------------------------------- | --------------------------------------------- |
+| [Terminal Spike](/zh/dev/terminal-spike)          | Android 远程终端入口，支持 SSH 和 Mosh。      |
+| [Herdr](https://herdr.dev/docs/)                  | 组织电脑上的终端工作区、窗格和编程智能体。    |
+| [code-server](https://coder.com/docs/code-server) | 在浏览器中提供 VS Code 编辑器，读写远程仓库。 |
+| [Obsidian](https://obsidian.md)                   | 保存经常回看的项目笔记、计划和决定。          |
+| [Pi Edge](/zh/dev/pi-edge)                        | 在 Obsidian 内与电脑上的 Pi 工作。            |
+| [Tailscale](https://tailscale.com/docs)           | 出门时通过私有网络连接设备。                  |
+
+## 从 Terminal Spike 回到 Herdr
+
+Terminal Spike 将手机连接到电脑。我恢复 Herdr 会话，回到已经运行的项目与智能体。工作区和标签页为工作提供结构，智能体状态提醒哪里需要注意。
+
+因此 Herdr 是终端部分的中心。在电脑与 Herdr 服务器持续运行时，我可以在桌前开始、断开，再从手机连接。Terminal Spike 的 Herdr 支持，让触控操作这个工作区变得可行。
+
+SSH 或 Mosh 负责终端连接，Herdr 保留主机上的工作区，Tailscale 提供设备间网络路径。它们分别处理继续工作所需的不同部分。
+
+## 顺着链接进入编辑器与笔记
+
+终端适合运行智能体和命令。检查源文件、审查修改时，我也用 code-server 访问电脑上的仓库。
+
+理解改动背后的原因时，我会回到 Obsidian。项目笔记保存计划、决策和相关工具或页面的链接。Terminal Spike 支持网页和 `obsidian://` 笔记链接，终端输出可以直接带我进入手机上的编辑器或笔记。
+
+链接本身就是工作流的一部分：有用的回答应当帮我再次找到相关文件或笔记。打开 Obsidian 链接的设备必须拥有对应笔记；Tailscale 不会同步笔记库。
+
+## 用 symlink 把同一份笔记接进仓库
+
+在电脑上，我用符号链接（symlink）把项目的 Obsidian 文件夹接进代码仓库。实际文件保存在笔记库中，仓库里的 `obsidian` 入口指向那个文件夹。因此，无论从终端、code-server 还是 Obsidian 打开计划，读写的都是同一份 Markdown。
+
+例如，先在笔记库里准备好项目文件夹，再建立链接：
+
+```sh
+ln -s ~/notes/projects/my-app ~/code/my-app/obsidian
+```
+
+这里的路径只是示例。建立链接后，`~/code/my-app/obsidian/plan/next-step.md` 和 `~/notes/projects/my-app/plan/next-step.md` 指向同一个文件。源码留在 Git 中，计划、决定和工作笔记留在 Obsidian，无需来回复制；这个与电脑路径有关的链接可以不纳入版本控制。
+
+symlink 连接的是本机文件路径，不负责同步笔记库，也不会让手机直接访问电脑上的路径。手机打开的是同步到本机笔记库中的笔记；Tailscale 则让我访问电脑上的终端、编辑器和 Pi 桥接服务。分清这些职责，才能知道自己正在编辑哪份文件，以及每台设备如何访问它。
+
+## 从笔记继续，用 Pi Edge 工作
+
+下一步来自 Obsidian 中的计划或问题时，我打开 Pi Edge，附上当前笔记或选中文字，发送给电脑上的 Pi。图片也能作为上下文。
+
+回答就在笔记旁。消息和历史中的附件链接让我回到原文，Terminal Spike 与 code-server 则随时可用来检查命令、审查代码。
+
+Pi Edge 有自己的对话历史。这些工具共享项目材料，不会自动合并 Herdr 智能体对话与 Pi Edge 会话。
+
+## 一次典型循环
+
+1. 在 Obsidian 打开项目笔记，明确下一步改动。
+2. 用 Pi Edge 附上相关上下文，与 Pi 讨论。
+3. 切到 Terminal Spike 和 Herdr，运行终端智能体和命令。
+4. 打开 code-server，检查实现并审查修改。
+5. 将结果与下次需要的链接写回项目笔记。
+
+入口由任务决定。有时先回到 Herdr 中已运行的智能体，有时从笔记开始更好。
+
+## 一段工作流演示
+
+这段录像展示了给远程 Codex 发送图片、从终端链接打开 code-server 和 Obsidian，以及在 Terminal Spike 中调整额外按键布局。
+
+<WorkflowDemo />
+
+## 在别处继续同一环境
+
+设备接入 Tailscale 后，我可以在家庭网络之外访问电脑的终端、浏览器编辑器和 Pi 桥接服务。服务仍须保持运行，符合网络访问规则，电脑也必须保持唤醒。
+
+这是[早期 tmux 与 Termius 方案](/zh/dev/codex-anywhere-tmux-termius-tailscale)的延续。现在 Terminal Spike 是手机终端，Herdr 组织智能体工作区，带 Pi Edge 的 Obsidian 则把项目上下文纳入同一个循环。
+
+[了解 Terminal Spike](/zh/dev/terminal-spike) · [了解 Pi Edge](/zh/dev/pi-edge) · [所有项目](/zh/projects)

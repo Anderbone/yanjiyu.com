@@ -1,7 +1,11 @@
 ---
+import { localeFrom } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+
 import Base from "@/layouts/Base.astro";
 import PostSingle from "@/layouts/PostSingle.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
 
 const COLLECTION = "journal";
 
@@ -16,7 +20,10 @@ export async function getStaticPaths() {
   }));
 }
 
-const { post } = Astro.props;
+const post =
+  locale === "zh"
+    ? await getListPage(COLLECTION, Astro.props.post.id, locale)
+    : Astro.props.post;
 const { title, meta_title, description, image } = post.data;
 ---
 

@@ -1,9 +1,14 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import dateFormat from "@/lib/utils/dateFormat";
-const posts = sortByDate(await getSinglePage("dev"));
+const posts = sortByDate(await getSinglePage("dev", locale));
 const featuredPosts = [
   ...posts.filter((p) => p.data.pinned),
   ...posts.filter((p) => !p.data.pinned),
@@ -15,23 +20,24 @@ const featuredPosts = [
     <figure class="fencing-stage">
       <img
         src="/images/fencer.jpg"
-        alt="A fencer suspended mid-leap, foil extended."
+        alt={t("A fencer suspended mid-leap, foil extended.")}
         width="640"
         height="640"
         fetchpriority="high"
       />
     </figure>
     <div class="home-introduction">
-      <h1 id="home-title">Hi, I’m Jiyu.</h1>
+      <h1 id="home-title">{t("Hi, I’m Jiyu.")}</h1>
       <p>
-        A software engineer in Wrexham, UK.<br />I build useful products,
-        integrations, and developer tools.
+        {t("A software engineer in Wrexham, UK.")}<br />{
+          t("I build useful products, integrations, and developer tools.")
+        }
       </p>
       <div class="home-introduction-links">
         <a class="text-link" href="#selected-work"
-          >Explore my work <span aria-hidden="true">↓</span></a
-        ><a class="text-link" href="/about"
-          >About me <span aria-hidden="true">↗</span></a
+          >{t("Explore my work")} <span aria-hidden="true">↓</span></a
+        ><a class="text-link" href={localePath("/about", locale)}
+          >{t("About me")} <span aria-hidden="true">↗</span></a
         >
       </div>
     </div>
@@ -39,67 +45,88 @@ const featuredPosts = [
   <section id="selected-work" class="site-width home-work section-space">
     <div class="section-heading" data-reveal>
       <div>
-        <p class="eyebrow">01 / Selected work</p><h2>
-          From idea to everyday use.
+        <p class="eyebrow">{t("01 / Selected work")}</p><h2>
+          {t("From idea to everyday use.")}
         </h2>
-      </div><a class="text-link" href="/projects"
-        >All projects <span aria-hidden="true">↗</span></a
+      </div><a class="text-link" href={localePath("/projects", locale)}
+        >{t("All projects")} <span aria-hidden="true">↗</span></a
       >
     </div>
     <div class="work-grid">
-      <a class="work-preview" href="/projects#terminal-spike" data-reveal
+      <a
+        class="work-preview"
+        href={localePath("/projects#terminal-spike", locale)}
+        data-reveal
         ><div class="work-image terminal-preview">
-          <span class="preview-label">Terminal Spike / Android</span><span
-            class="terminal-type"
-            aria-hidden="true">Your terminal.<br />Anywhere<span>_</span></span
+          <span class="preview-label">{t("Terminal Spike / Android")}</span
+          ><span class="terminal-type" aria-hidden="true"
+            >{t("Your terminal.")}<br />{t("Anywhere")}<span>_</span></span
           ><img
             src="/images/terminal-spike-demo.webp"
             width="720"
             height="1680"
-            alt="Terminal Spike running a remote coding session on Android"
+            alt={t("Terminal Spike running a remote coding session on Android")}
             loading="lazy"
           /><span class="preview-arrow" aria-hidden="true">↗</span>
         </div><div class="work-caption">
-          <h3>Terminal Spike</h3><span>Android · SSH · Developer tools</span>
-        </div><p>Herdr, remote agents, and a terminal that goes with me.</p></a
+          <h3>{t("Terminal Spike")}</h3><span
+            >{t("Android · SSH · Developer tools")}</span
+          >
+        </div><p>
+          {t("Herdr, remote agents, and a terminal that goes with me.")}
+        </p></a
       >
-      <a class="work-preview" href="/dev/pi-edge" data-reveal>
+      <a
+        class="work-preview"
+        href={localePath("/dev/pi-edge", locale)}
+        data-reveal
+      >
         <div class="work-image pi-edge-preview">
-          <span class="preview-label">Pi Edge / Obsidian</span>
+          <span class="preview-label">{t("Pi Edge / Obsidian")}</span>
           <img
             src="/images/pi-edge-obsidian.webp"
             width="2256"
             height="2408"
-            alt="Pi Edge conversation beside a project note in Obsidian"
+            alt={t("Pi Edge conversation beside a project note in Obsidian")}
             loading="lazy"
           />
           <span class="preview-arrow" aria-hidden="true">↗</span>
         </div>
         <div class="work-caption">
-          <h3>Pi Edge</h3><span>Obsidian · Pi · Mobile</span>
+          <h3>{t("Pi Edge")}</h3><span>{t("Obsidian · Pi · Mobile")}</span>
         </div>
-        <p>Work with Pi on my computer, right beside my notes.</p>
+        <p>{t("Work with Pi on my computer, right beside my notes.")}</p>
       </a>
     </div>
-    <a class="project-strip" href="/dev/workflow-anywhere" data-reveal>
+    <a
+      class="project-strip"
+      href={localePath("/dev/workflow-anywhere", locale)}
+      data-reveal
+    >
       <span class="mono strip-icon" aria-hidden="true">↔</span>
       <div>
-        <h3>My anywhere workflow</h3><p>
-          Herdr, code-server, Obsidian, and Pi Edge. Connected through
-          Tailscale.
+        <h3>{t("My anywhere workflow")}</h3><p>
+          {
+            t(
+              "Herdr, code-server, Obsidian, and Pi Edge. Connected through Tailscale.",
+            )
+          }
         </p>
       </div>
-      <span class="mono strip-meta">Tools / Workflow</span><span
+      <span class="mono strip-meta">{t("Tools / Workflow")}</span><span
         class="strip-arrow"
         aria-hidden="true">↗</span
       >
     </a>
-    <a class="project-strip" href="/projects#ralph-loop" data-reveal
-      ><span class="mono strip-icon" aria-hidden="true">&gt;_</span><div>
-        <h3>Ralph Loop</h3><p>
-          Reviewed plans. Focused agent runs. A calmer development loop.
+    <a
+      class="project-strip"
+      href={localePath("/projects#ralph-loop", locale)}
+      data-reveal
+      ><span class="mono strip-icon" aria-hidden="true">{t("&gt;_")}</span><div>
+        <h3>{t("Ralph Loop")}</h3><p>
+          {t("Reviewed plans. Focused agent runs. A calmer development loop.")}
         </p>
-      </div><span class="mono strip-meta">TypeScript / CLI</span><span
+      </div><span class="mono strip-meta">{t("TypeScript / CLI")}</span><span
         class="strip-arrow"
         aria-hidden="true">↗</span
       ></a
@@ -108,19 +135,26 @@ const featuredPosts = [
   <section class="site-width section-space">
     <div class="section-heading" data-reveal>
       <div>
-        <p class="eyebrow">02 / From the workbench</p><h2>
-          Things learned along the way.
+        <p class="eyebrow">{t("02 / From the workbench")}</p><h2>
+          {t("Things learned along the way.")}
         </h2>
-      </div><a class="text-link" href="/dev"
-        >All Dev posts <span aria-hidden="true">↗</span></a
+      </div><a class="text-link" href={localePath("/dev", locale)}
+        >{t("All Dev posts")} <span aria-hidden="true">↗</span></a
       >
     </div><div class="home-writing">
       {
         featuredPosts.map((post) => (
-          <a href={`/dev/${post.id}`} class="writing-row" data-reveal>
+          <a
+            href={localePath(`/dev/${post.id}`, locale)}
+            class="writing-row"
+            data-reveal
+          >
             <>
               <time datetime={post.data.date?.toISOString()}>
-                {dateFormat(post.data.date)}
+                {dateFormat(
+                  post.data.date,
+                  locale === "zh" ? "yyyy年M月d日" : undefined,
+                )}
               </time>
               <div>
                 <>
@@ -134,9 +168,11 @@ const featuredPosts = [
         ))
       }
     </div><div class="journal-note">
-      <span class="mono">Beyond the code</span><p>
-        Books, faith, and a few observations on being human.
-      </p><a class="text-link" href="/journal">Visit the Journal ↗</a>
+      <span class="mono">{t("Beyond the code")}</span><p>
+        {t("Books, faith, and a few observations on being human.")}
+      </p><a class="text-link" href={localePath("/journal", locale)}
+        >{t("Visit the Journal ↗")}</a
+      >
     </div>
   </section>
 </Base>

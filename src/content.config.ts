@@ -38,29 +38,15 @@ const devCollection = createPostCollection("src/content/dev");
 
 const journalCollection = createPostCollection("src/content/journal");
 
-// Pages collection schema
-const pagesCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/pages" }),
-  schema: z.object({
-    ...commonFields,
-  }),
-});
+const createPageCollection = (base: string) =>
+  defineCollection({
+    loader: glob({ pattern: "**/*.{md,mdx}", base }),
+    schema: z.object(commonFields),
+  });
 
-// about collection schema
-const aboutCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
-  schema: z.object({
-    ...commonFields,
-  }),
-});
-
-// contact collection schema
-const contactCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
-  schema: z.object({
-    ...commonFields,
-  }),
-});
+const pagesCollection = createPageCollection("src/content/pages");
+const aboutCollection = createPageCollection("src/content/about");
+const contactCollection = createPageCollection("src/content/contact");
 
 // Homepage collection schema
 const homepageCollection = defineCollection({
@@ -136,6 +122,11 @@ const testimonialSectionCollection = defineCollection({
 
 // Export collections
 export const collections = {
+  zhDev: createPostCollection("src/content/zh/dev"),
+  zhJournal: createPostCollection("src/content/zh/journal"),
+  zhPages: createPageCollection("src/content/zh/pages"),
+  zhAbout: createPageCollection("src/content/zh/about"),
+  zhContact: createPageCollection("src/content/zh/contact"),
   // Pages
   homepage: homepageCollection,
   dev: devCollection,

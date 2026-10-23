@@ -1,34 +1,47 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import Base from "@/layouts/Base.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { render } from "astro:content";
-const about = await getListPage("about", "-index");
+const about = await getListPage("about", "-index", locale);
 const { Content } = await render(about);
 if (about.data.draft) return Astro.redirect("/404");
 ---
 
-<Base title="About Jiyu Yan" description={about.data.description}>
+<Base title={t("About Jiyu Yan")} description={about.data.description}>
   <div class="site-width about-page">
-    <aside class="about-details" aria-label="At a glance">
-      <p class="eyebrow">At a glance</p>
+    <aside class="about-details" aria-label={t("At a glance")}>
+      <p class="eyebrow">{t("At a glance")}</p>
       <dl>
-        <div><dt>Based in</dt><dd>Wrexham, UK</dd></div><div>
-          <dt>Working on</dt><dd>Product systems, integrations & AI tools</dd>
+        <div><dt>{t("Based in")}</dt><dd>{t("Wrexham, UK")}</dd></div><div>
+          <dt>{t("Working on")}</dt><dd>
+            {t("Product systems, integrations & AI tools")}
+          </dd>
         </div><div>
-          <dt>Experience</dt><dd>6+ years in enterprise software</dd>
+          <dt>{t("Experience")}</dt><dd>
+            {t("6+ years in enterprise software")}
+          </dd>
         </div><div>
-          <dt>Away from the keyboard</dt><dd>Fencing, books & writing</dd>
+          <dt>{t("Away from the keyboard")}</dt><dd>
+            {t("Fencing, books & writing")}
+          </dd>
         </div>
       </dl>
-      <a class="text-link" href="/cv"
-        >Experience & CV <span aria-hidden="true">↗</span></a
+      <a class="text-link" href={localePath("/cv", locale)}
+        >{t("Experience & CV")} <span aria-hidden="true">↗</span></a
       >
     </aside>
     <article class="about-story">
-      <header><p class="eyebrow">About</p><h1>A little about me.</h1></header>
+      <header>
+        <p class="eyebrow">{t("About")}</p><h1>{t("A little about me.")}</h1>
+      </header>
       <div class="content"><Content /></div>
       <a class="text-link about-contact" href="mailto:hi@yanjiyu.com"
-        >Say hello <span aria-hidden="true">↗</span></a
+        >{t("Say hello")} <span aria-hidden="true">↗</span></a
       >
     </article>
   </div>

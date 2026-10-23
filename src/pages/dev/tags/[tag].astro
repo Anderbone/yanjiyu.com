@@ -1,5 +1,11 @@
 ---
+import { localeFrom, translator } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import BlogCard from "@/components/BlogCard.astro";
+import { humanize } from "@/lib/utils/textConverter";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
@@ -18,12 +24,12 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params;
-const posts = await getSinglePage(COLLECTION);
+const posts = await getSinglePage(COLLECTION, locale);
 const filterByTags = taxonomyFilter(posts, "tags", tag!);
 const sortedPosts = sortByDate(filterByTags);
 ---
 
-<Base title={tag}>
+<Base title={t(humanize(tag!))}>
   <PageHeader title={tag} />
   <section class="section">
     <div class="site-width writing-list">

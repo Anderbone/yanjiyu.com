@@ -1,3 +1,9 @@
+---
+import { translator } from "@/lib/i18n";
+
+const t = translator(Astro.url);
+---
+
 <figure class="terminal-demo">
   <video
     controls
@@ -6,19 +12,21 @@
     poster="/images/terminal-spike-demo.webp"
     width="720"
     height="1680"
-    aria-label="Terminal Spike app demo: remote coding, scrolling, and tmux sessions"
+    aria-label={t(
+      "Terminal Spike app demo: remote coding, scrolling, and tmux sessions",
+    )}
   >
     <source src="/videos/terminal-spike-demo.mp4" type="video/mp4" />
     <a href="https://photos.app.goo.gl/ZamP17MYQWVUn2zA7"
-      >Watch the Terminal Spike demo</a
+      >{t("Watch the Terminal Spike demo")}</a
     >
   </video>
   <figcaption>
-    <span>Terminal Spike in action · 45 seconds · No audio</span>
+    <span>{t("Terminal Spike in action · 45 seconds · No audio")}</span>
     <a
       href="https://photos.app.goo.gl/ZamP17MYQWVUn2zA7"
       target="_blank"
-      rel="noopener">Watch on Google Photos ↗</a
+      rel="noopener">{t("Watch on Google Photos ↗")}</a
     >
   </figcaption>
 </figure>

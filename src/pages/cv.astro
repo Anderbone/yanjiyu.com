@@ -1,4 +1,9 @@
 ---
+import { translator, localeFrom, localePath } from "@/lib/i18n";
+
+const locale = localeFrom(Astro.url);
+const t = translator(Astro.url);
+
 import Base from "@/layouts/Base.astro";
 const profile = {
   name: "Jiyu Yan",
@@ -237,52 +242,61 @@ const additional = [
 ---
 
 <Base
-  title="Jiyu Yan — CV"
-  description="Solutions Engineer and Full-stack Software Engineer in Wrexham, UK. Enterprise delivery, integrations, automation, and AI product development."
+  title={t("Jiyu Yan — CV")}
+  description={t(
+    "Solutions Engineer and Full-stack Software Engineer in Wrexham, UK. Enterprise delivery, integrations, automation, and AI product development.",
+  )}
 >
   <div class="site-width resume">
     <header class="resume-header">
       <div>
-        <p class="eyebrow">Curriculum vitae / Experience & capabilities</p><h1>
-          {profile.name}<span>.</span>
-        </h1><p class="resume-role">{profile.title}</p><p
+        <p class="eyebrow">
+          {t("Curriculum vitae / Experience & capabilities")}
+        </p><h1>
+          {t(profile.name)}<span>.</span>
+        </h1><p class="resume-role">{t(profile.title)}</p><p
           class="resume-headline"
         >
-          {profile.headline}
+          {t(profile.headline)}
         </p>
       </div><a class="button button-accent" href={cvPdfPath} download
-        >Download CV <span aria-hidden="true">↓</span></a
+        >{t("Download CV")} <span aria-hidden="true">↓</span></a
       >
     </header>
     <div class="resume-contact">
-      <span>{profile.location}</span><span>{profile.remote}</span><span
-        >{profile.workStatus} · {profile.sponsorship}</span
-      ><a href={`mailto:${profile.email}`}>{profile.email} ↗</a><a
-        href={profile.githubUrl}
-        target="_blank"
-        rel="noopener">GitHub ↗</a
+      <span>{t(profile.location)}</span><span>{t(profile.remote)}</span><span
+        >{t(profile.workStatus)} · {t(profile.sponsorship)}</span
+      ><a href={localePath(`mailto:${profile.email}`, locale)}
+        >{profile.email} ↗</a
+      ><a href={profile.githubUrl} target="_blank" rel="noopener"
+        >{t("GitHub ↗")}</a
       ><a href={profile.linkedinUrl} target="_blank" rel="noopener"
-        >LinkedIn ↗</a
-      ><a href={`tel:${profile.phone.replaceAll(" ", "")}`}>{profile.phone}</a>
+        >{t("LinkedIn ↗")}</a
+      ><a href={localePath(`tel:${profile.phone.replaceAll(" ", "")}`, locale)}
+        >{profile.phone}</a
+      >
     </div>
     <div class="resume-layout">
-      <nav class="resume-nav" aria-label="CV sections">
-        <a href="#profile">01 / Profile</a><a href="#work">02 / Experience</a><a
-          href="#selected">03 / Selected work</a
-        ><a href="#education">04 / Education</a><a href="#skills">05 / Skills</a
-        ><a href="#additional">06 / More</a>
+      <nav class="resume-nav" aria-label={t("CV sections")}>
+        <a href="#profile">{t("01 / Profile")}</a><a href="#work"
+          >{t("02 / Experience")}</a
+        ><a href="#selected">{t("03 / Selected work")}</a><a href="#education"
+          >{t("04 / Education")}</a
+        ><a href="#skills">{t("05 / Skills")}</a><a href="#additional"
+          >{t("06 / More")}</a
+        >
       </nav>
       <div class="resume-content">
         <section id="profile" class="resume-section">
-          <p class="eyebrow">01 / Profile</p><p class="resume-summary">
-            {profile.summary}
+          <p class="eyebrow">{t("01 / Profile")}</p><p class="resume-summary">
+            {t(profile.summary)}
           </p><div class="resume-highlights">
             {
               highlights.slice(0, 4).map((item) => (
                 <div>
                   <>
-                    <strong>{item.value}</strong>
-                    <p>{item.label}</p>
+                    <strong>{t(item.value)}</strong>
+                    <p>{t(item.label)}</p>
                   </>
                 </div>
               ))
@@ -290,29 +304,29 @@ const additional = [
           </div>
         </section>
         <section id="work" class="resume-section">
-          <p class="eyebrow">02 / Experience</p>{
+          <p class="eyebrow">{t("02 / Experience")}</p>{
             experience.map((item) => (
               <article>
                 <div class="resume-item-heading">
                   <>
                     <div>
                       <>
-                        <h2>{item.company}</h2>
-                        <p>{item.note}</p>
+                        <h2>{t(item.company)}</h2>
+                        <p>{t(item.note)}</p>
                       </>
                     </div>
-                    <span>{item.period}</span>
+                    <span>{t(item.period)}</span>
                   </>
                 </div>
                 {item.roles.map((role) => (
                   <div class="resume-role-block">
                     <div class="resume-item-heading">
-                      <h3>{role.title}</h3>
-                      <span>{role.period}</span>
+                      <h3>{t(role.title)}</h3>
+                      <span>{t(role.period)}</span>
                     </div>
                     <ul>
                       {role.bullets.map((bullet) => (
-                        <li>{bullet}</li>
+                        <li>{t(bullet)}</li>
                       ))}
                     </ul>
                   </div>
@@ -322,40 +336,40 @@ const additional = [
           }
         </section>
         <section id="selected" class="resume-section">
-          <p class="eyebrow">03 / Selected work</p>{
+          <p class="eyebrow">{t("03 / Selected work")}</p>{
             selectedWork.map((item) => (
               <article class="resume-entry">
                 <>
-                  <span class="resume-label">{item.period}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.detail}</p>
-                  <p class="resume-methods">{item.chips.join(" · ")}</p>
+                  <span class="resume-label">{t(item.period)}</span>
+                  <h3>{t(item.title)}</h3>
+                  <p>{t(item.detail)}</p>
+                  <p class="resume-methods">{item.chips.map(t).join(" · ")}</p>
                 </>
               </article>
             ))
           }
         </section>
         <section id="education" class="resume-section">
-          <p class="eyebrow">04 / Education</p>{
+          <p class="eyebrow">{t("04 / Education")}</p>{
             education.map((item) => (
               <article class="resume-entry">
                 <>
-                  <span class="resume-label">{item.period}</span>
-                  <h3>{item.title}</h3>
-                  <p class="whitespace-pre-line">{item.detail}</p>
+                  <span class="resume-label">{t(item.period)}</span>
+                  <h3>{t(item.title)}</h3>
+                  <p class="whitespace-pre-line">{t(item.detail)}</p>
                 </>
               </article>
             ))
           }
         </section>
         <section id="skills" class="resume-section">
-          <p class="eyebrow">05 / Skills</p><dl class="resume-skills">
+          <p class="eyebrow">{t("05 / Skills")}</p><dl class="resume-skills">
             {
               skills.map(([group, items]) => (
                 <div>
                   <>
-                    <dt>{group}</dt>
-                    <dd>{items}</dd>
+                    <dt>{t(group)}</dt>
+                    <dd>{t(items)}</dd>
                   </>
                 </div>
               ))
@@ -363,23 +377,23 @@ const additional = [
           </dl>
         </section>
         <section id="additional" class="resume-section">
-          <p class="eyebrow">06 / Beyond the day job</p>{
+          <p class="eyebrow">{t("06 / Beyond the day job")}</p>{
             additional.map((item) => (
               <article class="resume-entry">
                 <h3>
                   {item.href ? (
                     <a href={item.href} target="_blank" rel="noopener">
-                      {item.title} ↗
+                      {t(item.title)} ↗
                     </a>
                   ) : (
-                    item.title
+                    t(item.title)
                   )}
                 </h3>
-                {item.detail && <p>{item.detail}</p>}
+                {item.detail && <p>{t(item.detail)}</p>}
                 {item.bullets && (
                   <ul>
                     {item.bullets.map((bullet) => (
-                      <li>{bullet}</li>
+                      <li>{t(bullet)}</li>
                     ))}
                   </ul>
                 )}

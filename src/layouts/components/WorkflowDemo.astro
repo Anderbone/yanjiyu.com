@@ -1,0 +1,55 @@
+---
+import { translator } from "@/lib/i18n";
+const t = translator(Astro.url);
+const source = "https://photos.app.goo.gl/nZ6qHr5SB1Dh4Cvw8";
+---
+
+<figure class="workflow-demo">
+  <video
+    controls
+    playsinline
+    preload="none"
+    poster="/images/workflow-anywhere-demo.webp"
+    width="1128"
+    height="1456"
+    aria-label={t(
+      "Anywhere workflow demo: image input, terminal links, and keyboard shortcuts",
+    )}
+  >
+    <source src="/videos/workflow-anywhere-demo.mp4" type="video/mp4" />
+    <a href={source}>{t("Watch the workflow demo")}</a>
+  </video>
+  <figcaption>
+    <span>{t("My anywhere workflow · 39 seconds · No audio")}</span>
+    <a href={source} target="_blank" rel="noopener"
+      >{t("Watch on Google Photos ↗")}</a
+    >
+  </figcaption>
+</figure>
+
+<style>
+  .workflow-demo {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    min-width: 0;
+  }
+  .workflow-demo video {
+    display: block;
+    width: min(100%, 34rem);
+    height: auto;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #081017;
+  }
+  .workflow-demo figcaption {
+    display: grid;
+    gap: 0.3rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+</style>
