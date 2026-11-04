@@ -37,9 +37,19 @@ if (about.data.draft) return Astro.redirect("/404");
     </aside>
     <article class="about-story">
       <header>
-        <p class="eyebrow">{t("About")}</p><h1>{t("A little about me.")}</h1>
+        <p class="eyebrow">{t("About")}</p><h1>
+          {t("A product engineer, from need to launch.")}
+        </h1>
       </header>
-      <div class="content"><Content /></div>
+      <div class="content">
+        <p>
+          {
+            t(
+              "I find out what people need, define what “good” looks like, and ship it.",
+            )
+          }
+        </p><Content />
+      </div>
       <a class="text-link about-contact" href="mailto:hi@yanjiyu.com"
         >{t("Say hello")} <span aria-hidden="true">↗</span></a
       >
