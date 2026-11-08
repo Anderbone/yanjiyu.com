@@ -33,11 +33,19 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   canonical?: string;
+  product?: boolean;
 }
 
 // destructure frontmatter
-const { title, meta_title, description, image, noindex, canonical } =
-  Astro.props;
+const {
+  title,
+  meta_title,
+  description,
+  image,
+  noindex,
+  canonical,
+  product = false,
+} = Astro.props;
 
 const pageTitle = plainify(t(meta_title || title || config.site.title));
 const pageDescription = plainify(
@@ -216,12 +224,12 @@ const searchData = [...aboutPages, ...searchPosts];
       )
     }
     <a class="skip-link" href="#main-content">{t("Skip to content")}</a>
-    <Header />
-    <CommandPalette searchData={searchData} />
+    {!product && <Header />}
+    {!product && <CommandPalette searchData={searchData} />}
     <main class="grow" id="main-content">
       <slot />
     </main>
-    <Footer />
+    {!product && <Footer />}
     <script>
       import "@/scripts/site";
     </script>

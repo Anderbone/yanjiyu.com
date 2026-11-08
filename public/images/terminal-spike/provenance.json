@@ -1,0 +1,147 @@
+{
+  "source_repository": "https://github.com/Anderbone/terminal-spike",
+  "source_manifest": "store-assets/google-play/sources/phone-release-0.0.13/manifest.json",
+  "capture_build": "0.0.13 (versionCode 21), signed release",
+  "capture_date": "2026-11-07T23:36:05.253053+00:00",
+  "conversion": "Original captures resized to at most 900px wide, WebP quality 88. No UI reconstruction.",
+  "feature_reference_commit": "38fba27",
+  "verified_on": "2026-11-08",
+  "play_listing_version": "0.0.14",
+  "github_apk": {
+    "version": "0.0.4 pre-release",
+    "bytes": 8779348
+  },
+  "images": [
+    {
+      "file": "user-mosh-workspaces.webp",
+      "original": "user-mosh-workspaces.jpg",
+      "sha256": "8b3c2ee5240118ea0e39c77bb4154134b9af77774927f0c5c8edcd71e2e56b05",
+      "provenance": "User-supplied real phone screenshot, approved for GitHub and Play listing use on 2026-11-08. Device and build unverified."
+    },
+    {
+      "file": "terminal.webp",
+      "original": "terminal.png",
+      "sha256": "f1745e045db400245dda95366ae00f9e9ca846e361e2c8cc24ffaabd77a4187f",
+      "provenance": "0.0.13 (versionCode 21), signed release"
+    },
+    {
+      "file": "project.webp",
+      "original": "project.png",
+      "sha256": "fbcdc3f2623fe8a9c44fb812838536077978b20ca18aa3a6a009dc9838a34012",
+      "provenance": "0.0.13 (versionCode 21), signed release"
+    },
+    {
+      "file": "editor.webp",
+      "original": "editor.png",
+      "sha256": "0b7a9f0e27a75d13adf29e26fd3a221e3989cdb1f4f617548bde44cf6b1ed33d",
+      "provenance": "0.0.13 (versionCode 21), signed release"
+    },
+    {
+      "file": "shortcut-management.webp",
+      "original": "snippets.png",
+      "sha256": "f2ff1997e1df68f1216c014f40b9973a10e0df29124bf3286d5b7cd58737a85b",
+      "provenance": "0.0.13 (versionCode 21), signed release"
+    },
+    {
+      "file": "sftp.webp",
+      "original": "sftp.png",
+      "sha256": "997f8a82e21bf9c2bfe02c71c1ee65ab4a8837a91030f1cf5456b1e86a283535",
+      "provenance": "0.0.13 (versionCode 21), signed release"
+    },
+    {
+      "file": "herdr-agent-chat.webp",
+      "original": "fecd648a-a769-4664-a40d-0b8be9b51622.jpg",
+      "provenance": "User supplied real Herdr agent conversation screenshot, selected for the hero on 2026-11-08."
+    }
+  ],
+  "missing_media": [
+    "Atlas image/file selection, transfer and path insertion recording",
+    "Native diff to code-server and back recording using Atlas src/tasks.js",
+    "Local agent settings grant, request and verified before/after changes"
+  ],
+  "video_edits": {
+    "sources": [
+      "2f48d790-3386-49a4-b5e7-00f497ee96e2.mp4",
+      "d39c8655-a99f-46c1-9ee4-1fbcec2c97ec.mp4"
+    ],
+    "clips": [
+      {
+        "file": "upload-demo.mp4",
+        "source": "2f48d790-3386-49a4-b5e7-00f497ee96e2.mp4",
+        "start_seconds": 26,
+        "duration_seconds": 6,
+        "right_pane_closeup": false
+      },
+      {
+        "file": "editor-demo.mp4",
+        "source": "2f48d790-3386-49a4-b5e7-00f497ee96e2.mp4",
+        "start_seconds": 32,
+        "duration_seconds": 6,
+        "right_pane_closeup": false
+      },
+      {
+        "file": "local-agent-demo.mp4",
+        "source": "d39c8655-a99f-46c1-9ee4-1fbcec2c97ec.mp4",
+        "start_seconds": 84,
+        "duration_seconds": 9,
+        "right_pane_closeup": false
+      },
+      {
+        "file": "arch-settings-demo.mp4",
+        "source": "d39c8655-a99f-46c1-9ee4-1fbcec2c97ec.mp4",
+        "start_seconds": 104.5,
+        "duration_seconds": 4,
+        "right_pane_closeup": false
+      },
+      {
+        "file": "workspace-demo.mp4",
+        "source": "2f48d790-3386-49a4-b5e7-00f497ee96e2.mp4",
+        "start_seconds": 0,
+        "duration_seconds": 16,
+        "right_pane_closeup": false
+      },
+      {
+        "file": "herdr-navigation-demo.mp4",
+        "source": "d39c8655-a99f-46c1-9ee4-1fbcec2c97ec.mp4",
+        "start_seconds": 45,
+        "duration_seconds": 13,
+        "right_pane_closeup": false
+      }
+    ],
+    "highlights_seconds": 34,
+    "processing": "Silent 24fps H.264; direct cuts, real-time speed. All clips preserve the entire original frame, including the Herdr sidebar and native input controls. The opening retains continuous Herdr navigation."
+  },
+  "compact_demo": {
+    "source": "terminal-spike/app/src/main/res/raw/guide_projects_full.mp4",
+    "start_seconds": 0,
+    "duration_seconds": 6,
+    "processing": "Full original 720x1600 frame, no crop. Shows Herdr Switch panel and terminal."
+  },
+  "combined_layout_demo": {
+    "phone_source": "e0d67d48-055f-441b-a544-cae732608b28.mp4",
+    "phone_seconds": [
+      0,
+      10
+    ],
+    "wide_source": "2f48d790-3386-49a4-b5e7-00f497ee96e2.mp4",
+    "wide_seconds": [
+      0,
+      4
+    ],
+    "highlights_seconds": 26,
+    "processing": "Full-frame phone and wide recordings in the same video. Only empty presentation padding is hidden for portrait playback; no app UI is cropped.",
+    "editor_begins_seconds": 16,
+    "keyboard_closeup": {
+      "source": "e0d67d48-055f-441b-a544-cae732608b28.mp4",
+      "source_seconds": [
+        8,
+        10
+      ],
+      "montage_seconds": [
+        10,
+        12
+      ],
+      "crop": "1080x720+0+1800; genuine native key area"
+    }
+  }
+}
