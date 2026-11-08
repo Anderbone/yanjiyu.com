@@ -71,7 +71,13 @@ assert.equal(
 let routePairs = 0;
 for (const file of fs
   .readdirSync("dist", { recursive: true })
-  .filter((name) => name.endsWith(".html") && !name.startsWith("zh/"))) {
+  .filter(
+    (name) =>
+      name.endsWith(".html") &&
+      !name.startsWith("zh/") &&
+      // Static downloads are copied verbatim, outside Astro's bilingual routes.
+      !fs.existsSync(path.join("public", name)),
+  )) {
   const route =
     file === "index.html" ? "/" : `/${file.replace(/(?:\/index)?\.html$/, "")}`;
   const chineseRoute = route === "/" ? "/zh" : `/zh${route}`;
