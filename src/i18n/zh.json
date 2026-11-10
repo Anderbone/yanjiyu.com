@@ -578,6 +578,7 @@
   "Good tools. Already yours.": "好工具，继续用。",
   "We don’t reinvent them. Use Tailscale to reach your computer, Mosh for changing networks, and tmux or Herdr to keep sessions running.": "不重复造轮子。推荐用 Tailscale 连回电脑，用 Mosh 应对网络变化，用 tmux 或 Herdr 保留工作会话。",
   "Choose your tools. Keep your host online. Stay in control.": "工具自由搭配，主机保持在线，一切由你掌控。",
-  "Google Play · 0.0.14 · Android 8.0+": "Google Play · 0.0.14 · Android 8.0+",
+  "Google Play · Android 8.0+": "Google Play · Android 8.0+",
+  "Play and GitHub use different signing keys. Keep using the same channel for updates.": "Play 与 GitHub 使用不同签名，请继续通过原安装渠道更新。",
   "After installing Local Arch, enable local settings access. Then chat with a compatible agent to change supported app settings.": "安装 Local Arch 后，开启本地设置访问，再与兼容的 agent 聊天，即可调整支持的应用设置。"
 }
