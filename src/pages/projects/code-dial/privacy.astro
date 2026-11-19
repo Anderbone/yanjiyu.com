@@ -1,0 +1,53 @@
+---
+import { translator } from "@/lib/i18n";
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/partials/PageHeader.astro";
+const t = translator(Astro.url);
+---
+
+<Base
+  title={t("Code Dial Privacy Policy")}
+  meta_title={t("Code Dial Privacy Policy | Jiyu Yan")}
+  description={t("How the Code Dial watch face and Code Dial Companion handle health, calendar, task and usage data.")}
+>
+  <PageHeader
+    title={t("Privacy Policy")}
+    description={t("Code Dial · No analytics, ads, or developer servers.")}
+  />
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <article class="content lg:col-10 xl:col-8">
+          <p><strong>{t("Last updated: 19 November 2026")}</strong></p>
+          <h2>{t("Overview")}</h2>
+          <p>{t("Code Dial is a Wear OS watch face developed by Jiyu Yan. Code Dial Companion is an optional phone and watch app that supplies extra information to the watch face.")}</p>
+          <p>{t("The developer does not collect, receive, sell, or share personal data through either app. Neither app has analytics, advertising, automatic crash reporting, a user account with the developer, or a developer-operated server.")}</p>
+          <h2>{t("Code Dial watch face")}</h2>
+          <p>{t("The watch face is a resource-only Watch Face Format package and contains no executable code. It displays time, battery, weather and other values provided by the watch system, plus data from complication providers that you choose. It does not collect or transmit any data itself.")}</p>
+          <h2>{t("Code Dial Companion: data handled on your devices")}</h2>
+          <p>{t("Only after you enable a feature, the companion handles:")}</p>
+          <ul>
+          <li>{t("Health and fitness data (read-only), such as steps, heart rate, sleep, exercise, blood oxygen, body composition and water intake, from Samsung Health or Health Connect;")}</li>
+          <li>{t("calendar events from your phone calendar, and calendar subscription (ICS) links that you enter;")}</li>
+          <li>{t("Todoist tasks, using a Todoist API token that you enter;")}</li>
+          <li>{t("AI usage limits: Codex/ChatGPT usage after you sign in with your OpenAI account, and Claude/Codex usage from a computer bridge that you run yourself, using a URL and token that you enter;")}</li>
+          <li>{t("the phone battery level, and pictures that you choose for the watch face.")}</li>
+          </ul>
+          <h2>{t("Where data goes")}</h2>
+          <p>{t("Health readings, calendar events, tasks, usage, battery and pictures are sent only from your phone to your paired watch through the Wear OS Data Layer, and are stored on these devices. Health data is never uploaded to any server and health records are never modified. Health data is not used for advertising or sold.")}</p>
+          <p>{t("To fetch data that you request, the companion connects directly from your phone to the services you configure: api.todoist.com, OpenAI (auth.openai.com, chatgpt.com), the calendar links you enter, and your own bridge. Those services receive your requests under their own privacy policies. The developer does not receive this traffic.")}</p>
+          <h2>{t("Storage and security")}</h2>
+          <p>{t("Tokens and sign-in credentials are encrypted on the phone with a key held in the Android Keystore. Network connections use HTTPS. Android cloud backup is disabled for the companion.")}</p>
+          <h2>{t("Your choices")}</h2>
+          <p>{t("Every source is optional. You can stop health sync in the app, revoke health, calendar and other permissions in system settings, sign out or remove tokens in the app, and delete all locally stored data by clearing the app's storage or uninstalling it.")}</p>
+          <h2>{t("Children")}</h2>
+          <p>{t("The apps are not directed to children.")}</p>
+          <h2>{t("Changes")}</h2>
+          <p>{t("This policy may be updated when the apps change. The date above shows the latest revision.")}</p>
+          <h2>{t("Contact")}</h2>
+          <p>{t("For privacy questions about Code Dial, contact Jiyu Yan at")} <a href="mailto:hi@yanjiyu.com">hi@yanjiyu.com</a>.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>
