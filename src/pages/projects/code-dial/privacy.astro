@@ -27,7 +27,7 @@ const t = translator(Astro.url);
           <h2>{t("Code Dial Companion: data handled on your devices")}</h2>
           <p>{t("Only after you enable a feature, the companion handles:")}</p>
           <ul>
-          <li>{t("Health and fitness data (read-only), such as steps, heart rate, sleep, exercise, blood oxygen, body composition and water intake, from Samsung Health or Health Connect;")}</li>
+          <li>{t("health and fitness data (read-only) from Samsung Health or Health Connect on a Samsung Galaxy Watch: energy score, sleep score and duration, daily activity (steps, active time, activity calories and their goals), resting heart rate, heart rate variability, blood oxygen and VO₂ max;")}</li>
           <li>{t("calendar events from your phone calendar, and calendar subscription (ICS) links that you enter;")}</li>
           <li>{t("Todoist tasks, using a Todoist API token that you enter;")}</li>
           <li>{t("AI usage limits: Codex/ChatGPT usage after you sign in with your OpenAI account, and Claude/Codex usage from a computer bridge that you run yourself, using a URL and token that you enter;")}</li>
@@ -36,6 +36,7 @@ const t = translator(Astro.url);
           <h2>{t("Where data goes")}</h2>
           <p>{t("Health readings, calendar events, tasks, usage, battery and pictures are sent only from your phone to your paired watch through the Wear OS Data Layer, and are stored on these devices. Health data is never uploaded to any server and health records are never modified. Health data is not used for advertising or sold.")}</p>
           <p>{t("To fetch data that you request, the companion connects directly from your phone to the services you configure: api.todoist.com, OpenAI (auth.openai.com, chatgpt.com), the calendar links you enter, and your own bridge. Those services receive your requests under their own privacy policies. The developer does not receive this traffic.")}</p>
+          <p>{t("If you use Send feedback in the app, your email app opens a message to hi@yanjiyu.com with the app version, device model, Android version and app language filled in. Nothing is sent unless you send it yourself, and the developer receives only what you send.")}</p>
           <h2>{t("Storage and security")}</h2>
           <p>{t("Tokens and sign-in credentials are encrypted on the phone with a key held in the Android Keystore. Network connections use HTTPS. Android cloud backup is disabled for the companion.")}</p>
           <h2>{t("Your choices")}</h2>
